@@ -5,6 +5,7 @@ import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.Objects;
@@ -56,6 +57,15 @@ public class Property {
     private final String displayPropertyType;
     private final Integer propertyType;
     private final Integer propertyStyle;
+    private final Integer availability;
+    private final BigDecimal price;
+    private final Integer priceQualifier;
+    private final Integer forSalePOA;
+    private final Integer propertyTenure;
+    private final Integer saleBy;
+    private final Integer developmentOpportunity;
+    private final Integer investmentOpportunity;
+    private final BigDecimal estimatedRentalIncome;
 
     public Property(
             @JacksonXmlProperty(localName = "propertyID") final Long propertyId
@@ -104,7 +114,16 @@ public class Property {
             , @JacksonXmlProperty(localName = "floorAreaUnits") final String floorAreaUnits
             , @JacksonXmlProperty(localName = "displayPropertyType") final String displayPropertyType
             , @JacksonXmlProperty(localName = "propertyType") final Integer propertyType
-            , @JacksonXmlProperty(localName = "propertyStyle") final Integer propertyStyle) {
+            , @JacksonXmlProperty(localName = "propertyStyle") final Integer propertyStyle
+            , @JacksonXmlProperty(localName = "availability") final Integer availability
+            , @JacksonXmlProperty(localName = "price") final BigDecimal price
+            , @JacksonXmlProperty(localName = "priceQualifier") final Integer priceQualifier
+            , @JacksonXmlProperty(localName = "forSalePOA") final Integer forSalePOA
+            , @JacksonXmlProperty(localName = "propertyTenure") final Integer propertyTenure
+            , @JacksonXmlProperty(localName = "saleBy") final Integer saleBy
+            , @JacksonXmlProperty(localName = "developmentOpportunity") final Integer developmentOpportunity
+            , @JacksonXmlProperty(localName = "investmentOpportunity") final Integer investmentOpportunity
+            , @JacksonXmlProperty(localName = "estimatedRentalIncome") final BigDecimal estimatedRentalIncome) {
         this.propertyId = propertyId;
         this.branchId = branchId;
         this.clientName = clientName;
@@ -150,6 +169,15 @@ public class Property {
         this.displayPropertyType = displayPropertyType;
         this.propertyType = propertyType;
         this.propertyStyle = propertyStyle;
+        this.availability = availability;
+        this.price = price;
+        this.priceQualifier = priceQualifier;
+        this.forSalePOA = forSalePOA;
+        this.propertyTenure = propertyTenure;
+        this.saleBy = saleBy;
+        this.developmentOpportunity = developmentOpportunity;
+        this.investmentOpportunity = investmentOpportunity;
+        this.estimatedRentalIncome = estimatedRentalIncome;
     }
 
     public Long getPropertyId() {
@@ -332,6 +360,42 @@ public class Property {
         return propertyStyle;
     }
 
+    public Integer getAvailability() {
+        return availability;
+    }
+
+    public BigDecimal getPrice() {
+        return price;
+    }
+
+    public Integer getForSalePOA() {
+        return forSalePOA;
+    }
+
+    public Integer getPriceQualifier() {
+        return priceQualifier;
+    }
+
+    public Integer getPropertyTenure() {
+        return propertyTenure;
+    }
+
+    public Integer getSaleBy() {
+        return saleBy;
+    }
+
+    public Integer getDevelopmentOpportunity() {
+        return developmentOpportunity;
+    }
+
+    public Integer getInvestmentOpportunity() {
+        return investmentOpportunity;
+    }
+
+    public BigDecimal getEstimatedRentalIncome() {
+        return estimatedRentalIncome;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -381,7 +445,16 @@ public class Property {
                 Objects.equals(floorAreaUnits, property.floorAreaUnits) &&
                 Objects.equals(displayPropertyType, property.displayPropertyType) &&
                 Objects.equals(propertyType, property.propertyType) &&
-                Objects.equals(propertyStyle, property.propertyStyle);
+                Objects.equals(propertyStyle, property.propertyStyle) &&
+                Objects.equals(availability, property.availability) &&
+                Objects.equals(price, property.price) &&
+                Objects.equals(priceQualifier, property.priceQualifier) &&
+                Objects.equals(forSalePOA, property.forSalePOA) &&
+                Objects.equals(propertyTenure, property.propertyTenure) &&
+                Objects.equals(saleBy, property.saleBy) &&
+                Objects.equals(developmentOpportunity, property.developmentOpportunity) &&
+                Objects.equals(investmentOpportunity, property.investmentOpportunity) &&
+                Objects.equals(estimatedRentalIncome, property.estimatedRentalIncome);
     }
 
     @Override
@@ -393,7 +466,8 @@ public class Property {
                 , dateLastModified, timeLastModified, featuredProperty, regionId, latitude, longitude, flags
                 , mainSummary, fullDescription, propertyBedrooms, propertyBathrooms, propertyEnsuites
                 , propertyReceptionRooms, propertyKitchens, propertyAge, floorArea, floorAreaUnits, displayPropertyType
-                , propertyType, propertyStyle);
+                , propertyType, propertyStyle, availability, price, priceQualifier, forSalePOA, propertyTenure, saleBy
+                , developmentOpportunity, investmentOpportunity, estimatedRentalIncome);
     }
 
     @Override
@@ -444,6 +518,15 @@ public class Property {
                 ", displayPropertyType='" + displayPropertyType + '\'' +
                 ", propertyType=" + propertyType +
                 ", propertyStyle=" + propertyStyle +
+                ", availability=" + availability +
+                ", price=" + price +
+                ", priceQualifier=" + priceQualifier +
+                ", forSalePOA=" + forSalePOA +
+                ", propertyTenure=" + propertyTenure +
+                ", saleBy=" + saleBy +
+                ", developmentOpportunity=" + developmentOpportunity +
+                ", investmentOpportunity=" + investmentOpportunity +
+                ", estimatedRentalIncome=" + estimatedRentalIncome +
                 '}';
     }
 }

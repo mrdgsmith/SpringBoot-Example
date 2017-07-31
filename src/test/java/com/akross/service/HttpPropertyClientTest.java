@@ -13,6 +13,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.net.URISyntaxException;
 import java.net.URL;
 import java.nio.file.Files;
@@ -116,6 +117,15 @@ public class HttpPropertyClientTest {
         assertThat(properties.get(0).getDisplayPropertyType(), is("Detached House"));
         assertThat(properties.get(0).getPropertyType(), is(1));
         assertThat(properties.get(0).getPropertyStyle(), is(4));
+        assertThat(properties.get(0).getAvailability(), is(2));
+        assertThat(properties.get(0).getPrice(), is(BigDecimal.valueOf(2100000)));
+        assertThat(properties.get(0).getForSalePOA(), is(0));
+        assertThat(properties.get(0).getPriceQualifier(), is(4));
+        assertThat(properties.get(0).getPropertyTenure(), is(1));
+        assertThat(properties.get(0).getSaleBy(), is(1));
+        assertThat(properties.get(0).getDevelopmentOpportunity(), is(0));
+        assertThat(properties.get(0).getInvestmentOpportunity(), is(0));
+        assertThat(properties.get(0).getEstimatedRentalIncome(), is(BigDecimal.valueOf(3950)));
     }
 
     private String xmlFeed() throws URISyntaxException, IOException {
