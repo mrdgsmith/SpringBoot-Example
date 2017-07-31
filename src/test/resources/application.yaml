@@ -1,0 +1,7 @@
+jupix:
+  restService:
+    rootUrl: localhost
+    propertyPath: /api/get_properties.php
+    clientId: foo
+    passphrase: bar
+    version: 5.0
