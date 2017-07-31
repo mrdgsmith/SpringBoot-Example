@@ -45,44 +45,66 @@ public class Property {
     private final Flags flags;
     private final String mainSummary;
     private final String fullDescription;
+    private final Integer propertyBedrooms;
+    private final Integer propertyBathrooms;
+    private final Integer propertyEnsuites;
+    private final Integer propertyReceptionRooms;
+    private final Integer propertyKitchens;
+    private final Integer propertyAge;
+    private final Double floorArea;
+    private final String floorAreaUnits;
+    private final String displayPropertyType;
+    private final Integer propertyType;
+    private final Integer propertyStyle;
 
     public Property(
-            final @JacksonXmlProperty(localName = "propertyID") Long propertyId
-            , final @JacksonXmlProperty(localName = "branchID") Integer branchId
-            , final @JacksonXmlProperty(localName = "clientName") String clientName
-            , final @JacksonXmlProperty(localName = "branchName") String branchName
-            , final @JacksonXmlProperty(localName = "department") String department
-            , final @JacksonXmlProperty(localName = "referenceNumber") String referenceNumber
-            , final @JacksonXmlProperty(localName = "addressName") String addressName
-            , final @JacksonXmlProperty(localName = "addressNumber") Integer addressNumber
-            , final @JacksonXmlProperty(localName = "addressStreet") String addressStreet
-            , final @JacksonXmlProperty(localName = "address2") String address2
-            , final @JacksonXmlProperty(localName = "address3") String address3
-            , final @JacksonXmlProperty(localName = "address4") String address4
-            , final @JacksonXmlProperty(localName = "addressPostCode") String addressPostcode
-            , final @JacksonXmlProperty(localName = "country") String country
-            , final @JacksonXmlProperty(localName = "displayAddress") String displayAddress
-            , final @JacksonXmlProperty(localName = "propertyFeature1") String propertyFeature1
-            , final @JacksonXmlProperty(localName = "propertyFeature2") String propertyFeature2
-            , final @JacksonXmlProperty(localName = "propertyFeature3") String propertyFeature3
-            , final @JacksonXmlProperty(localName = "propertyFeature4") String propertyFeature4
-            , final @JacksonXmlProperty(localName = "propertyFeature5") String propertyFeature5
-            , final @JacksonXmlProperty(localName = "propertyFeature6") String propertyFeature6
-            , final @JacksonXmlProperty(localName = "propertyFeature7") String propertyFeature7
-            , final @JacksonXmlProperty(localName = "propertyFeature8") String propertyFeature8
-            , final @JacksonXmlProperty(localName = "propertyFeature9") String propertyFeature9
-            , final @JacksonXmlProperty(localName = "propertyFeature10") String propertyFeature10
-            , final @JacksonXmlProperty(localName = "dateLastModified")
-            @JsonDeserialize(using = LocalDateDeserializer.class) LocalDate dateLastModified
-            , final @JacksonXmlProperty(localName = "timeLastModified")
-            @JsonDeserialize(using = LocalTimeDeserializer.class) LocalTime timeLastModified
-            , final @JacksonXmlProperty(localName = "featuredProperty") Integer featuredProperty
-            , final @JacksonXmlProperty(localName = "regionID") Integer regionId
-            , final @JacksonXmlProperty(localName = "latitude") Double latitude
-            , final @JacksonXmlProperty(localName = "longitude") Double longitude
-            , final @JacksonXmlProperty(localName = "flags") Flags flags
-            , final @JacksonXmlProperty(localName = "mainSummary") String mainSummary
-            , final @JacksonXmlProperty(localName = "fullDescription") String fullDescription) {
+            @JacksonXmlProperty(localName = "propertyID") final Long propertyId
+            , @JacksonXmlProperty(localName = "branchID") final Integer branchId
+            , @JacksonXmlProperty(localName = "clientName") final String clientName
+            , @JacksonXmlProperty(localName = "branchName") final String branchName
+            , @JacksonXmlProperty(localName = "department") final String department
+            , @JacksonXmlProperty(localName = "referenceNumber") final String referenceNumber
+            , @JacksonXmlProperty(localName = "addressName") final String addressName
+            , @JacksonXmlProperty(localName = "addressNumber") final Integer addressNumber
+            , @JacksonXmlProperty(localName = "addressStreet") final String addressStreet
+            , @JacksonXmlProperty(localName = "address2") final String address2
+            , @JacksonXmlProperty(localName = "address3") final String address3
+            , @JacksonXmlProperty(localName = "address4") final String address4
+            , @JacksonXmlProperty(localName = "addressPostCode") final String addressPostcode
+            , @JacksonXmlProperty(localName = "country") final String country
+            , @JacksonXmlProperty(localName = "displayAddress") final String displayAddress
+            , @JacksonXmlProperty(localName = "propertyFeature1") final String propertyFeature1
+            , @JacksonXmlProperty(localName = "propertyFeature2") final String propertyFeature2
+            , @JacksonXmlProperty(localName = "propertyFeature3") final String propertyFeature3
+            , @JacksonXmlProperty(localName = "propertyFeature4") final String propertyFeature4
+            , @JacksonXmlProperty(localName = "propertyFeature5") final String propertyFeature5
+            , @JacksonXmlProperty(localName = "propertyFeature6") final String propertyFeature6
+            , @JacksonXmlProperty(localName = "propertyFeature7") final String propertyFeature7
+            , @JacksonXmlProperty(localName = "propertyFeature8") final String propertyFeature8
+            , @JacksonXmlProperty(localName = "propertyFeature9") final String propertyFeature9
+            , @JacksonXmlProperty(localName = "propertyFeature10") final String propertyFeature10
+            , @JacksonXmlProperty(localName = "dateLastModified")
+            @JsonDeserialize(using = LocalDateDeserializer.class) final LocalDate dateLastModified
+            , @JacksonXmlProperty(localName = "timeLastModified")
+            @JsonDeserialize(using = LocalTimeDeserializer.class) final LocalTime timeLastModified
+            , @JacksonXmlProperty(localName = "featuredProperty") final Integer featuredProperty
+            , @JacksonXmlProperty(localName = "regionID") final Integer regionId
+            , @JacksonXmlProperty(localName = "latitude") final Double latitude
+            , @JacksonXmlProperty(localName = "longitude") final Double longitude
+            , @JacksonXmlProperty(localName = "flags") final Flags flags
+            , @JacksonXmlProperty(localName = "mainSummary") final String mainSummary
+            , @JacksonXmlProperty(localName = "fullDescription") final String fullDescription
+            , @JacksonXmlProperty(localName = "propertyBedrooms") final Integer propertyBedrooms
+            , @JacksonXmlProperty(localName = "propertyBathrooms") final Integer propertyBathrooms
+            , @JacksonXmlProperty(localName = "propertyEnsuites") final Integer propertyEnsuites
+            , @JacksonXmlProperty(localName = "propertyReceptionRooms") final Integer propertyReceptionRooms
+            , @JacksonXmlProperty(localName = "propertyKitchens") final Integer propertyKitchens
+            , @JacksonXmlProperty(localName = "propertyAge") final Integer propertyAge
+            , @JacksonXmlProperty(localName = "floorArea") final Double floorArea
+            , @JacksonXmlProperty(localName = "floorAreaUnits") final String floorAreaUnits
+            , @JacksonXmlProperty(localName = "displayPropertyType") final String displayPropertyType
+            , @JacksonXmlProperty(localName = "propertyType") final Integer propertyType
+            , @JacksonXmlProperty(localName = "propertyStyle") final Integer propertyStyle) {
         this.propertyId = propertyId;
         this.branchId = branchId;
         this.clientName = clientName;
@@ -117,6 +139,17 @@ public class Property {
         this.flags = flags;
         this.mainSummary = mainSummary;
         this.fullDescription = fullDescription;
+        this.propertyBedrooms = propertyBedrooms;
+        this.propertyBathrooms = propertyBathrooms;
+        this.propertyEnsuites = propertyEnsuites;
+        this.propertyReceptionRooms = propertyReceptionRooms;
+        this.propertyKitchens = propertyKitchens;
+        this.propertyAge = propertyAge;
+        this.floorArea = floorArea;
+        this.floorAreaUnits = floorAreaUnits;
+        this.displayPropertyType = displayPropertyType;
+        this.propertyType = propertyType;
+        this.propertyStyle = propertyStyle;
     }
 
     public Long getPropertyId() {
@@ -255,6 +288,50 @@ public class Property {
         return fullDescription;
     }
 
+    public Integer getPropertyBedrooms() {
+        return propertyBedrooms;
+    }
+
+    public Integer getPropertyBathrooms() {
+        return propertyBathrooms;
+    }
+
+    public Integer getPropertyEnsuites() {
+        return propertyEnsuites;
+    }
+
+    public Integer getPropertyReceptionRooms() {
+        return propertyReceptionRooms;
+    }
+
+    public Integer getPropertyKitchens() {
+        return propertyKitchens;
+    }
+
+    public Integer getPropertyAge() {
+        return propertyAge;
+    }
+
+    public Double getFloorArea() {
+        return floorArea;
+    }
+
+    public String getFloorAreaUnits() {
+        return floorAreaUnits;
+    }
+
+    public String getDisplayPropertyType() {
+        return displayPropertyType;
+    }
+
+    public Integer getPropertyType() {
+        return propertyType;
+    }
+
+    public Integer getPropertyStyle() {
+        return propertyStyle;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -293,7 +370,18 @@ public class Property {
                 Objects.equals(longitude, property.longitude) &&
                 Objects.equals(flags, property.flags) &&
                 Objects.equals(mainSummary, property.mainSummary) &&
-                Objects.equals(fullDescription, property.fullDescription);
+                Objects.equals(fullDescription, property.fullDescription) &&
+                Objects.equals(propertyBedrooms, property.propertyBedrooms) &&
+                Objects.equals(propertyBathrooms, property.propertyBathrooms) &&
+                Objects.equals(propertyEnsuites, property.propertyEnsuites) &&
+                Objects.equals(propertyReceptionRooms, property.propertyReceptionRooms) &&
+                Objects.equals(propertyKitchens, property.propertyKitchens) &&
+                Objects.equals(propertyAge, property.propertyAge) &&
+                Objects.equals(floorArea, property.floorArea) &&
+                Objects.equals(floorAreaUnits, property.floorAreaUnits) &&
+                Objects.equals(displayPropertyType, property.displayPropertyType) &&
+                Objects.equals(propertyType, property.propertyType) &&
+                Objects.equals(propertyStyle, property.propertyStyle);
     }
 
     @Override
@@ -303,7 +391,9 @@ public class Property {
                 , propertyFeature1, propertyFeature2, propertyFeature3, propertyFeature4, propertyFeature5
                 , propertyFeature6, propertyFeature7, propertyFeature8, propertyFeature9, propertyFeature10
                 , dateLastModified, timeLastModified, featuredProperty, regionId, latitude, longitude, flags
-                , mainSummary, fullDescription);
+                , mainSummary, fullDescription, propertyBedrooms, propertyBathrooms, propertyEnsuites
+                , propertyReceptionRooms, propertyKitchens, propertyAge, floorArea, floorAreaUnits, displayPropertyType
+                , propertyType, propertyStyle);
     }
 
     @Override
@@ -343,6 +433,17 @@ public class Property {
                 ", flags=" + flags +
                 ", mainSummary='" + mainSummary + '\'' +
                 ", fullDescription='" + fullDescription + '\'' +
+                ", propertyBedrooms=" + propertyBedrooms +
+                ", propertyBathrooms=" + propertyBathrooms +
+                ", propertyEnsuites=" + propertyEnsuites +
+                ", propertyReceptionRooms=" + propertyReceptionRooms +
+                ", propertyKitchens=" + propertyKitchens +
+                ", propertyAge=" + propertyAge +
+                ", floorArea=" + floorArea +
+                ", floorAreaUnits='" + floorAreaUnits + '\'' +
+                ", displayPropertyType='" + displayPropertyType + '\'' +
+                ", propertyType=" + propertyType +
+                ", propertyStyle=" + propertyStyle +
                 '}';
     }
 }

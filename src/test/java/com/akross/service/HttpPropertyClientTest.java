@@ -105,6 +105,17 @@ public class HttpPropertyClientTest {
                 "    The Kitchen/Breakfast Room has been well designed and adapted for modern life with a four door Aga and a striking copper chimney above it. There is a useful Pantry and Utility Room to either side. <br />\n" +
                 "    <br />\n" +
                 "    For more details, please consult the floorplans.&nbsp;"));
+        assertThat(properties.get(0).getPropertyBedrooms(), is(5));
+        assertThat(properties.get(0).getPropertyBathrooms(), is(4));
+        assertThat(properties.get(0).getPropertyEnsuites(), is(2));
+        assertThat(properties.get(0).getPropertyReceptionRooms(), is(4));
+        assertThat(properties.get(0).getPropertyKitchens(), is(1));
+        assertThat(properties.get(0).getPropertyAge(), is(9));
+        assertThat(properties.get(0).getFloorArea(), is(140.00));
+        assertThat(properties.get(0).getFloorAreaUnits(), is("sq ft"));
+        assertThat(properties.get(0).getDisplayPropertyType(), is("Detached House"));
+        assertThat(properties.get(0).getPropertyType(), is(1));
+        assertThat(properties.get(0).getPropertyStyle(), is(4));
     }
 
     private String xmlFeed() throws URISyntaxException, IOException {
