@@ -126,6 +126,12 @@ public class HttpPropertyClientTest {
         assertThat(properties.get(0).getDevelopmentOpportunity(), is(0));
         assertThat(properties.get(0).getInvestmentOpportunity(), is(0));
         assertThat(properties.get(0).getEstimatedRentalIncome(), is(BigDecimal.valueOf(3950)));
+        assertThat(properties.get(1).getRent(), is(BigDecimal.valueOf(2500)));
+        assertThat(properties.get(1).getRentFrequency(), is(1));
+        assertThat(properties.get(1).getToLetPOA(), is(0));
+        assertThat(properties.get(1).getStudentProperty(), is(nullValue()));
+        assertThat(properties.get(1).getLettingFeePolicyHeadline(), is("Fees may apply"));
+        assertThat(properties.get(1).getLettingFeePolicyDetails(), is(nullValue()));
     }
 
     private String xmlFeed() throws URISyntaxException, IOException {

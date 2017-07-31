@@ -66,6 +66,12 @@ public class Property {
     private final Integer developmentOpportunity;
     private final Integer investmentOpportunity;
     private final BigDecimal estimatedRentalIncome;
+    private BigDecimal rent;
+    private Integer rentFrequency;
+    private Integer toLetPOA;
+    private Integer studentProperty;
+    private String lettingFeePolicyHeadline;
+    private String lettingFeePolicyDetails;
 
     public Property(
             @JacksonXmlProperty(localName = "propertyID") final Long propertyId
@@ -123,7 +129,13 @@ public class Property {
             , @JacksonXmlProperty(localName = "saleBy") final Integer saleBy
             , @JacksonXmlProperty(localName = "developmentOpportunity") final Integer developmentOpportunity
             , @JacksonXmlProperty(localName = "investmentOpportunity") final Integer investmentOpportunity
-            , @JacksonXmlProperty(localName = "estimatedRentalIncome") final BigDecimal estimatedRentalIncome) {
+            , @JacksonXmlProperty(localName = "estimatedRentalIncome") final BigDecimal estimatedRentalIncome
+            , @JacksonXmlProperty(localName = "rent") final BigDecimal rent
+            , @JacksonXmlProperty(localName = "rentFrequency") final Integer rentFrequency
+            , @JacksonXmlProperty(localName = "toLetPOA") final Integer toLetPOA
+            , @JacksonXmlProperty(localName = "studentProperty") final Integer studentProperty
+            , @JacksonXmlProperty(localName = "lettingFeePolicyHeadline") final String lettingFeePolicyHeadline
+            , @JacksonXmlProperty(localName = "lettingFeePolicyDetails") final String lettingFeePolicyDetails) {
         this.propertyId = propertyId;
         this.branchId = branchId;
         this.clientName = clientName;
@@ -178,6 +190,12 @@ public class Property {
         this.developmentOpportunity = developmentOpportunity;
         this.investmentOpportunity = investmentOpportunity;
         this.estimatedRentalIncome = estimatedRentalIncome;
+        this.rent = rent;
+        this.rentFrequency = rentFrequency;
+        this.toLetPOA = toLetPOA;
+        this.studentProperty = studentProperty;
+        this.lettingFeePolicyHeadline = lettingFeePolicyHeadline;
+        this.lettingFeePolicyDetails = lettingFeePolicyDetails;
     }
 
     public Long getPropertyId() {
@@ -396,6 +414,30 @@ public class Property {
         return estimatedRentalIncome;
     }
 
+    public BigDecimal getRent() {
+        return rent;
+    }
+
+    public Integer getRentFrequency() {
+        return rentFrequency;
+    }
+
+    public Integer getToLetPOA() {
+        return toLetPOA;
+    }
+
+    public Integer getStudentProperty() {
+        return studentProperty;
+    }
+
+    public String getLettingFeePolicyHeadline() {
+        return lettingFeePolicyHeadline;
+    }
+
+    public String getLettingFeePolicyDetails() {
+        return lettingFeePolicyDetails;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -454,7 +496,13 @@ public class Property {
                 Objects.equals(saleBy, property.saleBy) &&
                 Objects.equals(developmentOpportunity, property.developmentOpportunity) &&
                 Objects.equals(investmentOpportunity, property.investmentOpportunity) &&
-                Objects.equals(estimatedRentalIncome, property.estimatedRentalIncome);
+                Objects.equals(estimatedRentalIncome, property.estimatedRentalIncome) &&
+                Objects.equals(rent, property.rent) &&
+                Objects.equals(rentFrequency, property.rentFrequency) &&
+                Objects.equals(toLetPOA, property.toLetPOA) &&
+                Objects.equals(studentProperty, property.studentProperty) &&
+                Objects.equals(lettingFeePolicyHeadline, property.lettingFeePolicyHeadline) &&
+                Objects.equals(lettingFeePolicyDetails, property.lettingFeePolicyDetails);
     }
 
     @Override
@@ -467,7 +515,8 @@ public class Property {
                 , mainSummary, fullDescription, propertyBedrooms, propertyBathrooms, propertyEnsuites
                 , propertyReceptionRooms, propertyKitchens, propertyAge, floorArea, floorAreaUnits, displayPropertyType
                 , propertyType, propertyStyle, availability, price, priceQualifier, forSalePOA, propertyTenure, saleBy
-                , developmentOpportunity, investmentOpportunity, estimatedRentalIncome);
+                , developmentOpportunity, investmentOpportunity, estimatedRentalIncome, rent, rentFrequency, toLetPOA
+                , studentProperty, lettingFeePolicyHeadline, lettingFeePolicyDetails);
     }
 
     @Override
@@ -527,6 +576,12 @@ public class Property {
                 ", developmentOpportunity=" + developmentOpportunity +
                 ", investmentOpportunity=" + investmentOpportunity +
                 ", estimatedRentalIncome=" + estimatedRentalIncome +
+                ", rent=" + rent +
+                ", rentFrequency=" + rentFrequency +
+                ", toLetPOA=" + toLetPOA +
+                ", studentProperty=" + studentProperty +
+                ", lettingFeePolicyHeadline='" + lettingFeePolicyHeadline + '\'' +
+                ", lettingFeePolicyDetails='" + lettingFeePolicyDetails + '\'' +
                 '}';
     }
 }
