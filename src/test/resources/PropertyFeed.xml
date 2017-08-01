@@ -96,67 +96,21 @@
             <flag>Price Reduction</flag>
         </flags>
         <images>
-            <image modified="2011-01-21 10:12:06">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_1_large.jpg
-            </image>
-            <image modified="2011-04-01 11:20:00">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_2_large.jpg
-            </image>
-            <image modified="2011-04-01 11:20:00">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_3_large.jpg
-            </image>
-            <image modified="2011-04-01 11:20:00">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_4_large.jpg
-            </image>
-            <image modified="2011-04-01 11:20:00">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_5_large.jpg
-            </image>
-            <image modified="2011-04-01 11:20:00">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_6_large.jpg
-            </image>
-            <image modified="2011-04-01 11:20:00">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_7_large.jpg
-            </image>
-            <image modified="2011-04-01 11:20:00">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_8_large.jpg
-            </image>
-            <image modified="2011-04-01 11:20:00">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_9_large.jpg
-            </image>
-            <image modified="2011-04-01 11:20:00">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_10_large.jpg
-            </image>
-            <image modified="2011-06-03 14:33:10">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_11_large.jpg
-            </image>
+            <image modified="2011-01-21 10:12:06">http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_1_large.jpg</image>
+            <image modified="2011-04-01 11:20:00">http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_2_large.jpg</image>
         </images>
         <floorplans>
-            <floorplan modified="2011-04-01 11:30:00">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/FLP_795_1_large.jpg
-            </floorplan>
-            <floorplan modified="2011-04-01 11:30:00">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/FLP_795_2_large.jpg
-            </floorplan>
+            <floorplan modified="2011-04-01 11:30:00">http://media2.jupix.co.uk/v3/clients/4/properties/795/FLP_795_1_large.jpg</floorplan>
+            <floorplan modified="2011-04-01 11:30:00">http://media2.jupix.co.uk/v3/clients/4/properties/795/FLP_795_2_large.jpg</floorplan>
         </floorplans>
         <epcGraphs>
-            <epcGraph modified="2011-04-01 11:35:00">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_5086.jpg
-            </epcGraph>
+            <epcGraph modified="2011-04-01 11:35:00">http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_5086.jpg</epcGraph>
         </epcGraphs>
-        <epcFrontPages>
-            <epcFrontPage modified="2011-04-01 11:35:00">http://epc.jupix.co.uk/f465cvd</epcFrontPage>
-        </epcFrontPages>
-        <brochures>
-            <brochure modified="2011-04-01 11:40:00">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_5085.pdf
-            </brochure>
-        </brochures>
+        <epcFrontPages><epcFrontPage modified="2011-04-01 11:35:00">http://epc.jupix.co.uk/f465cvd</epcFrontPage></epcFrontPages>
+        <brochures><brochure modified="2011-04-01 11:40:00">http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_5085.pdf</brochure></brochures>
         <virtualTours>
-            <virtualTour modified="2011-04-01 11:50:00">http://www.hackneyandleigh.co.uk/vt/k4485/k4485.htm
-            </virtualTour>
-            <virtualTour modified="2011-04-01 11:50:00">
-                http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_72967.swf
-            </virtualTour>
+            <virtualTour modified="2011-04-01 11:50:00">http://www.hackneyandleigh.co.uk/vt/k4485/k4485.htm</virtualTour>
+            <virtualTour modified="2011-04-01 11:50:00">http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_72967.swf</virtualTour>
         </virtualTours>
         <externalLinks>
             <externalLink>
