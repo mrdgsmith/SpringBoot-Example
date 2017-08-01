@@ -42,6 +42,26 @@
         <priceQualifier>4</priceQualifier>
         <propertyTenure>1</propertyTenure>
         <saleBy>1</saleBy>
+        <forSale>0</forSale>
+        <toLet>1</toLet>
+        <priceTo>150000</priceTo>
+        <priceFrom>450000</priceFrom>
+        <rentTo>12000</rentTo>
+        <rentFrom>22000</rentFrom>
+        <floorAreaTo>55.7</floorAreaTo>
+        <floorAreaFrom>85.10</floorAreaFrom>
+        <siteArea>100.10</siteArea>
+        <siteAreaUnits>hectares</siteAreaUnits>
+        <strapLine>Flexible office space</strapLine>
+        <propertyTypes>
+            <propertyType>28</propertyType>
+            <propertyType>5</propertyType>
+            <propertyType>1</propertyType>
+        </propertyTypes>
+        <landAreaTo>4342.2</landAreaTo>
+        <landAreaFrom>4347.24</landAreaFrom>
+        <landAreaUnits>bla</landAreaUnits>
+        <forSaleLeaseLength>7</forSaleLeaseLength>
         <developmentOpportunity>0</developmentOpportunity>
         <investmentOpportunity>0</investmentOpportunity>
         <estimatedRentalIncome>3950</estimatedRentalIncome>
