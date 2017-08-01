@@ -195,8 +195,7 @@
         <epcFrontPages></epcFrontPages>
         <brochures></brochures>
         <virtualTours></virtualTours>
-        <externalLinks>
-        </externalLinks>
+        <externalLinks></externalLinks>
     </property>
     <!--<property>-->
         <!--<propertyID>2261</propertyID>-->

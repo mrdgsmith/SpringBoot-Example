@@ -187,6 +187,12 @@ public class HttpPropertyClientTest {
                         , "http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_72967.swf")
                 ))
         ));
+        assertThat(properties.get(0).getExternalLinks(), is(new ExternalLinks(singletonList(
+                new ExternalLink("www.test.com?this=that&here=there"
+                        , "Interactive Floorplan"
+                        , LocalDateTime.of(2013, 4, 17, 16, 15, 46))
+                ))
+        ));
     }
 
     private String xmlFeed() throws URISyntaxException, IOException {
