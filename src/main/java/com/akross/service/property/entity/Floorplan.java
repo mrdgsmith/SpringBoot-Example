@@ -36,9 +36,9 @@ public class Floorplan {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Floorplan image = (Floorplan) o;
-        return Objects.equals(modified, image.modified) &&
-                Objects.equals(url, image.url);
+        Floorplan floorplan = (Floorplan) o;
+        return Objects.equals(modified, floorplan.modified) &&
+                Objects.equals(url, floorplan.url);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class Floorplan {
 
     @Override
     public String toString() {
-        return "Image{" +
+        return "Floorplan{" +
                 "modified=" + modified +
                 ", url='" + url + '\'' +
                 '}';

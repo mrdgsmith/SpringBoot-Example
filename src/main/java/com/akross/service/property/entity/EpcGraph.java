@@ -36,9 +36,9 @@ public class EpcGraph {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EpcGraph image = (EpcGraph) o;
-        return Objects.equals(modified, image.modified) &&
-                Objects.equals(url, image.url);
+        EpcGraph epcGraph = (EpcGraph) o;
+        return Objects.equals(modified, epcGraph.modified) &&
+                Objects.equals(url, epcGraph.url);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class EpcGraph {
 
     @Override
     public String toString() {
-        return "Image{" +
+        return "EpcGraph{" +
                 "modified=" + modified +
                 ", url='" + url + '\'' +
                 '}';

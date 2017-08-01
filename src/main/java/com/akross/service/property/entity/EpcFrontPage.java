@@ -36,9 +36,9 @@ public class EpcFrontPage {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EpcFrontPage image = (EpcFrontPage) o;
-        return Objects.equals(modified, image.modified) &&
-                Objects.equals(url, image.url);
+        EpcFrontPage that = (EpcFrontPage) o;
+        return Objects.equals(modified, that.modified) &&
+                Objects.equals(url, that.url);
     }
 
     @Override
@@ -48,7 +48,7 @@ public class EpcFrontPage {
 
     @Override
     public String toString() {
-        return "Image{" +
+        return "EpcFrontPage{" +
                 "modified=" + modified +
                 ", url='" + url + '\'' +
                 '}';
