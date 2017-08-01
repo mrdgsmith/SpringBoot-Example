@@ -157,8 +157,13 @@ public class HttpPropertyClientTest {
                         , "http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_2_large.jpg")
                 ))
         ));
-
-
+        assertThat(properties.get(0).getFloorplans(), is(new Floorplans(asList(
+                new Floorplan(LocalDateTime.of(2011, 4, 1, 11, 30, 0)
+                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/FLP_795_1_large.jpg")
+                , new Floorplan(LocalDateTime.of(2011, 4, 1, 11, 31, 0)
+                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/FLP_795_2_large.jpg")
+                ))
+        ));
     }
 
     private String xmlFeed() throws URISyntaxException, IOException {

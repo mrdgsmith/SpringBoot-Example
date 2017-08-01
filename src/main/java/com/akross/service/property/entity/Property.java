@@ -89,6 +89,7 @@ public class Property {
     private final String landAreaUnits;
     private final Integer forSaleLeaseLength;
     private final Images images;
+    private final Floorplans floorplans;
 
     public Property(
             @JacksonXmlProperty(localName = "propertyID") final Long propertyId
@@ -169,7 +170,8 @@ public class Property {
             , @JacksonXmlProperty(localName = "landAreaFrom") final Double landAreaFrom
             , @JacksonXmlProperty(localName = "landAreaUnits") final String landAreaUnits
             , @JacksonXmlProperty(localName = "forSaleLeaseLength") final Integer forSaleLeaseLength
-            , @JacksonXmlProperty(localName = "images") final Images images) {
+            , @JacksonXmlProperty(localName = "images") final Images images
+            , @JacksonXmlProperty(localName = "floorplans") final Floorplans floorplans) {
         this.propertyId = propertyId;
         this.branchId = branchId;
         this.clientName = clientName;
@@ -247,6 +249,7 @@ public class Property {
         this.landAreaUnits = landAreaUnits;
         this.forSaleLeaseLength = forSaleLeaseLength;
         this.images = images;
+        this.floorplans = floorplans;
     }
 
     public Long getPropertyId() {
@@ -557,6 +560,10 @@ public class Property {
         return images;
     }
 
+    public Floorplans getFloorplans() {
+        return floorplans;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -638,7 +645,8 @@ public class Property {
                 Objects.equals(landAreaFrom, property.landAreaFrom) &&
                 Objects.equals(landAreaUnits, property.landAreaUnits) &&
                 Objects.equals(forSaleLeaseLength, property.forSaleLeaseLength) &&
-                Objects.equals(images, property.images);
+                Objects.equals(images, property.images) &&
+                Objects.equals(floorplans, property.floorplans);
     }
 
     @Override
@@ -652,9 +660,9 @@ public class Property {
                 , propertyReceptionRooms, propertyKitchens, propertyAge, floorArea, floorAreaUnits, displayPropertyType
                 , propertyType, propertyStyle, availability, price, priceQualifier, forSalePOA, propertyTenure, saleBy
                 , developmentOpportunity, investmentOpportunity, estimatedRentalIncome, rent, rentFrequency, toLetPOA
-                , studentProperty, lettingFeePolicyHeadline, lettingFeePolicyDetails, forSale, toLet, priceTo, priceFrom
-                , rentTo, rentFrom, floorAreaTo, floorAreaFrom, siteArea, siteAreaUnits, strapLine, propertyTypes
-                , landAreaTo, landAreaFrom, landAreaUnits, forSaleLeaseLength, images);
+                , studentProperty, lettingFeePolicyHeadline, lettingFeePolicyDetails, forSale, toLet, priceTo
+                , priceFrom, rentTo, rentFrom, floorAreaTo, floorAreaFrom, siteArea, siteAreaUnits, strapLine
+                , propertyTypes, landAreaTo, landAreaFrom, landAreaUnits, forSaleLeaseLength, images, floorplans);
     }
 
     @Override
@@ -737,6 +745,7 @@ public class Property {
                 ", landAreaUnits='" + landAreaUnits + '\'' +
                 ", forSaleLeaseLength=" + forSaleLeaseLength +
                 ", images=" + images +
+                ", floorplans=" + floorplans +
                 '}';
     }
 }
