@@ -93,6 +93,7 @@ public class Property {
     private final EpcGraphs epcGraphs;
     private final EpcFrontPages epcFrontPages;
     private final Brochures brochures;
+    private final VirtualTours virtualTours;
 
     public Property(
             @JacksonXmlProperty(localName = "propertyID") final Long propertyId
@@ -177,7 +178,8 @@ public class Property {
             , @JacksonXmlProperty(localName = "floorplans") final Floorplans floorplans
             , @JacksonXmlProperty(localName = "epcGraphs") final EpcGraphs epcGraphs
             , @JacksonXmlProperty(localName = "epcFrontPages") final EpcFrontPages epcFrontPages
-            , @JacksonXmlProperty(localName = "brochures") final Brochures brochures) {
+            , @JacksonXmlProperty(localName = "brochures") final Brochures brochures
+            , @JacksonXmlProperty(localName = "virtualTours") final VirtualTours virtualTours) {
         this.propertyId = propertyId;
         this.branchId = branchId;
         this.clientName = clientName;
@@ -259,6 +261,7 @@ public class Property {
         this.epcGraphs = epcGraphs;
         this.epcFrontPages = epcFrontPages;
         this.brochures = brochures;
+        this.virtualTours = virtualTours;
     }
 
     public Long getPropertyId() {
@@ -585,6 +588,10 @@ public class Property {
         return brochures;
     }
 
+    public VirtualTours getVirtualTours() {
+        return virtualTours;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -670,7 +677,8 @@ public class Property {
                 Objects.equals(floorplans, property.floorplans) &&
                 Objects.equals(epcGraphs, property.epcGraphs) &&
                 Objects.equals(epcFrontPages, property.epcFrontPages) &&
-                Objects.equals(brochures, property.brochures);
+                Objects.equals(brochures, property.brochures) &&
+                Objects.equals(virtualTours, property.virtualTours);
     }
 
     @Override
@@ -687,7 +695,7 @@ public class Property {
                 , studentProperty, lettingFeePolicyHeadline, lettingFeePolicyDetails, forSale, toLet, priceTo
                 , priceFrom, rentTo, rentFrom, floorAreaTo, floorAreaFrom, siteArea, siteAreaUnits, strapLine
                 , propertyTypes, landAreaTo, landAreaFrom, landAreaUnits, forSaleLeaseLength, images, floorplans
-                , epcGraphs, epcFrontPages, brochures);
+                , epcGraphs, epcFrontPages, brochures, virtualTours);
     }
 
     @Override
@@ -774,6 +782,7 @@ public class Property {
                 ", epcGraphs=" + epcGraphs +
                 ", epcFrontPages=" + epcFrontPages +
                 ", brochures=" + brochures +
+                ", virtualTours=" + virtualTours +
                 '}';
     }
 }

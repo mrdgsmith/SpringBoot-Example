@@ -180,6 +180,13 @@ public class HttpPropertyClientTest {
                         , "http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_5085.pdf")
                 ))
         ));
+        assertThat(properties.get(0).getVirtualTours(), is(new VirtualTours(asList(
+                new VirtualTour(LocalDateTime.of(2011, 4, 1, 11, 50, 0)
+                        , "http://www.hackneyandleigh.co.uk/vt/k4485/k4485.htm")
+                , new VirtualTour(LocalDateTime.of(2011, 4, 1, 11, 50, 0)
+                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_72967.swf")
+                ))
+        ));
     }
 
     private String xmlFeed() throws URISyntaxException, IOException {
