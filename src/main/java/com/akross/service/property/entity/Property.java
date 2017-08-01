@@ -90,6 +90,7 @@ public class Property {
     private final Integer forSaleLeaseLength;
     private final Images images;
     private final Floorplans floorplans;
+    private final EpcGraphs epcGraphs;
 
     public Property(
             @JacksonXmlProperty(localName = "propertyID") final Long propertyId
@@ -171,7 +172,8 @@ public class Property {
             , @JacksonXmlProperty(localName = "landAreaUnits") final String landAreaUnits
             , @JacksonXmlProperty(localName = "forSaleLeaseLength") final Integer forSaleLeaseLength
             , @JacksonXmlProperty(localName = "images") final Images images
-            , @JacksonXmlProperty(localName = "floorplans") final Floorplans floorplans) {
+            , @JacksonXmlProperty(localName = "floorplans") final Floorplans floorplans
+            , @JacksonXmlProperty(localName = "epcGraphs") final EpcGraphs epcGraphs) {
         this.propertyId = propertyId;
         this.branchId = branchId;
         this.clientName = clientName;
@@ -250,6 +252,7 @@ public class Property {
         this.forSaleLeaseLength = forSaleLeaseLength;
         this.images = images;
         this.floorplans = floorplans;
+        this.epcGraphs = epcGraphs;
     }
 
     public Long getPropertyId() {
@@ -564,6 +567,10 @@ public class Property {
         return floorplans;
     }
 
+    public EpcGraphs getEpcGraphs() {
+        return epcGraphs;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -646,7 +653,8 @@ public class Property {
                 Objects.equals(landAreaUnits, property.landAreaUnits) &&
                 Objects.equals(forSaleLeaseLength, property.forSaleLeaseLength) &&
                 Objects.equals(images, property.images) &&
-                Objects.equals(floorplans, property.floorplans);
+                Objects.equals(floorplans, property.floorplans) &&
+                Objects.equals(epcGraphs, property.epcGraphs);
     }
 
     @Override
@@ -662,90 +670,7 @@ public class Property {
                 , developmentOpportunity, investmentOpportunity, estimatedRentalIncome, rent, rentFrequency, toLetPOA
                 , studentProperty, lettingFeePolicyHeadline, lettingFeePolicyDetails, forSale, toLet, priceTo
                 , priceFrom, rentTo, rentFrom, floorAreaTo, floorAreaFrom, siteArea, siteAreaUnits, strapLine
-                , propertyTypes, landAreaTo, landAreaFrom, landAreaUnits, forSaleLeaseLength, images, floorplans);
-    }
-
-    @Override
-    public String toString() {
-        return "Property{" +
-                "propertyId=" + propertyId +
-                ", branchId=" + branchId +
-                ", clientName='" + clientName + '\'' +
-                ", branchName='" + branchName + '\'' +
-                ", department='" + department + '\'' +
-                ", referenceNumber='" + referenceNumber + '\'' +
-                ", addressName='" + addressName + '\'' +
-                ", addressNumber=" + addressNumber +
-                ", addressStreet='" + addressStreet + '\'' +
-                ", address2='" + address2 + '\'' +
-                ", address3='" + address3 + '\'' +
-                ", address4='" + address4 + '\'' +
-                ", addressPostcode='" + addressPostcode + '\'' +
-                ", country='" + country + '\'' +
-                ", displayAddress='" + displayAddress + '\'' +
-                ", propertyFeature1='" + propertyFeature1 + '\'' +
-                ", propertyFeature2='" + propertyFeature2 + '\'' +
-                ", propertyFeature3='" + propertyFeature3 + '\'' +
-                ", propertyFeature4='" + propertyFeature4 + '\'' +
-                ", propertyFeature5='" + propertyFeature5 + '\'' +
-                ", propertyFeature6='" + propertyFeature6 + '\'' +
-                ", propertyFeature7='" + propertyFeature7 + '\'' +
-                ", propertyFeature8='" + propertyFeature8 + '\'' +
-                ", propertyFeature9='" + propertyFeature9 + '\'' +
-                ", propertyFeature10='" + propertyFeature10 + '\'' +
-                ", dateLastModified=" + dateLastModified +
-                ", timeLastModified=" + timeLastModified +
-                ", featuredProperty=" + featuredProperty +
-                ", regionId=" + regionId +
-                ", latitude=" + latitude +
-                ", longitude=" + longitude +
-                ", flags=" + flags +
-                ", mainSummary='" + mainSummary + '\'' +
-                ", fullDescription='" + fullDescription + '\'' +
-                ", propertyBedrooms=" + propertyBedrooms +
-                ", propertyBathrooms=" + propertyBathrooms +
-                ", propertyEnsuites=" + propertyEnsuites +
-                ", propertyReceptionRooms=" + propertyReceptionRooms +
-                ", propertyKitchens=" + propertyKitchens +
-                ", propertyAge=" + propertyAge +
-                ", floorArea=" + floorArea +
-                ", floorAreaUnits='" + floorAreaUnits + '\'' +
-                ", displayPropertyType='" + displayPropertyType + '\'' +
-                ", propertyType=" + propertyType +
-                ", propertyStyle=" + propertyStyle +
-                ", availability=" + availability +
-                ", price=" + price +
-                ", priceQualifier=" + priceQualifier +
-                ", forSalePOA=" + forSalePOA +
-                ", propertyTenure=" + propertyTenure +
-                ", saleBy=" + saleBy +
-                ", developmentOpportunity=" + developmentOpportunity +
-                ", investmentOpportunity=" + investmentOpportunity +
-                ", estimatedRentalIncome=" + estimatedRentalIncome +
-                ", rent=" + rent +
-                ", rentFrequency=" + rentFrequency +
-                ", toLetPOA=" + toLetPOA +
-                ", studentProperty=" + studentProperty +
-                ", lettingFeePolicyHeadline='" + lettingFeePolicyHeadline + '\'' +
-                ", lettingFeePolicyDetails='" + lettingFeePolicyDetails + '\'' +
-                ", forSale=" + forSale +
-                ", toLet=" + toLet +
-                ", priceTo=" + priceTo +
-                ", priceFrom=" + priceFrom +
-                ", rentTo=" + rentTo +
-                ", rentFrom=" + rentFrom +
-                ", floorAreaTo=" + floorAreaTo +
-                ", floorAreaFrom=" + floorAreaFrom +
-                ", siteArea=" + siteArea +
-                ", siteAreaUnits='" + siteAreaUnits + '\'' +
-                ", strapLine='" + strapLine + '\'' +
-                ", propertyTypes=" + propertyTypes +
-                ", landAreaTo=" + landAreaTo +
-                ", landAreaFrom=" + landAreaFrom +
-                ", landAreaUnits='" + landAreaUnits + '\'' +
-                ", forSaleLeaseLength=" + forSaleLeaseLength +
-                ", images=" + images +
-                ", floorplans=" + floorplans +
-                '}';
+                , propertyTypes, landAreaTo, landAreaFrom, landAreaUnits, forSaleLeaseLength, images, floorplans
+                , epcGraphs);
     }
 }

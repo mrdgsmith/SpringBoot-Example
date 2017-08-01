@@ -23,6 +23,7 @@ import java.time.LocalTime;
 import java.util.List;
 
 import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
 import static java.util.Objects.nonNull;
 import static org.hamcrest.Matchers.nullValue;
 import static org.hamcrest.core.Is.is;
@@ -162,6 +163,11 @@ public class HttpPropertyClientTest {
                         , "http://media2.jupix.co.uk/v3/clients/4/properties/795/FLP_795_1_large.jpg")
                 , new Floorplan(LocalDateTime.of(2011, 4, 1, 11, 31, 0)
                         , "http://media2.jupix.co.uk/v3/clients/4/properties/795/FLP_795_2_large.jpg")
+                ))
+        ));
+        assertThat(properties.get(0).getEpcGraphs(), is(new EpcGraphs(singletonList(
+                new EpcGraph(LocalDateTime.of(2011, 4, 1, 11, 35, 0)
+                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_5086.jpg")
                 ))
         ));
     }
