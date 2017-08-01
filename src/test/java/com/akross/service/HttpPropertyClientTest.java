@@ -46,7 +46,7 @@ public class HttpPropertyClientTest {
     private PropertyClient httpPropertyClient;
 
     @Test
-    public void whenCallingGetPropertiesThenClientMakesCorrectCall() throws Exception {
+    public void ShouldGetPropertiesAndClientMakesCorrectCall() throws Exception {
         server.expect(requestTo("/api/get_properties.php?clientId=foo&passphrase=bar&version=5.0"))
                 .andExpect(method(GET))
                 .andExpect(queryParam("clientId", "foo"))
