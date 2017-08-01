@@ -101,7 +101,7 @@
         </images>
         <floorplans>
             <floorplan modified="2011-04-01 11:30:00">http://media2.jupix.co.uk/v3/clients/4/properties/795/FLP_795_1_large.jpg</floorplan>
-            <floorplan modified="2011-04-01 11:30:00">http://media2.jupix.co.uk/v3/clients/4/properties/795/FLP_795_2_large.jpg</floorplan>
+            <floorplan modified="2011-04-01 11:31:00">http://media2.jupix.co.uk/v3/clients/4/properties/795/FLP_795_2_large.jpg</floorplan>
         </floorplans>
         <epcGraphs>
             <epcGraph modified="2011-04-01 11:35:00">http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_5086.jpg</epcGraph>
@@ -184,8 +184,7 @@
             <image modified="2017-07-23 14:34:12">http://media2.jupix.co.uk/v3/clients/2913/properties/1/IMG_1_6_large.jpg</image>
             <image modified="2017-07-23 14:34:14">http://media2.jupix.co.uk/v3/clients/2913/properties/1/IMG_1_7_large.jpg</image>
         </images>
-        <floorplans>
-        </floorplans>
+        <floorplans></floorplans>
         <epcGraphs>
             <epcGraph modified="2017-07-20 12:28:58">http://media2.jupix.co.uk/v3/clients/2913/properties/1/MED_1_1.jpg</epcGraph>
         </epcGraphs>
