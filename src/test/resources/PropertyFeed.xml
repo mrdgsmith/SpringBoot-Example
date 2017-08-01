@@ -194,8 +194,7 @@
         </epcGraphs>
         <epcFrontPages></epcFrontPages>
         <brochures></brochures>
-        <virtualTours>
-        </virtualTours>
+        <virtualTours></virtualTours>
         <externalLinks>
         </externalLinks>
     </property>
