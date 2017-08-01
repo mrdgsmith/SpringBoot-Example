@@ -3,9 +3,6 @@ package com.akross.service;
 import com.akross.service.property.HttpPropertyClient;
 import com.akross.service.property.PropertyClient;
 import com.akross.service.property.entity.*;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
-import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +10,6 @@ import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
 
-import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URISyntaxException;
@@ -22,11 +18,10 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.text.MessageFormat;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
 
-import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES;
-import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
 import static java.util.Arrays.asList;
 import static java.util.Objects.nonNull;
 import static org.hamcrest.Matchers.nullValue;
@@ -147,15 +142,23 @@ public class HttpPropertyClientTest {
         assertThat(properties.get(0).getSiteArea(), is(100.10));
         assertThat(properties.get(0).getSiteAreaUnits(), is("hectares"));
         assertThat(properties.get(0).getStrapLine(), is("Flexible office space"));
-        assertThat(properties.get(0).getPropertyTypes(), is(new PropertyTypes(
-                asList(new PropertyType("28")
-                        , new PropertyType("5")
-                        , new PropertyType("1"))
+        assertThat(properties.get(0).getPropertyTypes(), is(new PropertyTypes(asList(new PropertyType("28")
+                , new PropertyType("5")
+                , new PropertyType("1"))
         )));
         assertThat(properties.get(0).getLandAreaTo(), is(4342.20D));
         assertThat(properties.get(0).getLandAreaFrom(), is(4347.24D));
         assertThat(properties.get(0).getLandAreaUnits(), is("bla"));
         assertThat(properties.get(0).getForSaleLeaseLength(), is(7));
+        assertThat(properties.get(0).getImages(), is(new Images(asList(
+                new Image(LocalDateTime.of(2011, 1, 21, 10, 12, 6)
+                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_1_large.jpg")
+                , new Image(LocalDateTime.of(2011, 4, 1, 11, 20, 0)
+                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_2_large.jpg")
+                ))
+        ));
+
+
     }
 
     private String xmlFeed() throws URISyntaxException, IOException {
