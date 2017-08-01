@@ -170,6 +170,11 @@ public class HttpPropertyClientTest {
                         , "http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_5086.jpg")
                 ))
         ));
+        assertThat(properties.get(0).getEpcFrontPages(), is(new EpcFrontPages(singletonList(
+                new EpcFrontPage(LocalDateTime.of(2011, 4, 1, 11, 35, 0)
+                        , "http://epc.jupix.co.uk/f465cvd")
+                ))
+        ));
     }
 
     private String xmlFeed() throws URISyntaxException, IOException {
