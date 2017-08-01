@@ -1,6 +1,7 @@
-package com.akross.service.property;
+package com.akross.gateway;
 
-import com.akross.service.property.entity.Property;
+
+import com.akross.domain.Property;
 
 import java.util.List;
 
