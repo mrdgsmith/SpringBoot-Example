@@ -92,6 +92,7 @@ public class Property {
     private final Floorplans floorplans;
     private final EpcGraphs epcGraphs;
     private final EpcFrontPages epcFrontPages;
+    private final Brochures brochures;
 
     public Property(
             @JacksonXmlProperty(localName = "propertyID") final Long propertyId
@@ -175,7 +176,8 @@ public class Property {
             , @JacksonXmlProperty(localName = "images") final Images images
             , @JacksonXmlProperty(localName = "floorplans") final Floorplans floorplans
             , @JacksonXmlProperty(localName = "epcGraphs") final EpcGraphs epcGraphs
-            , @JacksonXmlProperty(localName = "epcFrontPages") final EpcFrontPages epcFrontPages) {
+            , @JacksonXmlProperty(localName = "epcFrontPages") final EpcFrontPages epcFrontPages
+            , @JacksonXmlProperty(localName = "brochures") final Brochures brochures) {
         this.propertyId = propertyId;
         this.branchId = branchId;
         this.clientName = clientName;
@@ -256,6 +258,7 @@ public class Property {
         this.floorplans = floorplans;
         this.epcGraphs = epcGraphs;
         this.epcFrontPages = epcFrontPages;
+        this.brochures = brochures;
     }
 
     public Long getPropertyId() {
@@ -578,6 +581,10 @@ public class Property {
         return epcFrontPages;
     }
 
+    public Brochures getBrochures() {
+        return brochures;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -662,7 +669,8 @@ public class Property {
                 Objects.equals(images, property.images) &&
                 Objects.equals(floorplans, property.floorplans) &&
                 Objects.equals(epcGraphs, property.epcGraphs) &&
-                Objects.equals(epcFrontPages, property.epcFrontPages);
+                Objects.equals(epcFrontPages, property.epcFrontPages) &&
+                Objects.equals(brochures, property.brochures);
     }
 
     @Override
@@ -679,7 +687,7 @@ public class Property {
                 , studentProperty, lettingFeePolicyHeadline, lettingFeePolicyDetails, forSale, toLet, priceTo
                 , priceFrom, rentTo, rentFrom, floorAreaTo, floorAreaFrom, siteArea, siteAreaUnits, strapLine
                 , propertyTypes, landAreaTo, landAreaFrom, landAreaUnits, forSaleLeaseLength, images, floorplans
-                , epcGraphs, epcFrontPages);
+                , epcGraphs, epcFrontPages, brochures);
     }
 
     @Override
@@ -765,6 +773,7 @@ public class Property {
                 ", floorplans=" + floorplans +
                 ", epcGraphs=" + epcGraphs +
                 ", epcFrontPages=" + epcFrontPages +
+                ", brochures=" + brochures +
                 '}';
     }
 }

@@ -175,6 +175,11 @@ public class HttpPropertyClientTest {
                         , "http://epc.jupix.co.uk/f465cvd")
                 ))
         ));
+        assertThat(properties.get(0).getBrochures(), is(new Brochures(singletonList(
+                new Brochure(LocalDateTime.of(2011, 4, 1, 11, 40, 0)
+                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_5085.pdf")
+                ))
+        ));
     }
 
     private String xmlFeed() throws URISyntaxException, IOException {

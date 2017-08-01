@@ -109,7 +109,11 @@
         <epcFrontPages>
             <epcFrontPage modified="2011-04-01 11:35:00">http://epc.jupix.co.uk/f465cvd</epcFrontPage>
         </epcFrontPages>
-        <brochures><brochure modified="2011-04-01 11:40:00">http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_5085.pdf</brochure></brochures>
+        <brochures>
+            <brochure modified="2011-04-01 11:40:00">
+                http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_5085.pdf
+            </brochure>
+        </brochures>
         <virtualTours>
             <virtualTour modified="2011-04-01 11:50:00">http://www.hackneyandleigh.co.uk/vt/k4485/k4485.htm</virtualTour>
             <virtualTour modified="2011-04-01 11:50:00">http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_72967.swf</virtualTour>
@@ -191,8 +195,7 @@
             <epcGraph modified="2017-07-20 12:28:58">http://media2.jupix.co.uk/v3/clients/2913/properties/1/MED_1_1.jpg</epcGraph>
         </epcGraphs>
         <epcFrontPages></epcFrontPages>
-        <brochures>
-        </brochures>
+        <brochures></brochures>
         <virtualTours>
         </virtualTours>
         <externalLinks>
