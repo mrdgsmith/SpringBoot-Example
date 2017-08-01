@@ -4,6 +4,7 @@ import com.akross.domain.residentialsalesandletting.residentialletting.Residenti
 import com.akross.gateway.property.builders.entity.*;
 import com.akross.gateway.property.entity.Property;
 import org.hamcrest.Matchers;
+import org.junit.Before;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -27,7 +28,6 @@ import static com.akross.domain.residentialsalesandletting.residentialletting.Re
 import static com.akross.gateway.property.builders.entity.TestFlagBuilder.aFlag;
 import static com.akross.gateway.property.builders.entity.TestFlagsBuilder.aFlags;
 import static com.akross.gateway.property.builders.entity.TestPropertyBuilder.aProperty;
-import static com.akross.gateway.property.utilities.PropertyConverter.convert;
 import static java.time.LocalDateTime.of;
 import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.hasItems;
@@ -35,6 +35,13 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
 public class PropertyConverterTest {
+
+    private PropertyConverter propertyConverter;
+
+    @Before
+    public void setUp() throws Exception {
+        propertyConverter = new PropertyConverter();
+    }
 
     @Test
     public void shouldConvertPropertyToLettings() throws Exception {
@@ -178,7 +185,7 @@ public class PropertyConverterTest {
                 .withLettingFeePolicyHeadline("Fees Apply")
                 .withLettingFeePolicyDetails("bla")
                 .build();
-        final ResidentialLetting propertyLetting = (ResidentialLetting) convert(property);
+        final ResidentialLetting propertyLetting = (ResidentialLetting) propertyConverter.convert(property);
         assertThat(propertyLetting, Matchers.isA(ResidentialLetting.class));
         assertThat(propertyLetting.getPropertyId(), is(64634L));
         assertThat(propertyLetting.getBranchId(), is(7));

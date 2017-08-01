@@ -119,10 +119,10 @@ public abstract class Property {
         this.propertyFeature8 = propertyFeature8;
         this.propertyFeature9 = propertyFeature9;
         this.propertyFeature10 = propertyFeature10;
-        this.dateLastModified = LocalDate.of(dateLastModified.getYear(), dateLastModified.getMonth()
-                , dateLastModified.getDayOfMonth());
-        this.timeLastModified = LocalTime.of(timeLastModified.getHour(), timeLastModified.getMinute()
-                , timeLastModified.getSecond());
+        this.dateLastModified = nonNull(dateLastModified) ? LocalDate.of(dateLastModified.getYear(), dateLastModified.getMonth()
+                , dateLastModified.getDayOfMonth()) : null;
+        this.timeLastModified = nonNull(timeLastModified) ? LocalTime.of(timeLastModified.getHour(), timeLastModified.getMinute()
+                , timeLastModified.getSecond()) : null;
         this.isFeaturedProperty = isFeaturedProperty;
         this.regionId = regionId;
         this.latitude = latitude;

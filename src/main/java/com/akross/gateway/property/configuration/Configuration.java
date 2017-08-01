@@ -1,6 +1,7 @@
 package com.akross.gateway.property.configuration;
 
 import com.akross.gateway.property.HttpPropertyClient;
+import com.akross.gateway.property.utilities.PropertyConverter;
 import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
 import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -47,5 +48,10 @@ public class Configuration {
     @Bean
     public HttpPropertyClient httpPropertyClient(final RestTemplate jupixPropertiesRestService) {
         return new HttpPropertyClient(jupixPropertiesRestService, jupixPropertiesRestServiceConfiguration);
+    }
+
+    @Bean
+    public PropertyConverter propertyConverter() {
+        return new PropertyConverter();
     }
 }

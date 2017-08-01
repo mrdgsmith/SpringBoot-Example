@@ -25,7 +25,7 @@ import static com.akross.domain.residentialsalesandletting.residentialletting.Re
 import static java.util.stream.Collectors.toList;
 
 public class PropertyConverter {
-    public static Property convert(final com.akross.gateway.property.entity.Property property) {
+    public Property convert(final com.akross.gateway.property.entity.Property property) {
         final String department = property.getDepartment();
         if (LETTINGS.getDescription().equals(department)) {
             return aResidentialLetting()
