@@ -66,12 +66,28 @@ public class Property {
     private final Integer developmentOpportunity;
     private final Integer investmentOpportunity;
     private final BigDecimal estimatedRentalIncome;
-    private BigDecimal rent;
-    private Integer rentFrequency;
-    private Integer toLetPOA;
-    private Integer studentProperty;
-    private String lettingFeePolicyHeadline;
-    private String lettingFeePolicyDetails;
+    private final BigDecimal rent;
+    private final Integer rentFrequency;
+    private final Integer toLetPOA;
+    private final Integer studentProperty;
+    private final String lettingFeePolicyHeadline;
+    private final String lettingFeePolicyDetails;
+    private final Integer forSale;
+    private final Integer toLet;
+    private final BigDecimal priceTo;
+    private final BigDecimal priceFrom;
+    private final BigDecimal rentTo;
+    private final BigDecimal rentFrom;
+    private final Double floorAreaTo;
+    private final Double floorAreaFrom;
+    private final Double siteArea;
+    private final String siteAreaUnits;
+    private final String strapLine;
+    private final PropertyTypes propertyTypes;
+    private final Double landAreaTo;
+    private final Double landAreaFrom;
+    private final String landAreaUnits;
+    private final Integer forSaleLeaseLength;
 
     public Property(
             @JacksonXmlProperty(localName = "propertyID") final Long propertyId
@@ -135,7 +151,23 @@ public class Property {
             , @JacksonXmlProperty(localName = "toLetPOA") final Integer toLetPOA
             , @JacksonXmlProperty(localName = "studentProperty") final Integer studentProperty
             , @JacksonXmlProperty(localName = "lettingFeePolicyHeadline") final String lettingFeePolicyHeadline
-            , @JacksonXmlProperty(localName = "lettingFeePolicyDetails") final String lettingFeePolicyDetails) {
+            , @JacksonXmlProperty(localName = "lettingFeePolicyDetails") final String lettingFeePolicyDetails
+            , @JacksonXmlProperty(localName = "forSale") final Integer forSale
+            , @JacksonXmlProperty(localName = "toLet") final Integer toLet
+            , @JacksonXmlProperty(localName = "priceTo") final BigDecimal priceTo
+            , @JacksonXmlProperty(localName = "priceFrom") final BigDecimal priceFrom
+            , @JacksonXmlProperty(localName = "rentTo") final BigDecimal rentTo
+            , @JacksonXmlProperty(localName = "rentFrom") final BigDecimal rentFrom
+            , @JacksonXmlProperty(localName = "floorAreaTo") final Double floorAreaTo
+            , @JacksonXmlProperty(localName = "floorAreaFrom") final Double floorAreaFrom
+            , @JacksonXmlProperty(localName = "siteArea") final Double siteArea
+            , @JacksonXmlProperty(localName = "siteAreaUnits") final String siteAreaUnits
+            , @JacksonXmlProperty(localName = "strapLine") final String strapLine
+            , @JacksonXmlProperty(localName = "propertyTypes") final PropertyTypes propertyTypes
+            , @JacksonXmlProperty(localName = "landAreaTo") final Double landAreaTo
+            , @JacksonXmlProperty(localName = "landAreaFrom") final Double landAreaFrom
+            , @JacksonXmlProperty(localName = "landAreaUnits") final String landAreaUnits
+            , @JacksonXmlProperty(localName = "forSaleLeaseLength") final Integer forSaleLeaseLength) {
         this.propertyId = propertyId;
         this.branchId = branchId;
         this.clientName = clientName;
@@ -196,6 +228,22 @@ public class Property {
         this.studentProperty = studentProperty;
         this.lettingFeePolicyHeadline = lettingFeePolicyHeadline;
         this.lettingFeePolicyDetails = lettingFeePolicyDetails;
+        this.forSale = forSale;
+        this.toLet = toLet;
+        this.priceTo = priceTo;
+        this.priceFrom = priceFrom;
+        this.rentTo = rentTo;
+        this.rentFrom = rentFrom;
+        this.floorAreaTo = floorAreaTo;
+        this.floorAreaFrom = floorAreaFrom;
+        this.siteArea = siteArea;
+        this.siteAreaUnits = siteAreaUnits;
+        this.strapLine = strapLine;
+        this.propertyTypes = propertyTypes;
+        this.landAreaTo = landAreaTo;
+        this.landAreaFrom = landAreaFrom;
+        this.landAreaUnits = landAreaUnits;
+        this.forSaleLeaseLength = forSaleLeaseLength;
     }
 
     public Long getPropertyId() {
@@ -438,6 +486,70 @@ public class Property {
         return lettingFeePolicyDetails;
     }
 
+    public Integer getForSale() {
+        return forSale;
+    }
+
+    public Integer getToLet() {
+        return toLet;
+    }
+
+    public BigDecimal getPriceTo() {
+        return priceTo;
+    }
+
+    public BigDecimal getPriceFrom() {
+        return priceFrom;
+    }
+
+    public BigDecimal getRentTo() {
+        return rentTo;
+    }
+
+    public BigDecimal getRentFrom() {
+        return rentFrom;
+    }
+
+    public Double getFloorAreaTo() {
+        return floorAreaTo;
+    }
+
+    public Double getFloorAreaFrom() {
+        return floorAreaFrom;
+    }
+
+    public Double getSiteArea() {
+        return siteArea;
+    }
+
+    public String getSiteAreaUnits() {
+        return siteAreaUnits;
+    }
+
+    public String getStrapLine() {
+        return strapLine;
+    }
+
+    public PropertyTypes getPropertyTypes() {
+        return propertyTypes;
+    }
+
+    public Double getLandAreaTo() {
+        return landAreaTo;
+    }
+
+    public Double getLandAreaFrom() {
+        return landAreaFrom;
+    }
+
+    public String getLandAreaUnits() {
+        return landAreaUnits;
+    }
+
+    public Integer getForSaleLeaseLength() {
+        return forSaleLeaseLength;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -502,7 +614,23 @@ public class Property {
                 Objects.equals(toLetPOA, property.toLetPOA) &&
                 Objects.equals(studentProperty, property.studentProperty) &&
                 Objects.equals(lettingFeePolicyHeadline, property.lettingFeePolicyHeadline) &&
-                Objects.equals(lettingFeePolicyDetails, property.lettingFeePolicyDetails);
+                Objects.equals(lettingFeePolicyDetails, property.lettingFeePolicyDetails) &&
+                Objects.equals(forSale, property.forSale) &&
+                Objects.equals(toLet, property.toLet) &&
+                Objects.equals(priceTo, property.priceTo) &&
+                Objects.equals(priceFrom, property.priceFrom) &&
+                Objects.equals(rentTo, property.rentTo) &&
+                Objects.equals(rentFrom, property.rentFrom) &&
+                Objects.equals(floorAreaTo, property.floorAreaTo) &&
+                Objects.equals(floorAreaFrom, property.floorAreaFrom) &&
+                Objects.equals(siteArea, property.siteArea) &&
+                Objects.equals(siteAreaUnits, property.siteAreaUnits) &&
+                Objects.equals(strapLine, property.strapLine) &&
+                Objects.equals(propertyTypes, property.propertyTypes) &&
+                Objects.equals(landAreaTo, property.landAreaTo) &&
+                Objects.equals(landAreaFrom, property.landAreaFrom) &&
+                Objects.equals(landAreaUnits, property.landAreaUnits) &&
+                Objects.equals(forSaleLeaseLength, property.forSaleLeaseLength);
     }
 
     @Override
@@ -516,7 +644,9 @@ public class Property {
                 , propertyReceptionRooms, propertyKitchens, propertyAge, floorArea, floorAreaUnits, displayPropertyType
                 , propertyType, propertyStyle, availability, price, priceQualifier, forSalePOA, propertyTenure, saleBy
                 , developmentOpportunity, investmentOpportunity, estimatedRentalIncome, rent, rentFrequency, toLetPOA
-                , studentProperty, lettingFeePolicyHeadline, lettingFeePolicyDetails);
+                , studentProperty, lettingFeePolicyHeadline, lettingFeePolicyDetails, forSale, toLet, priceTo
+                , priceFrom, rentTo, rentFrom, floorAreaTo, floorAreaFrom, siteArea, siteAreaUnits, strapLine
+                , propertyTypes, landAreaTo, landAreaFrom, landAreaUnits, forSaleLeaseLength);
     }
 
     @Override
@@ -582,6 +712,22 @@ public class Property {
                 ", studentProperty=" + studentProperty +
                 ", lettingFeePolicyHeadline='" + lettingFeePolicyHeadline + '\'' +
                 ", lettingFeePolicyDetails='" + lettingFeePolicyDetails + '\'' +
+                ", forSale=" + forSale +
+                ", toLet=" + toLet +
+                ", priceTo=" + priceTo +
+                ", priceFrom=" + priceFrom +
+                ", rentTo=" + rentTo +
+                ", rentFrom=" + rentFrom +
+                ", floorAreaTo=" + floorAreaTo +
+                ", floorAreaFrom=" + floorAreaFrom +
+                ", siteArea=" + siteArea +
+                ", siteAreaUnits='" + siteAreaUnits + '\'' +
+                ", strapLine='" + strapLine + '\'' +
+                ", propertyTypes=" + propertyTypes +
+                ", landAreaTo=" + landAreaTo +
+                ", landAreaFrom=" + landAreaFrom +
+                ", landAreaUnits='" + landAreaUnits + '\'' +
+                ", forSaleLeaseLength=" + forSaleLeaseLength +
                 '}';
     }
 }

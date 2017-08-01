@@ -2,9 +2,10 @@ package com.akross.service;
 
 import com.akross.service.property.HttpPropertyClient;
 import com.akross.service.property.PropertyClient;
-import com.akross.service.property.entity.Flag;
-import com.akross.service.property.entity.Flags;
-import com.akross.service.property.entity.Property;
+import com.akross.service.property.entity.*;
+import com.fasterxml.jackson.core.type.TypeReference;
+import com.fasterxml.jackson.dataformat.xml.JacksonXmlModule;
+import com.fasterxml.jackson.dataformat.xml.XmlMapper;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.client.MockRestServiceServer;
 
+import java.io.File;
 import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URISyntaxException;
@@ -23,6 +25,8 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
 
+import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES;
+import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
 import static java.util.Arrays.asList;
 import static java.util.Objects.nonNull;
 import static org.hamcrest.Matchers.nullValue;
@@ -132,6 +136,26 @@ public class HttpPropertyClientTest {
         assertThat(properties.get(1).getStudentProperty(), is(nullValue()));
         assertThat(properties.get(1).getLettingFeePolicyHeadline(), is("Fees may apply"));
         assertThat(properties.get(1).getLettingFeePolicyDetails(), is(nullValue()));
+        assertThat(properties.get(0).getForSale(), is(0));
+        assertThat(properties.get(0).getToLet(), is(1));
+        assertThat(properties.get(0).getPriceTo(), is(BigDecimal.valueOf(150000)));
+        assertThat(properties.get(0).getPriceFrom(), is(BigDecimal.valueOf(450000)));
+        assertThat(properties.get(0).getRentTo(), is(BigDecimal.valueOf(12000)));
+        assertThat(properties.get(0).getRentFrom(), is(BigDecimal.valueOf(22000)));
+        assertThat(properties.get(0).getFloorAreaTo(), is(55.7));
+        assertThat(properties.get(0).getFloorAreaFrom(), is(85.10));
+        assertThat(properties.get(0).getSiteArea(), is(100.10));
+        assertThat(properties.get(0).getSiteAreaUnits(), is("hectares"));
+        assertThat(properties.get(0).getStrapLine(), is("Flexible office space"));
+        assertThat(properties.get(0).getPropertyTypes(), is(new PropertyTypes(
+                asList(new PropertyType("28")
+                        , new PropertyType("5")
+                        , new PropertyType("1"))
+        )));
+        assertThat(properties.get(0).getLandAreaTo(), is(4342.20D));
+        assertThat(properties.get(0).getLandAreaFrom(), is(4347.24D));
+        assertThat(properties.get(0).getLandAreaUnits(), is("bla"));
+        assertThat(properties.get(0).getForSaleLeaseLength(), is(7));
     }
 
     private String xmlFeed() throws URISyntaxException, IOException {
