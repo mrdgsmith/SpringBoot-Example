@@ -175,9 +175,9 @@ public abstract class ResidentialSalesAndLettings extends Property {
                 ", propertyAge=" + propertyAge +
                 ", floorArea=" + floorArea +
                 ", floorAreaUnit=" + floorAreaUnit +
-                ", displayPropertyType=" + displayPropertyType +
+                ", displayPropertyType='" + displayPropertyType + '\'' +
                 ", propertyType=" + propertyType +
                 ", propertyStyle=" + propertyStyle +
-                '}';
+                "} " + super.toString();
     }
 }
