@@ -140,7 +140,7 @@ public class PropertyServiceTest {
         ));
     }
 
-    private List<ResidentialLetting> createInvalidProperties() {
+    private static List<ResidentialLetting> createInvalidProperties() {
         return asList(aResidentialLetting()
                         .withDepartment(SALES)
                         .withIsFeaturedProperty(true)
