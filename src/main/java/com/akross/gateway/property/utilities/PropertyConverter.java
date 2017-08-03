@@ -10,6 +10,7 @@ import com.akross.domain.residentialsalesandletting.residentialletting.Availabil
 import com.akross.domain.residentialsalesandletting.residentialletting.RentFrequency;
 import com.akross.gateway.property.entity.Flag;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 import static com.akross.domain.Brochure.BrochureBuilder.aBrochure;
@@ -22,12 +23,14 @@ import static com.akross.domain.Image.ImageBuilder.anImage;
 import static com.akross.domain.VirtualTour.VirtualTourBuilder.aVirtualTour;
 import static com.akross.domain.residentialsalesandletting.PropertyAge.getMap;
 import static com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
+import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.toList;
 
 public class PropertyConverter {
     public Property convert(final com.akross.gateway.property.entity.Property property) {
         final String department = property.getDepartment();
-        if (LETTINGS.getDescription().equals(department)) {
+        final BigDecimal rent = property.getRent();
+        if (LETTINGS.getDescription().equals(department) && nonNull(rent)) {
             return aResidentialLetting()
                     .withPropertyId(property.getPropertyId())
                     .withBranchId(property.getBranchId())
@@ -82,7 +85,7 @@ public class PropertyConverter {
                     .withPropertyType(getPropertyType(property))
                     .withPropertyStyle(getPropertyStyle(property))
                     .withAvailability(getAvailability(property))
-                    .withRent(property.getRent())
+                    .withRent(rent)
                     .withRentFrequency(getRentFrequency(property))
                     .withIsLetPOA(property.getToLetPOA() == 1)
                     .withIsStudentProperty(property.getStudentProperty() == 1)

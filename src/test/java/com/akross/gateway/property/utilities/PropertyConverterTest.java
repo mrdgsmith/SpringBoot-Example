@@ -7,7 +7,6 @@ import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
@@ -28,6 +27,7 @@ import static com.akross.domain.residentialsalesandletting.residentialletting.Re
 import static com.akross.gateway.property.builders.entity.TestFlagBuilder.aFlag;
 import static com.akross.gateway.property.builders.entity.TestFlagsBuilder.aFlags;
 import static com.akross.gateway.property.builders.entity.TestPropertyBuilder.aProperty;
+import static java.math.BigDecimal.valueOf;
 import static java.time.LocalDateTime.of;
 import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.hasItems;
@@ -178,7 +178,7 @@ public class PropertyConverterTest {
                 .withPropertyType(3)
                 .withPropertyStyle(4)
                 .withAvailability(3)
-                .withRent(BigDecimal.valueOf(4534))
+                .withRent(valueOf(4534))
                 .withRentFrequency(2)
                 .withToLetPOA(0)
                 .withStudentProperty(1)
@@ -232,8 +232,8 @@ public class PropertyConverterTest {
         assertThat(propertyLetting.getDisplayPropertyType(), is("Modern Detached House"));
         assertThat(propertyLetting.getPropertyType(), is(BUNGALOWS));
         assertThat(propertyLetting.getPropertyStyle(), is(DETACHED_HOUSE));
-        assertThat(propertyLetting.getAvailbility(), is(REFERENCES_PENDING));
-        assertThat(propertyLetting.getRent(), is(BigDecimal.valueOf(4534)));
+        assertThat(propertyLetting.getAvailability(), is(REFERENCES_PENDING));
+        assertThat(propertyLetting.getRent(), is(valueOf(4534)));
         assertThat(propertyLetting.getRentFrequency(), is(PW));
         assertThat(propertyLetting.isLetPOA(), is(false));
         assertThat(propertyLetting.isStudentProperty(), is(true));
