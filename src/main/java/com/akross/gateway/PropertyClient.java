@@ -1,11 +1,7 @@
 package com.akross.gateway;
 
-
-import com.akross.domain.Property;
-
-import java.util.List;
+import com.akross.domain.container.Property;
 
 public interface PropertyClient {
-
-    List<Property> getProperties();
+    Property getProperties();
 }
