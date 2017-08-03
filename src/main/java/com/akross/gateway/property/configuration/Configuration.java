@@ -16,11 +16,11 @@ import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_IGNO
 import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
 
 @SpringBootConfiguration
-@EnableConfigurationProperties(JupixPropertiesRestServiceConfiguration.class)
+@EnableConfigurationProperties(JupixPropertiesRestClientConfiguration.class)
 public class Configuration {
 
     @Autowired
-    private JupixPropertiesRestServiceConfiguration jupixPropertiesRestServiceConfiguration;
+    private JupixPropertiesRestClientConfiguration jupixPropertiesRestClientConfiguration;
 
     @Bean
     @Primary
@@ -40,12 +40,12 @@ public class Configuration {
     @Bean
     public RestTemplate jupixPropertiesRestService(final RestTemplateBuilder restTemplateBuilder) {
         return restTemplateBuilder
-                .rootUri(jupixPropertiesRestServiceConfiguration.getRootUrl())
+                .rootUri(jupixPropertiesRestClientConfiguration.getRootUrl())
                 .build();
     }
 
     @Bean
     public HttpPropertyClient httpPropertyClient(final RestTemplate jupixPropertiesRestService) {
-        return new HttpPropertyClient(jupixPropertiesRestService, jupixPropertiesRestServiceConfiguration);
+        return new HttpPropertyClient(jupixPropertiesRestService, jupixPropertiesRestClientConfiguration);
     }
 }

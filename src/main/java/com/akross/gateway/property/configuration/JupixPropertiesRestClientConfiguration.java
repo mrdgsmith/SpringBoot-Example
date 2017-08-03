@@ -4,7 +4,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 @ConfigurationProperties
-public class JupixPropertiesRestServiceConfiguration {
+public class JupixPropertiesRestClientConfiguration {
 
     private static final String PREFIX = "${jupix.restService";
 
@@ -14,7 +14,7 @@ public class JupixPropertiesRestServiceConfiguration {
     private final String passphrase;
     private final String version;
 
-    public JupixPropertiesRestServiceConfiguration(final @Value(PREFIX + ".rootUrl}") String rootUrl
+    public JupixPropertiesRestClientConfiguration(final @Value(PREFIX + ".rootUrl}") String rootUrl
             , final @Value(PREFIX + ".propertyPath}") String propertyPath
             , final @Value(PREFIX + ".clientId}") String clientId
             , final @Value(PREFIX + ".passphrase}") String passphrase
