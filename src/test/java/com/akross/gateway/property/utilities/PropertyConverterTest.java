@@ -185,61 +185,61 @@ public class PropertyConverterTest {
                 .withLettingFeePolicyHeadline("Fees Apply")
                 .withLettingFeePolicyDetails("bla")
                 .build();
-        final ResidentialLetting propertyLetting = propertyConverter.convertToResidentialLetting(property);
-        assertThat(propertyLetting, Matchers.isA(ResidentialLetting.class));
-        assertThat(propertyLetting.getPropertyId(), is(64634L));
-        assertThat(propertyLetting.getBranchId(), is(7));
-        assertThat(propertyLetting.getClientName(), is("JUPIX"));
-        assertThat(propertyLetting.getBranchName(), is("Cambridge Office"));
-        assertThat(propertyLetting.getDepartment(), is(LETTINGS));
-        assertThat(propertyLetting.getReferenceNumber(), is("45435"));
-        assertThat(propertyLetting.getAddressName(), is("Bla"));
-        assertThat(propertyLetting.getAddressNumber(), is(1));
-        assertThat(propertyLetting.getAddressStreet(), is("The Street"));
-        assertThat(propertyLetting.getAddress2(), is("address2"));
-        assertThat(propertyLetting.getAddress3(), is("address3"));
-        assertThat(propertyLetting.getAddress4(), is("address4"));
-        assertThat(propertyLetting.getAddressPostcode(), is("postcode"));
-        assertThat(propertyLetting.getCountry(), is("United Kingdom"));
-        assertThat(propertyLetting.getDisplayAddress(), is("1 Greenhill Street, Evesham"));
-        assertThat(propertyLetting.getPropertyFeature1(), is("Bedroom with views over garden1"));
-        assertThat(propertyLetting.getPropertyFeature2(), is("Bedroom with views over garden2"));
-        assertThat(propertyLetting.getPropertyFeature3(), is("Bedroom with views over garden3"));
-        assertThat(propertyLetting.getPropertyFeature4(), is("Bedroom with views over garden4"));
-        assertThat(propertyLetting.getPropertyFeature5(), is("Bedroom with views over garden5"));
-        assertThat(propertyLetting.getPropertyFeature6(), is("Bedroom with views over garden6"));
-        assertThat(propertyLetting.getPropertyFeature7(), is("Bedroom with views over garden7"));
-        assertThat(propertyLetting.getPropertyFeature8(), is("Bedroom with views over garden8"));
-        assertThat(propertyLetting.getPropertyFeature9(), is("Bedroom with views over garden9"));
-        assertThat(propertyLetting.getPropertyFeature10(), is("Bedroom with views over garden10"));
-        assertThat(propertyLetting.getDateLastModified(), is(LocalDate.of(2016, 3, 1)));
-        assertThat(propertyLetting.getTimeLastModified(), is(LocalTime.of(22, 50, 34)));
-        assertThat(propertyLetting.isFeaturedProperty(), is(true));
-        assertThat(propertyLetting.getRegionId(), is(38));
-        assertThat(propertyLetting.getLatitude(), is(53.800651));
-        assertThat(propertyLetting.getLongitude(), is(-4.064941));
-        assertThat(propertyLetting.getFlags(), hasItems("flag1", "flag2"));
-        assertThat(propertyLetting.getMainSummary(), is("mainSummary"));
-        assertThat(propertyLetting.getFullDescription(), is("fullDescription"));
-        assertThat(propertyLetting.getPropertyBedrooms(), is(5));
-        assertThat(propertyLetting.getPropertyBathrooms(), is(3));
-        assertThat(propertyLetting.getPropertyEnsuites(), is(6));
-        assertThat(propertyLetting.getPropertyReceptionRooms(), is(3));
-        assertThat(propertyLetting.getPropertyKitchens(), is(5));
-        assertThat(propertyLetting.getPropertyAge(), is(TWENTIES_THIRTIES));
-        assertThat(propertyLetting.getFloorArea(), is(190.0));
-        assertThat(propertyLetting.getFloorAreaUnit(), is(HECTARES));
-        assertThat(propertyLetting.getDisplayPropertyType(), is("Modern Detached House"));
-        assertThat(propertyLetting.getPropertyType(), is(BUNGALOWS));
-        assertThat(propertyLetting.getPropertyStyle(), is(DETACHED_HOUSE));
-        assertThat(propertyLetting.getAvailability(), is(REFERENCES_PENDING));
-        assertThat(propertyLetting.getRent(), is(valueOf(4534)));
-        assertThat(propertyLetting.getRentFrequency(), is(PW));
-        assertThat(propertyLetting.isLetPOA(), is(false));
-        assertThat(propertyLetting.isStudentProperty(), is(true));
-        assertThat(propertyLetting.getLettingFeePolicyHeadline(), is("Fees Apply"));
-        assertThat(propertyLetting.getLettingFeePolicyDetails(), is("bla"));
-        assertThat(propertyLetting.getImages(), hasItems(anImage().withUrl("url1")
+        final ResidentialLetting actualResidentialLetting = propertyConverter.convertToResidentialLetting(property);
+        assertThat(actualResidentialLetting, Matchers.isA(ResidentialLetting.class));
+        assertThat(actualResidentialLetting.getPropertyId(), is(64634L));
+        assertThat(actualResidentialLetting.getBranchId(), is(7));
+        assertThat(actualResidentialLetting.getClientName(), is("JUPIX"));
+        assertThat(actualResidentialLetting.getBranchName(), is("Cambridge Office"));
+        assertThat(actualResidentialLetting.getDepartment(), is(LETTINGS));
+        assertThat(actualResidentialLetting.getReferenceNumber(), is("45435"));
+        assertThat(actualResidentialLetting.getAddressName(), is("Bla"));
+        assertThat(actualResidentialLetting.getAddressNumber(), is(1));
+        assertThat(actualResidentialLetting.getAddressStreet(), is("The Street"));
+        assertThat(actualResidentialLetting.getAddress2(), is("address2"));
+        assertThat(actualResidentialLetting.getAddress3(), is("address3"));
+        assertThat(actualResidentialLetting.getAddress4(), is("address4"));
+        assertThat(actualResidentialLetting.getAddressPostcode(), is("postcode"));
+        assertThat(actualResidentialLetting.getCountry(), is("United Kingdom"));
+        assertThat(actualResidentialLetting.getDisplayAddress(), is("1 Greenhill Street, Evesham"));
+        assertThat(actualResidentialLetting.getPropertyFeature1(), is("Bedroom with views over garden1"));
+        assertThat(actualResidentialLetting.getPropertyFeature2(), is("Bedroom with views over garden2"));
+        assertThat(actualResidentialLetting.getPropertyFeature3(), is("Bedroom with views over garden3"));
+        assertThat(actualResidentialLetting.getPropertyFeature4(), is("Bedroom with views over garden4"));
+        assertThat(actualResidentialLetting.getPropertyFeature5(), is("Bedroom with views over garden5"));
+        assertThat(actualResidentialLetting.getPropertyFeature6(), is("Bedroom with views over garden6"));
+        assertThat(actualResidentialLetting.getPropertyFeature7(), is("Bedroom with views over garden7"));
+        assertThat(actualResidentialLetting.getPropertyFeature8(), is("Bedroom with views over garden8"));
+        assertThat(actualResidentialLetting.getPropertyFeature9(), is("Bedroom with views over garden9"));
+        assertThat(actualResidentialLetting.getPropertyFeature10(), is("Bedroom with views over garden10"));
+        assertThat(actualResidentialLetting.getDateLastModified(), is(LocalDate.of(2016, 3, 1)));
+        assertThat(actualResidentialLetting.getTimeLastModified(), is(LocalTime.of(22, 50, 34)));
+        assertThat(actualResidentialLetting.isFeaturedProperty(), is(true));
+        assertThat(actualResidentialLetting.getRegionId(), is(38));
+        assertThat(actualResidentialLetting.getLatitude(), is(53.800651));
+        assertThat(actualResidentialLetting.getLongitude(), is(-4.064941));
+        assertThat(actualResidentialLetting.getFlags(), hasItems("flag1", "flag2"));
+        assertThat(actualResidentialLetting.getMainSummary(), is("mainSummary"));
+        assertThat(actualResidentialLetting.getFullDescription(), is("fullDescription"));
+        assertThat(actualResidentialLetting.getPropertyBedrooms(), is(5));
+        assertThat(actualResidentialLetting.getPropertyBathrooms(), is(3));
+        assertThat(actualResidentialLetting.getPropertyEnsuites(), is(6));
+        assertThat(actualResidentialLetting.getPropertyReceptionRooms(), is(3));
+        assertThat(actualResidentialLetting.getPropertyKitchens(), is(5));
+        assertThat(actualResidentialLetting.getPropertyAge(), is(TWENTIES_THIRTIES));
+        assertThat(actualResidentialLetting.getFloorArea(), is(190.0));
+        assertThat(actualResidentialLetting.getFloorAreaUnit(), is(HECTARES));
+        assertThat(actualResidentialLetting.getDisplayPropertyType(), is("Modern Detached House"));
+        assertThat(actualResidentialLetting.getPropertyType(), is(BUNGALOWS));
+        assertThat(actualResidentialLetting.getPropertyStyle(), is(DETACHED_HOUSE));
+        assertThat(actualResidentialLetting.getAvailability(), is(REFERENCES_PENDING));
+        assertThat(actualResidentialLetting.getRent(), is(valueOf(4534)));
+        assertThat(actualResidentialLetting.getRentFrequency(), is(PW));
+        assertThat(actualResidentialLetting.isLetPOA(), is(false));
+        assertThat(actualResidentialLetting.isStudentProperty(), is(true));
+        assertThat(actualResidentialLetting.getLettingFeePolicyHeadline(), is("Fees Apply"));
+        assertThat(actualResidentialLetting.getLettingFeePolicyDetails(), is("bla"));
+        assertThat(actualResidentialLetting.getImages(), hasItems(anImage().withUrl("url1")
                         .withModified(of(2014, 8, 11, 11, 44))
                         .build()
                 , anImage().withUrl("url2")
@@ -247,7 +247,7 @@ public class PropertyConverterTest {
                         .build()
                 )
         );
-        assertThat(propertyLetting.getFloorplans(), hasItems(aFloorplan().withUrl("url1")
+        assertThat(actualResidentialLetting.getFloorplans(), hasItems(aFloorplan().withUrl("url1")
                         .withModified(of(2014, 8, 11, 11, 44))
                         .build()
                 , aFloorplan().withUrl("url2")
@@ -255,7 +255,7 @@ public class PropertyConverterTest {
                         .build()
                 )
         );
-        assertThat(propertyLetting.getBrochures(), hasItems(aBrochure().withUrl("url1")
+        assertThat(actualResidentialLetting.getBrochures(), hasItems(aBrochure().withUrl("url1")
                         .withModified(of(2014, 8, 11, 11, 44))
                         .build()
                 , aBrochure().withUrl("url2")
@@ -263,7 +263,7 @@ public class PropertyConverterTest {
                         .build()
                 )
         );
-        assertThat(propertyLetting.getVirtualTours(), hasItems(aVirtualTour().withUrl("url1")
+        assertThat(actualResidentialLetting.getVirtualTours(), hasItems(aVirtualTour().withUrl("url1")
                         .withModified(of(2014, 8, 11, 11, 44))
                         .build()
                 , aVirtualTour().withUrl("url2")
@@ -271,7 +271,7 @@ public class PropertyConverterTest {
                         .build()
                 )
         );
-        assertThat(propertyLetting.getEpcGraphs(), hasItems(anEpcGraph().withUrl("url1")
+        assertThat(actualResidentialLetting.getEpcGraphs(), hasItems(anEpcGraph().withUrl("url1")
                         .withModified(of(2014, 8, 11, 11, 44))
                         .build()
                 , anEpcGraph().withUrl("url2")
@@ -279,7 +279,7 @@ public class PropertyConverterTest {
                         .build()
                 )
         );
-        assertThat(propertyLetting.getEpcFrontPages(), hasItems(anEpcFrontPage().withUrl("url1")
+        assertThat(actualResidentialLetting.getEpcFrontPages(), hasItems(anEpcFrontPage().withUrl("url1")
                         .withModified(of(2014, 8, 11, 11, 44))
                         .build()
                 , anEpcFrontPage().withUrl("url2")
@@ -287,7 +287,7 @@ public class PropertyConverterTest {
                         .build()
                 )
         );
-        assertThat(propertyLetting.getExternalLinks(), hasItems(anExternalLink()
+        assertThat(actualResidentialLetting.getExternalLinks(), hasItems(anExternalLink()
                         .withUrl("url1")
                         .withModified(of(2014, 8, 11, 11, 44))
                         .withDescription("a")
