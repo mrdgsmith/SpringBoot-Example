@@ -10,11 +10,9 @@ import org.springframework.boot.SpringBootConfiguration;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.Primary;
 import org.springframework.http.converter.xml.MappingJackson2XmlHttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES;
 import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES;
 
 @SpringBootConfiguration
@@ -25,11 +23,10 @@ public class GatewayConfiguration {
     private JupixPropertiesRestClientConfiguration jupixPropertiesRestClientConfiguration;
 
     @Bean
-    @Primary
     public XmlMapper xmlMapper() {
         final JacksonXmlModule jacksonXmlModule = new JacksonXmlModule();
         return (XmlMapper) new XmlMapper(jacksonXmlModule)
-                .disable(FAIL_ON_UNKNOWN_PROPERTIES, FAIL_ON_IGNORED_PROPERTIES);
+                .disable(FAIL_ON_UNKNOWN_PROPERTIES);
     }
 
     @Bean
