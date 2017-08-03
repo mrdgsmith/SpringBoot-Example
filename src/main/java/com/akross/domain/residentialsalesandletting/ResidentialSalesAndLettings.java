@@ -141,7 +141,7 @@ public abstract class ResidentialSalesAndLettings extends Property {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof ResidentialSalesAndLettings)) return false;
         if (!super.equals(o)) return false;
         ResidentialSalesAndLettings that = (ResidentialSalesAndLettings) o;
         return Objects.equals(propertyBedrooms, that.propertyBedrooms) &&
@@ -149,19 +149,19 @@ public abstract class ResidentialSalesAndLettings extends Property {
                 Objects.equals(propertyBathrooms, that.propertyBathrooms) &&
                 Objects.equals(propertyReceptionRooms, that.propertyReceptionRooms) &&
                 Objects.equals(propertyKitchens, that.propertyKitchens) &&
-                Objects.equals(propertyAge, that.propertyAge) &&
+                propertyAge == that.propertyAge &&
                 Objects.equals(floorArea, that.floorArea) &&
-                Objects.equals(floorAreaUnit, that.floorAreaUnit) &&
+                floorAreaUnit == that.floorAreaUnit &&
                 Objects.equals(displayPropertyType, that.displayPropertyType) &&
-                Objects.equals(propertyType, that.propertyType) &&
-                Objects.equals(propertyStyle, that.propertyStyle);
+                propertyType == that.propertyType &&
+                propertyStyle == that.propertyStyle;
     }
 
     @Override
     public int hashCode() {
         return Objects.hash(super.hashCode(), propertyBedrooms, propertyEnsuites, propertyBathrooms
-                , propertyReceptionRooms, propertyKitchens, propertyAge, floorArea, floorAreaUnit, displayPropertyType
-                , propertyType, propertyStyle);
+                , propertyReceptionRooms, propertyKitchens, propertyAge, floorArea, floorAreaUnit
+                , displayPropertyType, propertyType, propertyStyle);
     }
 
     @Override

@@ -127,14 +127,14 @@ public class ResidentialLetting extends ResidentialSalesAndLettings {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof ResidentialLetting)) return false;
         if (!super.equals(o)) return false;
         ResidentialLetting that = (ResidentialLetting) o;
         return isLetPOA == that.isLetPOA &&
                 isStudentProperty == that.isStudentProperty &&
-                Objects.equals(availability, that.availability) &&
+                availability == that.availability &&
                 Objects.equals(rent, that.rent) &&
-                Objects.equals(rentFrequency, that.rentFrequency) &&
+                rentFrequency == that.rentFrequency &&
                 Objects.equals(lettingFeePolicyHeadline, that.lettingFeePolicyHeadline) &&
                 Objects.equals(lettingFeePolicyDetails, that.lettingFeePolicyDetails);
     }
@@ -224,6 +224,69 @@ public class ResidentialLetting extends ResidentialSalesAndLettings {
 
         public static ResidentialLettingBuilder aResidentialLetting() {
             return new ResidentialLettingBuilder();
+        }
+
+        public static ResidentialLettingBuilder aResidentialLetting(final ResidentialLetting residentialLetting) {
+            return new ResidentialLettingBuilder()
+                    .withPropertyId(residentialLetting.getPropertyId())
+                    .withBranchId(residentialLetting.getBranchId())
+                    .withClientName(residentialLetting.getClientName())
+                    .withBranchName(residentialLetting.getBranchName())
+                    .withDepartment(residentialLetting.getDepartment())
+                    .withReferenceNumber(residentialLetting.getReferenceNumber())
+                    .withAddressName(residentialLetting.getAddressName())
+                    .withAddressNumber(residentialLetting.getAddressNumber())
+                    .withAddressStreet(residentialLetting.getAddressStreet())
+                    .withAddress2(residentialLetting.getAddress2())
+                    .withAddress3(residentialLetting.getAddress3())
+                    .withAddress4(residentialLetting.getAddress4())
+                    .withAddressPostcode(residentialLetting.getAddressPostcode())
+                    .withCountry(residentialLetting.getCountry())
+                    .withDisplayAddress(residentialLetting.getDisplayAddress())
+                    .withPropertyFeature1(residentialLetting.getPropertyFeature1())
+                    .withPropertyFeature2(residentialLetting.getPropertyFeature2())
+                    .withPropertyFeature3(residentialLetting.getPropertyFeature3())
+                    .withPropertyFeature4(residentialLetting.getPropertyFeature4())
+                    .withPropertyFeature5(residentialLetting.getPropertyFeature5())
+                    .withPropertyFeature6(residentialLetting.getPropertyFeature6())
+                    .withPropertyFeature7(residentialLetting.getPropertyFeature7())
+                    .withPropertyFeature8(residentialLetting.getPropertyFeature8())
+                    .withPropertyFeature9(residentialLetting.getPropertyFeature9())
+                    .withPropertyFeature10(residentialLetting.getPropertyFeature10())
+                    .withDateLastModified(residentialLetting.getDateLastModified())
+                    .withTimeLastModified(residentialLetting.getTimeLastModified())
+                    .withIsFeaturedProperty(residentialLetting.isFeaturedProperty())
+                    .withRegionId(residentialLetting.getRegionId())
+                    .withLatitude(residentialLetting.getLatitude())
+                    .withLongitude(residentialLetting.getLongitude())
+                    .withFlags(residentialLetting.getFlags())
+                    .withMainSummary(residentialLetting.getMainSummary())
+                    .withFullDescription(residentialLetting.getFullDescription())
+                    .withImages(residentialLetting.getImages())
+                    .withFloorplans(residentialLetting.getFloorplans())
+                    .withBrochures(residentialLetting.getBrochures())
+                    .withVirtualTours(residentialLetting.getVirtualTours())
+                    .withEpcGraphs(residentialLetting.getEpcGraphs())
+                    .withEpcFrontPages(residentialLetting.getEpcFrontPages())
+                    .withExternalLinks(residentialLetting.getExternalLinks())
+                    .withPropertyBedrooms(residentialLetting.getPropertyBedrooms())
+                    .withPropertyEnsuites(residentialLetting.getPropertyEnsuites())
+                    .withPropertyBathrooms(residentialLetting.getPropertyBathrooms())
+                    .withPropertyReceptionRooms(residentialLetting.getPropertyReceptionRooms())
+                    .withPropertyKitchens(residentialLetting.getPropertyKitchens())
+                    .withPropertyAge(residentialLetting.getPropertyAge())
+                    .withFloorArea(residentialLetting.getFloorArea())
+                    .withFloorAreaUnit(residentialLetting.getFloorAreaUnit())
+                    .withDisplayPropertyType(residentialLetting.getDisplayPropertyType())
+                    .withPropertyType(residentialLetting.getPropertyType())
+                    .withPropertyStyle(residentialLetting.getPropertyStyle())
+                    .withAvailability(residentialLetting.availability)
+                    .withRent(residentialLetting.rent)
+                    .withRentFrequency(residentialLetting.rentFrequency)
+                    .withIsLetPOA(residentialLetting.isLetPOA)
+                    .withIsStudentProperty(residentialLetting.isStudentProperty)
+                    .withLettingFeePolicyHeadline(residentialLetting.lettingFeePolicyHeadline)
+                    .withLettingFeePolicyDetails(residentialLetting.lettingFeePolicyDetails);
         }
 
         public ResidentialLettingBuilder withPropertyBedrooms(Integer propertyBedrooms) {
