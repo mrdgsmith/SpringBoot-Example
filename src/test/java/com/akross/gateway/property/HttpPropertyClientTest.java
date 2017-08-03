@@ -53,47 +53,47 @@ public class HttpPropertyClientTest {
                 .andExpect(queryParam("passphrase", "bar"))
                 .andExpect(queryParam("version", "5.0"))
                 .andRespond(withSuccess(xmlFeed(), TEXT_XML));
-        final List<Property> properties = httpPropertyClient.getProperties();
-        assertThat(properties.get(0).getPropertyId(), is(2232L));
-        assertThat(properties.get(0).getBranchId(), is(1));
-        assertThat(properties.get(0).getClientName(), is("JUPIX Demo"));
-        assertThat(properties.get(0).getBranchName(), is("Cambridge Office"));
-        assertThat(properties.get(0).getDepartment(), is("Sales"));
-        assertThat(properties.get(0).getReferenceNumber(), is("11111"));
-        assertThat(properties.get(0).getAddressName(), is(nullValue()));
-        assertThat(properties.get(0).getAddressNumber(), is(1));
-        assertThat(properties.get(0).getAddressStreet(), is("Greenhill Street"));
-        assertThat(properties.get(0).getAddress2(), is(nullValue()));
-        assertThat(properties.get(0).getAddress3(), is("Evesham"));
-        assertThat(properties.get(0).getAddress4(), is("Worcestershire"));
-        assertThat(properties.get(0).getAddressPostcode(), is("NN13 7XY"));
-        assertThat(properties.get(0).getCountry(), is("United Kingdom"));
-        assertThat(properties.get(0).getDisplayAddress(), is("1 Greenhill Street, Evesham"));
-        assertThat(properties.get(0).getPropertyFeature1(), is("Master bedroom with views over the garden"));
-        assertThat(properties.get(0).getPropertyFeature2(), is("Double beds in all bedrooms"));
-        assertThat(properties.get(0).getPropertyFeature3(), is("4 Bathrooms"));
-        assertThat(properties.get(0).getPropertyFeature4(), is("Garage parking"));
-        assertThat(properties.get(0).getPropertyFeature5(), is("5 Reception Rooms"));
-        assertThat(properties.get(0).getPropertyFeature6(), is("4 cottages and Lodge"));
-        assertThat(properties.get(0).getPropertyFeature7(), is("Extensive outbuilding &amp; barns"));
-        assertThat(properties.get(0).getPropertyFeature8(), is("Swimming pool and paddocks"));
-        assertThat(properties.get(0).getPropertyFeature9(), is("In all about 69.3 acres"));
-        assertThat(properties.get(0).getPropertyFeature10(), is(nullValue()));
-        assertThat(properties.get(0).getDateLastModified(), is(LocalDate.of(2011, 6, 3)));
-        assertThat(properties.get(0).getTimeLastModified(), is(LocalTime.of(9, 38, 56)));
-        assertThat(properties.get(0).getFeaturedProperty(), is(0));
-        assertThat(properties.get(0).getRegionId(), is(1));
-        assertThat(properties.get(0).getLatitude(), is(53.800651));
-        assertThat(properties.get(0).getLongitude(), is(-4.064941));
-        assertThat(properties.get(0).getFlags(), is(new Flags(asList(new Flag("New Instruction")
+        final List<Property> actualProperties = httpPropertyClient.getProperties();
+        assertThat(actualProperties.get(0).getPropertyId(), is(2232L));
+        assertThat(actualProperties.get(0).getBranchId(), is(1));
+        assertThat(actualProperties.get(0).getClientName(), is("JUPIX Demo"));
+        assertThat(actualProperties.get(0).getBranchName(), is("Cambridge Office"));
+        assertThat(actualProperties.get(0).getDepartment(), is("Sales"));
+        assertThat(actualProperties.get(0).getReferenceNumber(), is("11111"));
+        assertThat(actualProperties.get(0).getAddressName(), is(nullValue()));
+        assertThat(actualProperties.get(0).getAddressNumber(), is(1));
+        assertThat(actualProperties.get(0).getAddressStreet(), is("Greenhill Street"));
+        assertThat(actualProperties.get(0).getAddress2(), is(nullValue()));
+        assertThat(actualProperties.get(0).getAddress3(), is("Evesham"));
+        assertThat(actualProperties.get(0).getAddress4(), is("Worcestershire"));
+        assertThat(actualProperties.get(0).getAddressPostcode(), is("NN13 7XY"));
+        assertThat(actualProperties.get(0).getCountry(), is("United Kingdom"));
+        assertThat(actualProperties.get(0).getDisplayAddress(), is("1 Greenhill Street, Evesham"));
+        assertThat(actualProperties.get(0).getPropertyFeature1(), is("Master bedroom with views over the garden"));
+        assertThat(actualProperties.get(0).getPropertyFeature2(), is("Double beds in all bedrooms"));
+        assertThat(actualProperties.get(0).getPropertyFeature3(), is("4 Bathrooms"));
+        assertThat(actualProperties.get(0).getPropertyFeature4(), is("Garage parking"));
+        assertThat(actualProperties.get(0).getPropertyFeature5(), is("5 Reception Rooms"));
+        assertThat(actualProperties.get(0).getPropertyFeature6(), is("4 cottages and Lodge"));
+        assertThat(actualProperties.get(0).getPropertyFeature7(), is("Extensive outbuilding &amp; barns"));
+        assertThat(actualProperties.get(0).getPropertyFeature8(), is("Swimming pool and paddocks"));
+        assertThat(actualProperties.get(0).getPropertyFeature9(), is("In all about 69.3 acres"));
+        assertThat(actualProperties.get(0).getPropertyFeature10(), is(nullValue()));
+        assertThat(actualProperties.get(0).getDateLastModified(), is(LocalDate.of(2011, 6, 3)));
+        assertThat(actualProperties.get(0).getTimeLastModified(), is(LocalTime.of(9, 38, 56)));
+        assertThat(actualProperties.get(0).getFeaturedProperty(), is(0));
+        assertThat(actualProperties.get(0).getRegionId(), is(1));
+        assertThat(actualProperties.get(0).getLatitude(), is(53.800651));
+        assertThat(actualProperties.get(0).getLongitude(), is(-4.064941));
+        assertThat(actualProperties.get(0).getFlags(), is(new Flags(asList(new Flag("New Instruction")
                 , new Flag("Price Reduction")))));
-        assertThat(properties.get(0).getMainSummary(), is("We are delighted to offer for sale this immaculately presented and imaginatively extended\n" +
+        assertThat(actualProperties.get(0).getMainSummary(), is("We are delighted to offer for sale this immaculately presented and imaginatively extended\n" +
                 "            attractive flint fronted four bedroom detached family home enviably located in the heart of St Michaels\n" +
                 "            Meadows. 8 bedrooms, 5 reception rooms - 4 cottages and Lodge - Extensive outbuilding &amp; barns -\n" +
                 "            Swimming pool and paddocks - In all about 69.3 acres.We are delighted to offer for sale this immaculately\n" +
                 "            presented and imaginatively extended attractive flint fronted four bedroom detached family home enviably\n" +
                 "            located in the heart of St Michaels Meadows."));
-        assertThat(properties.get(0).getFullDescription(), is("<strong>SITUATION</strong> <strong></strong> Grade II listed, Loudham Hall is an exceptional Georgian home with a rich architectural history. Located two miles east of Wickham Market (winner of the 2006 Best Village Award in Suffolk), it lies less than seven miles to the north of the picturesque, riverside town of Woodbridge. The main house, gardens and grounds offer privacy yet all the conveniences of a superbly accessible location. Local shopping and recreational facilities can be found in Wickham Market with the county town of Ipswich offering more extensive amenities, as well as a train service to London Liverpool Street (from 72 minutes). <br />\n" +
+        assertThat(actualProperties.get(0).getFullDescription(), is("<strong>SITUATION</strong> <strong></strong> Grade II listed, Loudham Hall is an exceptional Georgian home with a rich architectural history. Located two miles east of Wickham Market (winner of the 2006 Best Village Award in Suffolk), it lies less than seven miles to the north of the picturesque, riverside town of Woodbridge. The main house, gardens and grounds offer privacy yet all the conveniences of a superbly accessible location. Local shopping and recreational facilities can be found in Wickham Market with the county town of Ipswich offering more extensive amenities, as well as a train service to London Liverpool Street (from 72 minutes). <br />\n" +
                 "    <br />\n" +
                 "    Good local schools are numerous and include Ipswich School and Prep School, Royal Hospital School and Orwell Park School. There is also Woodbridge School in Woodbridge. <br />\n" +
                 "    <br />\n" +
@@ -106,88 +106,88 @@ public class HttpPropertyClientTest {
                 "    The Kitchen/Breakfast Room has been well designed and adapted for modern life with a four door Aga and a striking copper chimney above it. There is a useful Pantry and Utility Room to either side. <br />\n" +
                 "    <br />\n" +
                 "    For more details, please consult the floorplans.&nbsp;"));
-        assertThat(properties.get(0).getPropertyBedrooms(), is(5));
-        assertThat(properties.get(0).getPropertyBathrooms(), is(4));
-        assertThat(properties.get(0).getPropertyEnsuites(), is(2));
-        assertThat(properties.get(0).getPropertyReceptionRooms(), is(4));
-        assertThat(properties.get(0).getPropertyKitchens(), is(1));
-        assertThat(properties.get(0).getPropertyAge(), is(9));
-        assertThat(properties.get(0).getFloorArea(), is(140.00));
-        assertThat(properties.get(0).getFloorAreaUnits(), is("sq ft"));
-        assertThat(properties.get(0).getDisplayPropertyType(), is("Detached House"));
-        assertThat(properties.get(0).getPropertyType(), is(1));
-        assertThat(properties.get(0).getPropertyStyle(), is(4));
-        assertThat(properties.get(0).getAvailability(), is(2));
-        assertThat(properties.get(0).getPrice(), is(BigDecimal.valueOf(2100000)));
-        assertThat(properties.get(0).getForSalePOA(), is(0));
-        assertThat(properties.get(0).getPriceQualifier(), is(4));
-        assertThat(properties.get(0).getPropertyTenure(), is(1));
-        assertThat(properties.get(0).getSaleBy(), is(1));
-        assertThat(properties.get(0).getDevelopmentOpportunity(), is(0));
-        assertThat(properties.get(0).getInvestmentOpportunity(), is(0));
-        assertThat(properties.get(0).getEstimatedRentalIncome(), is(BigDecimal.valueOf(3950)));
-        assertThat(properties.get(1).getRent(), is(BigDecimal.valueOf(2500)));
-        assertThat(properties.get(1).getRentFrequency(), is(1));
-        assertThat(properties.get(1).getToLetPOA(), is(0));
-        assertThat(properties.get(1).getStudentProperty(), is(nullValue()));
-        assertThat(properties.get(1).getLettingFeePolicyHeadline(), is("Fees may apply"));
-        assertThat(properties.get(1).getLettingFeePolicyDetails(), is(nullValue()));
-        assertThat(properties.get(0).getForSale(), is(0));
-        assertThat(properties.get(0).getToLet(), is(1));
-        assertThat(properties.get(0).getPriceTo(), is(BigDecimal.valueOf(150000)));
-        assertThat(properties.get(0).getPriceFrom(), is(BigDecimal.valueOf(450000)));
-        assertThat(properties.get(0).getRentTo(), is(BigDecimal.valueOf(12000)));
-        assertThat(properties.get(0).getRentFrom(), is(BigDecimal.valueOf(22000)));
-        assertThat(properties.get(0).getFloorAreaTo(), is(55.7));
-        assertThat(properties.get(0).getFloorAreaFrom(), is(85.10));
-        assertThat(properties.get(0).getSiteArea(), is(100.10));
-        assertThat(properties.get(0).getSiteAreaUnits(), is("hectares"));
-        assertThat(properties.get(0).getStrapLine(), is("Flexible office space"));
-        assertThat(properties.get(0).getPropertyTypes(), is(new PropertyTypes(asList(new PropertyType("28")
+        assertThat(actualProperties.get(0).getPropertyBedrooms(), is(5));
+        assertThat(actualProperties.get(0).getPropertyBathrooms(), is(4));
+        assertThat(actualProperties.get(0).getPropertyEnsuites(), is(2));
+        assertThat(actualProperties.get(0).getPropertyReceptionRooms(), is(4));
+        assertThat(actualProperties.get(0).getPropertyKitchens(), is(1));
+        assertThat(actualProperties.get(0).getPropertyAge(), is(9));
+        assertThat(actualProperties.get(0).getFloorArea(), is(140.00));
+        assertThat(actualProperties.get(0).getFloorAreaUnits(), is("sq ft"));
+        assertThat(actualProperties.get(0).getDisplayPropertyType(), is("Detached House"));
+        assertThat(actualProperties.get(0).getPropertyType(), is(1));
+        assertThat(actualProperties.get(0).getPropertyStyle(), is(4));
+        assertThat(actualProperties.get(0).getAvailability(), is(2));
+        assertThat(actualProperties.get(0).getPrice(), is(BigDecimal.valueOf(2100000)));
+        assertThat(actualProperties.get(0).getForSalePOA(), is(0));
+        assertThat(actualProperties.get(0).getPriceQualifier(), is(4));
+        assertThat(actualProperties.get(0).getPropertyTenure(), is(1));
+        assertThat(actualProperties.get(0).getSaleBy(), is(1));
+        assertThat(actualProperties.get(0).getDevelopmentOpportunity(), is(0));
+        assertThat(actualProperties.get(0).getInvestmentOpportunity(), is(0));
+        assertThat(actualProperties.get(0).getEstimatedRentalIncome(), is(BigDecimal.valueOf(3950)));
+        assertThat(actualProperties.get(1).getRent(), is(BigDecimal.valueOf(2500)));
+        assertThat(actualProperties.get(1).getRentFrequency(), is(1));
+        assertThat(actualProperties.get(1).getToLetPOA(), is(0));
+        assertThat(actualProperties.get(1).getStudentProperty(), is(nullValue()));
+        assertThat(actualProperties.get(1).getLettingFeePolicyHeadline(), is("Fees may apply"));
+        assertThat(actualProperties.get(1).getLettingFeePolicyDetails(), is(nullValue()));
+        assertThat(actualProperties.get(0).getForSale(), is(0));
+        assertThat(actualProperties.get(0).getToLet(), is(1));
+        assertThat(actualProperties.get(0).getPriceTo(), is(BigDecimal.valueOf(150000)));
+        assertThat(actualProperties.get(0).getPriceFrom(), is(BigDecimal.valueOf(450000)));
+        assertThat(actualProperties.get(0).getRentTo(), is(BigDecimal.valueOf(12000)));
+        assertThat(actualProperties.get(0).getRentFrom(), is(BigDecimal.valueOf(22000)));
+        assertThat(actualProperties.get(0).getFloorAreaTo(), is(55.7));
+        assertThat(actualProperties.get(0).getFloorAreaFrom(), is(85.10));
+        assertThat(actualProperties.get(0).getSiteArea(), is(100.10));
+        assertThat(actualProperties.get(0).getSiteAreaUnits(), is("hectares"));
+        assertThat(actualProperties.get(0).getStrapLine(), is("Flexible office space"));
+        assertThat(actualProperties.get(0).getPropertyTypes(), is(new PropertyTypes(asList(new PropertyType("28")
                 , new PropertyType("5")
                 , new PropertyType("1"))
         )));
-        assertThat(properties.get(0).getLandAreaTo(), is(4342.20D));
-        assertThat(properties.get(0).getLandAreaFrom(), is(4347.24D));
-        assertThat(properties.get(0).getLandAreaUnits(), is("bla"));
-        assertThat(properties.get(0).getForSaleLeaseLength(), is(7));
-        assertThat(properties.get(0).getImages(), is(new Images(asList(
+        assertThat(actualProperties.get(0).getLandAreaTo(), is(4342.20D));
+        assertThat(actualProperties.get(0).getLandAreaFrom(), is(4347.24D));
+        assertThat(actualProperties.get(0).getLandAreaUnits(), is("bla"));
+        assertThat(actualProperties.get(0).getForSaleLeaseLength(), is(7));
+        assertThat(actualProperties.get(0).getImages(), is(new Images(asList(
                 new Image(LocalDateTime.of(2011, 1, 21, 10, 12, 6)
-                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_1_large.jpg")
+                        , "http://media2.jupix.co.uk/v3/clients/4/actualProperties/795/IMG_795_1_large.jpg")
                 , new Image(LocalDateTime.of(2011, 4, 1, 11, 20, 0)
-                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_2_large.jpg")
+                        , "http://media2.jupix.co.uk/v3/clients/4/actualProperties/795/IMG_795_2_large.jpg")
                 ))
         ));
-        assertThat(properties.get(0).getFloorplans(), is(new Floorplans(asList(
+        assertThat(actualProperties.get(0).getFloorplans(), is(new Floorplans(asList(
                 new Floorplan(LocalDateTime.of(2011, 4, 1, 11, 30, 0)
-                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/FLP_795_1_large.jpg")
+                        , "http://media2.jupix.co.uk/v3/clients/4/actualProperties/795/FLP_795_1_large.jpg")
                 , new Floorplan(LocalDateTime.of(2011, 4, 1, 11, 31, 0)
-                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/FLP_795_2_large.jpg")
+                        , "http://media2.jupix.co.uk/v3/clients/4/actualProperties/795/FLP_795_2_large.jpg")
                 ))
         ));
-        assertThat(properties.get(0).getEpcGraphs(), is(new EpcGraphs(singletonList(
+        assertThat(actualProperties.get(0).getEpcGraphs(), is(new EpcGraphs(singletonList(
                 new EpcGraph(LocalDateTime.of(2011, 4, 1, 11, 35, 0)
-                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_5086.jpg")
+                        , "http://media2.jupix.co.uk/v3/clients/4/actualProperties/795/MED_795_5086.jpg")
                 ))
         ));
-        assertThat(properties.get(0).getEpcFrontPages(), is(new EpcFrontPages(singletonList(
+        assertThat(actualProperties.get(0).getEpcFrontPages(), is(new EpcFrontPages(singletonList(
                 new EpcFrontPage(LocalDateTime.of(2011, 4, 1, 11, 35, 0)
                         , "http://epc.jupix.co.uk/f465cvd")
                 ))
         ));
-        assertThat(properties.get(0).getBrochures(), is(new Brochures(singletonList(
+        assertThat(actualProperties.get(0).getBrochures(), is(new Brochures(singletonList(
                 new Brochure(LocalDateTime.of(2011, 4, 1, 11, 40, 0)
-                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_5085.pdf")
+                        , "http://media2.jupix.co.uk/v3/clients/4/actualProperties/795/MED_795_5085.pdf")
                 ))
         ));
-        assertThat(properties.get(0).getVirtualTours(), is(new VirtualTours(asList(
+        assertThat(actualProperties.get(0).getVirtualTours(), is(new VirtualTours(asList(
                 new VirtualTour(LocalDateTime.of(2011, 4, 1, 11, 50, 0)
                         , "http://www.hackneyandleigh.co.uk/vt/k4485/k4485.htm")
                 , new VirtualTour(LocalDateTime.of(2011, 4, 1, 11, 50, 0)
-                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_72967.swf")
+                        , "http://media2.jupix.co.uk/v3/clients/4/actualProperties/795/MED_795_72967.swf")
                 ))
         ));
-        assertThat(properties.get(0).getExternalLinks(), is(new ExternalLinks(singletonList(
+        assertThat(actualProperties.get(0).getExternalLinks(), is(new ExternalLinks(singletonList(
                 new ExternalLink("www.test.com?this=that&here=there"
                         , "Interactive Floorplan"
                         , LocalDateTime.of(2013, 4, 17, 16, 15, 46))
