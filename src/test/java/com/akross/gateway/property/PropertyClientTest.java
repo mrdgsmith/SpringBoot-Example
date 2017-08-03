@@ -3,7 +3,9 @@ package com.akross.gateway.property;
 import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.gateway.property.entity.Property;
 import com.akross.gateway.property.utilities.PropertyConverter;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
@@ -16,10 +18,14 @@ import static java.math.BigDecimal.valueOf;
 import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.hasItems;
 import static org.junit.Assert.assertThat;
+import static org.junit.rules.ExpectedException.none;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class PropertyClientTest {
+
+    @Rule
+    public ExpectedException expectedException = none();
 
     @Mock
     private HttpPropertyClient httpPropertyClient;
@@ -31,7 +37,7 @@ public class PropertyClientTest {
     private PropertyClient propertyClient;
 
     @Test
-    public void shouldReturnPropertiesForResidentialLetting() throws Exception {
+    public void shouldReturnPropertiesForResidentialLetting() {
         final Property property1 = aProperty()
                 .withPropertyId(1L)
                 .withBranchId(1)
