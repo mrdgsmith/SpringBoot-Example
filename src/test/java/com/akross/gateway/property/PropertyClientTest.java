@@ -31,7 +31,7 @@ public class PropertyClientTest {
     private PropertyClient propertyClient;
 
     @Test
-    public void shouldReturnProperties() throws Exception {
+    public void shouldReturnPropertiesForResidentialLetting() throws Exception {
         final Property property1 = aProperty()
                 .withPropertyId(1L)
                 .withBranchId(1)
@@ -65,8 +65,8 @@ public class PropertyClientTest {
                 .withRent(valueOf(500))
                 .build();
 
-        when(propertyConverter.convert(property1)).thenReturn(residentialLetting1);
-        when(propertyConverter.convert(property2)).thenReturn(residentialLetting2);
+        when(propertyConverter.convertToResidentialLetting(property1)).thenReturn(residentialLetting1);
+        when(propertyConverter.convertToResidentialLetting(property2)).thenReturn(residentialLetting2);
 
         final com.akross.domain.container.Property properties = propertyClient.getProperties();
         assertThat(properties.getResidentialLettings(), hasItems(residentialLetting1, residentialLetting2));

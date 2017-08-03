@@ -185,7 +185,7 @@ public class PropertyConverterTest {
                 .withLettingFeePolicyHeadline("Fees Apply")
                 .withLettingFeePolicyDetails("bla")
                 .build();
-        final ResidentialLetting propertyLetting = (ResidentialLetting) propertyConverter.convert(property);
+        final ResidentialLetting propertyLetting = propertyConverter.convertToResidentialLetting(property);
         assertThat(propertyLetting, Matchers.isA(ResidentialLetting.class));
         assertThat(propertyLetting.getPropertyId(), is(64634L));
         assertThat(propertyLetting.getBranchId(), is(7));

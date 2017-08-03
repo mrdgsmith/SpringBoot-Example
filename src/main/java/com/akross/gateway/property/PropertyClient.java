@@ -35,8 +35,7 @@ public class PropertyClient implements com.akross.gateway.PropertyClient {
                 .filter(FILTER_RESIDENTIAL_LETTING.stream()
                         .reduce(Predicate::and)
                         .orElse(v -> false))
-                .map(propertyConverter::convert)
-                .map(ResidentialLetting.class::cast)
+                .map(propertyConverter::convertToResidentialLetting)
                 .collect(toList());
         return aProperty()
                 .withResidentialLettings(residentialLettings)

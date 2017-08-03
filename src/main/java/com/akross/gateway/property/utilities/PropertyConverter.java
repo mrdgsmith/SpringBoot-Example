@@ -8,9 +8,9 @@ import com.akross.domain.residentialsalesandletting.PropertyStyle;
 import com.akross.domain.residentialsalesandletting.PropertyType;
 import com.akross.domain.residentialsalesandletting.residentialletting.Availability;
 import com.akross.domain.residentialsalesandletting.residentialletting.RentFrequency;
+import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.gateway.property.entity.Flag;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import static com.akross.domain.Brochure.BrochureBuilder.aBrochure;
@@ -23,77 +23,71 @@ import static com.akross.domain.Image.ImageBuilder.anImage;
 import static com.akross.domain.VirtualTour.VirtualTourBuilder.aVirtualTour;
 import static com.akross.domain.residentialsalesandletting.PropertyAge.getMap;
 import static com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
-import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.toList;
 
 public class PropertyConverter {
-    public Property convert(final com.akross.gateway.property.entity.Property property) {
-        final String department = property.getDepartment();
-        final BigDecimal rent = property.getRent();
-        if (LETTINGS.getDescription().equals(department) && nonNull(rent)) {
-            return aResidentialLetting()
-                    .withPropertyId(property.getPropertyId())
-                    .withBranchId(property.getBranchId())
-                    .withClientName(property.getClientName())
-                    .withBranchName(property.getBranchName())
-                    .withDepartment(LETTINGS)
-                    .withReferenceNumber(property.getReferenceNumber())
-                    .withAddressName(property.getAddressName())
-                    .withAddressNumber(property.getAddressNumber())
-                    .withAddressStreet(property.getAddressStreet())
-                    .withAddress2(property.getAddress2())
-                    .withAddress3(property.getAddress3())
-                    .withAddress4(property.getAddress4())
-                    .withAddressPostcode(property.getAddressPostcode())
-                    .withCountry(property.getCountry())
-                    .withDisplayAddress(property.getDisplayAddress())
-                    .withPropertyFeature1(property.getPropertyFeature1())
-                    .withPropertyFeature2(property.getPropertyFeature2())
-                    .withPropertyFeature3(property.getPropertyFeature3())
-                    .withPropertyFeature4(property.getPropertyFeature4())
-                    .withPropertyFeature5(property.getPropertyFeature5())
-                    .withPropertyFeature6(property.getPropertyFeature6())
-                    .withPropertyFeature7(property.getPropertyFeature7())
-                    .withPropertyFeature8(property.getPropertyFeature8())
-                    .withPropertyFeature9(property.getPropertyFeature9())
-                    .withPropertyFeature10(property.getPropertyFeature10())
-                    .withDateLastModified(property.getDateLastModified())
-                    .withTimeLastModified(property.getTimeLastModified())
-                    .withIsFeaturedProperty(property.getFeaturedProperty() == 1)
-                    .withRegionId(property.getRegionId())
-                    .withLatitude(property.getLatitude())
-                    .withLongitude(property.getLongitude())
-                    .withFlags(getFlags(property))
-                    .withMainSummary(property.getMainSummary())
-                    .withFullDescription(property.getFullDescription())
-                    .withImages(getImages(property))
-                    .withFloorplans(getFloorplans(property))
-                    .withBrochures(getBrochures(property))
-                    .withVirtualTours(getVirtualTours(property))
-                    .withEpcGraphs(getEpcGraphs(property))
-                    .withEpcFrontPages(getEpcFrontPages(property))
-                    .withExternalLinks(getExternalLinks(property))
-                    .withPropertyBedrooms(property.getPropertyBedrooms())
-                    .withPropertyEnsuites(property.getPropertyEnsuites())
-                    .withPropertyBathrooms(property.getPropertyBathrooms())
-                    .withPropertyReceptionRooms(property.getPropertyReceptionRooms())
-                    .withPropertyKitchens(property.getPropertyKitchens())
-                    .withPropertyAge(getPropertyAge(property))
-                    .withFloorArea(property.getFloorArea())
-                    .withFloorAreaUnit(getFloorAreaUnit(property))
-                    .withDisplayPropertyType(property.getDisplayPropertyType())
-                    .withPropertyType(getPropertyType(property))
-                    .withPropertyStyle(getPropertyStyle(property))
-                    .withAvailability(getAvailability(property))
-                    .withRent(rent)
-                    .withRentFrequency(getRentFrequency(property))
-                    .withIsLetPOA(property.getToLetPOA() == 1)
-                    .withIsStudentProperty(property.getStudentProperty() == 1)
-                    .withLettingFeePolicyHeadline(property.getLettingFeePolicyHeadline())
-                    .withLettingFeePolicyDetails(property.getLettingFeePolicyDetails())
-                    .build();
-        }
-        return null;
+    public ResidentialLetting convertToResidentialLetting(final com.akross.gateway.property.entity.Property property) {
+        return aResidentialLetting()
+                .withPropertyId(property.getPropertyId())
+                .withBranchId(property.getBranchId())
+                .withClientName(property.getClientName())
+                .withBranchName(property.getBranchName())
+                .withDepartment(LETTINGS)
+                .withReferenceNumber(property.getReferenceNumber())
+                .withAddressName(property.getAddressName())
+                .withAddressNumber(property.getAddressNumber())
+                .withAddressStreet(property.getAddressStreet())
+                .withAddress2(property.getAddress2())
+                .withAddress3(property.getAddress3())
+                .withAddress4(property.getAddress4())
+                .withAddressPostcode(property.getAddressPostcode())
+                .withCountry(property.getCountry())
+                .withDisplayAddress(property.getDisplayAddress())
+                .withPropertyFeature1(property.getPropertyFeature1())
+                .withPropertyFeature2(property.getPropertyFeature2())
+                .withPropertyFeature3(property.getPropertyFeature3())
+                .withPropertyFeature4(property.getPropertyFeature4())
+                .withPropertyFeature5(property.getPropertyFeature5())
+                .withPropertyFeature6(property.getPropertyFeature6())
+                .withPropertyFeature7(property.getPropertyFeature7())
+                .withPropertyFeature8(property.getPropertyFeature8())
+                .withPropertyFeature9(property.getPropertyFeature9())
+                .withPropertyFeature10(property.getPropertyFeature10())
+                .withDateLastModified(property.getDateLastModified())
+                .withTimeLastModified(property.getTimeLastModified())
+                .withIsFeaturedProperty(property.getFeaturedProperty() == 1)
+                .withRegionId(property.getRegionId())
+                .withLatitude(property.getLatitude())
+                .withLongitude(property.getLongitude())
+                .withFlags(getFlags(property))
+                .withMainSummary(property.getMainSummary())
+                .withFullDescription(property.getFullDescription())
+                .withImages(getImages(property))
+                .withFloorplans(getFloorplans(property))
+                .withBrochures(getBrochures(property))
+                .withVirtualTours(getVirtualTours(property))
+                .withEpcGraphs(getEpcGraphs(property))
+                .withEpcFrontPages(getEpcFrontPages(property))
+                .withExternalLinks(getExternalLinks(property))
+                .withPropertyBedrooms(property.getPropertyBedrooms())
+                .withPropertyEnsuites(property.getPropertyEnsuites())
+                .withPropertyBathrooms(property.getPropertyBathrooms())
+                .withPropertyReceptionRooms(property.getPropertyReceptionRooms())
+                .withPropertyKitchens(property.getPropertyKitchens())
+                .withPropertyAge(getPropertyAge(property))
+                .withFloorArea(property.getFloorArea())
+                .withFloorAreaUnit(getFloorAreaUnit(property))
+                .withDisplayPropertyType(property.getDisplayPropertyType())
+                .withPropertyType(getPropertyType(property))
+                .withPropertyStyle(getPropertyStyle(property))
+                .withAvailability(getAvailability(property))
+                .withRent(property.getRent())
+                .withRentFrequency(getRentFrequency(property))
+                .withIsLetPOA(property.getToLetPOA() == 1)
+                .withIsStudentProperty(property.getStudentProperty() == 1)
+                .withLettingFeePolicyHeadline(property.getLettingFeePolicyHeadline())
+                .withLettingFeePolicyDetails(property.getLettingFeePolicyDetails())
+                .build();
     }
 
     private static List<ExternalLink> getExternalLinks(final com.akross.gateway.property.entity.Property property) {
