@@ -68,7 +68,7 @@ public class PropertyClientTest {
         when(propertyConverter.convertToResidentialLetting(property1)).thenReturn(residentialLetting1);
         when(propertyConverter.convertToResidentialLetting(property2)).thenReturn(residentialLetting2);
 
-        final com.akross.domain.container.Property properties = propertyClient.getProperties();
-        assertThat(properties.getResidentialLettings(), hasItems(residentialLetting1, residentialLetting2));
+        final com.akross.domain.container.Property actualProperties = propertyClient.getProperties();
+        assertThat(actualProperties.getResidentialLettings(), hasItems(residentialLetting1, residentialLetting2));
     }
 }
