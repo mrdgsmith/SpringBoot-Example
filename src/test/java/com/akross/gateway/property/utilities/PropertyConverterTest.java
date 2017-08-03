@@ -3,7 +3,6 @@ package com.akross.gateway.property.utilities;
 import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.gateway.property.builders.entity.*;
 import com.akross.gateway.property.entity.Property;
-import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -31,6 +30,7 @@ import static java.math.BigDecimal.valueOf;
 import static java.time.LocalDateTime.of;
 import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.hasItems;
+import static org.hamcrest.Matchers.isA;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
@@ -186,7 +186,7 @@ public class PropertyConverterTest {
                 .withLettingFeePolicyDetails("bla")
                 .build();
         final ResidentialLetting actualResidentialLetting = propertyConverter.convertToResidentialLetting(property);
-        assertThat(actualResidentialLetting, Matchers.isA(ResidentialLetting.class));
+        assertThat(actualResidentialLetting, isA(ResidentialLetting.class));
         assertThat(actualResidentialLetting.getPropertyId(), is(64634L));
         assertThat(actualResidentialLetting.getBranchId(), is(7));
         assertThat(actualResidentialLetting.getClientName(), is("JUPIX"));
