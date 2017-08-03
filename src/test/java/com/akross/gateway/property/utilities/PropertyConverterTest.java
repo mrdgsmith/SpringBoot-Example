@@ -6,7 +6,6 @@ import com.akross.gateway.property.entity.Property;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.LocalDate;
 import java.time.LocalTime;
 
 import static com.akross.domain.Brochure.BrochureBuilder.aBrochure;
@@ -23,10 +22,18 @@ import static com.akross.domain.residentialsalesandletting.PropertyStyle.DETACHE
 import static com.akross.domain.residentialsalesandletting.PropertyType.BUNGALOWS;
 import static com.akross.domain.residentialsalesandletting.residentialletting.Availability.REFERENCES_PENDING;
 import static com.akross.domain.residentialsalesandletting.residentialletting.RentFrequency.PW;
+import static com.akross.gateway.property.builders.entity.TestBrochuresBuilder.aBrochures;
+import static com.akross.gateway.property.builders.entity.TestEpcFrontPagesBuilder.anEpcFrontPages;
+import static com.akross.gateway.property.builders.entity.TestEpcGraphsBuilder.anEpcGraphs;
+import static com.akross.gateway.property.builders.entity.TestExternalLinksBuilder.anExternalLinks;
 import static com.akross.gateway.property.builders.entity.TestFlagBuilder.aFlag;
 import static com.akross.gateway.property.builders.entity.TestFlagsBuilder.aFlags;
+import static com.akross.gateway.property.builders.entity.TestFloorplansBuilder.aFloorplans;
+import static com.akross.gateway.property.builders.entity.TestImagesBuilder.anImages;
 import static com.akross.gateway.property.builders.entity.TestPropertyBuilder.aProperty;
+import static com.akross.gateway.property.builders.entity.TestVirtualToursBuilder.aVirtualTours;
 import static java.math.BigDecimal.valueOf;
+import static java.time.LocalDate.of;
 import static java.time.LocalDateTime.of;
 import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.hasItems;
@@ -71,7 +78,7 @@ public class PropertyConverterTest {
                 .withPropertyFeature8("Bedroom with views over garden8")
                 .withPropertyFeature9("Bedroom with views over garden9")
                 .withPropertyFeature10("Bedroom with views over garden10")
-                .withDateLastModified(LocalDate.of(2016, 3, 1))
+                .withDateLastModified(of(2016, 3, 1))
                 .withTimeLastModified(LocalTime.of(22, 50, 34))
                 .withFeaturedProperty(1)
                 .withRegionId(38)
@@ -88,7 +95,7 @@ public class PropertyConverterTest {
                         .build())
                 .withMainSummary("mainSummary")
                 .withFullDescription("fullDescription")
-                .withImages(TestImagesBuilder.anImages()
+                .withImages(anImages()
                         .withImage(asList(TestImageBuilder.anImage().withUrl("url1")
                                         .withModified(of(2014, 8, 11, 11, 44))
                                         .build()
@@ -97,7 +104,7 @@ public class PropertyConverterTest {
                                         .build()
                         ))
                         .build())
-                .withFloorplans(TestFloorplansBuilder.aFloorplans()
+                .withFloorplans(aFloorplans()
                         .withFloorplan(asList(TestFloorplanBuilder.aFloorplan()
                                         .withUrl("url1")
                                         .withModified(of(2014, 8, 11, 11, 44))
@@ -108,7 +115,7 @@ public class PropertyConverterTest {
                                         .build())
                         ).build()
                 )
-                .withBrochures(TestBrochuresBuilder.aBrochures()
+                .withBrochures(aBrochures()
                         .withBrochure(asList(TestBrochureBuilder.aBrochure()
                                         .withUrl("url1")
                                         .withModified(of(2014, 8, 11, 11, 44))
@@ -119,7 +126,7 @@ public class PropertyConverterTest {
                                         .build())
                         ).build()
                 )
-                .withVirtualTours(TestVirtualToursBuilder.aVirtualTours()
+                .withVirtualTours(aVirtualTours()
                         .withVirtualTour(asList(TestVirtualTourBuilder.aVirtualTour()
                                         .withUrl("url1")
                                         .withModified(of(2014, 8, 11, 11, 44))
@@ -130,7 +137,7 @@ public class PropertyConverterTest {
                                         .build())
                         ).build()
                 )
-                .withEpcGraphs(TestEpcGraphsBuilder.anEpcGraphs()
+                .withEpcGraphs(anEpcGraphs()
                         .withEpcGraph(asList(TestEpcGraphBuilder.anEpcGraph()
                                         .withUrl("url1")
                                         .withModified(of(2014, 8, 11, 11, 44))
@@ -141,7 +148,7 @@ public class PropertyConverterTest {
                                         .build())
                         ).build()
                 )
-                .withEpcFrontPages(TestEpcFrontPagesBuilder.anEpcFrontPages()
+                .withEpcFrontPages(anEpcFrontPages()
                         .withEpcFrontPage(asList(TestEpcFrontPageBuilder.anEpcFrontPage()
                                         .withUrl("url1")
                                         .withModified(of(2014, 8, 11, 11, 44))
@@ -153,7 +160,7 @@ public class PropertyConverterTest {
                         ).build()
                 )
 
-                .withExternalLinks(TestExternalLinksBuilder.anExternalLinks()
+                .withExternalLinks(anExternalLinks()
                         .withExternalLink(asList(TestExternalLinkBuilder.anExternalLink()
                                         .withUrl("url1")
                                         .withModified(of(2014, 8, 11, 11, 44))
@@ -212,7 +219,7 @@ public class PropertyConverterTest {
         assertThat(actualResidentialLetting.getPropertyFeature8(), is("Bedroom with views over garden8"));
         assertThat(actualResidentialLetting.getPropertyFeature9(), is("Bedroom with views over garden9"));
         assertThat(actualResidentialLetting.getPropertyFeature10(), is("Bedroom with views over garden10"));
-        assertThat(actualResidentialLetting.getDateLastModified(), is(LocalDate.of(2016, 3, 1)));
+        assertThat(actualResidentialLetting.getDateLastModified(), is(of(2016, 3, 1)));
         assertThat(actualResidentialLetting.getTimeLastModified(), is(LocalTime.of(22, 50, 34)));
         assertThat(actualResidentialLetting.isFeaturedProperty(), is(true));
         assertThat(actualResidentialLetting.getRegionId(), is(38));
