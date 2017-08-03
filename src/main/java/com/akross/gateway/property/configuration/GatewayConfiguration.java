@@ -17,7 +17,7 @@ import static com.fasterxml.jackson.databind.DeserializationFeature.FAIL_ON_UNKN
 
 @SpringBootConfiguration
 @EnableConfigurationProperties(JupixPropertiesRestClientConfiguration.class)
-public class Configuration {
+public class GatewayConfiguration {
 
     @Autowired
     private JupixPropertiesRestClientConfiguration jupixPropertiesRestClientConfiguration;
