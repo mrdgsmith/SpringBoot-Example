@@ -153,21 +153,21 @@ public class HttpPropertyClientTest {
         assertThat(actualProperties.get(0).getForSaleLeaseLength(), is(7));
         assertThat(actualProperties.get(0).getImages(), is(new Images(asList(
                 new Image(LocalDateTime.of(2011, 1, 21, 10, 12, 6)
-                        , "http://media2.jupix.co.uk/v3/clients/4/actualProperties/795/IMG_795_1_large.jpg")
+                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_1_large.jpg")
                 , new Image(LocalDateTime.of(2011, 4, 1, 11, 20, 0)
-                        , "http://media2.jupix.co.uk/v3/clients/4/actualProperties/795/IMG_795_2_large.jpg")
+                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/IMG_795_2_large.jpg")
                 ))
         ));
         assertThat(actualProperties.get(0).getFloorplans(), is(new Floorplans(asList(
                 new Floorplan(LocalDateTime.of(2011, 4, 1, 11, 30, 0)
-                        , "http://media2.jupix.co.uk/v3/clients/4/actualProperties/795/FLP_795_1_large.jpg")
+                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/FLP_795_1_large.jpg")
                 , new Floorplan(LocalDateTime.of(2011, 4, 1, 11, 31, 0)
-                        , "http://media2.jupix.co.uk/v3/clients/4/actualProperties/795/FLP_795_2_large.jpg")
+                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/FLP_795_2_large.jpg")
                 ))
         ));
         assertThat(actualProperties.get(0).getEpcGraphs(), is(new EpcGraphs(singletonList(
                 new EpcGraph(LocalDateTime.of(2011, 4, 1, 11, 35, 0)
-                        , "http://media2.jupix.co.uk/v3/clients/4/actualProperties/795/MED_795_5086.jpg")
+                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_5086.jpg")
                 ))
         ));
         assertThat(actualProperties.get(0).getEpcFrontPages(), is(new EpcFrontPages(singletonList(
@@ -177,14 +177,14 @@ public class HttpPropertyClientTest {
         ));
         assertThat(actualProperties.get(0).getBrochures(), is(new Brochures(singletonList(
                 new Brochure(LocalDateTime.of(2011, 4, 1, 11, 40, 0)
-                        , "http://media2.jupix.co.uk/v3/clients/4/actualProperties/795/MED_795_5085.pdf")
+                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_5085.pdf")
                 ))
         ));
         assertThat(actualProperties.get(0).getVirtualTours(), is(new VirtualTours(asList(
                 new VirtualTour(LocalDateTime.of(2011, 4, 1, 11, 50, 0)
                         , "http://www.hackneyandleigh.co.uk/vt/k4485/k4485.htm")
                 , new VirtualTour(LocalDateTime.of(2011, 4, 1, 11, 50, 0)
-                        , "http://media2.jupix.co.uk/v3/clients/4/actualProperties/795/MED_795_72967.swf")
+                        , "http://media2.jupix.co.uk/v3/clients/4/properties/795/MED_795_72967.swf")
                 ))
         ));
         assertThat(actualProperties.get(0).getExternalLinks(), is(new ExternalLinks(singletonList(
