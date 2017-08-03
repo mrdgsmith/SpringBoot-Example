@@ -264,7 +264,7 @@ public abstract class Property {
     }
 
     public List<String> getFlags() {
-        return nonNull(flags) ? unmodifiableList(flags) : emptyList();
+        return unmodifiableList(flags);
     }
 
     public String getMainSummary() {
@@ -276,31 +276,31 @@ public abstract class Property {
     }
 
     public List<Image> getImages() {
-        return nonNull(images) ? unmodifiableList(images) : emptyList();
+        return unmodifiableList(images);
     }
 
     public List<Floorplan> getFloorplans() {
-        return nonNull(floorplans) ? unmodifiableList(floorplans) : emptyList();
+        return unmodifiableList(floorplans);
     }
 
     public List<Brochure> getBrochures() {
-        return nonNull(brochures) ? unmodifiableList(brochures) : emptyList();
+        return unmodifiableList(brochures);
     }
 
     public List<VirtualTour> getVirtualTours() {
-        return nonNull(virtualTours) ? unmodifiableList(virtualTours) : emptyList();
+        return unmodifiableList(virtualTours);
     }
 
     public List<EpcGraph> getEpcGraphs() {
-        return nonNull(epcGraphs) ? unmodifiableList(epcGraphs) : emptyList();
+        return unmodifiableList(epcGraphs);
     }
 
     public List<EpcFrontPage> getEpcFrontPages() {
-        return nonNull(epcFrontPages) ? unmodifiableList(epcFrontPages) : emptyList();
+        return unmodifiableList(epcFrontPages);
     }
 
     public List<ExternalLink> getExternalLinks() {
-        return nonNull(externalLinks) ? unmodifiableList(externalLinks) : emptyList();
+        return unmodifiableList(externalLinks);
     }
 
     @Override
