@@ -38,14 +38,14 @@ public class Configuration {
     }
 
     @Bean
-    public RestTemplate jupixPropertiesRestService(final RestTemplateBuilder restTemplateBuilder) {
+    public RestTemplate jupixPropertiesRestClient(final RestTemplateBuilder restTemplateBuilder) {
         return restTemplateBuilder
                 .rootUri(jupixPropertiesRestClientConfiguration.getRootUrl())
                 .build();
     }
 
     @Bean
-    public HttpPropertyClient httpPropertyClient(final RestTemplate jupixPropertiesRestService) {
-        return new HttpPropertyClient(jupixPropertiesRestService, jupixPropertiesRestClientConfiguration);
+    public HttpPropertyClient httpPropertyClient(final RestTemplate jupixPropertiesRestClient) {
+        return new HttpPropertyClient(jupixPropertiesRestClient, jupixPropertiesRestClientConfiguration);
     }
 }
