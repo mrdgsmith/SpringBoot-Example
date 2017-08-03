@@ -39,6 +39,33 @@ public class PropertyServiceTest {
     @InjectMocks
     private PropertyService propertyService;
 
+    private static List<ResidentialLetting> createInvalidProperties() {
+        return asList(aResidentialLetting()
+                        .withDepartment(SALES)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withDisplayAddress("Should not be here!")
+                        .withDateLastModified(of(2015, OCTOBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 14))
+                        .build()
+                , aResidentialLetting()
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(false)
+                        .withAvailability(LET)
+                        .withDisplayAddress("Should not be here!")
+                        .withDateLastModified(of(2015, SEPTEMBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 14))
+                        .build()
+                , aResidentialLetting()
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(WITHDRAWN)
+                        .withDisplayAddress("Should not be here!")
+                        .withDateLastModified(of(2015, NOVEMBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 14))
+                        .build());
+    }
+
     private static List<ResidentialLetting> createValidProperties() {
         return asList(aResidentialLetting()
                         .withDepartment(LETTINGS)
@@ -138,32 +165,5 @@ public class PropertyServiceTest {
                         .withTimeLastModified(LocalTime.of(21, 55, 13))
                         .build()
         ));
-    }
-
-    private static List<ResidentialLetting> createInvalidProperties() {
-        return asList(aResidentialLetting()
-                        .withDepartment(SALES)
-                        .withIsFeaturedProperty(true)
-                        .withAvailability(LET)
-                        .withDisplayAddress("Should not be here!")
-                        .withDateLastModified(of(2015, OCTOBER, 21))
-                        .withTimeLastModified(LocalTime.of(21, 55, 14))
-                        .build()
-                , aResidentialLetting()
-                        .withDepartment(LETTINGS)
-                        .withIsFeaturedProperty(false)
-                        .withAvailability(LET)
-                        .withDisplayAddress("Should not be here!")
-                        .withDateLastModified(of(2015, SEPTEMBER, 21))
-                        .withTimeLastModified(LocalTime.of(21, 55, 14))
-                        .build()
-                , aResidentialLetting()
-                        .withDepartment(LETTINGS)
-                        .withIsFeaturedProperty(true)
-                        .withAvailability(WITHDRAWN)
-                        .withDisplayAddress("Should not be here!")
-                        .withDateLastModified(of(2015, NOVEMBER, 21))
-                        .withTimeLastModified(LocalTime.of(21, 55, 14))
-                        .build());
     }
 }
