@@ -96,7 +96,7 @@ public class ResidentialLetting extends ResidentialSalesAndLettings {
         this.lettingFeePolicyDetails = lettingFeePolicyDetails;
     }
 
-    public Availability getAvailbility() {
+    public Availability getAvailability() {
         return availability;
     }
 
@@ -155,9 +155,8 @@ public class ResidentialLetting extends ResidentialSalesAndLettings {
                 ", isStudentProperty=" + isStudentProperty +
                 ", lettingFeePolicyHeadline='" + lettingFeePolicyHeadline + '\'' +
                 ", lettingFeePolicyDetails='" + lettingFeePolicyDetails + '\'' +
-                '}';
+                "} " + super.toString();
     }
-
 
     public static final class ResidentialLettingBuilder {
         private Integer propertyBedrooms;
