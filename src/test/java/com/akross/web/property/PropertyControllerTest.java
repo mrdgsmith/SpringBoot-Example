@@ -184,7 +184,6 @@ public class PropertyControllerTest {
     public void shouldReturnAllProperties() throws Exception {
         given(propertyService.getProperties(false)).willReturn(getDomainProperty());
         mockMvc.perform(get("/properties")
-                .param("featured", "false")
                 .contentType(APPLICATION_JSON)
                 .accept(APPLICATION_JSON))
                 .andDo(print())

@@ -162,7 +162,7 @@ public class PropertyController {
                 .collect(toList());
     }
 
-    @RequestMapping(method = GET, produces = {APPLICATION_JSON_VALUE}, params = {"featured"})
+    @RequestMapping(method = GET, produces = {APPLICATION_JSON_VALUE})
     public Property getProperties(@RequestParam(value = "featured", defaultValue = "false", required = false) final boolean featured) {
         final com.akross.domain.container.Property featuredProperties = propertyService.getProperties(featured);
         return aProperty()
