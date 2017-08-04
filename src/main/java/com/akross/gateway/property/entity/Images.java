@@ -3,11 +3,12 @@ package com.akross.gateway.property.entity;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 import static java.util.Collections.emptyList;
+import static java.util.Collections.unmodifiableList;
+import static java.util.Objects.nonNull;
 
 public class Images {
 
@@ -15,11 +16,11 @@ public class Images {
     private final List<Image> image;
 
     public Images(@JacksonXmlProperty(localName = "image") final List<Image> image) {
-        this.image = image;
+        this.image = nonNull(image) ? unmodifiableList(image) : emptyList();
     }
 
     public List<Image> getImage() {
-        return Objects.nonNull(image) ? Collections.unmodifiableList(image) : emptyList();
+        return unmodifiableList(image);
     }
 
     @Override

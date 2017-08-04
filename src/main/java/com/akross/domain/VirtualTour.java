@@ -56,12 +56,12 @@ public class VirtualTour {
             return new VirtualTourBuilder();
         }
 
-        public VirtualTourBuilder withModified(LocalDateTime modified) {
+        public VirtualTourBuilder withModified(final LocalDateTime modified) {
             this.modified = modified;
             return this;
         }
 
-        public VirtualTourBuilder withUrl(String url) {
+        public VirtualTourBuilder withUrl(final String url) {
             this.url = url;
             return this;
         }

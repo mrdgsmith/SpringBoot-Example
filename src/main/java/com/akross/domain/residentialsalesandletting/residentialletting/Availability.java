@@ -9,7 +9,7 @@ import static java.util.stream.Stream.of;
 public enum Availability {
     ON_HOLD(1, "On Hold"), TO_LET(2, "To Let"), REFERENCES_PENDING(3, "References Pending"), LET_AGREED(4, "Let Agreed"), LET(5, "Let"), WITHDRAWN(6, "Withdrwan");
 
-    private static Map<Integer, Availability> map = of(Availability.values())
+    private final static Map<Integer, Availability> map = of(Availability.values())
             .collect(toMap(availability -> availability.id, availability -> availability));
 
     private final Integer id;

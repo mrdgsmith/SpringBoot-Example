@@ -3,11 +3,12 @@ package com.akross.gateway.property.entity;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 import static java.util.Collections.emptyList;
+import static java.util.Collections.unmodifiableList;
+import static java.util.Objects.nonNull;
 
 public class Brochures {
 
@@ -15,11 +16,11 @@ public class Brochures {
     private final List<Brochure> brochure;
 
     public Brochures(@JacksonXmlProperty(localName = "brochure") final List<Brochure> brochure) {
-        this.brochure = brochure;
+        this.brochure = nonNull(brochure) ? unmodifiableList(brochure) : emptyList();
     }
 
     public List<Brochure> getBrochure() {
-        return Objects.nonNull(brochure) ? Collections.unmodifiableList(brochure) : emptyList();
+        return unmodifiableList(brochure);
     }
 
     @Override

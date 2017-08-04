@@ -8,6 +8,8 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import static java.time.LocalDateTime.of;
+
 public class ExternalLink {
 
     private final String url;
@@ -21,7 +23,8 @@ public class ExternalLink {
                         @JacksonXmlProperty(localName = "modified", isAttribute = true) final LocalDateTime modified) {
         this.url = url;
         this.description = description;
-        this.modified = modified;
+        this.modified = of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
+                , modified.getHour(), modified.getMinute(), modified.getSecond());
     }
 
     public String getUrl() {
@@ -29,7 +32,8 @@ public class ExternalLink {
     }
 
     public LocalDateTime getModified() {
-        return modified;
+        return of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
+                , modified.getHour(), modified.getMinute(), modified.getSecond());
     }
 
     public String getDescription() {

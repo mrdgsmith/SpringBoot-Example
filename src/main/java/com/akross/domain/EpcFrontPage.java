@@ -56,12 +56,12 @@ public class EpcFrontPage {
             return new EpcFrontPageBuilder();
         }
 
-        public EpcFrontPageBuilder withModified(LocalDateTime modified) {
+        public EpcFrontPageBuilder withModified(final LocalDateTime modified) {
             this.modified = modified;
             return this;
         }
 
-        public EpcFrontPageBuilder withUrl(String url) {
+        public EpcFrontPageBuilder withUrl(final String url) {
             this.url = url;
             return this;
         }

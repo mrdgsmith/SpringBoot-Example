@@ -1,27 +1,16 @@
-package com.akross.gateway.property.entity;
-
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
+package com.akross.web.property.enitity;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 import static java.time.LocalDateTime.of;
 
-public class EpcGraph {
+public class Brochure {
 
     private final LocalDateTime modified;
-
-    @JacksonXmlText
     private final String url;
 
-    public EpcGraph(@JsonDeserialize(using = LocalDateTimeDeserializer.class)
-                    @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-                    @JacksonXmlProperty(localName = "modified", isAttribute = true) final LocalDateTime modified
-            , @JacksonXmlProperty(localName = " ") final String url) {
+    private Brochure(final LocalDateTime modified, final String url) {
         this.modified = of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
                 , modified.getHour(), modified.getMinute(), modified.getSecond());
         this.url = url;
@@ -40,9 +29,9 @@ public class EpcGraph {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EpcGraph epcGraph = (EpcGraph) o;
-        return Objects.equals(modified, epcGraph.modified) &&
-                Objects.equals(url, epcGraph.url);
+        Brochure image = (Brochure) o;
+        return Objects.equals(modified, image.modified) &&
+                Objects.equals(url, image.url);
     }
 
     @Override
@@ -52,9 +41,35 @@ public class EpcGraph {
 
     @Override
     public String toString() {
-        return "EpcGraph{" +
+        return "Brochure" +
                 "modified=" + modified +
                 ", url='" + url + '\'' +
                 '}';
+    }
+
+    public static final class BrochureBuilder {
+        private LocalDateTime modified;
+        private String url;
+
+        private BrochureBuilder() {
+        }
+
+        public static BrochureBuilder aBrochure() {
+            return new BrochureBuilder();
+        }
+
+        public BrochureBuilder withModified(final LocalDateTime modified) {
+            this.modified = modified;
+            return this;
+        }
+
+        public BrochureBuilder withUrl(final String url) {
+            this.url = url;
+            return this;
+        }
+
+        public Brochure build() {
+            return new Brochure(modified, url);
+        }
     }
 }

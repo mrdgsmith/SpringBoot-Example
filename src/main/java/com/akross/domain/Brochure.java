@@ -57,12 +57,12 @@ public class Brochure {
             return new BrochureBuilder();
         }
 
-        public BrochureBuilder withModified(LocalDateTime modified) {
+        public BrochureBuilder withModified(final LocalDateTime modified) {
             this.modified = modified;
             return this;
         }
 
-        public BrochureBuilder withUrl(String url) {
+        public BrochureBuilder withUrl(final String url) {
             this.url = url;
             return this;
         }

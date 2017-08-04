@@ -3,11 +3,12 @@ package com.akross.gateway.property.entity;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 import static java.util.Collections.emptyList;
+import static java.util.Collections.unmodifiableList;
+import static java.util.Objects.nonNull;
 
 public class ExternalLinks {
 
@@ -15,11 +16,11 @@ public class ExternalLinks {
     private final List<ExternalLink> externalLink;
 
     public ExternalLinks(@JacksonXmlProperty(localName = "externalLink") final List<ExternalLink> externalLink) {
-        this.externalLink = externalLink;
+        this.externalLink = nonNull(externalLink) ? unmodifiableList(externalLink) : emptyList();
     }
 
     public List<ExternalLink> getExternalLink() {
-        return Objects.nonNull(externalLink) ? Collections.unmodifiableList(externalLink) : emptyList();
+        return unmodifiableList(externalLink);
     }
 
     @Override

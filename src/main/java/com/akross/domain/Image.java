@@ -45,7 +45,6 @@ public class Image {
                 '}';
     }
 
-
     public static final class ImageBuilder {
         private LocalDateTime modified;
         private String url;
@@ -57,12 +56,12 @@ public class Image {
             return new ImageBuilder();
         }
 
-        public ImageBuilder withModified(LocalDateTime modified) {
+        public ImageBuilder withModified(final LocalDateTime modified) {
             this.modified = modified;
             return this;
         }
 
-        public ImageBuilder withUrl(String url) {
+        public ImageBuilder withUrl(final String url) {
             this.url = url;
             return this;
         }

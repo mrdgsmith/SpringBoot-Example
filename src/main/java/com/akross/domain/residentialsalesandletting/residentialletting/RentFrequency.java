@@ -9,7 +9,7 @@ import static java.util.stream.Stream.of;
 public enum RentFrequency {
     PCM(1, "pcm"), PW(2, "pw"), PA(3, "pa");
 
-    private static Map<Integer, RentFrequency> map = of(RentFrequency.values())
+    private final static Map<Integer, RentFrequency> map = of(RentFrequency.values())
             .collect(toMap(rentFrequency -> rentFrequency.id, rentFrequency -> rentFrequency));
 
     private final Integer id;

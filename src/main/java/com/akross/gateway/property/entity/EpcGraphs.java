@@ -3,11 +3,12 @@ package com.akross.gateway.property.entity;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 import static java.util.Collections.emptyList;
+import static java.util.Collections.unmodifiableList;
+import static java.util.Objects.nonNull;
 
 public class EpcGraphs {
 
@@ -15,11 +16,11 @@ public class EpcGraphs {
     private final List<EpcGraph> epcGraph;
 
     public EpcGraphs(@JacksonXmlProperty(localName = "epcGraph") final List<EpcGraph> epcGraph) {
-        this.epcGraph = epcGraph;
+        this.epcGraph = nonNull(epcGraph) ? unmodifiableList(epcGraph) : emptyList();
     }
 
     public List<EpcGraph> getEpcGraph() {
-        return Objects.nonNull(epcGraph) ? Collections.unmodifiableList(epcGraph) : emptyList();
+        return unmodifiableList(epcGraph);
     }
 
     @Override

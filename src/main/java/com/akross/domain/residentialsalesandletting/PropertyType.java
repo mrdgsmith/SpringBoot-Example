@@ -9,7 +9,7 @@ import static java.util.stream.Stream.of;
 public enum PropertyType {
     HOUSE(1, "Houses"), FLAT_APARTMENTS(2, "Flat / Apartments"), BUNGALOWS(3, "Bungalows"), OTHER(4, "Other");
 
-    private static Map<Integer, PropertyType> map = of(PropertyType.values())
+    private static final Map<Integer, PropertyType> map = of(PropertyType.values())
             .collect(toMap(propertyType -> propertyType.typeId, propertyType -> propertyType));
 
     private final Integer typeId;

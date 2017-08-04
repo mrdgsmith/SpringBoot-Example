@@ -1,6 +1,6 @@
-package com.akross.domain.container;
+package com.akross.web.property.enitity.container;
 
-import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
+import com.akross.web.property.enitity.residentialsalesandletting.residentialletting.ResidentialLetting;
 
 import java.util.List;
 import java.util.Objects;
@@ -10,7 +10,8 @@ import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.nonNull;
 
 public class Property {
-    final List<ResidentialLetting> residentialLettings;
+
+    private final List<ResidentialLetting> residentialLettings;
 
     private Property(final List<ResidentialLetting> residentialLettings) {
         this.residentialLettings = nonNull(residentialLettings) ? unmodifiableList(residentialLettings) : emptyList();
@@ -41,7 +42,8 @@ public class Property {
     }
 
     public static final class PropertyBuilder {
-        List<ResidentialLetting> residentialLettings;
+
+        private List<ResidentialLetting> residentialLettings;
 
         private PropertyBuilder() {
         }

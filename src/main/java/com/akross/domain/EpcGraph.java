@@ -56,12 +56,12 @@ public class EpcGraph {
             return new EpcGraphBuilder();
         }
 
-        public EpcGraphBuilder withModified(LocalDateTime modified) {
+        public EpcGraphBuilder withModified(final LocalDateTime modified) {
             this.modified = modified;
             return this;
         }
 
-        public EpcGraphBuilder withUrl(String url) {
+        public EpcGraphBuilder withUrl(final String url) {
             this.url = url;
             return this;
         }

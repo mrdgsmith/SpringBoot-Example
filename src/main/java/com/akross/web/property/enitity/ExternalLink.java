@@ -1,7 +1,9 @@
-package com.akross.domain;
+package com.akross.web.property.enitity;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+
+import static java.time.LocalDateTime.of;
 
 public class ExternalLink {
 
@@ -10,14 +12,14 @@ public class ExternalLink {
     private final String description;
 
     private ExternalLink(final LocalDateTime modified, final String url, final String description) {
-        this.modified = LocalDateTime.of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
+        this.modified = of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
                 , modified.getHour(), modified.getMinute(), modified.getSecond());
         this.url = url;
         this.description = description;
     }
 
     public LocalDateTime getModified() {
-        return LocalDateTime.of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
+        return of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
                 , modified.getHour(), modified.getMinute(), modified.getSecond());
     }
 

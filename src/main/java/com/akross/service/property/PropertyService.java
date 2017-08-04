@@ -1,6 +1,5 @@
 package com.akross.service.property;
 
-import com.akross.domain.Department;
 import com.akross.domain.container.Property;
 import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.gateway.PropertyClient;
@@ -9,6 +8,7 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
+import static com.akross.domain.Department.LETTINGS;
 import static com.akross.domain.container.Property.PropertyBuilder.aProperty;
 import static com.akross.domain.residentialsalesandletting.residentialletting.Availability.LET;
 import static com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
@@ -27,7 +27,7 @@ public class PropertyService implements com.akross.service.PropertyService {
     private static List<ResidentialLetting> getFeaturedResidentialLettings(final List<ResidentialLetting>
                                                                                    residentialLettings) {
         final List<Predicate<ResidentialLetting>> filter_residential_letting_featured = asList(
-                residentialLetting -> Department.LETTINGS.equals(residentialLetting.getDepartment())
+                residentialLetting -> LETTINGS.equals(residentialLetting.getDepartment())
                 , ResidentialLetting::isFeaturedProperty
                 , residentialLetting -> LET.equals(residentialLetting.getAvailability())
         );

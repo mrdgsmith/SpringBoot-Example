@@ -13,6 +13,9 @@ import static org.springframework.web.util.UriComponentsBuilder.newInstance;
 
 public class HttpPropertyClient {
 
+    private static final String CLIENT_ID = "clientId";
+    private static final String PASSPHRASE = "passphrase";
+    private static final String VERSION = "version";
     private final RestTemplate jupixPropertiesRestClient;
     private final JupixPropertiesRestClientConfiguration jupixPropertiesRestClientConfiguration;
 
@@ -25,9 +28,9 @@ public class HttpPropertyClient {
     public List<Property> getProperties() {
         final UriComponentsBuilder builder = newInstance()
                 .path(jupixPropertiesRestClientConfiguration.getPropertyPath())
-                .queryParam("clientId", jupixPropertiesRestClientConfiguration.getClientId())
-                .queryParam("passphrase", jupixPropertiesRestClientConfiguration.getPassphrase())
-                .queryParam("version", jupixPropertiesRestClientConfiguration.getVersion());
+                .queryParam(CLIENT_ID, jupixPropertiesRestClientConfiguration.getClientId())
+                .queryParam(PASSPHRASE, jupixPropertiesRestClientConfiguration.getPassphrase())
+                .queryParam(VERSION, jupixPropertiesRestClientConfiguration.getVersion());
         return jupixPropertiesRestClient.exchange(get(builder.build().encode().toUri()).build()
                 , new ParameterizedTypeReference<List<Property>>() {
                 }).getBody();

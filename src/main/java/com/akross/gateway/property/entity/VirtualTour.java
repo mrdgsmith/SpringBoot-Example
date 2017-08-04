@@ -1,13 +1,12 @@
 package com.akross.gateway.property.entity;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlText;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
+
+import static java.time.LocalDateTime.of;
 
 public class VirtualTour {
 
@@ -16,16 +15,16 @@ public class VirtualTour {
     @JacksonXmlText
     private final String url;
 
-    public VirtualTour(@JsonDeserialize(using = LocalDateTimeDeserializer.class)
-                       @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
-                       @JacksonXmlProperty(localName = "modified", isAttribute = true) final LocalDateTime modified
+    public VirtualTour(@JacksonXmlProperty(localName = "modified", isAttribute = true) final LocalDateTime modified
             , @JacksonXmlProperty(localName = " ") final String url) {
-        this.modified = modified;
+        this.modified = of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
+                , modified.getHour(), modified.getMinute(), modified.getSecond());
         this.url = url;
     }
 
     public LocalDateTime getModified() {
-        return modified;
+        return of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
+                , modified.getHour(), modified.getMinute(), modified.getSecond());
     }
 
     public String getUrl() {

@@ -9,7 +9,7 @@ import static java.util.stream.Stream.of;
 public enum FloorAreaUnit {
     ACRES("acres"), HECTARES("hectares"), SQUARE_METERS("sq m"), SQUARE_FEET("sq ft");
 
-    private static Map<String, FloorAreaUnit> map = of(FloorAreaUnit.values())
+    private static final Map<String, FloorAreaUnit> map = of(FloorAreaUnit.values())
             .collect(toMap(floorAreaUnit -> floorAreaUnit.floorAreaUnit, floorAreaUnit -> floorAreaUnit));
 
     private final String floorAreaUnit;

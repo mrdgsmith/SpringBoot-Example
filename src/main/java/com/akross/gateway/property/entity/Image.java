@@ -9,6 +9,8 @@ import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
+import static java.time.LocalDateTime.of;
+
 public class Image {
 
     private final LocalDateTime modified;
@@ -20,12 +22,14 @@ public class Image {
                  @JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
                  @JacksonXmlProperty(localName = "modified", isAttribute = true) final LocalDateTime modified
             , @JacksonXmlProperty(localName = " ") final String url) {
-        this.modified = modified;
+        this.modified = of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
+                , modified.getHour(), modified.getMinute(), modified.getSecond());
         this.url = url;
     }
 
     public LocalDateTime getModified() {
-        return modified;
+        return of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
+                , modified.getHour(), modified.getMinute(), modified.getSecond());
     }
 
     public String getUrl() {

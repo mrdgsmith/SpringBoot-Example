@@ -1,9 +1,6 @@
 package com.akross.gateway.property.entity;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateDeserializer;
-import com.fasterxml.jackson.datatype.jsr310.deser.LocalTimeDeserializer;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -122,10 +119,8 @@ public class Property {
             , @JacksonXmlProperty(localName = "propertyFeature8") final String propertyFeature8
             , @JacksonXmlProperty(localName = "propertyFeature9") final String propertyFeature9
             , @JacksonXmlProperty(localName = "propertyFeature10") final String propertyFeature10
-            , @JacksonXmlProperty(localName = "dateLastModified")
-            @JsonDeserialize(using = LocalDateDeserializer.class) final LocalDate dateLastModified
-            , @JacksonXmlProperty(localName = "timeLastModified")
-            @JsonDeserialize(using = LocalTimeDeserializer.class) final LocalTime timeLastModified
+            , @JacksonXmlProperty(localName = "dateLastModified") final LocalDate dateLastModified
+            , @JacksonXmlProperty(localName = "timeLastModified") final LocalTime timeLastModified
             , @JacksonXmlProperty(localName = "featuredProperty") final Integer featuredProperty
             , @JacksonXmlProperty(localName = "regionID") final Integer regionId
             , @JacksonXmlProperty(localName = "latitude") final Double latitude

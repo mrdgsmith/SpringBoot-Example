@@ -3,11 +3,12 @@ package com.akross.gateway.property.entity;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 import static java.util.Collections.emptyList;
+import static java.util.Collections.unmodifiableList;
+import static java.util.Objects.nonNull;
 
 public class EpcFrontPages {
 
@@ -15,11 +16,11 @@ public class EpcFrontPages {
     private final List<EpcFrontPage> epcFrontPage;
 
     public EpcFrontPages(@JacksonXmlProperty(localName = "epcFrontPage") final List<EpcFrontPage> epcFrontPage) {
-        this.epcFrontPage = epcFrontPage;
+        this.epcFrontPage = nonNull(epcFrontPage) ? unmodifiableList(epcFrontPage) : emptyList();
     }
 
     public List<EpcFrontPage> getEpcFrontPage() {
-        return Objects.nonNull(epcFrontPage) ? Collections.unmodifiableList(epcFrontPage) : emptyList();
+        return unmodifiableList(epcFrontPage);
     }
 
     @Override

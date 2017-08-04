@@ -31,7 +31,7 @@ dependencies {
     compile(group: "org.springframework.boot", name: "spring-boot-starter-web") {
         exclude module: "spring-boot-starter-tomcat"
     }
-    //compile(group: "org.springframework", name: "spring-web")
+    compile(group: "org.springframework.boot", name: "spring-boot-starter-jetty")
     compile(group: "com.fasterxml.jackson.dataformat", name: "jackson-dataformat-xml", version: "$jacksonVersion")
     compile(group: "com.fasterxml.jackson.datatype", name: "jackson-datatype-jsr310", version: "$jacksonVersion")
     //Test dependencies

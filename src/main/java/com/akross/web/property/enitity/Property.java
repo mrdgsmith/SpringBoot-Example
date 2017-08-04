@@ -1,4 +1,6 @@
-package com.akross.domain;
+package com.akross.web.property.enitity;
+
+import com.akross.domain.Department;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -10,7 +12,6 @@ import static java.util.Collections.unmodifiableList;
 import static java.util.Objects.nonNull;
 
 public abstract class Property {
-
     private final Long propertyId;
     private final Integer branchId;
     private final String clientName;
@@ -119,10 +120,10 @@ public abstract class Property {
         this.propertyFeature8 = propertyFeature8;
         this.propertyFeature9 = propertyFeature9;
         this.propertyFeature10 = propertyFeature10;
-        this.dateLastModified = nonNull(dateLastModified) ? LocalDate.of(dateLastModified.getYear(), dateLastModified.getMonth()
-                , dateLastModified.getDayOfMonth()) : null;
-        this.timeLastModified = nonNull(timeLastModified) ? LocalTime.of(timeLastModified.getHour(), timeLastModified.getMinute()
-                , timeLastModified.getSecond()) : null;
+        this.dateLastModified = LocalDate.of(dateLastModified.getYear(), dateLastModified.getMonth()
+                , dateLastModified.getDayOfMonth());
+        this.timeLastModified = LocalTime.of(timeLastModified.getHour(), timeLastModified.getMinute()
+                , timeLastModified.getSecond());
         this.isFeaturedProperty = isFeaturedProperty;
         this.regionId = regionId;
         this.latitude = latitude;
@@ -247,7 +248,7 @@ public abstract class Property {
         return LocalTime.of(timeLastModified.getHour(), timeLastModified.getMinute(), timeLastModified.getSecond());
     }
 
-    public Boolean isFeaturedProperty() {
+    public boolean isFeaturedProperty() {
         return isFeaturedProperty;
     }
 
@@ -306,9 +307,10 @@ public abstract class Property {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Property)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         Property property = (Property) o;
-        return Objects.equals(propertyId, property.propertyId) &&
+        return isFeaturedProperty == property.isFeaturedProperty &&
+                Objects.equals(propertyId, property.propertyId) &&
                 Objects.equals(branchId, property.branchId) &&
                 Objects.equals(clientName, property.clientName) &&
                 Objects.equals(branchName, property.branchName) &&
@@ -335,7 +337,6 @@ public abstract class Property {
                 Objects.equals(propertyFeature10, property.propertyFeature10) &&
                 Objects.equals(dateLastModified, property.dateLastModified) &&
                 Objects.equals(timeLastModified, property.timeLastModified) &&
-                Objects.equals(isFeaturedProperty, property.isFeaturedProperty) &&
                 Objects.equals(regionId, property.regionId) &&
                 Objects.equals(latitude, property.latitude) &&
                 Objects.equals(longitude, property.longitude) &&

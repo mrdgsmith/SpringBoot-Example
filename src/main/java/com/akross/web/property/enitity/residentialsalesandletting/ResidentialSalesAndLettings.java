@@ -1,6 +1,11 @@
-package com.akross.domain.residentialsalesandletting;
+package com.akross.web.property.enitity.residentialsalesandletting;
 
-import com.akross.domain.*;
+import com.akross.domain.Department;
+import com.akross.domain.residentialsalesandletting.FloorAreaUnit;
+import com.akross.domain.residentialsalesandletting.PropertyAge;
+import com.akross.domain.residentialsalesandletting.PropertyStyle;
+import com.akross.domain.residentialsalesandletting.PropertyType;
+import com.akross.web.property.enitity.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -49,7 +54,7 @@ public abstract class ResidentialSalesAndLettings extends Property {
             , final String propertyFeature10
             , final LocalDate dateLastModified
             , final LocalTime timeLastModified
-            , final Boolean isFeaturedProperty
+            , final boolean isFeaturedProperty
             , final Integer regionId
             , final Double latitude
             , final Double longitude

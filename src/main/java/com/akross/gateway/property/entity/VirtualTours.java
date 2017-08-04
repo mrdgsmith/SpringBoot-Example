@@ -3,11 +3,12 @@ package com.akross.gateway.property.entity;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlElementWrapper;
 import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
 
 import static java.util.Collections.emptyList;
+import static java.util.Collections.unmodifiableList;
+import static java.util.Objects.nonNull;
 
 public class VirtualTours {
 
@@ -15,11 +16,11 @@ public class VirtualTours {
     private final List<VirtualTour> virtualTour;
 
     public VirtualTours(@JacksonXmlProperty(localName = "brochure") final List<VirtualTour> virtualTour) {
-        this.virtualTour = virtualTour;
+        this.virtualTour = nonNull(virtualTour) ? unmodifiableList(virtualTour) : emptyList();
     }
 
     public List<VirtualTour> getVirtualTour() {
-        return Objects.nonNull(virtualTour) ? Collections.unmodifiableList(virtualTour) : emptyList();
+        return unmodifiableList(virtualTour);
     }
 
     @Override
