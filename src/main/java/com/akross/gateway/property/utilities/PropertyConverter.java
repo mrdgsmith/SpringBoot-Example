@@ -18,7 +18,7 @@ import static com.akross.domain.Department.LETTINGS;
 import static com.akross.domain.EpcFrontPage.EpcFrontPageBuilder.anEpcFrontPage;
 import static com.akross.domain.EpcGraph.EpcGraphBuilder.anEpcGraph;
 import static com.akross.domain.ExternalLink.ExternalLinkBuilder.anExternalLink;
-import static com.akross.domain.Floorplan.FloorplansBuilder.aFloorplan;
+import static com.akross.domain.Floorplan.FloorplanBuilder.aFloorplan;
 import static com.akross.domain.Image.ImageBuilder.anImage;
 import static com.akross.domain.VirtualTour.VirtualTourBuilder.aVirtualTour;
 import static com.akross.domain.residentialsalesandletting.PropertyAge.getMap;
@@ -26,6 +26,93 @@ import static com.akross.domain.residentialsalesandletting.residentialletting.Re
 import static java.util.stream.Collectors.toList;
 
 public class PropertyConverter {
+    private static List<ExternalLink> getExternalLinks(final List<com.akross.gateway.property.entity.ExternalLink> externalLinks) {
+        return externalLinks.stream().map(externalLink -> anExternalLink()
+                .withModified(externalLink.getModified())
+                .withUrl(externalLink.getUrl())
+                .withDescription(externalLink.getDescription())
+                .build())
+                .collect(toList());
+    }
+
+    private static List<EpcFrontPage> getEpcFrontPages(final List<com.akross.gateway.property.entity.EpcFrontPage> epcFrontPages) {
+        return epcFrontPages.stream().map(epcFrontPage -> anEpcFrontPage()
+                .withModified(epcFrontPage.getModified())
+                .withUrl(epcFrontPage.getUrl())
+                .build())
+                .collect(toList());
+    }
+
+    private static List<EpcGraph> getEpcGraphs(final List<com.akross.gateway.property.entity.EpcGraph> epcGraphs) {
+        return epcGraphs.stream().map(epcGraph -> anEpcGraph()
+                .withModified(epcGraph.getModified())
+                .withUrl(epcGraph.getUrl())
+                .build())
+                .collect(toList());
+    }
+
+    private static List<VirtualTour> getVirtualTours(final List<com.akross.gateway.property.entity.VirtualTour> virtualTours) {
+        return virtualTours.stream().map(virtualTour -> aVirtualTour()
+                .withModified(virtualTour.getModified())
+                .withUrl(virtualTour.getUrl())
+                .build())
+                .collect(toList());
+    }
+
+    private static List<Brochure> getBrochures(final List<com.akross.gateway.property.entity.Brochure> brochures) {
+        return brochures.stream().map(brochure -> aBrochure()
+                .withModified(brochure.getModified())
+                .withUrl(brochure.getUrl())
+                .build())
+                .collect(toList());
+    }
+
+    private static List<Floorplan> getFloorplans(final List<com.akross.gateway.property.entity.Floorplan> floorplans) {
+        return floorplans.stream().map(floorplan -> aFloorplan()
+                .withModified(floorplan.getModified())
+                .withUrl(floorplan.getUrl())
+                .build())
+                .collect(toList());
+    }
+
+    private static List<Image> getImages(final List<com.akross.gateway.property.entity.Image> images) {
+        return images.stream().map(image -> anImage()
+                .withModified(image.getModified())
+                .withUrl(image.getUrl())
+                .build())
+                .collect(toList());
+    }
+
+    private static RentFrequency getRentFrequency(final Integer rentFrequency) {
+        return RentFrequency.getMap().get(rentFrequency);
+    }
+
+    private static Availability getAvailability(final Integer availability) {
+        return Availability.getMap().get(availability);
+    }
+
+    private static PropertyStyle getPropertyStyle(final Integer propertyStyle) {
+        return PropertyStyle.getMap().get(propertyStyle);
+    }
+
+    private static PropertyType getPropertyType(final Integer propertyType) {
+        return PropertyType.getMap().get(propertyType);
+    }
+
+    private static FloorAreaUnit getFloorAreaUnit(final String floorAreaUnit) {
+        return FloorAreaUnit.getMap().get(floorAreaUnit);
+    }
+
+    private static PropertyAge getPropertyAge(final Integer propertyAge) {
+        return getMap().get(propertyAge);
+    }
+
+    private static List<String> getFlags(final List<Flag> flags) {
+        return flags.stream()
+                .map(Flag::getFlag)
+                .collect(toList());
+    }
+
     public ResidentialLetting convertToResidentialLetting(final com.akross.gateway.property.entity.Property property) {
         return aResidentialLetting()
                 .withPropertyId(property.getPropertyId())
@@ -59,121 +146,34 @@ public class PropertyConverter {
                 .withRegionId(property.getRegionId())
                 .withLatitude(property.getLatitude())
                 .withLongitude(property.getLongitude())
-                .withFlags(getFlags(property))
+                .withFlags(getFlags(property.getFlags().getFlag()))
                 .withMainSummary(property.getMainSummary())
                 .withFullDescription(property.getFullDescription())
-                .withImages(getImages(property))
-                .withFloorplans(getFloorplans(property))
-                .withBrochures(getBrochures(property))
-                .withVirtualTours(getVirtualTours(property))
-                .withEpcGraphs(getEpcGraphs(property))
-                .withEpcFrontPages(getEpcFrontPages(property))
-                .withExternalLinks(getExternalLinks(property))
+                .withImages(getImages(property.getImages().getImage()))
+                .withFloorplans(getFloorplans(property.getFloorplans().getFloorPlan()))
+                .withBrochures(getBrochures(property.getBrochures().getBrochure()))
+                .withVirtualTours(getVirtualTours(property.getVirtualTours().getVirtualTour()))
+                .withEpcGraphs(getEpcGraphs(property.getEpcGraphs().getEpcGraph()))
+                .withEpcFrontPages(getEpcFrontPages(property.getEpcFrontPages().getEpcFrontPage()))
+                .withExternalLinks(getExternalLinks(property.getExternalLinks().getExternalLink()))
                 .withPropertyBedrooms(property.getPropertyBedrooms())
                 .withPropertyEnsuites(property.getPropertyEnsuites())
                 .withPropertyBathrooms(property.getPropertyBathrooms())
                 .withPropertyReceptionRooms(property.getPropertyReceptionRooms())
                 .withPropertyKitchens(property.getPropertyKitchens())
-                .withPropertyAge(getPropertyAge(property))
+                .withPropertyAge(getPropertyAge(property.getPropertyAge()))
                 .withFloorArea(property.getFloorArea())
-                .withFloorAreaUnit(getFloorAreaUnit(property))
+                .withFloorAreaUnit(getFloorAreaUnit(property.getFloorAreaUnits()))
                 .withDisplayPropertyType(property.getDisplayPropertyType())
-                .withPropertyType(getPropertyType(property))
-                .withPropertyStyle(getPropertyStyle(property))
-                .withAvailability(getAvailability(property))
+                .withPropertyType(getPropertyType(property.getPropertyType()))
+                .withPropertyStyle(getPropertyStyle(property.getPropertyStyle()))
+                .withAvailability(getAvailability(property.getAvailability()))
                 .withRent(property.getRent())
-                .withRentFrequency(getRentFrequency(property))
+                .withRentFrequency(getRentFrequency(property.getRentFrequency()))
                 .withIsLetPOA(property.getToLetPOA() == 1)
                 .withIsStudentProperty(property.getStudentProperty() == 1)
                 .withLettingFeePolicyHeadline(property.getLettingFeePolicyHeadline())
                 .withLettingFeePolicyDetails(property.getLettingFeePolicyDetails())
                 .build();
-    }
-
-    private static List<ExternalLink> getExternalLinks(final com.akross.gateway.property.entity.Property property) {
-        return property.getExternalLinks().getExternalLink().stream().map(externalLink -> anExternalLink()
-                .withModified(externalLink.getModified())
-                .withUrl(externalLink.getUrl())
-                .withDescription(externalLink.getDescription())
-                .build())
-                .collect(toList());
-    }
-
-    private static List<EpcFrontPage> getEpcFrontPages(final com.akross.gateway.property.entity.Property property) {
-        return property.getEpcFrontPages().getEpcFrontPage().stream().map(epcFrontPage -> anEpcFrontPage()
-                .withModified(epcFrontPage.getModified())
-                .withUrl(epcFrontPage.getUrl())
-                .build())
-                .collect(toList());
-    }
-
-    private static List<EpcGraph> getEpcGraphs(final com.akross.gateway.property.entity.Property property) {
-        return property.getEpcGraphs().getEpcGraph().stream().map(epcGraph -> anEpcGraph()
-                .withModified(epcGraph.getModified())
-                .withUrl(epcGraph.getUrl())
-                .build())
-                .collect(toList());
-    }
-
-    private static List<VirtualTour> getVirtualTours(final com.akross.gateway.property.entity.Property property) {
-        return property.getVirtualTours().getVirtualTour().stream().map(virtualTour -> aVirtualTour()
-                .withModified(virtualTour.getModified())
-                .withUrl(virtualTour.getUrl())
-                .build())
-                .collect(toList());
-    }
-
-    private static List<Brochure> getBrochures(final com.akross.gateway.property.entity.Property property) {
-        return property.getBrochures().getBrochure().stream().map(brochure -> aBrochure()
-                .withModified(brochure.getModified())
-                .withUrl(brochure.getUrl())
-                .build())
-                .collect(toList());
-    }
-
-    private static List<Floorplan> getFloorplans(final com.akross.gateway.property.entity.Property property) {
-        return property.getFloorplans().getFloorPlan().stream().map(floorplan -> aFloorplan()
-                .withModified(floorplan.getModified())
-                .withUrl(floorplan.getUrl())
-                .build())
-                .collect(toList());
-    }
-
-    private static List<Image> getImages(final com.akross.gateway.property.entity.Property property) {
-        return property.getImages().getImage().stream().map(image -> anImage()
-                .withModified(image.getModified())
-                .withUrl(image.getUrl())
-                .build())
-                .collect(toList());
-    }
-
-    private static RentFrequency getRentFrequency(final com.akross.gateway.property.entity.Property property) {
-        return RentFrequency.getMap().get(property.getRentFrequency());
-    }
-
-    private static Availability getAvailability(final com.akross.gateway.property.entity.Property property) {
-        return Availability.getMap().get(property.getAvailability());
-    }
-
-    private static PropertyStyle getPropertyStyle(final com.akross.gateway.property.entity.Property property) {
-        return PropertyStyle.getMap().get(property.getPropertyStyle());
-    }
-
-    private static PropertyType getPropertyType(final com.akross.gateway.property.entity.Property property) {
-        return PropertyType.getMap().get(property.getPropertyType());
-    }
-
-    private static FloorAreaUnit getFloorAreaUnit(final com.akross.gateway.property.entity.Property property) {
-        return FloorAreaUnit.getMap().get(property.getFloorAreaUnits());
-    }
-
-    private static PropertyAge getPropertyAge(final com.akross.gateway.property.entity.Property property) {
-        return getMap().get(property.getPropertyAge());
-    }
-
-    private static List<String> getFlags(final com.akross.gateway.property.entity.Property property) {
-        return property.getFlags().getFlag().stream()
-                .map(Flag::getFlag)
-                .collect(toList());
     }
 }
