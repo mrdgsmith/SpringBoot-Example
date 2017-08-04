@@ -5,11 +5,13 @@ import com.akross.service.PropertyService;
 import com.akross.web.property.enitity.*;
 import com.akross.web.property.enitity.container.Property;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
+import java.util.function.Function;
 
 import static com.akross.web.property.enitity.Brochure.BrochureBuilder.aBrochure;
 import static com.akross.web.property.enitity.EpcFrontPage.EpcFrontPageBuilder.anEpcFrontPage;
@@ -34,68 +36,78 @@ public class PropertyController {
     private static List<com.akross.web.property.enitity.residentialsalesandletting.residentialletting
             .ResidentialLetting> getResidentialLettings(final List<ResidentialLetting> residentialLettings) {
         return residentialLettings.parallelStream()
-                .map(residentialLetting -> aResidentialLetting()
-                        .withPropertyId(residentialLetting.getPropertyId())
-                        .withBranchId(residentialLetting.getBranchId())
-                        .withClientName(residentialLetting.getClientName())
-                        .withBranchName(residentialLetting.getBranchName())
-                        .withDepartment(residentialLetting.getDepartment())
-                        .withReferenceNumber(residentialLetting.getReferenceNumber())
-                        .withAddressName(residentialLetting.getAddressName())
-                        .withAddressNumber(residentialLetting.getAddressNumber())
-                        .withAddressStreet(residentialLetting.getAddressStreet())
-                        .withAddress2(residentialLetting.getAddress2())
-                        .withAddress3(residentialLetting.getAddress3())
-                        .withAddress4(residentialLetting.getAddress4())
-                        .withAddressPostcode(residentialLetting.getAddressPostcode())
-                        .withCountry(residentialLetting.getCountry())
-                        .withDisplayAddress(residentialLetting.getDisplayAddress())
-                        .withPropertyFeature1(residentialLetting.getPropertyFeature1())
-                        .withPropertyFeature2(residentialLetting.getPropertyFeature2())
-                        .withPropertyFeature3(residentialLetting.getPropertyFeature3())
-                        .withPropertyFeature4(residentialLetting.getPropertyFeature4())
-                        .withPropertyFeature5(residentialLetting.getPropertyFeature5())
-                        .withPropertyFeature6(residentialLetting.getPropertyFeature6())
-                        .withPropertyFeature7(residentialLetting.getPropertyFeature7())
-                        .withPropertyFeature8(residentialLetting.getPropertyFeature8())
-                        .withPropertyFeature9(residentialLetting.getPropertyFeature9())
-                        .withPropertyFeature10(residentialLetting.getPropertyFeature10())
-                        .withDateLastModified(residentialLetting.getDateLastModified())
-                        .withTimeLastModified(residentialLetting.getTimeLastModified())
-                        .withIsFeaturedProperty(residentialLetting.isFeaturedProperty())
-                        .withRegionId(residentialLetting.getRegionId())
-                        .withLatitude(residentialLetting.getLatitude())
-                        .withLongitude(residentialLetting.getLongitude())
-                        .withFlags(residentialLetting.getFlags())
-                        .withMainSummary(residentialLetting.getMainSummary())
-                        .withFullDescription(residentialLetting.getFullDescription())
-                        .withImages(getImages(residentialLetting.getImages()))
-                        .withFloorplans(getFloorplans(residentialLetting))
-                        .withBrochures(getBrochures(residentialLetting.getBrochures()))
-                        .withVirtualTours(getVirtualTours(residentialLetting.getVirtualTours()))
-                        .withEpcGraphs(getEpcGraphs(residentialLetting.getEpcGraphs()))
-                        .withEpcFrontPages(getEpcFrontPages(residentialLetting.getEpcFrontPages()))
-                        .withExternalLinks(getExternalLinks(residentialLetting.getExternalLinks()))
-                        .withPropertyBedrooms(residentialLetting.getPropertyBedrooms())
-                        .withPropertyEnsuites(residentialLetting.getPropertyEnsuites())
-                        .withPropertyBathrooms(residentialLetting.getPropertyBathrooms())
-                        .withPropertyReceptionRooms(residentialLetting.getPropertyReceptionRooms())
-                        .withPropertyKitchens(residentialLetting.getPropertyKitchens())
-                        .withPropertyAge(residentialLetting.getPropertyAge())
-                        .withFloorArea(residentialLetting.getFloorArea())
-                        .withFloorAreaUnit(residentialLetting.getFloorAreaUnit())
-                        .withDisplayPropertyType(residentialLetting.getDisplayPropertyType())
-                        .withPropertyType(residentialLetting.getPropertyType())
-                        .withPropertyStyle(residentialLetting.getPropertyStyle())
-                        .withAvailability(residentialLetting.getAvailability())
-                        .withRent(residentialLetting.getRent())
-                        .withRentFrequency(residentialLetting.getRentFrequency())
-                        .withIsLetPOA(residentialLetting.isLetPOA())
-                        .withIsStudentProperty(residentialLetting.isStudentProperty())
-                        .withLettingFeePolicyHeadline(residentialLetting.getLettingFeePolicyHeadline())
-                        .withLettingFeePolicyDetails(residentialLetting.getLettingFeePolicyDetails())
-                        .build())
+                .map(getResidentialLettingResidentialLettingFunction())
                 .collect(toList());
+    }
+
+    private static com.akross.web.property.enitity.residentialsalesandletting.residentialletting
+            .ResidentialLetting getResidentialLetting(final ResidentialLetting residentialLetting) {
+        return getResidentialLettingResidentialLettingFunction().apply(residentialLetting);
+    }
+
+    private static Function<ResidentialLetting, com.akross.web.property.enitity.residentialsalesandletting
+            .residentialletting.ResidentialLetting> getResidentialLettingResidentialLettingFunction() {
+        return residentialLetting -> aResidentialLetting()
+                .withPropertyId(residentialLetting.getPropertyId())
+                .withBranchId(residentialLetting.getBranchId())
+                .withClientName(residentialLetting.getClientName())
+                .withBranchName(residentialLetting.getBranchName())
+                .withDepartment(residentialLetting.getDepartment())
+                .withReferenceNumber(residentialLetting.getReferenceNumber())
+                .withAddressName(residentialLetting.getAddressName())
+                .withAddressNumber(residentialLetting.getAddressNumber())
+                .withAddressStreet(residentialLetting.getAddressStreet())
+                .withAddress2(residentialLetting.getAddress2())
+                .withAddress3(residentialLetting.getAddress3())
+                .withAddress4(residentialLetting.getAddress4())
+                .withAddressPostcode(residentialLetting.getAddressPostcode())
+                .withCountry(residentialLetting.getCountry())
+                .withDisplayAddress(residentialLetting.getDisplayAddress())
+                .withPropertyFeature1(residentialLetting.getPropertyFeature1())
+                .withPropertyFeature2(residentialLetting.getPropertyFeature2())
+                .withPropertyFeature3(residentialLetting.getPropertyFeature3())
+                .withPropertyFeature4(residentialLetting.getPropertyFeature4())
+                .withPropertyFeature5(residentialLetting.getPropertyFeature5())
+                .withPropertyFeature6(residentialLetting.getPropertyFeature6())
+                .withPropertyFeature7(residentialLetting.getPropertyFeature7())
+                .withPropertyFeature8(residentialLetting.getPropertyFeature8())
+                .withPropertyFeature9(residentialLetting.getPropertyFeature9())
+                .withPropertyFeature10(residentialLetting.getPropertyFeature10())
+                .withDateLastModified(residentialLetting.getDateLastModified())
+                .withTimeLastModified(residentialLetting.getTimeLastModified())
+                .withIsFeaturedProperty(residentialLetting.isFeaturedProperty())
+                .withRegionId(residentialLetting.getRegionId())
+                .withLatitude(residentialLetting.getLatitude())
+                .withLongitude(residentialLetting.getLongitude())
+                .withFlags(residentialLetting.getFlags())
+                .withMainSummary(residentialLetting.getMainSummary())
+                .withFullDescription(residentialLetting.getFullDescription())
+                .withImages(getImages(residentialLetting.getImages()))
+                .withFloorplans(getFloorplans(residentialLetting))
+                .withBrochures(getBrochures(residentialLetting.getBrochures()))
+                .withVirtualTours(getVirtualTours(residentialLetting.getVirtualTours()))
+                .withEpcGraphs(getEpcGraphs(residentialLetting.getEpcGraphs()))
+                .withEpcFrontPages(getEpcFrontPages(residentialLetting.getEpcFrontPages()))
+                .withExternalLinks(getExternalLinks(residentialLetting.getExternalLinks()))
+                .withPropertyBedrooms(residentialLetting.getPropertyBedrooms())
+                .withPropertyEnsuites(residentialLetting.getPropertyEnsuites())
+                .withPropertyBathrooms(residentialLetting.getPropertyBathrooms())
+                .withPropertyReceptionRooms(residentialLetting.getPropertyReceptionRooms())
+                .withPropertyKitchens(residentialLetting.getPropertyKitchens())
+                .withPropertyAge(residentialLetting.getPropertyAge())
+                .withFloorArea(residentialLetting.getFloorArea())
+                .withFloorAreaUnit(residentialLetting.getFloorAreaUnit())
+                .withDisplayPropertyType(residentialLetting.getDisplayPropertyType())
+                .withPropertyType(residentialLetting.getPropertyType())
+                .withPropertyStyle(residentialLetting.getPropertyStyle())
+                .withAvailability(residentialLetting.getAvailability())
+                .withRent(residentialLetting.getRent())
+                .withRentFrequency(residentialLetting.getRentFrequency())
+                .withIsLetPOA(residentialLetting.isLetPOA())
+                .withIsStudentProperty(residentialLetting.isStudentProperty())
+                .withLettingFeePolicyHeadline(residentialLetting.getLettingFeePolicyHeadline())
+                .withLettingFeePolicyDetails(residentialLetting.getLettingFeePolicyDetails())
+                .build();
     }
 
     private static List<Image> getImages(final List<com.akross.domain.Image> images) {
@@ -164,9 +176,20 @@ public class PropertyController {
 
     @RequestMapping(method = GET, produces = {APPLICATION_JSON_VALUE})
     public Property getProperties(@RequestParam(value = "featured", defaultValue = "false", required = false) final boolean featured) {
-        final com.akross.domain.container.Property featuredProperties = propertyService.getProperties(featured);
+        final com.akross.domain.container.Property properties = propertyService.getProperties(featured);
         return aProperty()
-                .withResidentialLettings(getResidentialLettings(featuredProperties.getResidentialLettings()))
+                .withResidentialLettings(getResidentialLettings(properties.getResidentialLettings()))
                 .build();
+    }
+
+    @SuppressWarnings("unchecked")
+    @RequestMapping(path = {"/{propertyId}"}, method = GET, produces = {APPLICATION_JSON_VALUE})
+    public <T extends com.akross.web.property.enitity.Property> T getProperty(
+            @PathVariable(value = "propertyId") final Long propertyId) {
+        final com.akross.domain.Property property = propertyService.getProperty(propertyId);
+        if (property instanceof ResidentialLetting) {
+            return (T) getResidentialLetting((ResidentialLetting) property);
+        }
+        return null;
     }
 }

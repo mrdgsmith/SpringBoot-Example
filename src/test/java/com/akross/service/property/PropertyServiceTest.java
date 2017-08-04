@@ -4,6 +4,7 @@ package com.akross.service.property;
 import com.akross.domain.container.Property;
 import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.gateway.PropertyClient;
+import com.akross.service.property.exception.PropertyNotFoundException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Answers;
@@ -28,8 +29,7 @@ import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toList;
 import static java.util.stream.Stream.concat;
 import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.contains;
-import static org.hamcrest.Matchers.containsInAnyOrder;
+import static org.hamcrest.Matchers.*;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -41,7 +41,7 @@ public class PropertyServiceTest {
     @InjectMocks
     private PropertyService propertyService;
 
-    private static List<ResidentialLetting> createInvalidFeaturedProperties() {
+    private static List<ResidentialLetting> createInvalidFeaturedResidentialLettingProperties() {
         return asList(aResidentialLetting()
                         .withDepartment(SALES)
                         .withIsFeaturedProperty(true)
@@ -68,8 +68,9 @@ public class PropertyServiceTest {
                         .build());
     }
 
-    private static List<ResidentialLetting> createValidFeaturedProperties() {
+    private static List<ResidentialLetting> createValidFeaturedResidentialLettingProperties() {
         return asList(aResidentialLetting()
+                        .withPropertyId(5L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
                         .withAvailability(LET)
@@ -82,6 +83,7 @@ public class PropertyServiceTest {
                         .withTimeLastModified(LocalTime.of(21, 55, 12))
                         .build()
                 , aResidentialLetting()
+                        .withPropertyId(4L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
                         .withAvailability(LET)
@@ -94,6 +96,7 @@ public class PropertyServiceTest {
                         .withTimeLastModified(LocalTime.of(21, 55, 13))
                         .build()
                 , aResidentialLetting()
+                        .withPropertyId(3L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
                         .withAvailability(LET)
@@ -106,6 +109,7 @@ public class PropertyServiceTest {
                         .withTimeLastModified(LocalTime.of(21, 55, 10))
                         .build()
                 , aResidentialLetting()
+                        .withPropertyId(2L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
                         .withAvailability(LET)
@@ -120,8 +124,9 @@ public class PropertyServiceTest {
         );
     }
 
-    private static List<ResidentialLetting> createProperties() {
+    private static List<ResidentialLetting> createResidentialLettingProperties() {
         return concat(Stream.of(aResidentialLetting()
+                        .withPropertyId(12L)
                         .withDepartment(SALES)
                         .withIsFeaturedProperty(true)
                         .withAvailability(LET)
@@ -131,6 +136,7 @@ public class PropertyServiceTest {
                         .withTimeLastModified(LocalTime.of(21, 55, 14))
                         .build()
                 , aResidentialLetting()
+                        .withPropertyId(13L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(false)
                         .withAvailability(LET)
@@ -140,6 +146,7 @@ public class PropertyServiceTest {
                         .withTimeLastModified(LocalTime.of(21, 55, 14))
                         .build()
                 , aResidentialLetting()
+                        .withPropertyId(14L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
                         .withIsLetPOA(true)
@@ -147,18 +154,53 @@ public class PropertyServiceTest {
                         .withDisplayAddress("Should not be here!")
                         .withDateLastModified(of(2015, NOVEMBER, 21))
                         .withTimeLastModified(LocalTime.of(21, 55, 14))
-                        .build()), createValidFeaturedProperties().stream())
+                        .build()), createValidFeaturedResidentialLettingProperties().stream())
                 .collect(toList());
+    }
+
+    @Test
+    public void shouldReturnResidentialLettingProperty() throws Exception {
+        final Long propertyId = 3L;
+
+        when(propertyClient.getProperties().getResidentialLettings())
+                .thenReturn(createResidentialLettingProperties());
+
+        final com.akross.domain.Property property = propertyService.getProperty(propertyId);
+        assertThat(property, instanceOf(ResidentialLetting.class));
+        assertThat(property, is(aResidentialLetting()
+                        .withPropertyId(3L)
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withDisplayAddress("foo4")
+                        .withMainSummary("mainSummary4")
+                        .withRent(null)
+                        .withIsLetPOA(true)
+                        .withRentFrequency(PCM)
+                        .withDateLastModified(of(2015, AUGUST, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 10))
+                        .build()
+                )
+        );
+    }
+
+    @Test(expected = PropertyNotFoundException.class)
+    public void shouldThrowNotFoundExceptionWhenPropertyNotFound() throws Exception {
+        final Long propertyId = 1L;
+        when(propertyClient.getProperties().getResidentialLettings())
+                .thenReturn(createResidentialLettingProperties());
+        propertyService.getProperty(propertyId);
     }
 
     @Test
     public void shouldReturnAllProperties() throws Exception {
         when(propertyClient.getProperties().getResidentialLettings())
-                .thenReturn(createProperties());
+                .thenReturn(createResidentialLettingProperties());
 
         final Property actualProperty = propertyService.getProperties(false);
         assertThat(actualProperty.getResidentialLettings(), containsInAnyOrder(
                 aResidentialLetting()
+                        .withPropertyId(5L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
                         .withAvailability(LET)
@@ -171,6 +213,7 @@ public class PropertyServiceTest {
                         .withTimeLastModified(LocalTime.of(21, 55, 12))
                         .build()
                 , aResidentialLetting()
+                        .withPropertyId(2L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
                         .withAvailability(LET)
@@ -183,6 +226,7 @@ public class PropertyServiceTest {
                         .withTimeLastModified(LocalTime.of(21, 55, 14))
                         .build()
                 , aResidentialLetting()
+                        .withPropertyId(4L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
                         .withAvailability(LET)
@@ -195,6 +239,7 @@ public class PropertyServiceTest {
                         .withTimeLastModified(LocalTime.of(21, 55, 13))
                         .build()
                 , aResidentialLetting()
+                        .withPropertyId(3L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
                         .withAvailability(LET)
@@ -206,7 +251,9 @@ public class PropertyServiceTest {
                         .withDateLastModified(of(2015, AUGUST, 21))
                         .withTimeLastModified(LocalTime.of(21, 55, 10))
                         .build()
+
                 , aResidentialLetting()
+                        .withPropertyId(12L)
                         .withDepartment(SALES)
                         .withIsFeaturedProperty(true)
                         .withAvailability(LET)
@@ -216,6 +263,7 @@ public class PropertyServiceTest {
                         .withTimeLastModified(LocalTime.of(21, 55, 14))
                         .build()
                 , aResidentialLetting()
+                        .withPropertyId(13L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(false)
                         .withAvailability(LET)
@@ -225,6 +273,7 @@ public class PropertyServiceTest {
                         .withTimeLastModified(LocalTime.of(21, 55, 14))
                         .build()
                 , aResidentialLetting()
+                        .withPropertyId(14L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
                         .withIsLetPOA(true)
@@ -240,12 +289,13 @@ public class PropertyServiceTest {
     @Test
     public void shouldGetMostRecentFeaturedResidentialLettingProperties() throws Exception {
         when(propertyClient.getProperties().getResidentialLettings())
-                .thenReturn(concat(createInvalidFeaturedProperties().stream()
-                        , createValidFeaturedProperties().stream())
+                .thenReturn(concat(createInvalidFeaturedResidentialLettingProperties().stream()
+                        , createValidFeaturedResidentialLettingProperties().stream())
                         .collect(toList()));
 
         final Property actualProperty = propertyService.getProperties(true);
         assertThat(actualProperty.getResidentialLettings(), contains(aResidentialLetting()
+                        .withPropertyId(5L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
                         .withAvailability(LET)
@@ -258,6 +308,7 @@ public class PropertyServiceTest {
                         .withTimeLastModified(LocalTime.of(21, 55, 12))
                         .build()
                 , aResidentialLetting()
+                        .withPropertyId(2L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
                         .withAvailability(LET)
@@ -270,6 +321,7 @@ public class PropertyServiceTest {
                         .withTimeLastModified(LocalTime.of(21, 55, 14))
                         .build()
                 , aResidentialLetting()
+                        .withPropertyId(4L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
                         .withAvailability(LET)
@@ -282,6 +334,7 @@ public class PropertyServiceTest {
                         .withTimeLastModified(LocalTime.of(21, 55, 13))
                         .build()
                 , aResidentialLetting()
+                        .withPropertyId(3L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
                         .withAvailability(LET)

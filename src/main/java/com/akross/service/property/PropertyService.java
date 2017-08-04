@@ -3,6 +3,7 @@ package com.akross.service.property;
 import com.akross.domain.container.Property;
 import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.gateway.PropertyClient;
+import com.akross.service.property.exception.PropertyNotFoundException;
 
 import java.util.List;
 import java.util.function.Function;
@@ -52,7 +53,7 @@ public class PropertyService implements com.akross.service.PropertyService {
     }
 
     @Override
-    public com.akross.domain.container.Property getProperties(final boolean featured) {
+    public com.akross.domain.container.Property getProperties(final Boolean featured) {
         final Property properties = propertyClient.getProperties();
         final Property.PropertyBuilder propertyBuilder = aProperty();
         final List<ResidentialLetting> residentialLettings = properties.getResidentialLettings();
@@ -67,5 +68,15 @@ public class PropertyService implements com.akross.service.PropertyService {
                             .collect(toList()))
                     .build();
         }
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T extends com.akross.domain.Property> T getProperty(final Long propertyId) {
+        return (T) propertyClient.getProperties().getResidentialLettings().parallelStream()
+                .filter(residentialLetting -> propertyId.equals(residentialLetting.getPropertyId()))
+                .map(setRentForResidentialLettingPropertyDisplayFunction())
+                .findFirst()
+                .orElseThrow(() -> new PropertyNotFoundException(propertyId));
     }
 }
