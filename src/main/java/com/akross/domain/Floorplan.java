@@ -45,23 +45,23 @@ public class Floorplan {
                 '}';
     }
 
-    public static final class FloorplansBuilder {
+    public static final class FloorplanBuilder {
         private LocalDateTime modified;
         private String url;
 
-        private FloorplansBuilder() {
+        private FloorplanBuilder() {
         }
 
-        public static FloorplansBuilder aFloorplan() {
-            return new FloorplansBuilder();
+        public static FloorplanBuilder aFloorplan() {
+            return new FloorplanBuilder();
         }
 
-        public FloorplansBuilder withModified(LocalDateTime modified) {
+        public FloorplanBuilder withModified(final LocalDateTime modified) {
             this.modified = modified;
             return this;
         }
 
-        public FloorplansBuilder withUrl(String url) {
+        public FloorplanBuilder withUrl(final String url) {
             this.url = url;
             return this;
         }

@@ -13,7 +13,7 @@ import static com.akross.domain.Department.LETTINGS;
 import static com.akross.domain.EpcFrontPage.EpcFrontPageBuilder.anEpcFrontPage;
 import static com.akross.domain.EpcGraph.EpcGraphBuilder.anEpcGraph;
 import static com.akross.domain.ExternalLink.ExternalLinkBuilder.anExternalLink;
-import static com.akross.domain.Floorplan.FloorplansBuilder.aFloorplan;
+import static com.akross.domain.Floorplan.FloorplanBuilder.aFloorplan;
 import static com.akross.domain.Image.ImageBuilder.anImage;
 import static com.akross.domain.VirtualTour.VirtualTourBuilder.aVirtualTour;
 import static com.akross.domain.residentialsalesandletting.FloorAreaUnit.HECTARES;
