@@ -21,16 +21,12 @@ public class GatewayConfiguration {
 
     @Autowired
     private JupixPropertiesRestClientConfiguration jupixPropertiesRestClientConfiguration;
-
+    
     @Bean
-    public XmlMapper xmlMapper() {
+    public MappingJackson2XmlHttpMessageConverter mappingJacksonHttpMessageConverter() {
         final JacksonXmlModule jacksonXmlModule = new JacksonXmlModule();
-        return (XmlMapper) new XmlMapper(jacksonXmlModule)
+        final XmlMapper xmlMapper = (XmlMapper) new XmlMapper(jacksonXmlModule)
                 .disable(FAIL_ON_UNKNOWN_PROPERTIES);
-    }
-
-    @Bean
-    public MappingJackson2XmlHttpMessageConverter mappingJacksonHttpMessageConverter(final XmlMapper xmlMapper) {
         MappingJackson2XmlHttpMessageConverter mappingJackson2XmlHttpMessageConverter = new MappingJackson2XmlHttpMessageConverter();
         mappingJackson2XmlHttpMessageConverter.setObjectMapper(xmlMapper);
         return mappingJackson2XmlHttpMessageConverter;
