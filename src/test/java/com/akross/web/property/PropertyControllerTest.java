@@ -181,6 +181,21 @@ public class PropertyControllerTest {
     }
 
     @Test
+    public void shouldReturnAllProperties() throws Exception {
+        given(propertyService.getProperties(false)).willReturn(getDomainProperty());
+        mockMvc.perform(get("/properties")
+                .param("featured", "false")
+                .contentType(APPLICATION_JSON)
+                .accept(APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+                .andExpect(content()
+                        .json(getExpectedJsonProperty())
+                );
+    }
+
+    @Test
     public void shouldReturnFeaturedProperties() throws Exception {
         given(propertyService.getProperties(true)).willReturn(getDomainProperty());
         mockMvc.perform(get("/properties")

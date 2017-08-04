@@ -13,6 +13,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import java.time.LocalTime;
 import java.util.List;
+import java.util.stream.Stream;
 
 import static com.akross.domain.Department.LETTINGS;
 import static com.akross.domain.Department.SALES;
@@ -28,6 +29,7 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.Stream.concat;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.contains;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -39,7 +41,7 @@ public class PropertyServiceTest {
     @InjectMocks
     private PropertyService propertyService;
 
-    private static List<ResidentialLetting> createInvalidProperties() {
+    private static List<ResidentialLetting> createInvalidFeaturedProperties() {
         return asList(aResidentialLetting()
                         .withDepartment(SALES)
                         .withIsFeaturedProperty(true)
@@ -66,7 +68,7 @@ public class PropertyServiceTest {
                         .build());
     }
 
-    private static List<ResidentialLetting> createValidProperties() {
+    private static List<ResidentialLetting> createValidFeaturedProperties() {
         return asList(aResidentialLetting()
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
@@ -118,13 +120,128 @@ public class PropertyServiceTest {
         );
     }
 
+    private static List<ResidentialLetting> createProperties() {
+        return concat(Stream.of(aResidentialLetting()
+                        .withDepartment(SALES)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withIsLetPOA(true)
+                        .withDisplayAddress("Should not be here!")
+                        .withDateLastModified(of(2015, OCTOBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 14))
+                        .build()
+                , aResidentialLetting()
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(false)
+                        .withAvailability(LET)
+                        .withIsLetPOA(true)
+                        .withDisplayAddress("Should not be here!")
+                        .withDateLastModified(of(2015, SEPTEMBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 14))
+                        .build()
+                , aResidentialLetting()
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withIsLetPOA(true)
+                        .withAvailability(WITHDRAWN)
+                        .withDisplayAddress("Should not be here!")
+                        .withDateLastModified(of(2015, NOVEMBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 14))
+                        .build()), createValidFeaturedProperties().stream())
+                .collect(toList());
+    }
+
+    @Test
+    public void shouldReturnAllProperties() throws Exception {
+        when(propertyClient.getProperties().getResidentialLettings())
+                .thenReturn(createProperties());
+
+        final Property actualProperty = propertyService.getProperties(false);
+        assertThat(actualProperty.getResidentialLettings(), containsInAnyOrder(
+                aResidentialLetting()
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withDisplayAddress("foo3")
+                        .withMainSummary("mainSummary3")
+                        .withRent(valueOf(3000))
+                        .withIsLetPOA(false)
+                        .withRentFrequency(PCM)
+                        .withDateLastModified(of(2015, OCTOBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 12))
+                        .build()
+                , aResidentialLetting()
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withDisplayAddress("foo1")
+                        .withMainSummary("mainSummary1")
+                        .withRent(valueOf(1000))
+                        .withIsLetPOA(false)
+                        .withRentFrequency(PCM)
+                        .withDateLastModified(of(2015, AUGUST, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 14))
+                        .build()
+                , aResidentialLetting()
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withDisplayAddress("foo2")
+                        .withMainSummary("mainSummary2")
+                        .withRent(null)
+                        .withIsLetPOA(true)
+                        .withRentFrequency(PCM)
+                        .withDateLastModified(of(2015, AUGUST, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 13))
+                        .build()
+                , aResidentialLetting()
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withDisplayAddress("foo4")
+                        .withMainSummary("mainSummary4")
+                        .withRent(null)
+                        .withIsLetPOA(true)
+                        .withRentFrequency(PCM)
+                        .withDateLastModified(of(2015, AUGUST, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 10))
+                        .build()
+                , aResidentialLetting()
+                        .withDepartment(SALES)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withIsLetPOA(true)
+                        .withDisplayAddress("Should not be here!")
+                        .withDateLastModified(of(2015, OCTOBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 14))
+                        .build()
+                , aResidentialLetting()
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(false)
+                        .withAvailability(LET)
+                        .withIsLetPOA(true)
+                        .withDisplayAddress("Should not be here!")
+                        .withDateLastModified(of(2015, SEPTEMBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 14))
+                        .build()
+                , aResidentialLetting()
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withIsLetPOA(true)
+                        .withAvailability(WITHDRAWN)
+                        .withDisplayAddress("Should not be here!")
+                        .withDateLastModified(of(2015, NOVEMBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 14))
+                        .build()
+                )
+        );
+    }
+
     @Test
     public void shouldGetMostRecentFeaturedResidentialLettingProperties() throws Exception {
-        final List<ResidentialLetting> invalidProperties = createInvalidProperties();
-        final List<ResidentialLetting> validProperties = createValidProperties();
-
         when(propertyClient.getProperties().getResidentialLettings())
-                .thenReturn(concat(invalidProperties.stream(), validProperties.stream())
+                .thenReturn(concat(createInvalidFeaturedProperties().stream()
+                        , createValidFeaturedProperties().stream())
                         .collect(toList()));
 
         final Property actualProperty = propertyService.getProperties(true);
