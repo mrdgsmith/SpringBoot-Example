@@ -24,11 +24,10 @@ public class PropertyService implements com.akross.service.PropertyService {
         this.propertyClient = propertyClient;
     }
 
-    private static List<ResidentialLetting> getFeaturedResidentialLettings(final List<ResidentialLetting> residentialLettings
-            , final Department department
-            , final Integer propertyAmount) {
+    private static List<ResidentialLetting> getFeaturedResidentialLettings(final List<ResidentialLetting>
+                                                                                   residentialLettings) {
         final List<Predicate<ResidentialLetting>> filter_residential_letting_featured = asList(
-                residentialLetting -> department.equals(residentialLetting.getDepartment())
+                residentialLetting -> Department.LETTINGS.equals(residentialLetting.getDepartment())
                 , ResidentialLetting::isFeaturedProperty
                 , residentialLetting -> LET.equals(residentialLetting.getAvailability())
         );
@@ -38,7 +37,6 @@ public class PropertyService implements com.akross.service.PropertyService {
                 .map(setRentForResidentialLettingPropertyDisplayFunction())
                 .sorted((comparing(ResidentialLetting::getDateLastModified)
                         .thenComparing(ResidentialLetting::getTimeLastModified)).reversed())
-                .limit(propertyAmount)
                 .collect(toList());
     }
 
@@ -54,12 +52,13 @@ public class PropertyService implements com.akross.service.PropertyService {
     }
 
     @Override
-    public com.akross.domain.container.Property getFeaturedProperties(final Department department, final Integer propertyAmount) {
+    public com.akross.domain.container.Property getProperties(final boolean featured) {
         final Property properties = propertyClient.getProperties();
-        return aProperty()
-                .withResidentialLettings(getFeaturedResidentialLettings(properties.getResidentialLettings()
-                        , department
-                        , propertyAmount))
-                .build();
+        if (featured) {
+            return aProperty()
+                    .withResidentialLettings(getFeaturedResidentialLettings(properties.getResidentialLettings()))
+                    .build();
+        }
+        return null;
     }
 }

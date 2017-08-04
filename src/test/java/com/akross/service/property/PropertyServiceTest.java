@@ -127,7 +127,7 @@ public class PropertyServiceTest {
                 .thenReturn(concat(invalidProperties.stream(), validProperties.stream())
                         .collect(toList()));
 
-        final Property actualProperty = propertyService.getFeaturedProperties(LETTINGS, 3);
+        final Property actualProperty = propertyService.getProperties(true);
         assertThat(actualProperty.getResidentialLettings(), contains(aResidentialLetting()
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
@@ -163,6 +163,18 @@ public class PropertyServiceTest {
                         .withRentFrequency(PCM)
                         .withDateLastModified(of(2015, AUGUST, 21))
                         .withTimeLastModified(LocalTime.of(21, 55, 13))
+                        .build()
+                , aResidentialLetting()
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withDisplayAddress("foo4")
+                        .withMainSummary("mainSummary4")
+                        .withRent(null)
+                        .withIsLetPOA(true)
+                        .withRentFrequency(PCM)
+                        .withDateLastModified(of(2015, AUGUST, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 10))
                         .build()
         ));
     }
