@@ -1,28 +1,28 @@
 package com.akross.gateway.property.utilities;
 
 
-import com.akross.domain.*;
-import com.akross.domain.residentialsalesandletting.FloorAreaUnit;
-import com.akross.domain.residentialsalesandletting.PropertyAge;
-import com.akross.domain.residentialsalesandletting.PropertyStyle;
-import com.akross.domain.residentialsalesandletting.PropertyType;
-import com.akross.domain.residentialsalesandletting.residentialletting.Availability;
-import com.akross.domain.residentialsalesandletting.residentialletting.RentFrequency;
-import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
+import com.akross.domain.property.*;
+import com.akross.domain.property.residentialsalesandletting.FloorAreaUnit;
+import com.akross.domain.property.residentialsalesandletting.PropertyAge;
+import com.akross.domain.property.residentialsalesandletting.PropertyStyle;
+import com.akross.domain.property.residentialsalesandletting.PropertyType;
+import com.akross.domain.property.residentialsalesandletting.residentialletting.Availability;
+import com.akross.domain.property.residentialsalesandletting.residentialletting.RentFrequency;
+import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.gateway.property.entity.Flag;
 
 import java.util.List;
 
-import static com.akross.domain.Brochure.BrochureBuilder.aBrochure;
-import static com.akross.domain.Department.LETTINGS;
-import static com.akross.domain.EpcFrontPage.EpcFrontPageBuilder.anEpcFrontPage;
-import static com.akross.domain.EpcGraph.EpcGraphBuilder.anEpcGraph;
-import static com.akross.domain.ExternalLink.ExternalLinkBuilder.anExternalLink;
-import static com.akross.domain.Floorplan.FloorplanBuilder.aFloorplan;
-import static com.akross.domain.Image.ImageBuilder.anImage;
-import static com.akross.domain.VirtualTour.VirtualTourBuilder.aVirtualTour;
-import static com.akross.domain.residentialsalesandletting.PropertyAge.getMap;
-import static com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
+import static com.akross.domain.property.Brochure.BrochureBuilder.aBrochure;
+import static com.akross.domain.property.Department.LETTINGS;
+import static com.akross.domain.property.EpcFrontPage.EpcFrontPageBuilder.anEpcFrontPage;
+import static com.akross.domain.property.EpcGraph.EpcGraphBuilder.anEpcGraph;
+import static com.akross.domain.property.ExternalLink.ExternalLinkBuilder.anExternalLink;
+import static com.akross.domain.property.Floorplan.FloorplanBuilder.aFloorplan;
+import static com.akross.domain.property.Image.ImageBuilder.anImage;
+import static com.akross.domain.property.VirtualTour.VirtualTourBuilder.aVirtualTour;
+import static com.akross.domain.property.residentialsalesandletting.PropertyAge.getMap;
+import static com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
 import static java.util.stream.Collectors.toList;
 
 public class PropertyConverter {

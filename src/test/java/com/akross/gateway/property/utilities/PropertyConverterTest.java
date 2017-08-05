@@ -1,6 +1,6 @@
 package com.akross.gateway.property.utilities;
 
-import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
+import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.gateway.property.builders.entity.*;
 import com.akross.gateway.property.entity.Property;
 import org.junit.Before;
@@ -8,20 +8,20 @@ import org.junit.Test;
 
 import java.time.LocalTime;
 
-import static com.akross.domain.Brochure.BrochureBuilder.aBrochure;
-import static com.akross.domain.Department.LETTINGS;
-import static com.akross.domain.EpcFrontPage.EpcFrontPageBuilder.anEpcFrontPage;
-import static com.akross.domain.EpcGraph.EpcGraphBuilder.anEpcGraph;
-import static com.akross.domain.ExternalLink.ExternalLinkBuilder.anExternalLink;
-import static com.akross.domain.Floorplan.FloorplanBuilder.aFloorplan;
-import static com.akross.domain.Image.ImageBuilder.anImage;
-import static com.akross.domain.VirtualTour.VirtualTourBuilder.aVirtualTour;
-import static com.akross.domain.residentialsalesandletting.FloorAreaUnit.HECTARES;
-import static com.akross.domain.residentialsalesandletting.PropertyAge.TWENTIES_THIRTIES;
-import static com.akross.domain.residentialsalesandletting.PropertyStyle.DETACHED_HOUSE;
-import static com.akross.domain.residentialsalesandletting.PropertyType.BUNGALOWS;
-import static com.akross.domain.residentialsalesandletting.residentialletting.Availability.REFERENCES_PENDING;
-import static com.akross.domain.residentialsalesandletting.residentialletting.RentFrequency.PW;
+import static com.akross.domain.property.Brochure.BrochureBuilder.aBrochure;
+import static com.akross.domain.property.Department.LETTINGS;
+import static com.akross.domain.property.EpcFrontPage.EpcFrontPageBuilder.anEpcFrontPage;
+import static com.akross.domain.property.EpcGraph.EpcGraphBuilder.anEpcGraph;
+import static com.akross.domain.property.ExternalLink.ExternalLinkBuilder.anExternalLink;
+import static com.akross.domain.property.Floorplan.FloorplanBuilder.aFloorplan;
+import static com.akross.domain.property.Image.ImageBuilder.anImage;
+import static com.akross.domain.property.VirtualTour.VirtualTourBuilder.aVirtualTour;
+import static com.akross.domain.property.residentialsalesandletting.FloorAreaUnit.HECTARES;
+import static com.akross.domain.property.residentialsalesandletting.PropertyAge.TWENTIES_THIRTIES;
+import static com.akross.domain.property.residentialsalesandletting.PropertyStyle.DETACHED_HOUSE;
+import static com.akross.domain.property.residentialsalesandletting.PropertyType.BUNGALOWS;
+import static com.akross.domain.property.residentialsalesandletting.residentialletting.Availability.REFERENCES_PENDING;
+import static com.akross.domain.property.residentialsalesandletting.residentialletting.RentFrequency.PW;
 import static com.akross.gateway.property.builders.entity.TestBrochuresBuilder.aBrochures;
 import static com.akross.gateway.property.builders.entity.TestEpcFrontPagesBuilder.anEpcFrontPages;
 import static com.akross.gateway.property.builders.entity.TestEpcGraphsBuilder.anEpcGraphs;

@@ -1,6 +1,6 @@
-package com.akross.domain.residentialsalesandletting;
+package com.akross.domain.property.residentialsalesandletting;
 
-import com.akross.domain.*;
+import com.akross.domain.property.*;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

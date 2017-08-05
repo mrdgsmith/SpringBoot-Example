@@ -19,23 +19,23 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 
-import static com.akross.domain.Brochure.BrochureBuilder.aBrochure;
-import static com.akross.domain.Department.LETTINGS;
-import static com.akross.domain.EpcFrontPage.EpcFrontPageBuilder.anEpcFrontPage;
-import static com.akross.domain.EpcGraph.EpcGraphBuilder.anEpcGraph;
-import static com.akross.domain.ExternalLink.ExternalLinkBuilder.anExternalLink;
-import static com.akross.domain.Floorplan.FloorplanBuilder.aFloorplan;
-import static com.akross.domain.Image.ImageBuilder.anImage;
-import static com.akross.domain.VirtualTour.VirtualTourBuilder.aVirtualTour;
-import static com.akross.domain.container.Property.PropertyBuilder.aProperty;
-import static com.akross.domain.residentialsalesandletting.FloorAreaUnit.HECTARES;
-import static com.akross.domain.residentialsalesandletting.PropertyAge.TWENTIES_THIRTIES;
-import static com.akross.domain.residentialsalesandletting.PropertyStyle.DETACHED_HOUSE;
-import static com.akross.domain.residentialsalesandletting.PropertyType.BUNGALOWS;
-import static com.akross.domain.residentialsalesandletting.PropertyType.HOUSE;
-import static com.akross.domain.residentialsalesandletting.residentialletting.Availability.REFERENCES_PENDING;
-import static com.akross.domain.residentialsalesandletting.residentialletting.RentFrequency.PW;
-import static com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
+import static com.akross.domain.property.Brochure.BrochureBuilder.aBrochure;
+import static com.akross.domain.property.Department.LETTINGS;
+import static com.akross.domain.property.EpcFrontPage.EpcFrontPageBuilder.anEpcFrontPage;
+import static com.akross.domain.property.EpcGraph.EpcGraphBuilder.anEpcGraph;
+import static com.akross.domain.property.ExternalLink.ExternalLinkBuilder.anExternalLink;
+import static com.akross.domain.property.Floorplan.FloorplanBuilder.aFloorplan;
+import static com.akross.domain.property.Image.ImageBuilder.anImage;
+import static com.akross.domain.property.VirtualTour.VirtualTourBuilder.aVirtualTour;
+import static com.akross.domain.property.container.Property.PropertyBuilder.aProperty;
+import static com.akross.domain.property.residentialsalesandletting.FloorAreaUnit.HECTARES;
+import static com.akross.domain.property.residentialsalesandletting.PropertyAge.TWENTIES_THIRTIES;
+import static com.akross.domain.property.residentialsalesandletting.PropertyStyle.DETACHED_HOUSE;
+import static com.akross.domain.property.residentialsalesandletting.PropertyType.BUNGALOWS;
+import static com.akross.domain.property.residentialsalesandletting.PropertyType.HOUSE;
+import static com.akross.domain.property.residentialsalesandletting.residentialletting.Availability.REFERENCES_PENDING;
+import static com.akross.domain.property.residentialsalesandletting.residentialletting.RentFrequency.PW;
+import static com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
 import static java.lang.String.valueOf;
 import static java.text.MessageFormat.format;
 import static java.time.LocalDateTime.of;
@@ -64,7 +64,7 @@ public class PropertyControllerTest {
     @MockBean
     private PropertyService propertyService;
 
-    private static com.akross.domain.container.Property getDomainContainerProperty() {
+    private static com.akross.domain.property.container.Property getDomainContainerProperty() {
         return aProperty()
                 .withResidentialLettings(asList(
                         aResidentialLetting()
@@ -185,7 +185,7 @@ public class PropertyControllerTest {
                 ).build();
     }
 
-    private static com.akross.domain.Property getDomainResidentialLettingProperty() {
+    private static com.akross.domain.property.Property getDomainResidentialLettingProperty() {
         return aResidentialLetting()
                 .withPropertyId(64634L)
                 .withBranchId(7)

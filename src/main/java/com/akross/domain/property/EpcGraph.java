@@ -1,14 +1,14 @@
-package com.akross.domain;
+package com.akross.domain.property;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Floorplan {
+public class EpcGraph {
 
     private final LocalDateTime modified;
     private final String url;
 
-    private Floorplan(final LocalDateTime modified, final String url) {
+    private EpcGraph(final LocalDateTime modified, final String url) {
         this.modified = LocalDateTime.of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
                 , modified.getHour(), modified.getMinute(), modified.getSecond());
         this.url = url;
@@ -27,7 +27,7 @@ public class Floorplan {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Floorplan image = (Floorplan) o;
+        EpcGraph image = (EpcGraph) o;
         return Objects.equals(modified, image.modified) &&
                 Objects.equals(url, image.url);
     }
@@ -39,35 +39,35 @@ public class Floorplan {
 
     @Override
     public String toString() {
-        return "Floorplan{" +
+        return "EpcGraph" +
                 "modified=" + modified +
                 ", url='" + url + '\'' +
                 '}';
     }
 
-    public static final class FloorplanBuilder {
+    public static final class EpcGraphBuilder {
         private LocalDateTime modified;
         private String url;
 
-        private FloorplanBuilder() {
+        private EpcGraphBuilder() {
         }
 
-        public static FloorplanBuilder aFloorplan() {
-            return new FloorplanBuilder();
+        public static EpcGraphBuilder anEpcGraph() {
+            return new EpcGraphBuilder();
         }
 
-        public FloorplanBuilder withModified(final LocalDateTime modified) {
+        public EpcGraphBuilder withModified(final LocalDateTime modified) {
             this.modified = modified;
             return this;
         }
 
-        public FloorplanBuilder withUrl(final String url) {
+        public EpcGraphBuilder withUrl(final String url) {
             this.url = url;
             return this;
         }
 
-        public Floorplan build() {
-            return new Floorplan(modified, url);
+        public EpcGraph build() {
+            return new EpcGraph(modified, url);
         }
     }
 }

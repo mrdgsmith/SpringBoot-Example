@@ -1,4 +1,4 @@
-package com.akross.web.property;
+package com.akross.web;
 
 import com.akross.service.property.exception.PropertyNotFoundException;
 import com.akross.web.property.exception.InvalidPropertyTypeException;

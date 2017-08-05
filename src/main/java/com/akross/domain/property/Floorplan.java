@@ -1,14 +1,14 @@
-package com.akross.domain;
+package com.akross.domain.property;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Image {
+public class Floorplan {
 
     private final LocalDateTime modified;
     private final String url;
 
-    private Image(final LocalDateTime modified, final String url) {
+    private Floorplan(final LocalDateTime modified, final String url) {
         this.modified = LocalDateTime.of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
                 , modified.getHour(), modified.getMinute(), modified.getSecond());
         this.url = url;
@@ -27,7 +27,7 @@ public class Image {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Image image = (Image) o;
+        Floorplan image = (Floorplan) o;
         return Objects.equals(modified, image.modified) &&
                 Objects.equals(url, image.url);
     }
@@ -39,35 +39,35 @@ public class Image {
 
     @Override
     public String toString() {
-        return "Image{" +
+        return "Floorplan{" +
                 "modified=" + modified +
                 ", url='" + url + '\'' +
                 '}';
     }
 
-    public static final class ImageBuilder {
+    public static final class FloorplanBuilder {
         private LocalDateTime modified;
         private String url;
 
-        private ImageBuilder() {
+        private FloorplanBuilder() {
         }
 
-        public static ImageBuilder anImage() {
-            return new ImageBuilder();
+        public static FloorplanBuilder aFloorplan() {
+            return new FloorplanBuilder();
         }
 
-        public ImageBuilder withModified(final LocalDateTime modified) {
+        public FloorplanBuilder withModified(final LocalDateTime modified) {
             this.modified = modified;
             return this;
         }
 
-        public ImageBuilder withUrl(final String url) {
+        public FloorplanBuilder withUrl(final String url) {
             this.url = url;
             return this;
         }
 
-        public Image build() {
-            return new Image(modified, url);
+        public Floorplan build() {
+            return new Floorplan(modified, url);
         }
     }
 }

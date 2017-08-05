@@ -1,4 +1,4 @@
-package com.akross.domain;
+package com.akross.domain.property;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

@@ -1,8 +1,8 @@
 package com.akross.service.property;
 
 
-import com.akross.domain.container.Property;
-import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
+import com.akross.domain.property.container.Property;
+import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.gateway.PropertyClient;
 import com.akross.service.property.exception.PropertyNotFoundException;
 import org.junit.Test;
@@ -16,14 +16,14 @@ import java.time.LocalTime;
 import java.util.List;
 import java.util.stream.Stream;
 
-import static com.akross.domain.Department.LETTINGS;
-import static com.akross.domain.Department.SALES;
-import static com.akross.domain.residentialsalesandletting.PropertyType.BUNGALOWS;
-import static com.akross.domain.residentialsalesandletting.PropertyType.HOUSE;
-import static com.akross.domain.residentialsalesandletting.residentialletting.Availability.LET;
-import static com.akross.domain.residentialsalesandletting.residentialletting.Availability.WITHDRAWN;
-import static com.akross.domain.residentialsalesandletting.residentialletting.RentFrequency.PCM;
-import static com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
+import static com.akross.domain.property.Department.LETTINGS;
+import static com.akross.domain.property.Department.SALES;
+import static com.akross.domain.property.residentialsalesandletting.PropertyType.BUNGALOWS;
+import static com.akross.domain.property.residentialsalesandletting.PropertyType.HOUSE;
+import static com.akross.domain.property.residentialsalesandletting.residentialletting.Availability.LET;
+import static com.akross.domain.property.residentialsalesandletting.residentialletting.Availability.WITHDRAWN;
+import static com.akross.domain.property.residentialsalesandletting.residentialletting.RentFrequency.PCM;
+import static com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
 import static java.math.BigDecimal.valueOf;
 import static java.time.LocalDate.of;
 import static java.time.Month.*;
@@ -174,7 +174,7 @@ public class PropertyServiceTest {
         when(propertyClient.getProperties().getResidentialLettings())
                 .thenReturn(createResidentialLettingProperties());
 
-        final com.akross.domain.Property property = propertyService.getProperty(propertyId);
+        final com.akross.domain.property.Property property = propertyService.getProperty(propertyId);
         assertThat(property, instanceOf(ResidentialLetting.class));
         assertThat(property, is(aResidentialLetting()
                         .withPropertyId(3L)

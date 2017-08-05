@@ -1,7 +1,7 @@
 package com.akross.web.property;
 
-import com.akross.domain.residentialsalesandletting.PropertyType;
-import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
+import com.akross.domain.property.residentialsalesandletting.PropertyType;
+import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.service.PropertyService;
 import com.akross.web.property.enitity.*;
 import com.akross.web.property.enitity.container.Property;
@@ -16,7 +16,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.function.Function;
 
-import static com.akross.domain.residentialsalesandletting.PropertyType.*;
+import static com.akross.domain.property.residentialsalesandletting.PropertyType.*;
 import static com.akross.web.property.enitity.Brochure.BrochureBuilder.aBrochure;
 import static com.akross.web.property.enitity.EpcFrontPage.EpcFrontPageBuilder.anEpcFrontPage;
 import static com.akross.web.property.enitity.EpcGraph.EpcGraphBuilder.anEpcGraph;
@@ -117,7 +117,7 @@ public class PropertyController {
                 .build();
     }
 
-    private static List<Image> getImages(final List<com.akross.domain.Image> images) {
+    private static List<Image> getImages(final List<com.akross.domain.property.Image> images) {
         return images.stream()
                 .map(image -> anImage()
                         .withUrl(image.getUrl())
@@ -135,7 +135,7 @@ public class PropertyController {
                 .collect(toList());
     }
 
-    private static List<Brochure> getBrochures(final List<com.akross.domain.Brochure> brochures) {
+    private static List<Brochure> getBrochures(final List<com.akross.domain.property.Brochure> brochures) {
         return brochures.stream()
                 .map(brochure -> aBrochure()
                         .withUrl(brochure.getUrl())
@@ -144,7 +144,7 @@ public class PropertyController {
                 .collect(toList());
     }
 
-    private static List<VirtualTour> getVirtualTours(final List<com.akross.domain.VirtualTour> virtualTours) {
+    private static List<VirtualTour> getVirtualTours(final List<com.akross.domain.property.VirtualTour> virtualTours) {
         return virtualTours.stream()
                 .map(virtualTour -> aVirtualTour()
                         .withUrl(virtualTour.getUrl())
@@ -153,7 +153,7 @@ public class PropertyController {
                 .collect(toList());
     }
 
-    private static List<EpcGraph> getEpcGraphs(final List<com.akross.domain.EpcGraph> epcGraphs) {
+    private static List<EpcGraph> getEpcGraphs(final List<com.akross.domain.property.EpcGraph> epcGraphs) {
         return epcGraphs.stream()
                 .map(epcGraph -> anEpcGraph()
                         .withUrl(epcGraph.getUrl())
@@ -162,7 +162,7 @@ public class PropertyController {
                 .collect(toList());
     }
 
-    private static List<EpcFrontPage> getEpcFrontPages(final List<com.akross.domain.EpcFrontPage> epcFrontPages) {
+    private static List<EpcFrontPage> getEpcFrontPages(final List<com.akross.domain.property.EpcFrontPage> epcFrontPages) {
         return epcFrontPages.stream()
                 .map(epcFrontPage -> anEpcFrontPage()
                         .withUrl(epcFrontPage.getUrl())
@@ -171,7 +171,7 @@ public class PropertyController {
                 .collect(toList());
     }
 
-    private static List<ExternalLink> getExternalLinks(final List<com.akross.domain.ExternalLink> externalLinks) {
+    private static List<ExternalLink> getExternalLinks(final List<com.akross.domain.property.ExternalLink> externalLinks) {
         return externalLinks.stream()
                 .map(externalLink -> anExternalLink()
                         .withUrl(externalLink.getUrl())
@@ -195,7 +195,7 @@ public class PropertyController {
     @RequestMapping(path = {"/{propertyId}"}, method = GET, produces = {APPLICATION_JSON_VALUE})
     public <T extends com.akross.web.property.enitity.Property> T getProperty(
             @PathVariable(value = "propertyId") final Long propertyId) {
-        final com.akross.domain.Property property = propertyService.getProperty(propertyId);
+        final com.akross.domain.property.Property property = propertyService.getProperty(propertyId);
         if (property instanceof ResidentialLetting) {
             return (T) getResidentialLetting((ResidentialLetting) property);
         }
@@ -204,7 +204,7 @@ public class PropertyController {
 
     @RequestMapping(method = GET, produces = {APPLICATION_JSON_VALUE}, params = {"featured"})
     public Property getPropertiesViaFeaturedFlag(@RequestParam(value = "featured") final Boolean featured) {
-        final com.akross.domain.container.Property properties = propertyService.getProperties(featured);
+        final com.akross.domain.property.container.Property properties = propertyService.getProperties(featured);
         return aProperty()
                 .withResidentialLettings(getResidentialLettings(properties.getResidentialLettings()))
                 .build();
@@ -212,7 +212,7 @@ public class PropertyController {
 
     @RequestMapping(method = GET, produces = {APPLICATION_JSON_VALUE})
     public Property getProperties() {
-        final com.akross.domain.container.Property properties = propertyService.getProperties();
+        final com.akross.domain.property.container.Property properties = propertyService.getProperties();
         return aProperty()
                 .withResidentialLettings(getResidentialLettings(properties.getResidentialLettings()))
                 .build();
@@ -225,7 +225,7 @@ public class PropertyController {
             , @RequestParam(value = "maximumPrice") final BigDecimal maximumPrice
             , @RequestParam(value = "propertyType") final String propertyType
             , @RequestParam(value = "bedroomAmount") final Integer bedroomAmount) {
-        final com.akross.domain.container.Property propertiesBySearchCriteria = propertyService
+        final com.akross.domain.property.container.Property propertiesBySearchCriteria = propertyService
                 .getPropertiesBySearchCriteria(location, minimumPrice, maximumPrice, getPropertyTypes(propertyType)
                         , bedroomAmount);
         return aProperty()

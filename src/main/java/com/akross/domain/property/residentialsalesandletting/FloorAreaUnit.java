@@ -1,4 +1,4 @@
-package com.akross.domain.residentialsalesandletting;
+package com.akross.domain.property.residentialsalesandletting;
 
 import java.util.Map;
 

@@ -1,8 +1,8 @@
 package com.akross.service.property;
 
-import com.akross.domain.container.Property;
-import com.akross.domain.residentialsalesandletting.PropertyType;
-import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
+import com.akross.domain.property.container.Property;
+import com.akross.domain.property.residentialsalesandletting.PropertyType;
+import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.gateway.PropertyClient;
 import com.akross.service.property.exception.PropertyNotFoundException;
 
@@ -12,10 +12,10 @@ import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
-import static com.akross.domain.Department.LETTINGS;
-import static com.akross.domain.container.Property.PropertyBuilder.aProperty;
-import static com.akross.domain.residentialsalesandletting.residentialletting.Availability.LET;
-import static com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
+import static com.akross.domain.property.Department.LETTINGS;
+import static com.akross.domain.property.container.Property.PropertyBuilder.aProperty;
+import static com.akross.domain.property.residentialsalesandletting.residentialletting.Availability.LET;
+import static com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
 import static java.util.Arrays.asList;
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
@@ -61,7 +61,7 @@ public class PropertyService implements com.akross.service.PropertyService {
 
     private static Property getAllProperties(final List<ResidentialLetting> residentialLettings) {
         return aProperty()
-                .withResidentialLettings(residentialLettings.stream()
+                .withResidentialLettings(residentialLettings.parallelStream()
                         .map(setRentForResidentialLettingPropertyDisplayFunction())
                         .sorted(getSortedResidentialLettings())
                         .collect(toList()))
@@ -70,7 +70,7 @@ public class PropertyService implements com.akross.service.PropertyService {
 
     @Override
     @SuppressWarnings("unchecked")
-    public <T extends com.akross.domain.Property> T getProperty(final Long propertyId) {
+    public <T extends com.akross.domain.property.Property> T getProperty(final Long propertyId) {
         return (T) propertyClient.getProperties().getResidentialLettings().parallelStream()
                 .filter(residentialLetting -> propertyId.equals(residentialLetting.getPropertyId()))
                 .map(setRentForResidentialLettingPropertyDisplayFunction())
@@ -86,7 +86,7 @@ public class PropertyService implements com.akross.service.PropertyService {
     }
 
     @Override
-    public com.akross.domain.container.Property getProperties(final Boolean featured) {
+    public com.akross.domain.property.container.Property getProperties(final Boolean featured) {
         final Property properties = propertyClient.getProperties();
         final List<ResidentialLetting> residentialLettings = properties.getResidentialLettings();
         if (featured) {
@@ -99,7 +99,7 @@ public class PropertyService implements com.akross.service.PropertyService {
     }
 
     @Override
-    public com.akross.domain.container.Property getPropertiesBySearchCriteria(
+    public com.akross.domain.property.container.Property getPropertiesBySearchCriteria(
             final String location, final BigDecimal minimumPrice, final BigDecimal maximumPrice
             , final List<PropertyType> propertyType, final Integer bedroomAmount) {
 
@@ -112,7 +112,7 @@ public class PropertyService implements com.akross.service.PropertyService {
         );
 
         final Property properties = propertyClient.getProperties();
-        final List<ResidentialLetting> residentialLettings = properties.getResidentialLettings().stream()
+        final List<ResidentialLetting> residentialLettings = properties.getResidentialLettings().parallelStream()
                 .filter(filterResidentialLettingSearchCriteria.stream()
                         .reduce(Predicate::and).orElse(v -> true))
                 .collect(toList());

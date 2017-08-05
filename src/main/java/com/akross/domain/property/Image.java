@@ -1,14 +1,14 @@
-package com.akross.domain;
+package com.akross.domain.property;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class Brochure {
+public class Image {
 
     private final LocalDateTime modified;
     private final String url;
 
-    private Brochure(final LocalDateTime modified, final String url) {
+    private Image(final LocalDateTime modified, final String url) {
         this.modified = LocalDateTime.of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
                 , modified.getHour(), modified.getMinute(), modified.getSecond());
         this.url = url;
@@ -27,7 +27,7 @@ public class Brochure {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Brochure image = (Brochure) o;
+        Image image = (Image) o;
         return Objects.equals(modified, image.modified) &&
                 Objects.equals(url, image.url);
     }
@@ -39,36 +39,35 @@ public class Brochure {
 
     @Override
     public String toString() {
-        return "Brochure" +
+        return "Image{" +
                 "modified=" + modified +
                 ", url='" + url + '\'' +
                 '}';
     }
 
-
-    public static final class BrochureBuilder {
+    public static final class ImageBuilder {
         private LocalDateTime modified;
         private String url;
 
-        private BrochureBuilder() {
+        private ImageBuilder() {
         }
 
-        public static BrochureBuilder aBrochure() {
-            return new BrochureBuilder();
+        public static ImageBuilder anImage() {
+            return new ImageBuilder();
         }
 
-        public BrochureBuilder withModified(final LocalDateTime modified) {
+        public ImageBuilder withModified(final LocalDateTime modified) {
             this.modified = modified;
             return this;
         }
 
-        public BrochureBuilder withUrl(final String url) {
+        public ImageBuilder withUrl(final String url) {
             this.url = url;
             return this;
         }
 
-        public Brochure build() {
-            return new Brochure(modified, url);
+        public Image build() {
+            return new Image(modified, url);
         }
     }
 }

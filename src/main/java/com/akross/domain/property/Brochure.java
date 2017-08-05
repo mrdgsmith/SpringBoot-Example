@@ -1,14 +1,14 @@
-package com.akross.domain;
+package com.akross.domain.property;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class EpcFrontPage {
+public class Brochure {
 
     private final LocalDateTime modified;
     private final String url;
 
-    private EpcFrontPage(final LocalDateTime modified, final String url) {
+    private Brochure(final LocalDateTime modified, final String url) {
         this.modified = LocalDateTime.of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
                 , modified.getHour(), modified.getMinute(), modified.getSecond());
         this.url = url;
@@ -27,7 +27,7 @@ public class EpcFrontPage {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EpcFrontPage image = (EpcFrontPage) o;
+        Brochure image = (Brochure) o;
         return Objects.equals(modified, image.modified) &&
                 Objects.equals(url, image.url);
     }
@@ -39,35 +39,36 @@ public class EpcFrontPage {
 
     @Override
     public String toString() {
-        return "EpcFrontPage" +
+        return "Brochure" +
                 "modified=" + modified +
                 ", url='" + url + '\'' +
                 '}';
     }
 
-    public static final class EpcFrontPageBuilder {
+
+    public static final class BrochureBuilder {
         private LocalDateTime modified;
         private String url;
 
-        private EpcFrontPageBuilder() {
+        private BrochureBuilder() {
         }
 
-        public static EpcFrontPageBuilder anEpcFrontPage() {
-            return new EpcFrontPageBuilder();
+        public static BrochureBuilder aBrochure() {
+            return new BrochureBuilder();
         }
 
-        public EpcFrontPageBuilder withModified(final LocalDateTime modified) {
+        public BrochureBuilder withModified(final LocalDateTime modified) {
             this.modified = modified;
             return this;
         }
 
-        public EpcFrontPageBuilder withUrl(final String url) {
+        public BrochureBuilder withUrl(final String url) {
             this.url = url;
             return this;
         }
 
-        public EpcFrontPage build() {
-            return new EpcFrontPage(modified, url);
+        public Brochure build() {
+            return new Brochure(modified, url);
         }
     }
 }

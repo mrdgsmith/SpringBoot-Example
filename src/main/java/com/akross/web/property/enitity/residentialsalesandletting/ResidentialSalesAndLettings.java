@@ -1,10 +1,10 @@
 package com.akross.web.property.enitity.residentialsalesandletting;
 
-import com.akross.domain.Department;
-import com.akross.domain.residentialsalesandletting.FloorAreaUnit;
-import com.akross.domain.residentialsalesandletting.PropertyAge;
-import com.akross.domain.residentialsalesandletting.PropertyStyle;
-import com.akross.domain.residentialsalesandletting.PropertyType;
+import com.akross.domain.property.Department;
+import com.akross.domain.property.residentialsalesandletting.FloorAreaUnit;
+import com.akross.domain.property.residentialsalesandletting.PropertyAge;
+import com.akross.domain.property.residentialsalesandletting.PropertyStyle;
+import com.akross.domain.property.residentialsalesandletting.PropertyType;
 import com.akross.web.property.enitity.*;
 
 import java.time.LocalDate;

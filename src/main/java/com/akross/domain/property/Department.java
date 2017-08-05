@@ -1,4 +1,4 @@
-package com.akross.domain;
+package com.akross.domain.property;
 
 public enum Department {
     SALES("Sales"), LETTINGS("Lettings"), COMMERCIAL("Commercial"), AGRICULTURAL("Agricultural");

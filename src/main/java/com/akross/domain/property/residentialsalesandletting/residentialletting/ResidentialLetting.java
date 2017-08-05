@@ -1,7 +1,7 @@
-package com.akross.domain.residentialsalesandletting.residentialletting;
+package com.akross.domain.property.residentialsalesandletting.residentialletting;
 
-import com.akross.domain.*;
-import com.akross.domain.residentialsalesandletting.*;
+import com.akross.domain.property.*;
+import com.akross.domain.property.residentialsalesandletting.*;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;

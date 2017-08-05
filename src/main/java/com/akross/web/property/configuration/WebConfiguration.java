@@ -1,12 +1,12 @@
 package com.akross.web.property.configuration;
 
-import com.akross.domain.Department;
-import com.akross.domain.residentialsalesandletting.FloorAreaUnit;
-import com.akross.domain.residentialsalesandletting.PropertyAge;
-import com.akross.domain.residentialsalesandletting.PropertyStyle;
-import com.akross.domain.residentialsalesandletting.PropertyType;
-import com.akross.domain.residentialsalesandletting.residentialletting.Availability;
-import com.akross.domain.residentialsalesandletting.residentialletting.RentFrequency;
+import com.akross.domain.property.Department;
+import com.akross.domain.property.residentialsalesandletting.FloorAreaUnit;
+import com.akross.domain.property.residentialsalesandletting.PropertyAge;
+import com.akross.domain.property.residentialsalesandletting.PropertyStyle;
+import com.akross.domain.property.residentialsalesandletting.PropertyType;
+import com.akross.domain.property.residentialsalesandletting.residentialletting.Availability;
+import com.akross.domain.property.residentialsalesandletting.residentialletting.RentFrequency;
 import com.fasterxml.jackson.core.JsonGenerator;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializerProvider;

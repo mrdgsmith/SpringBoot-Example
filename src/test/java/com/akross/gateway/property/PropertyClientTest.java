@@ -1,6 +1,6 @@
 package com.akross.gateway.property;
 
-import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
+import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.gateway.property.entity.Property;
 import com.akross.gateway.property.utilities.PropertyConverter;
 import org.junit.Rule;
@@ -11,8 +11,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import static com.akross.domain.Department.LETTINGS;
-import static com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
+import static com.akross.domain.property.Department.LETTINGS;
+import static com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
 import static com.akross.gateway.property.builders.entity.TestPropertyBuilder.aProperty;
 import static java.math.BigDecimal.valueOf;
 import static java.util.Arrays.asList;
@@ -74,7 +74,7 @@ public class PropertyClientTest {
         when(propertyConverter.convertToResidentialLetting(property1)).thenReturn(residentialLetting1);
         when(propertyConverter.convertToResidentialLetting(property2)).thenReturn(residentialLetting2);
 
-        final com.akross.domain.container.Property actualProperties = propertyClient.getProperties();
+        final com.akross.domain.property.container.Property actualProperties = propertyClient.getProperties();
         assertThat(actualProperties.getResidentialLettings(), hasItems(residentialLetting1, residentialLetting2));
     }
 }

@@ -1,6 +1,6 @@
 package com.akross.web.property.enitity;
 
-import com.akross.domain.Department;
+import com.akross.domain.property.Department;
 
 import java.time.LocalDate;
 import java.time.LocalTime;

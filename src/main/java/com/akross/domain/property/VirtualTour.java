@@ -1,14 +1,14 @@
-package com.akross.domain;
+package com.akross.domain.property;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class EpcGraph {
+public class VirtualTour {
 
     private final LocalDateTime modified;
     private final String url;
 
-    private EpcGraph(final LocalDateTime modified, final String url) {
+    private VirtualTour(final LocalDateTime modified, final String url) {
         this.modified = LocalDateTime.of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
                 , modified.getHour(), modified.getMinute(), modified.getSecond());
         this.url = url;
@@ -27,7 +27,7 @@ public class EpcGraph {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        EpcGraph image = (EpcGraph) o;
+        VirtualTour image = (VirtualTour) o;
         return Objects.equals(modified, image.modified) &&
                 Objects.equals(url, image.url);
     }
@@ -39,35 +39,35 @@ public class EpcGraph {
 
     @Override
     public String toString() {
-        return "EpcGraph" +
+        return "VirtualTour" +
                 "modified=" + modified +
                 ", url='" + url + '\'' +
                 '}';
     }
 
-    public static final class EpcGraphBuilder {
+    public static final class VirtualTourBuilder {
         private LocalDateTime modified;
         private String url;
 
-        private EpcGraphBuilder() {
+        private VirtualTourBuilder() {
         }
 
-        public static EpcGraphBuilder anEpcGraph() {
-            return new EpcGraphBuilder();
+        public static VirtualTourBuilder aVirtualTour() {
+            return new VirtualTourBuilder();
         }
 
-        public EpcGraphBuilder withModified(final LocalDateTime modified) {
+        public VirtualTourBuilder withModified(final LocalDateTime modified) {
             this.modified = modified;
             return this;
         }
 
-        public EpcGraphBuilder withUrl(final String url) {
+        public VirtualTourBuilder withUrl(final String url) {
             this.url = url;
             return this;
         }
 
-        public EpcGraph build() {
-            return new EpcGraph(modified, url);
+        public VirtualTour build() {
+            return new VirtualTour(modified, url);
         }
     }
 }

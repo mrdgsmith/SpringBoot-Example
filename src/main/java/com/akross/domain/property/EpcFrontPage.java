@@ -1,14 +1,14 @@
-package com.akross.domain;
+package com.akross.domain.property;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-public class VirtualTour {
+public class EpcFrontPage {
 
     private final LocalDateTime modified;
     private final String url;
 
-    private VirtualTour(final LocalDateTime modified, final String url) {
+    private EpcFrontPage(final LocalDateTime modified, final String url) {
         this.modified = LocalDateTime.of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
                 , modified.getHour(), modified.getMinute(), modified.getSecond());
         this.url = url;
@@ -27,7 +27,7 @@ public class VirtualTour {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        VirtualTour image = (VirtualTour) o;
+        EpcFrontPage image = (EpcFrontPage) o;
         return Objects.equals(modified, image.modified) &&
                 Objects.equals(url, image.url);
     }
@@ -39,35 +39,35 @@ public class VirtualTour {
 
     @Override
     public String toString() {
-        return "VirtualTour" +
+        return "EpcFrontPage" +
                 "modified=" + modified +
                 ", url='" + url + '\'' +
                 '}';
     }
 
-    public static final class VirtualTourBuilder {
+    public static final class EpcFrontPageBuilder {
         private LocalDateTime modified;
         private String url;
 
-        private VirtualTourBuilder() {
+        private EpcFrontPageBuilder() {
         }
 
-        public static VirtualTourBuilder aVirtualTour() {
-            return new VirtualTourBuilder();
+        public static EpcFrontPageBuilder anEpcFrontPage() {
+            return new EpcFrontPageBuilder();
         }
 
-        public VirtualTourBuilder withModified(final LocalDateTime modified) {
+        public EpcFrontPageBuilder withModified(final LocalDateTime modified) {
             this.modified = modified;
             return this;
         }
 
-        public VirtualTourBuilder withUrl(final String url) {
+        public EpcFrontPageBuilder withUrl(final String url) {
             this.url = url;
             return this;
         }
 
-        public VirtualTour build() {
-            return new VirtualTour(modified, url);
+        public EpcFrontPage build() {
+            return new EpcFrontPage(modified, url);
         }
     }
 }

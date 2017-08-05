@@ -1,14 +1,14 @@
 package com.akross.gateway.property;
 
-import com.akross.domain.container.Property;
-import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
+import com.akross.domain.property.container.Property;
+import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.gateway.property.utilities.PropertyConverter;
 
 import java.util.List;
 import java.util.function.Predicate;
 
-import static com.akross.domain.Department.LETTINGS;
-import static com.akross.domain.container.Property.PropertyBuilder.aProperty;
+import static com.akross.domain.property.Department.LETTINGS;
+import static com.akross.domain.property.container.Property.PropertyBuilder.aProperty;
 import static java.util.Arrays.asList;
 import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.toList;
