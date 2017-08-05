@@ -198,6 +198,6 @@ public class HttpPropertyClientTest {
         if (nonNull(resource)) {
             return new String(Files.readAllBytes(Paths.get(resource.toURI())));
         }
-        throw new RuntimeException(MessageFormat.format("Cannot find file {}", EXAMPLE_FEED_XML));
+        throw new RuntimeException(MessageFormat.format("Cannot find file {0}", EXAMPLE_FEED_XML));
     }
 }
