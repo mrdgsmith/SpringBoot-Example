@@ -42,6 +42,7 @@ import static java.time.LocalDateTime.of;
 import static java.util.Arrays.asList;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.BDDMockito.given;
+import static org.mockito.Mockito.*;
 import static org.springframework.http.MediaType.APPLICATION_JSON;
 import static org.springframework.http.MediaType.APPLICATION_JSON_UTF8;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -316,6 +317,8 @@ public class PropertyControllerTest {
                 .andExpect(content()
                         .json(getExpectedJsonResidentialLettingProperty())
                 );
+        verify(propertyService).getProperty(propertyId);
+        verifyNoMoreInteractions(propertyService);
     }
 
     @Test
@@ -330,6 +333,8 @@ public class PropertyControllerTest {
                 .andExpect(status().isNotFound())
                 .andExpect(content().string(is(format("Property Id {0} can not be found", propertyId)))
                 );
+        verify(propertyService).getProperty(propertyId);
+        verifyNoMoreInteractions(propertyService);
     }
 
     @Test
@@ -344,6 +349,8 @@ public class PropertyControllerTest {
                 .andExpect(content()
                         .json(getExpectedJsonContainerProperty())
                 );
+        verify(propertyService).getProperties();
+        verifyNoMoreInteractions(propertyService);
     }
 
     @Test
@@ -359,6 +366,8 @@ public class PropertyControllerTest {
                 .andExpect(content()
                         .json(getExpectedJsonContainerProperty())
                 );
+        verify(propertyService).getProperties(true);
+        verifyNoMoreInteractions(propertyService);
     }
 
     @Test
@@ -386,6 +395,9 @@ public class PropertyControllerTest {
                 .andExpect(content()
                         .json(getExpectedJsonContainerProperty())
                 );
+        verify(propertyService).getPropertiesBySearchCriteria(location, minimumPrice, maximumPrice
+                , asList(HOUSE, BUNGALOWS), bedroomAmount);
+        verifyNoMoreInteractions(propertyService);
     }
 
     @Test
@@ -409,6 +421,7 @@ public class PropertyControllerTest {
                 .andExpect(content().contentType(APPLICATION_JSON_UTF8))
                 .andExpect(content().string(is(format("Property type {0} is invalid", propertyType)))
                 );
+        verifyZeroInteractions(propertyService);
     }
 
     private String getExpectedJsonResidentialLettingProperty() throws JsonProcessingException {
