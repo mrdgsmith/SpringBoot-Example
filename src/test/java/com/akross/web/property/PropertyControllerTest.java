@@ -388,6 +388,29 @@ public class PropertyControllerTest {
                 );
     }
 
+    @Test
+    public void shouldReturnBadRequestWhenPropertyTypeNotFound() throws Exception {
+        final String location = "London";
+        final BigDecimal minimumPrice = BigDecimal.valueOf(400);
+        final BigDecimal maximumPrice = BigDecimal.valueOf(1000);
+        final String propertyType = "Foo";
+        final Integer bedroomAmount = 3;
+
+        mockMvc.perform(get("/properties/")
+                .param("location", location)
+                .param("minimumPrice", minimumPrice.toPlainString())
+                .param("maximumPrice", maximumPrice.toPlainString())
+                .param("propertyType", propertyType)
+                .param("bedroomAmount", valueOf(bedroomAmount))
+                .contentType(APPLICATION_JSON)
+                .accept(APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isBadRequest())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+                .andExpect(content().string(is(format("Property type {0} is invalid", propertyType)))
+                );
+    }
+
     private String getExpectedJsonResidentialLettingProperty() throws JsonProcessingException {
         return objectMapper.writeValueAsString(ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting()
                 .withPropertyId(64634L)

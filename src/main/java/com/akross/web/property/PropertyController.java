@@ -5,6 +5,7 @@ import com.akross.domain.residentialsalesandletting.residentialletting.Residenti
 import com.akross.service.PropertyService;
 import com.akross.web.property.enitity.*;
 import com.akross.web.property.enitity.container.Property;
+import com.akross.web.property.exception.InvalidPropertyTypeException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -187,7 +188,7 @@ public class PropertyController {
         if (propertyType.equals("Flat")) {
             return singletonList(FLAT_APARTMENTS);
         }
-        return null;
+        throw new InvalidPropertyTypeException(propertyType);
     }
 
     @SuppressWarnings("unchecked")
