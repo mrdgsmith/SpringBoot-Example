@@ -32,9 +32,11 @@ import static com.akross.domain.residentialsalesandletting.FloorAreaUnit.HECTARE
 import static com.akross.domain.residentialsalesandletting.PropertyAge.TWENTIES_THIRTIES;
 import static com.akross.domain.residentialsalesandletting.PropertyStyle.DETACHED_HOUSE;
 import static com.akross.domain.residentialsalesandletting.PropertyType.BUNGALOWS;
+import static com.akross.domain.residentialsalesandletting.PropertyType.HOUSE;
 import static com.akross.domain.residentialsalesandletting.residentialletting.Availability.REFERENCES_PENDING;
 import static com.akross.domain.residentialsalesandletting.residentialletting.RentFrequency.PW;
 import static com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
+import static java.lang.String.valueOf;
 import static java.text.MessageFormat.format;
 import static java.time.LocalDateTime.of;
 import static java.util.Arrays.asList;
@@ -332,7 +334,7 @@ public class PropertyControllerTest {
 
     @Test
     public void shouldReturnAllProperties() throws Exception {
-        given(propertyService.getProperties(false)).willReturn(getDomainContainerProperty());
+        given(propertyService.getProperties()).willReturn(getDomainContainerProperty());
         mockMvc.perform(get("/properties")
                 .contentType(APPLICATION_JSON)
                 .accept(APPLICATION_JSON))
@@ -349,6 +351,33 @@ public class PropertyControllerTest {
         given(propertyService.getProperties(true)).willReturn(getDomainContainerProperty());
         mockMvc.perform(get("/properties")
                 .param("featured", "true")
+                .contentType(APPLICATION_JSON)
+                .accept(APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().contentType(APPLICATION_JSON_UTF8))
+                .andExpect(content()
+                        .json(getExpectedJsonContainerProperty())
+                );
+    }
+
+    @Test
+    public void shouldReturnPropertiesThatMeetSearchCriteria() throws Exception {
+        final String location = "London";
+        final BigDecimal minimumPrice = BigDecimal.valueOf(400);
+        final BigDecimal maximumPrice = BigDecimal.valueOf(1000);
+        final String propertyType = "House";
+        final Integer bedroomAmount = 3;
+
+        given(propertyService.getPropertiesBySearchCriteria(location, minimumPrice, maximumPrice
+                , asList(HOUSE, BUNGALOWS), bedroomAmount)).willReturn(getDomainContainerProperty());
+
+        mockMvc.perform(get("/properties/")
+                .param("location", location)
+                .param("minimumPrice", minimumPrice.toPlainString())
+                .param("maximumPrice", maximumPrice.toPlainString())
+                .param("propertyType", propertyType)
+                .param("bedroomAmount", valueOf(bedroomAmount))
                 .contentType(APPLICATION_JSON)
                 .accept(APPLICATION_JSON))
                 .andDo(print())

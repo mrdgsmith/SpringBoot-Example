@@ -1,5 +1,6 @@
 package com.akross.web.property;
 
+import com.akross.domain.residentialsalesandletting.PropertyType;
 import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.service.PropertyService;
 import com.akross.web.property.enitity.*;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.function.Function;
 
+import static com.akross.domain.residentialsalesandletting.PropertyType.*;
 import static com.akross.web.property.enitity.Brochure.BrochureBuilder.aBrochure;
 import static com.akross.web.property.enitity.EpcFrontPage.EpcFrontPageBuilder.anEpcFrontPage;
 import static com.akross.web.property.enitity.EpcGraph.EpcGraphBuilder.anEpcGraph;
@@ -22,6 +25,9 @@ import static com.akross.web.property.enitity.Image.ImageBuilder.anImage;
 import static com.akross.web.property.enitity.VirtualTour.VirtualTourBuilder.aVirtualTour;
 import static com.akross.web.property.enitity.container.Property.PropertyBuilder.aProperty;
 import static com.akross.web.property.enitity.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
+import static java.util.Arrays.asList;
+import static java.util.Collections.singletonList;
+import static java.util.Collections.unmodifiableList;
 import static java.util.stream.Collectors.toList;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 import static org.springframework.web.bind.annotation.RequestMethod.GET;
@@ -174,12 +180,14 @@ public class PropertyController {
                 .collect(toList());
     }
 
-    @RequestMapping(method = GET, produces = {APPLICATION_JSON_VALUE})
-    public Property getProperties(@RequestParam(value = "featured", defaultValue = "false", required = false) final boolean featured) {
-        final com.akross.domain.container.Property properties = propertyService.getProperties(featured);
-        return aProperty()
-                .withResidentialLettings(getResidentialLettings(properties.getResidentialLettings()))
-                .build();
+    private static List<PropertyType> getPropertyTypes(final String propertyType) {
+        if (propertyType.equals("House")) {
+            return unmodifiableList(asList(HOUSE, BUNGALOWS));
+        }
+        if (propertyType.equals("Flat")) {
+            return singletonList(FLAT_APARTMENTS);
+        }
+        return null;
     }
 
     @SuppressWarnings("unchecked")
@@ -191,5 +199,36 @@ public class PropertyController {
             return (T) getResidentialLetting((ResidentialLetting) property);
         }
         return null;
+    }
+
+    @RequestMapping(method = GET, produces = {APPLICATION_JSON_VALUE}, params = {"featured"})
+    public Property getPropertiesViaFeaturedFlag(@RequestParam(value = "featured") final Boolean featured) {
+        final com.akross.domain.container.Property properties = propertyService.getProperties(featured);
+        return aProperty()
+                .withResidentialLettings(getResidentialLettings(properties.getResidentialLettings()))
+                .build();
+    }
+
+    @RequestMapping(method = GET, produces = {APPLICATION_JSON_VALUE})
+    public Property getProperties() {
+        final com.akross.domain.container.Property properties = propertyService.getProperties();
+        return aProperty()
+                .withResidentialLettings(getResidentialLettings(properties.getResidentialLettings()))
+                .build();
+    }
+
+    @RequestMapping(method = GET, produces = {APPLICATION_JSON_VALUE}
+            , params = {"location", "minimumPrice", "maximumPrice", "propertyType", "bedroomAmount"})
+    public Property getSearchedProperties(@RequestParam(value = "location") final String location
+            , @RequestParam(value = "minimumPrice") final BigDecimal minimumPrice
+            , @RequestParam(value = "maximumPrice") final BigDecimal maximumPrice
+            , @RequestParam(value = "propertyType") final String propertyType
+            , @RequestParam(value = "bedroomAmount") final Integer bedroomAmount) {
+        final com.akross.domain.container.Property propertiesBySearchCriteria = propertyService
+                .getPropertiesBySearchCriteria(location, minimumPrice, maximumPrice, getPropertyTypes(propertyType)
+                        , bedroomAmount);
+        return aProperty()
+                .withResidentialLettings(getResidentialLettings(propertiesBySearchCriteria.getResidentialLettings()))
+                .build();
     }
 }

@@ -1,10 +1,13 @@
 package com.akross.service.property;
 
 import com.akross.domain.container.Property;
+import com.akross.domain.residentialsalesandletting.PropertyType;
 import com.akross.domain.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.gateway.PropertyClient;
 import com.akross.service.property.exception.PropertyNotFoundException;
 
+import java.math.BigDecimal;
+import java.util.Comparator;
 import java.util.List;
 import java.util.function.Function;
 import java.util.function.Predicate;
@@ -27,18 +30,22 @@ public class PropertyService implements com.akross.service.PropertyService {
 
     private static List<ResidentialLetting> getFeaturedResidentialLettings(final List<ResidentialLetting>
                                                                                    residentialLettings) {
-        final List<Predicate<ResidentialLetting>> filter_residential_letting_featured = asList(
+        final List<Predicate<ResidentialLetting>> filterResidentialLettingFeatured = asList(
                 residentialLetting -> LETTINGS.equals(residentialLetting.getDepartment())
                 , ResidentialLetting::isFeaturedProperty
                 , residentialLetting -> LET.equals(residentialLetting.getAvailability())
         );
         return residentialLettings.parallelStream()
-                .filter(filter_residential_letting_featured.stream()
+                .filter(filterResidentialLettingFeatured.stream()
                         .reduce(Predicate::and).orElse(v -> true))
                 .map(setRentForResidentialLettingPropertyDisplayFunction())
-                .sorted((comparing(ResidentialLetting::getDateLastModified)
-                        .thenComparing(ResidentialLetting::getTimeLastModified)).reversed())
+                .sorted(getSortedResidentialLettings())
                 .collect(toList());
+    }
+
+    private static Comparator<ResidentialLetting> getSortedResidentialLettings() {
+        return (comparing(ResidentialLetting::getDateLastModified)
+                .thenComparing(ResidentialLetting::getTimeLastModified)).reversed();
     }
 
     private static Function<ResidentialLetting, ResidentialLetting> setRentForResidentialLettingPropertyDisplayFunction() {
@@ -52,22 +59,13 @@ public class PropertyService implements com.akross.service.PropertyService {
         };
     }
 
-    @Override
-    public com.akross.domain.container.Property getProperties(final Boolean featured) {
-        final Property properties = propertyClient.getProperties();
-        final Property.PropertyBuilder propertyBuilder = aProperty();
-        final List<ResidentialLetting> residentialLettings = properties.getResidentialLettings();
-        if (featured) {
-            return propertyBuilder
-                    .withResidentialLettings(getFeaturedResidentialLettings(residentialLettings))
-                    .build();
-        } else {
-            return propertyBuilder
-                    .withResidentialLettings(residentialLettings.stream()
-                            .map(setRentForResidentialLettingPropertyDisplayFunction())
-                            .collect(toList()))
-                    .build();
-        }
+    private static Property getAllProperties(final List<ResidentialLetting> residentialLettings) {
+        return aProperty()
+                .withResidentialLettings(residentialLettings.stream()
+                        .map(setRentForResidentialLettingPropertyDisplayFunction())
+                        .sorted(getSortedResidentialLettings())
+                        .collect(toList()))
+                .build();
     }
 
     @Override
@@ -78,5 +76,46 @@ public class PropertyService implements com.akross.service.PropertyService {
                 .map(setRentForResidentialLettingPropertyDisplayFunction())
                 .findFirst()
                 .orElseThrow(() -> new PropertyNotFoundException(propertyId));
+    }
+
+    @Override
+    public Property getProperties() {
+        final Property properties = propertyClient.getProperties();
+        final List<ResidentialLetting> residentialLettings = properties.getResidentialLettings();
+        return getAllProperties(residentialLettings);
+    }
+
+    @Override
+    public com.akross.domain.container.Property getProperties(final Boolean featured) {
+        final Property properties = propertyClient.getProperties();
+        final List<ResidentialLetting> residentialLettings = properties.getResidentialLettings();
+        if (featured) {
+            return aProperty()
+                    .withResidentialLettings(getFeaturedResidentialLettings(residentialLettings))
+                    .build();
+        } else {
+            return getAllProperties(residentialLettings);
+        }
+    }
+
+    @Override
+    public com.akross.domain.container.Property getPropertiesBySearchCriteria(
+            final String location, final BigDecimal minimumPrice, final BigDecimal maximumPrice
+            , final List<PropertyType> propertyType, final Integer bedroomAmount) {
+
+        final List<Predicate<ResidentialLetting>> filterResidentialLettingSearchCriteria = asList(
+                residentialLetting -> location.equalsIgnoreCase(residentialLetting.getAddress3())
+                , residentialLetting -> minimumPrice.compareTo(residentialLetting.getRent()) <= 0
+                , residentialLetting -> maximumPrice.compareTo(residentialLetting.getRent()) >= 0
+                , residentialLetting -> propertyType.contains(residentialLetting.getPropertyType())
+                , residentialLetting -> bedroomAmount.equals(residentialLetting.getPropertyBedrooms())
+        );
+
+        final Property properties = propertyClient.getProperties();
+        final List<ResidentialLetting> residentialLettings = properties.getResidentialLettings().stream()
+                .filter(filterResidentialLettingSearchCriteria.stream()
+                        .reduce(Predicate::and).orElse(v -> true))
+                .collect(toList());
+        return getAllProperties(residentialLettings);
     }
 }
