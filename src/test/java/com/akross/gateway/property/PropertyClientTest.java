@@ -13,7 +13,7 @@ import org.mockito.runners.MockitoJUnitRunner;
 
 import static com.akross.domain.property.Department.LETTINGS;
 import static com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
-import static com.akross.gateway.property.builders.entity.TestPropertyBuilder.aProperty;
+import static com.akross.gateway.property.enitity.builders.entity.TestPropertyBuilder.aProperty;
 import static java.math.BigDecimal.valueOf;
 import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.hasItems;

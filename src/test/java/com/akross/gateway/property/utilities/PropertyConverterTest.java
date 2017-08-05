@@ -1,7 +1,7 @@
 package com.akross.gateway.property.utilities;
 
 import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting;
-import com.akross.gateway.property.builders.entity.*;
+import com.akross.gateway.property.enitity.builders.entity.*;
 import com.akross.gateway.property.entity.Property;
 import org.junit.Before;
 import org.junit.Test;
@@ -22,16 +22,16 @@ import static com.akross.domain.property.residentialsalesandletting.PropertyStyl
 import static com.akross.domain.property.residentialsalesandletting.PropertyType.BUNGALOWS;
 import static com.akross.domain.property.residentialsalesandletting.residentialletting.Availability.REFERENCES_PENDING;
 import static com.akross.domain.property.residentialsalesandletting.residentialletting.RentFrequency.PW;
-import static com.akross.gateway.property.builders.entity.TestBrochuresBuilder.aBrochures;
-import static com.akross.gateway.property.builders.entity.TestEpcFrontPagesBuilder.anEpcFrontPages;
-import static com.akross.gateway.property.builders.entity.TestEpcGraphsBuilder.anEpcGraphs;
-import static com.akross.gateway.property.builders.entity.TestExternalLinksBuilder.anExternalLinks;
-import static com.akross.gateway.property.builders.entity.TestFlagBuilder.aFlag;
-import static com.akross.gateway.property.builders.entity.TestFlagsBuilder.aFlags;
-import static com.akross.gateway.property.builders.entity.TestFloorplansBuilder.aFloorplans;
-import static com.akross.gateway.property.builders.entity.TestImagesBuilder.anImages;
-import static com.akross.gateway.property.builders.entity.TestPropertyBuilder.aProperty;
-import static com.akross.gateway.property.builders.entity.TestVirtualToursBuilder.aVirtualTours;
+import static com.akross.gateway.property.enitity.builders.entity.TestBrochuresBuilder.aBrochures;
+import static com.akross.gateway.property.enitity.builders.entity.TestEpcFrontPagesBuilder.anEpcFrontPages;
+import static com.akross.gateway.property.enitity.builders.entity.TestEpcGraphsBuilder.anEpcGraphs;
+import static com.akross.gateway.property.enitity.builders.entity.TestExternalLinksBuilder.anExternalLinks;
+import static com.akross.gateway.property.enitity.builders.entity.TestFlagBuilder.aFlag;
+import static com.akross.gateway.property.enitity.builders.entity.TestFlagsBuilder.aFlags;
+import static com.akross.gateway.property.enitity.builders.entity.TestFloorplansBuilder.aFloorplans;
+import static com.akross.gateway.property.enitity.builders.entity.TestImagesBuilder.anImages;
+import static com.akross.gateway.property.enitity.builders.entity.TestPropertyBuilder.aProperty;
+import static com.akross.gateway.property.enitity.builders.entity.TestVirtualToursBuilder.aVirtualTours;
 import static java.math.BigDecimal.valueOf;
 import static java.time.LocalDate.of;
 import static java.time.LocalDateTime.of;

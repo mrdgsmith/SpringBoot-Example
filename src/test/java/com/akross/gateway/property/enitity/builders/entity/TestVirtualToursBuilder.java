@@ -1,4 +1,4 @@
-package com.akross.gateway.property.builders.entity;
+package com.akross.gateway.property.enitity.builders.entity;
 
 import com.akross.gateway.property.entity.VirtualTour;
 import com.akross.gateway.property.entity.VirtualTours;
