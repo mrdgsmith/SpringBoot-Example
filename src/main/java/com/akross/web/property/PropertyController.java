@@ -182,10 +182,10 @@ public class PropertyController {
     }
 
     private static List<PropertyType> getPropertyTypes(final String propertyType) {
-        if (propertyType.equals("House")) {
+        if ("House".equals(propertyType)) {
             return unmodifiableList(asList(HOUSE, BUNGALOWS));
         }
-        if (propertyType.equals("Flat")) {
+        if ("Flat".equals(propertyType)) {
             return singletonList(FLAT_APARTMENTS);
         }
         throw new InvalidPropertyTypeException(propertyType);
