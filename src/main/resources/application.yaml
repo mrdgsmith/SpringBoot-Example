@@ -1,7 +1,15 @@
 jupix:
   restService:
     rootUrl: services.jupix.co.uk
-    propertyPath: /api/get_properties.php
-    clientId: 833815ccab44c05f8b3121c770b9c22d
-    passphrase: 71899e3fefdb5a5971f7676d91c46c0a
-    version: 2.0
+    property:
+      path: /api/get_properties.php
+      clientId: 833815ccab44c05f8b3121c770b9c22d
+      passphrase: 71899e3fefdb5a5971f7676d91c46c0a
+      version: 2.0
+    enquiry:
+      path: /api/enquiries/post_enquiry.php
+      apiKey:
+      agentCode:
+      branchCode:
+      version: 1.1
+      enquirerEmail: enquiries@akrosslondon.com

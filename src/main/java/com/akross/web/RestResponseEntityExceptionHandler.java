@@ -1,6 +1,7 @@
 package com.akross.web;
 
-import com.akross.service.property.exception.PropertyNotFoundException;
+import com.akross.exception.property.PropertyNotFoundException;
+import com.akross.gateway.enquiry.exception.RentalEvaluationEnquiryException;
 import com.akross.web.property.exception.InvalidPropertyTypeException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
@@ -18,7 +19,7 @@ public class RestResponseEntityExceptionHandler {
         return runtimeException.getMessage();
     }
 
-    @ExceptionHandler(value = {InvalidPropertyTypeException.class})
+    @ExceptionHandler(value = {InvalidPropertyTypeException.class, RentalEvaluationEnquiryException.class})
     @ResponseStatus(value = BAD_REQUEST)
     private String badRequest(final RuntimeException runtimeException) {
         return runtimeException.getMessage();

@@ -1,7 +1,15 @@
 jupix:
   restService:
     rootUrl: localhost
-    propertyPath: /api/get_properties.php
-    clientId: foo
-    passphrase: bar
-    version: 5.0
+    property:
+      path: /api/get_properties.php
+      clientId: foo
+      passphrase: bar
+      version: 5.0
+    enquiry:
+      path: /api/enquiries/post_enquiry.php
+      apiKey: 63554
+      agentCode: gf5gsd4
+      branchCode: 5
+      version: 1.1
+      enquirerEmail: bla
