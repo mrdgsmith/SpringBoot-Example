@@ -411,18 +411,11 @@ public class PropertyServiceTest {
     }
 
     @Test
-    public void shouldGetAllResidentialLettingPropertiesWhenFlagFalse() {
-//        when(propertyClient.getProperties().getResidentialLettings())
-//                .thenReturn(concat(createInvalidFeaturedResidentialLettingProperties().stream()
-//                        , createValidFeaturedResidentialLettingProperties().stream())
-//                        .collect(toList()));
-
-        when(propertyRepository.getProperties())
-                .thenReturn(
-                        aProperty()
-                                .withResidentialLettings(createResidentialLettingProperties())
-                                .build()
-                );
+    public void shouldGetAllPropertiesWhenFlagFalse() {
+        when(propertyRepository.getProperties()).thenReturn(aProperty()
+                .withResidentialLettings(createResidentialLettingProperties())
+                .build()
+        );
 
         final Property actualProperty = propertyService.getProperties(false);
 
