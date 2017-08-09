@@ -5,10 +5,12 @@ import com.akross.domain.property.residentialsalesandletting.residentialletting.
 import com.akross.gateway.property.enitity.builders.entity.*;
 import com.akross.gateway.property.entity.Property;
 import com.akross.repository.property.entity.*;
-import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
+import org.junit.runner.RunWith;
+import org.mockito.InjectMocks;
+import org.mockito.runners.MockitoJUnitRunner;
 
 import java.time.LocalTime;
 import java.util.stream.Stream;
@@ -50,17 +52,14 @@ import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 import static org.junit.rules.ExpectedException.none;
 
+@RunWith(MockitoJUnitRunner.class)
 public class PropertyConverterTest {
 
     @Rule
     public ExpectedException expectedException = none();
 
+    @InjectMocks
     private PropertyConverter propertyConverter;
-
-    @Before
-    public void setUp() throws Exception {
-        propertyConverter = new PropertyConverter();
-    }
 
     private static com.akross.repository.property.entity.residentialsalesandletting.residentialletting
             .ResidentialLetting createRepositoryResidentialLetting() {
