@@ -467,16 +467,6 @@ public class PropertyRepositoryInMemoryTest {
         assertThat(actualResidentialLetting, instanceOf(ResidentialLetting.class));
         assertThat(actualResidentialLetting, is(aResidentialLetting()
                 .withPropertyId(3L)
-                .withDepartment(LETTINGS)
-                .withIsFeaturedProperty(true)
-                .withAvailability(LET)
-                .withDisplayAddress("foo4")
-                .withMainSummary("mainSummary4")
-                .withRent(valueOf(4000))
-                .withIsLetPOA(true)
-                .withRentFrequency(PCM)
-                .withDateLastModified(of(2015, AUGUST, 21))
-                .withTimeLastModified(LocalTime.of(21, 55, 10))
                 .build()));
     }
 
