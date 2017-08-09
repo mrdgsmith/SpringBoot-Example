@@ -75,9 +75,6 @@ public class PropertyService implements com.akross.service.PropertyService {
 
     @Override
     public Property getProperties() {
-//        final Property properties = propertyClient.getProperties();
-//        final List<ResidentialLetting> residentialLettings = properties.getResidentialLettings();
-//        return getAllProperties(residentialLettings);
         return propertyRepository.getProperties();
     }
 

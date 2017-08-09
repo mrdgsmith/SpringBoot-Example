@@ -266,16 +266,11 @@ public class PropertyServiceTest {
 
     @Test
     public void shouldReturnAllProperties() {
-//        when(propertyClient.getProperties().getResidentialLettings())
-//                .thenReturn(createResidentialLettingProperties());
-
         when(propertyRepository.getProperties())
                 .thenReturn(aProperty()
                         .withResidentialLettings(createResidentialLettingProperties())
                         .build());
-
         final Property actualProperty = propertyService.getProperties();
-
         assertThat(actualProperty.getResidentialLettings(), containsInAnyOrder(
                 aResidentialLetting()
                         .withPropertyId(12L)
