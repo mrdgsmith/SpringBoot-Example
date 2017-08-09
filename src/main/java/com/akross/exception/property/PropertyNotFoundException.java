@@ -1,4 +1,4 @@
-package com.akross.service.property.exception;
+package com.akross.exception.property;
 
 import static java.text.MessageFormat.format;
 
