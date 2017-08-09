@@ -1,4 +1,4 @@
-package com.akross.gateway.property.utilities;
+package com.akross.domain.property.utilities;
 
 
 import com.akross.domain.property.*;
@@ -12,6 +12,7 @@ import com.akross.domain.property.residentialsalesandletting.residentialletting.
 import com.akross.gateway.property.entity.Flag;
 
 import java.util.List;
+import java.util.Set;
 
 import static com.akross.domain.property.Brochure.BrochureBuilder.aBrochure;
 import static com.akross.domain.property.Department.LETTINGS;
@@ -35,7 +36,24 @@ public class PropertyConverter {
                 .collect(toList());
     }
 
+    private static List<ExternalLink> getExternalLinks(final Set<com.akross.repository.property.entity.ExternalLink> externalLinks) {
+        return externalLinks.stream().map(externalLink -> anExternalLink()
+                .withModified(externalLink.getModified())
+                .withUrl(externalLink.getUrl())
+                .withDescription(externalLink.getDescription())
+                .build())
+                .collect(toList());
+    }
+
     private static List<EpcFrontPage> getEpcFrontPages(final List<com.akross.gateway.property.entity.EpcFrontPage> epcFrontPages) {
+        return epcFrontPages.stream().map(epcFrontPage -> anEpcFrontPage()
+                .withModified(epcFrontPage.getModified())
+                .withUrl(epcFrontPage.getUrl())
+                .build())
+                .collect(toList());
+    }
+
+    private static List<EpcFrontPage> getEpcFrontPages(final Set<com.akross.repository.property.entity.EpcFrontPage> epcFrontPages) {
         return epcFrontPages.stream().map(epcFrontPage -> anEpcFrontPage()
                 .withModified(epcFrontPage.getModified())
                 .withUrl(epcFrontPage.getUrl())
@@ -51,7 +69,23 @@ public class PropertyConverter {
                 .collect(toList());
     }
 
+    private static List<EpcGraph> getEpcGraphs(final Set<com.akross.repository.property.entity.EpcGraph> epcGraphs) {
+        return epcGraphs.stream().map(epcGraph -> anEpcGraph()
+                .withModified(epcGraph.getModified())
+                .withUrl(epcGraph.getUrl())
+                .build())
+                .collect(toList());
+    }
+
     private static List<VirtualTour> getVirtualTours(final List<com.akross.gateway.property.entity.VirtualTour> virtualTours) {
+        return virtualTours.stream().map(virtualTour -> aVirtualTour()
+                .withModified(virtualTour.getModified())
+                .withUrl(virtualTour.getUrl())
+                .build())
+                .collect(toList());
+    }
+
+    private static List<VirtualTour> getVirtualTours(final Set<com.akross.repository.property.entity.VirtualTour> virtualTours) {
         return virtualTours.stream().map(virtualTour -> aVirtualTour()
                 .withModified(virtualTour.getModified())
                 .withUrl(virtualTour.getUrl())
@@ -67,6 +101,14 @@ public class PropertyConverter {
                 .collect(toList());
     }
 
+    private static List<Brochure> getBrochures(final Set<com.akross.repository.property.entity.Brochure> brochures) {
+        return brochures.stream().map(brochure -> aBrochure()
+                .withModified(brochure.getModified())
+                .withUrl(brochure.getUrl())
+                .build())
+                .collect(toList());
+    }
+
     private static List<Floorplan> getFloorplans(final List<com.akross.gateway.property.entity.Floorplan> floorplans) {
         return floorplans.stream().map(floorplan -> aFloorplan()
                 .withModified(floorplan.getModified())
@@ -75,7 +117,23 @@ public class PropertyConverter {
                 .collect(toList());
     }
 
+    private static List<Floorplan> getFloorplans(final Set<com.akross.repository.property.entity.Floorplan> floorplans) {
+        return floorplans.stream().map(floorplan -> aFloorplan()
+                .withModified(floorplan.getModified())
+                .withUrl(floorplan.getUrl())
+                .build())
+                .collect(toList());
+    }
+
     private static List<Image> getImages(final List<com.akross.gateway.property.entity.Image> images) {
+        return images.stream().map(image -> anImage()
+                .withModified(image.getModified())
+                .withUrl(image.getUrl())
+                .build())
+                .collect(toList());
+    }
+
+    private static List<Image> getImages(final Set<com.akross.repository.property.entity.Image> images) {
         return images.stream().map(image -> anImage()
                 .withModified(image.getModified())
                 .withUrl(image.getUrl())
@@ -174,6 +232,72 @@ public class PropertyConverter {
                 .withIsStudentProperty(property.getStudentProperty() == 1)
                 .withLettingFeePolicyHeadline(property.getLettingFeePolicyHeadline())
                 .withLettingFeePolicyDetails(property.getLettingFeePolicyDetails())
+                .build();
+    }
+
+    public ResidentialLetting convertToResidentialLetting(final com.akross.repository.property.entity
+            .residentialsalesandletting.residentialletting
+            .ResidentialLetting repositoryResidentialLetting) {
+        return aResidentialLetting()
+                .withPropertyId(repositoryResidentialLetting.getPropertyId())
+                .withBranchId(repositoryResidentialLetting.getBranchId())
+                .withClientName(repositoryResidentialLetting.getClientName())
+                .withBranchName(repositoryResidentialLetting.getBranchName())
+                .withDepartment(repositoryResidentialLetting.getDepartment())
+                .withReferenceNumber(repositoryResidentialLetting.getReferenceNumber())
+                .withAddressName(repositoryResidentialLetting.getAddressName())
+                .withAddressNumber(repositoryResidentialLetting.getAddressNumber())
+                .withAddressStreet(repositoryResidentialLetting.getAddressStreet())
+                .withAddress2(repositoryResidentialLetting.getAddress2())
+                .withAddress3(repositoryResidentialLetting.getAddress3())
+                .withAddress4(repositoryResidentialLetting.getAddress4())
+                .withAddressPostcode(repositoryResidentialLetting.getAddressPostcode())
+                .withCountry(repositoryResidentialLetting.getCountry())
+                .withDisplayAddress(repositoryResidentialLetting.getDisplayAddress())
+                .withPropertyFeature1(repositoryResidentialLetting.getPropertyFeature1())
+                .withPropertyFeature2(repositoryResidentialLetting.getPropertyFeature2())
+                .withPropertyFeature3(repositoryResidentialLetting.getPropertyFeature3())
+                .withPropertyFeature4(repositoryResidentialLetting.getPropertyFeature4())
+                .withPropertyFeature5(repositoryResidentialLetting.getPropertyFeature5())
+                .withPropertyFeature6(repositoryResidentialLetting.getPropertyFeature6())
+                .withPropertyFeature7(repositoryResidentialLetting.getPropertyFeature7())
+                .withPropertyFeature8(repositoryResidentialLetting.getPropertyFeature8())
+                .withPropertyFeature9(repositoryResidentialLetting.getPropertyFeature9())
+                .withPropertyFeature10(repositoryResidentialLetting.getPropertyFeature10())
+                .withDateLastModified(repositoryResidentialLetting.getDateLastModified())
+                .withTimeLastModified(repositoryResidentialLetting.getTimeLastModified())
+                .withIsFeaturedProperty(repositoryResidentialLetting.isFeaturedProperty())
+                .withRegionId(repositoryResidentialLetting.getRegionId())
+                .withLatitude(repositoryResidentialLetting.getLatitude())
+                .withLongitude(repositoryResidentialLetting.getLongitude())
+                .withFlags(repositoryResidentialLetting.getFlags())
+                .withMainSummary(repositoryResidentialLetting.getMainSummary())
+                .withFullDescription(repositoryResidentialLetting.getFullDescription())
+                .withImages(getImages(repositoryResidentialLetting.getImages()))
+                .withFloorplans(getFloorplans(repositoryResidentialLetting.getFloorplans()))
+                .withBrochures(getBrochures(repositoryResidentialLetting.getBrochures()))
+                .withVirtualTours(getVirtualTours(repositoryResidentialLetting.getVirtualTours()))
+                .withEpcGraphs(getEpcGraphs(repositoryResidentialLetting.getEpcGraphs()))
+                .withEpcFrontPages(getEpcFrontPages(repositoryResidentialLetting.getEpcFrontPages()))
+                .withExternalLinks(getExternalLinks(repositoryResidentialLetting.getExternalLinks()))
+                .withPropertyBedrooms(repositoryResidentialLetting.getPropertyBedrooms())
+                .withPropertyEnsuites(repositoryResidentialLetting.getPropertyEnsuites())
+                .withPropertyBathrooms(repositoryResidentialLetting.getPropertyBathrooms())
+                .withPropertyReceptionRooms(repositoryResidentialLetting.getPropertyReceptionRooms())
+                .withPropertyKitchens(repositoryResidentialLetting.getPropertyKitchens())
+                .withPropertyAge(repositoryResidentialLetting.getPropertyAge())
+                .withFloorArea(repositoryResidentialLetting.getFloorArea())
+                .withFloorAreaUnit(repositoryResidentialLetting.getFloorAreaUnit())
+                .withDisplayPropertyType(repositoryResidentialLetting.getDisplayPropertyType())
+                .withPropertyType(repositoryResidentialLetting.getPropertyType())
+                .withPropertyStyle(repositoryResidentialLetting.getPropertyStyle())
+                .withAvailability(repositoryResidentialLetting.getAvailability())
+                .withRent(repositoryResidentialLetting.getRent())
+                .withRentFrequency(repositoryResidentialLetting.getRentFrequency())
+                .withIsLetPOA(repositoryResidentialLetting.isLetPOA())
+                .withIsStudentProperty(repositoryResidentialLetting.isStudentProperty())
+                .withLettingFeePolicyHeadline(repositoryResidentialLetting.getLettingFeePolicyHeadline())
+                .withLettingFeePolicyDetails(repositoryResidentialLetting.getLettingFeePolicyDetails())
                 .build();
     }
 }

@@ -1,12 +1,17 @@
-package com.akross.gateway.property.utilities;
+package com.akross.domain.property.utilities;
 
 import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting;
+import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder;
 import com.akross.gateway.property.enitity.builders.entity.*;
 import com.akross.gateway.property.entity.Property;
+import com.akross.repository.property.entity.*;
 import org.junit.Before;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 
 import java.time.LocalTime;
+import java.util.stream.Stream;
 
 import static com.akross.domain.property.Brochure.BrochureBuilder.aBrochure;
 import static com.akross.domain.property.Department.LETTINGS;
@@ -20,6 +25,7 @@ import static com.akross.domain.property.residentialsalesandletting.FloorAreaUni
 import static com.akross.domain.property.residentialsalesandletting.PropertyAge.TWENTIES_THIRTIES;
 import static com.akross.domain.property.residentialsalesandletting.PropertyStyle.DETACHED_HOUSE;
 import static com.akross.domain.property.residentialsalesandletting.PropertyType.BUNGALOWS;
+import static com.akross.domain.property.residentialsalesandletting.residentialletting.Availability.LET;
 import static com.akross.domain.property.residentialsalesandletting.residentialletting.Availability.REFERENCES_PENDING;
 import static com.akross.domain.property.residentialsalesandletting.residentialletting.RentFrequency.PW;
 import static com.akross.gateway.property.enitity.builders.entity.TestBrochuresBuilder.aBrochures;
@@ -32,16 +38,22 @@ import static com.akross.gateway.property.enitity.builders.entity.TestFloorplans
 import static com.akross.gateway.property.enitity.builders.entity.TestImagesBuilder.anImages;
 import static com.akross.gateway.property.enitity.builders.entity.TestPropertyBuilder.aProperty;
 import static com.akross.gateway.property.enitity.builders.entity.TestVirtualToursBuilder.aVirtualTours;
+import static com.akross.repository.property.entity.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
 import static java.math.BigDecimal.valueOf;
 import static java.time.LocalDate.of;
 import static java.time.LocalDateTime.of;
 import static java.util.Arrays.asList;
+import static java.util.stream.Collectors.toSet;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.Matchers.isA;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.rules.ExpectedException.none;
 
 public class PropertyConverterTest {
+
+    @Rule
+    public ExpectedException expectedException = none();
 
     private PropertyConverter propertyConverter;
 
@@ -50,8 +62,131 @@ public class PropertyConverterTest {
         propertyConverter = new PropertyConverter();
     }
 
+    private static com.akross.repository.property.entity.residentialsalesandletting.residentialletting
+            .ResidentialLetting createRepositoryResidentialLetting() {
+        return aResidentialLetting()
+                .withPropertyId(64634L)
+                .withBranchId(7)
+                .withClientName("JUPIX")
+                .withBranchName("Cambridge Office")
+                .withDepartment(LETTINGS)
+                .withReferenceNumber("45435")
+                .withAddressName("Bla")
+                .withAddressNumber(1)
+                .withAddressStreet("The Street")
+                .withAddress2("address2")
+                .withAddress3("address3")
+                .withAddress4("address4")
+                .withAddressPostcode("postcode")
+                .withCountry("United Kingdom")
+                .withDisplayAddress("1 Greenhill Street, Evesham")
+                .withPropertyFeature1("Bedroom with views over garden1")
+                .withPropertyFeature2("Bedroom with views over garden2")
+                .withPropertyFeature3("Bedroom with views over garden3")
+                .withPropertyFeature4("Bedroom with views over garden4")
+                .withPropertyFeature5("Bedroom with views over garden5")
+                .withPropertyFeature6("Bedroom with views over garden6")
+                .withPropertyFeature7("Bedroom with views over garden7")
+                .withPropertyFeature8("Bedroom with views over garden8")
+                .withPropertyFeature9("Bedroom with views over garden9")
+                .withPropertyFeature10("Bedroom with views over garden10")
+                .withDateLastModified(of(2016, 3, 1))
+                .withTimeLastModified(LocalTime.of(22, 50, 34))
+                .withIsFeaturedProperty(true)
+                .withRegionId(38)
+                .withLatitude(53.800651)
+                .withLongitude(-4.064941)
+                .withFlags(asList("flag1", "flag2"))
+                .withMainSummary("mainSummary")
+                .withFullDescription("fullDescription")
+                .withPropertyBedrooms(5)
+                .withPropertyBathrooms(3)
+                .withPropertyEnsuites(6)
+                .withPropertyReceptionRooms(3)
+                .withPropertyKitchens(5)
+                .withPropertyAge(TWENTIES_THIRTIES)
+                .withFloorArea(190.0)
+                .withFloorAreaUnit(HECTARES)
+                .withDisplayPropertyType("Modern Detached House")
+                .withPropertyType(BUNGALOWS)
+                .withPropertyStyle(DETACHED_HOUSE)
+                .withAvailability(LET)
+                .withRent(valueOf(4534))
+                .withRentFrequency(PW)
+                .withIsLetPOA(false)
+                .withIsStudentProperty(true)
+                .withLettingFeePolicyHeadline("Fees Apply")
+                .withLettingFeePolicyDetails("bla")
+                .withImages(Stream.of(Image.ImageBuilder.anImage()
+                                .withUrl("url1")
+                                .withModified(of(2005, 8, 11, 11, 44))
+                                .build()
+                        , Image.ImageBuilder.anImage()
+                                .withUrl("url2")
+                                .withModified(of(2006, 5, 9, 12, 44))
+                                .build()
+                ).collect(toSet()))
+                .withFloorplans(Stream.of(Floorplan.FloorplanBuilder.aFloorplan()
+                                .withUrl("url3")
+                                .withModified(of(2007, 1, 1, 2, 3))
+                                .build()
+                        , Floorplan.FloorplanBuilder.aFloorplan()
+                                .withUrl("url4")
+                                .withModified(of(2008, 1, 2, 3, 5))
+                                .build()
+                ).collect(toSet()))
+                .withBrochures(Stream.of(Brochure.BrochureBuilder.aBrochure()
+                                .withUrl("url5")
+                                .withModified(of(2009, 8, 11, 11, 44))
+                                .build()
+                        , Brochure.BrochureBuilder.aBrochure()
+                                .withUrl("url6")
+                                .withModified(of(2010, 5, 9, 12, 44))
+                                .build()
+                ).collect(toSet()))
+                .withVirtualTours(Stream.of(VirtualTour.VirtualTourBuilder.aVirtualTour()
+                                .withUrl("url7")
+                                .withModified(of(2011, 8, 11, 11, 44))
+                                .build()
+                        , VirtualTour.VirtualTourBuilder.aVirtualTour()
+                                .withUrl("url8")
+                                .withModified(of(2012, 5, 9, 12, 44))
+                                .build()
+                ).collect(toSet()))
+                .withEpcGraphs(Stream.of(EpcGraph.EpcGraphBuilder.anEpcGraph()
+                                .withUrl("url9")
+                                .withModified(of(2013, 8, 11, 11, 44))
+                                .build()
+                        , EpcGraph.EpcGraphBuilder.anEpcGraph()
+                                .withUrl("url10")
+                                .withModified(of(2014, 5, 9, 12, 44))
+                                .build()
+                ).collect(toSet()))
+                .withEpcFrontPages(Stream.of(EpcFrontPage.EpcFrontPageBuilder.anEpcFrontPage()
+                                .withUrl("url11")
+                                .withModified(of(2016, 8, 11, 11, 44))
+                                .build()
+                        , EpcFrontPage.EpcFrontPageBuilder.anEpcFrontPage()
+                                .withUrl("url12")
+                                .withModified(of(2017, 5, 9, 12, 44))
+                                .build()
+                ).collect(toSet()))
+                .withExternalLinks(Stream.of(ExternalLink.ExternalLinkBuilder.anExternalLink()
+                                .withUrl("url12")
+                                .withModified(of(2018, 8, 11, 11, 44))
+                                .withDescription("a")
+                                .build()
+                        , ExternalLink.ExternalLinkBuilder.anExternalLink()
+                                .withUrl("url13")
+                                .withModified(of(2019, 5, 9, 12, 44))
+                                .withDescription("b")
+                                .build()
+                ).collect(toSet()))
+                .build();
+    }
+
     @Test
-    public void shouldConvertPropertyToLettings() throws Exception {
+    public void shouldConvertGatewayPropertyToDomainResidentialLetting() {
         Property property = aProperty()
                 .withPropertyId(64634L)
                 .withBranchId(7)
@@ -303,6 +438,134 @@ public class PropertyConverterTest {
                         .withUrl("url2")
                         .withModified(of(2014, 5, 9, 12, 44))
                         .withDescription("b")
+                        .build()
+                )
+        );
+    }
+
+    @Test
+    public void shouldConvertRepositoryResidentialLettingToDomainResidentialLetting() {
+        final ResidentialLetting actualResidentialLetting =
+                propertyConverter.convertToResidentialLetting(createRepositoryResidentialLetting());
+
+        assertThat(actualResidentialLetting, is(ResidentialLettingBuilder.aResidentialLetting()
+                        .withPropertyId(64634L)
+                        .withBranchId(7)
+                        .withClientName("JUPIX")
+                        .withBranchName("Cambridge Office")
+                        .withDepartment(LETTINGS)
+                        .withReferenceNumber("45435")
+                        .withAddressName("Bla")
+                        .withAddressNumber(1)
+                        .withAddressStreet("The Street")
+                        .withAddress2("address2")
+                        .withAddress3("address3")
+                        .withAddress4("address4")
+                        .withAddressPostcode("postcode")
+                        .withCountry("United Kingdom")
+                        .withDisplayAddress("1 Greenhill Street, Evesham")
+                        .withPropertyFeature1("Bedroom with views over garden1")
+                        .withPropertyFeature2("Bedroom with views over garden2")
+                        .withPropertyFeature3("Bedroom with views over garden3")
+                        .withPropertyFeature4("Bedroom with views over garden4")
+                        .withPropertyFeature5("Bedroom with views over garden5")
+                        .withPropertyFeature6("Bedroom with views over garden6")
+                        .withPropertyFeature7("Bedroom with views over garden7")
+                        .withPropertyFeature8("Bedroom with views over garden8")
+                        .withPropertyFeature9("Bedroom with views over garden9")
+                        .withPropertyFeature10("Bedroom with views over garden10")
+                        .withDateLastModified(of(2016, 3, 1))
+                        .withTimeLastModified(LocalTime.of(22, 50, 34))
+                        .withIsFeaturedProperty(true)
+                        .withRegionId(38)
+                        .withLatitude(53.800651)
+                        .withLongitude(-4.064941)
+                        .withFlags(asList("flag1", "flag2"))
+                        .withMainSummary("mainSummary")
+                        .withFullDescription("fullDescription")
+                        .withPropertyBedrooms(5)
+                        .withPropertyBathrooms(3)
+                        .withPropertyEnsuites(6)
+                        .withPropertyReceptionRooms(3)
+                        .withPropertyKitchens(5)
+                        .withPropertyAge(TWENTIES_THIRTIES)
+                        .withFloorArea(190.0)
+                        .withFloorAreaUnit(HECTARES)
+                        .withDisplayPropertyType("Modern Detached House")
+                        .withPropertyType(BUNGALOWS)
+                        .withPropertyStyle(DETACHED_HOUSE)
+                        .withAvailability(LET)
+                        .withRent(valueOf(4534))
+                        .withRentFrequency(PW)
+                        .withIsLetPOA(false)
+                        .withIsStudentProperty(true)
+                        .withLettingFeePolicyHeadline("Fees Apply")
+                        .withLettingFeePolicyDetails("bla")
+                        .withImages(asList(anImage()
+                                        .withUrl("url2")
+                                        .withModified(of(2006, 5, 9, 12, 44))
+                                        .build()
+                                , anImage()
+                                        .withUrl("url1")
+                                        .withModified(of(2005, 8, 11, 11, 44))
+                                        .build()
+                        ))
+                        .withFloorplans(asList(aFloorplan()
+                                        .withUrl("url3")
+                                        .withModified(of(2007, 1, 1, 2, 3))
+                                        .build()
+                                , aFloorplan()
+                                        .withUrl("url4")
+                                        .withModified(of(2008, 1, 2, 3, 5))
+                                        .build()
+                        ))
+                        .withBrochures(asList(aBrochure()
+                                        .withUrl("url5")
+                                        .withModified(of(2009, 8, 11, 11, 44))
+                                        .build()
+                                , aBrochure()
+                                        .withUrl("url6")
+                                        .withModified(of(2010, 5, 9, 12, 44))
+                                        .build()
+                        ))
+                        .withVirtualTours(asList(aVirtualTour()
+                                        .withUrl("url7")
+                                        .withModified(of(2011, 8, 11, 11, 44))
+                                        .build()
+                                , aVirtualTour()
+                                        .withUrl("url8")
+                                        .withModified(of(2012, 5, 9, 12, 44))
+                                        .build()
+                        ))
+                        .withEpcGraphs(asList(anEpcGraph()
+                                        .withUrl("url10")
+                                        .withModified(of(2014, 5, 9, 12, 44))
+                                        .build()
+                                , anEpcGraph()
+                                        .withUrl("url9")
+                                        .withModified(of(2013, 8, 11, 11, 44))
+                                        .build()
+                        ))
+                        .withEpcFrontPages(asList(anEpcFrontPage()
+                                        .withUrl("url11")
+                                        .withModified(of(2016, 8, 11, 11, 44))
+                                        .build()
+                                , anEpcFrontPage()
+                                        .withUrl("url12")
+                                        .withModified(of(2017, 5, 9, 12, 44))
+                                        .build()
+                        ))
+                        .withExternalLinks(asList(anExternalLink()
+                                        .withUrl("url13")
+                                        .withModified(of(2019, 5, 9, 12, 44))
+                                        .withDescription("b")
+                                        .build()
+                                , anExternalLink()
+                                        .withUrl("url12")
+                                        .withModified(of(2018, 8, 11, 11, 44))
+                                        .withDescription("a")
+                                        .build()
+                        ))
                         .build()
                 )
         );
