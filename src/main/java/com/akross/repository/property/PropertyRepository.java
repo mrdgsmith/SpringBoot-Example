@@ -55,21 +55,16 @@ public class PropertyRepository implements com.akross.repository.PropertyReposit
                 , maximumPrice
                 , propertyTypes
                 , bedroomAmount);
-        return com.akross.domain.property.container.Property.PropertyBuilder.aProperty()
-                .withResidentialLettings(getResidentialLettings(
-                        propertiesBySearchCriteria.parallelStream()
-                                .filter(PropertyRepository::isResidentialLetting)
-                                .map(com.akross.repository.property.entity
-                                        .residentialsalesandletting.residentialletting.ResidentialLetting.class::cast)
-                                .toArray(com.akross.repository.property.entity
-                                        .residentialsalesandletting.residentialletting.ResidentialLetting[]::new)
-                ))
-                .build();
+        return createPropertyContainer(propertiesBySearchCriteria);
     }
 
     @Override
     public com.akross.domain.property.container.Property getFeaturedProperties() {
-        return null;
+        final List<com.akross.repository.property.entity.Property> featuredProperties
+                = propertyRepositoryInMemory.getFeaturedProperties();
+
+        return createPropertyContainer(featuredProperties);
+
     }
 
     @Override
@@ -89,9 +84,14 @@ public class PropertyRepository implements com.akross.repository.PropertyReposit
     @Override
     public com.akross.domain.property.container.Property getProperties() {
         final List<com.akross.repository.property.entity.Property> properties = propertyRepositoryInMemory.findAll();
+        return createPropertyContainer(properties);
+    }
+
+    private com.akross.domain.property.container.Property createPropertyContainer(
+            final List<com.akross.repository.property.entity.Property> featuredProperties) {
         return com.akross.domain.property.container.Property.PropertyBuilder.aProperty()
                 .withResidentialLettings(getResidentialLettings(
-                        properties.parallelStream()
+                        featuredProperties.parallelStream()
                                 .filter(PropertyRepository::isResidentialLetting)
                                 .map(com.akross.repository.property.entity
                                         .residentialsalesandletting.residentialletting.ResidentialLetting.class::cast)
