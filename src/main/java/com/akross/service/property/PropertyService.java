@@ -96,21 +96,6 @@ public class PropertyService implements com.akross.service.PropertyService {
     public com.akross.domain.property.container.Property getPropertiesBySearchCriteria(
             final String location, final BigDecimal minimumPrice, final BigDecimal maximumPrice
             , final List<PropertyType> propertyType, final Integer bedroomAmount) {
-
-//        final List<Predicate<ResidentialLetting>> filterResidentialLettingSearchCriteria = asList(
-//                residentialLetting -> location.equalsIgnoreCase(residentialLetting.getAddress3())
-//                , residentialLetting -> minimumPrice.compareTo(residentialLetting.getRent()) <= 0
-//                , residentialLetting -> maximumPrice.compareTo(residentialLetting.getRent()) >= 0
-//                , residentialLetting -> propertyType.contains(residentialLetting.getPropertyType())
-//                , residentialLetting -> bedroomAmount.equals(residentialLetting.getPropertyBedrooms())
-//        );
-//
-//        final Property properties = propertyClient.getProperties();
-//        final List<ResidentialLetting> residentialLettings = properties.getResidentialLettings().parallelStream()
-//                .filter(filterResidentialLettingSearchCriteria.stream()
-//                        .reduce(Predicate::and).orElse(v -> true))
-//                .collect(toList());
-//        return getAllProperties(residentialLettings);
         return propertyRepository.getPropertiesBySearchCriteria(location, minimumPrice, maximumPrice
                 , propertyType, bedroomAmount);
     }

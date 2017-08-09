@@ -2,6 +2,7 @@ package com.akross.service.property;
 
 
 import com.akross.domain.property.container.Property;
+import com.akross.domain.property.residentialsalesandletting.PropertyType;
 import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.exception.property.PropertyNotFoundException;
 import com.akross.repository.PropertyRepository;
@@ -13,6 +14,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.math.BigDecimal;
 import java.time.LocalTime;
 import java.util.List;
 
@@ -310,22 +312,20 @@ public class PropertyServiceTest {
 
     @Test
     public void shouldReturnAllPropertiesWithSearchCriteria() {
-//        when(propertyRepository.getProperties().getResidentialLettings())
-//                .thenReturn(createResidentialLettingProperties());
-
-        when(propertyRepository.getPropertiesBySearchCriteria("london"
-                , valueOf(2000)
-                , valueOf(4000)
-                , asList(HOUSE, BUNGALOWS), 3))
+        final String location = "london";
+        final BigDecimal minimumPrice = valueOf(2000);
+        final BigDecimal maximumPrice = valueOf(4000);
+        final List<PropertyType> propertyTypes = asList(HOUSE, BUNGALOWS);
+        final int bedroomAmount = 3;
+        when(propertyRepository.getPropertiesBySearchCriteria(location, minimumPrice, maximumPrice, propertyTypes
+                , bedroomAmount))
                 .thenReturn(aProperty()
                         .withResidentialLettings(createResidentialLettingProperties())
                         .build()
                 );
 
-        final Property actualProperty = propertyService.getPropertiesBySearchCriteria("london"
-                , valueOf(2000)
-                , valueOf(4000)
-                , asList(HOUSE, BUNGALOWS), 3);
+        final Property actualProperty = propertyService.getPropertiesBySearchCriteria(location, minimumPrice
+                , maximumPrice, propertyTypes, bedroomAmount);
 
         assertThat(actualProperty.getResidentialLettings(), containsInAnyOrder(
                 aResidentialLetting()
@@ -360,10 +360,8 @@ public class PropertyServiceTest {
                         .build()
                 )
         );
-        verify(propertyRepository).getPropertiesBySearchCriteria("london"
-                , valueOf(2000)
-                , valueOf(4000)
-                , asList(HOUSE, BUNGALOWS), 3);
+        verify(propertyRepository).getPropertiesBySearchCriteria(location, minimumPrice, maximumPrice, propertyTypes
+                , bedroomAmount);
         verifyNoMoreInteractions(propertyRepository);
     }
 
