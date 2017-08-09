@@ -4,6 +4,7 @@ import com.akross.domain.property.Property;
 import com.akross.domain.property.residentialsalesandletting.PropertyType;
 import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.domain.property.utilities.PropertyConverter;
+import com.akross.exception.property.PropertyNotFoundException;
 import com.akross.repository.PropertyRepositoryInMemory;
 
 import java.math.BigDecimal;
@@ -45,7 +46,7 @@ public class PropertyRepository implements com.akross.repository.PropertyReposit
                     .convertToResidentialLetting((com.akross.repository.property.entity
                             .residentialsalesandletting.residentialletting.ResidentialLetting) property));
         }
-        return null;
+        throw new PropertyNotFoundException(propertyId);
     }
 
     @Override

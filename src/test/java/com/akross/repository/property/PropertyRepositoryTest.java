@@ -2,6 +2,7 @@ package com.akross.repository.property;
 
 import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder;
 import com.akross.domain.property.utilities.PropertyConverter;
+import com.akross.exception.property.PropertyNotFoundException;
 import com.akross.repository.PropertyRepositoryInMemory;
 import com.akross.repository.property.entity.Property;
 import com.akross.repository.property.entity.residentialsalesandletting.residentialletting.ResidentialLetting;
@@ -25,6 +26,7 @@ import static java.time.Month.AUGUST;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.junit.Assert.assertThat;
+import static org.junit.Assert.fail;
 import static org.junit.rules.ExpectedException.none;
 import static org.mockito.Mockito.*;
 
@@ -173,10 +175,10 @@ public class PropertyRepositoryTest {
                         .withTimeLastModified(LocalTime.of(21, 55, 10))
                         .build());
 
-        final com.akross.domain.property.Property property = propertyRepository.getProperty(propertyId);
-        assertThat(property, instanceOf(com.akross.domain.property.residentialsalesandletting
+        final com.akross.domain.property.Property actualProperty = propertyRepository.getProperty(propertyId);
+        assertThat(actualProperty, instanceOf(com.akross.domain.property.residentialsalesandletting
                 .residentialletting.ResidentialLetting.class));
-        assertThat(property, is(ResidentialLettingBuilder.aResidentialLetting()
+        assertThat(actualProperty, is(ResidentialLettingBuilder.aResidentialLetting()
                         .withPropertyId(3L)
                         .withDepartment(LETTINGS)
                         .withIsFeaturedProperty(true)
@@ -196,4 +198,19 @@ public class PropertyRepositoryTest {
         verifyNoMoreInteractions(propertyRepositoryInMemory, propertyConverter);
     }
 
+    @Test
+    public void shouldThrowNotFoundExceptionWhenPropertyNotFound() {
+        final Long propertyId = 1L;
+        when(propertyRepositoryInMemory.findOne(propertyId)).thenReturn(null);
+        try {
+            propertyRepository.getProperty(propertyId);
+            fail("My method didn't throw when I expected it to");
+        } catch (final PropertyNotFoundException propertyNotFoundException) {
+            assertThat(propertyNotFoundException.getMessage()
+                    , is("Property Id " + propertyId + " can not be found"));
+            verify(propertyRepositoryInMemory).findOne(propertyId);
+            verifyZeroInteractions(propertyConverter);
+            verifyNoMoreInteractions(propertyRepositoryInMemory, propertyConverter);
+        }
+    }
 }
