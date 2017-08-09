@@ -366,19 +366,11 @@ public class PropertyServiceTest {
     }
 
     @Test
-    public void shouldGetMostRecentFeaturedResidentialLettingProperties() {
-//        when(propertyClient.getProperties().getResidentialLettings())
-//                .thenReturn(concat(createInvalidFeaturedResidentialLettingProperties().stream()
-//                        , createValidFeaturedResidentialLettingProperties().stream())
-//                        .collect(toList()));
-
-        when(propertyRepository.getFeaturedProperties())
-                .thenReturn(
-                        aProperty()
-                                .withResidentialLettings(createResidentialLettingProperties())
-                                .build()
-                );
-
+    public void shouldGetFeaturedProperties() {
+        when(propertyRepository.getFeaturedProperties()).thenReturn(aProperty()
+                .withResidentialLettings(createResidentialLettingProperties())
+                .build()
+        );
 
         final Property actualProperty = propertyService.getProperties(true);
         assertThat(actualProperty.getResidentialLettings(), containsInAnyOrder(

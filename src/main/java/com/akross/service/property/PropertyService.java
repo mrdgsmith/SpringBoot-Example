@@ -80,16 +80,7 @@ public class PropertyService implements com.akross.service.PropertyService {
 
     @Override
     public com.akross.domain.property.container.Property getProperties(final Boolean featured) {
-//        final Property properties = propertyClient.getProperties();
-//        final List<ResidentialLetting> residentialLettings = properties.getResidentialLettings();
-//        if (featured) {
-//            return aProperty()
-//                    .withResidentialLettings(getFeaturedResidentialLettings(residentialLettings))
-//                    .build();
-//        } else {
-//            return getAllProperties(residentialLettings);
-//        }
-        return featured ? propertyRepository.getFeaturedProperties() : propertyRepository.getProperties();
+        return propertyRepository.getFeaturedProperties();
     }
 
     @Override
