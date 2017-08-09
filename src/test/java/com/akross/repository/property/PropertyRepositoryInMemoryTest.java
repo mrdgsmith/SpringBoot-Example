@@ -517,7 +517,7 @@ public class PropertyRepositoryInMemoryTest {
     }
 
     @Test
-    public void shouldGetMostRecentFeaturedResidentialLettingProperties() {
+    public void shouldGetMostRecentFeaturedProperties() {
         propertyRepositoryInMemory.save(concat(createInvalidFeaturedResidentialLettingProperties().stream()
                 , createValidFeaturedResidentialLettingProperties().stream())
                 .collect(toList())
