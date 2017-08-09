@@ -26,13 +26,13 @@ public interface PropertyRepositoryInMemory<T extends Property> extends JpaRepos
             " lower(property.address3) = lower(:location)" +
             " AND property.rent >= :minimumPrice" +
             " AND property.rent <= :maximumPrice" +
-            " AND property.propertyType IN :propertyType" +
+            " AND property.propertyType IN :propertyTypes" +
             " AND property.propertyBedrooms = :bedroomAmount" +
             " ORDER BY " + DATE_LAST_MODIFIED + " DESC, " + TIME_LAST_MODIFIED + " ASC")
     List<T> getPropertiesBySearchCriteria(@Param("location") final String location
             , @Param("minimumPrice") final BigDecimal minimumPrice
             , @Param("maximumPrice") final BigDecimal maximumPrice
-            , @Param("propertyType") final List<PropertyType> propertyTypes
+            , @Param("propertyTypes") final List<PropertyType> propertyTypes
             , @Param("bedroomAmount") final Integer bedroomAmount
     );
 
