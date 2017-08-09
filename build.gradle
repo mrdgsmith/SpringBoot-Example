@@ -24,6 +24,7 @@ repositories {
 
 ext {
     jacksonVersion = "2.8.9"
+    h2Version = "1.4.196"
 }
 
 dependencies {
@@ -35,7 +36,7 @@ dependencies {
     compile(group: "com.fasterxml.jackson.dataformat", name: "jackson-dataformat-xml", version: "$jacksonVersion")
     compile(group: "com.fasterxml.jackson.datatype", name: "jackson-datatype-jsr310", version: "$jacksonVersion")
     compile(group: "org.springframework.boot", name: "spring-boot-starter-data-jpa")
-    compile(group: "com.h2database", name: "h2")
+    compile(group: "com.h2database", name: "h2", version: "$h2Version")
     //Test dependencies
     testCompile(group: "org.springframework.boot", name: "spring-boot-starter-test")
 }
