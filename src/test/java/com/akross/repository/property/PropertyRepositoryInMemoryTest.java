@@ -453,7 +453,7 @@ public class PropertyRepositoryInMemoryTest {
     }
 
     @Test
-    public void shouldThrowNotFoundExceptionWhenPropertyNotFound() {
+    public void shouldReturnNullWhenNoRecordFound() {
         propertyRepositoryInMemory.save(createResidentialLettingProperties());
         final Property actualResidentialLetting = propertyRepositoryInMemory.findOne(0L);
         assertThat(actualResidentialLetting, nullValue());
