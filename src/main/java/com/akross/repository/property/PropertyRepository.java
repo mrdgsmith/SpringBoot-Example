@@ -10,8 +10,10 @@ import com.akross.repository.PropertyRepositoryInMemory;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 import static com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
+import static java.util.stream.Collectors.toList;
 
 public class PropertyRepository implements com.akross.repository.PropertyRepository {
 
@@ -35,23 +37,9 @@ public class PropertyRepository implements com.akross.repository.PropertyReposit
         };
     }
 
-    @Override
-    @SuppressWarnings("unchecked")
-    public <T extends Property> T getProperty(final Long propertyId) {
-        final com.akross.repository.property.entity.Property property
-                = (com.akross.repository.property.entity.Property) propertyRepositoryInMemory.findOne(propertyId);
-        if (property instanceof com.akross.repository.property.entity.residentialsalesandletting
-                .residentialletting.ResidentialLetting) {
-            return (T) setRentForResidentialLettingPropertyDisplayFunction().apply(propertyConverter
-                    .convertToResidentialLetting((com.akross.repository.property.entity
-                            .residentialsalesandletting.residentialletting.ResidentialLetting) property));
-        }
-        throw new PropertyNotFoundException(propertyId);
-    }
-
-    @Override
-    public com.akross.domain.property.container.Property getProperties() {
-        return null;
+    private static boolean isResidentialLetting(final com.akross.repository.property.entity.Property property) {
+        return property instanceof com.akross.repository.property.entity.residentialsalesandletting
+                .residentialletting.ResidentialLetting;
     }
 
     @Override
@@ -66,4 +54,42 @@ public class PropertyRepository implements com.akross.repository.PropertyReposit
         return null;
     }
 
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T extends Property> T getProperty(final Long propertyId) {
+        final com.akross.repository.property.entity.Property property
+                = (com.akross.repository.property.entity.Property) propertyRepositoryInMemory.findOne(propertyId);
+        if (isResidentialLetting(property)) {
+            return (T) getResidentialLettings((com.akross.repository.property.entity.residentialsalesandletting
+                    .residentialletting.ResidentialLetting) property).stream()
+                    .findFirst()
+                    .orElseThrow(() -> new PropertyNotFoundException(propertyId));
+        }
+        throw new PropertyNotFoundException(propertyId);
+    }
+
+    @Override
+    @SuppressWarnings("unchecked")
+    public com.akross.domain.property.container.Property getProperties() {
+        final List<com.akross.repository.property.entity.Property> properties = propertyRepositoryInMemory.findAll();
+        return com.akross.domain.property.container.Property.PropertyBuilder.aProperty()
+                .withResidentialLettings(getResidentialLettings(
+                        properties.parallelStream()
+                                .filter(PropertyRepository::isResidentialLetting)
+                                .map(com.akross.repository.property.entity
+                                        .residentialsalesandletting.residentialletting.ResidentialLetting.class::cast)
+                                .toArray(com.akross.repository.property.entity
+                                        .residentialsalesandletting.residentialletting.ResidentialLetting[]::new)
+                ))
+                .build();
+    }
+
+    private List<ResidentialLetting> getResidentialLettings(
+            final com.akross.repository.property.entity.residentialsalesandletting.residentialletting
+                    .ResidentialLetting... residentialLettings) {
+        return Stream.of(residentialLettings)
+                .map(residentialLetting -> setRentForResidentialLettingPropertyDisplayFunction()
+                        .apply(propertyConverter.convertToResidentialLetting(residentialLetting)))
+                .collect(toList());
+    }
 }
