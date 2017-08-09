@@ -1,5 +1,6 @@
 package com.akross.repository.property;
 
+import com.akross.domain.property.residentialsalesandletting.PropertyType;
 import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder;
 import com.akross.domain.property.utilities.PropertyConverter;
 import com.akross.exception.property.PropertyNotFoundException;
@@ -14,6 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.util.List;
@@ -29,6 +31,7 @@ import static java.time.LocalDate.of;
 import static java.time.Month.AUGUST;
 import static java.time.Month.OCTOBER;
 import static java.util.Arrays.asList;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.Matchers.hasItems;
 import static org.hamcrest.core.Is.is;
 import static org.hamcrest.core.IsInstanceOf.instanceOf;
@@ -62,7 +65,6 @@ public class PropertyRepositoryTest {
                         .withMainSummary("mainSummary3")
                         .withAddress3("london")
                         .withPropertyType(HOUSE)
-                        .withPropertyBedrooms(3)
                         .withRent(valueOf(3000))
                         .withPropertyBedrooms(3)
                         .withIsLetPOA(false)
@@ -114,43 +116,6 @@ public class PropertyRepositoryTest {
                         .build()
         );
     }
-
-//    private static List<? extends Property> createResidentialLettingProperties() {
-//        return concat(of(aResidentialLetting()
-//                        .withPropertyId(12L)
-//                        .withDepartment(SALES)
-//                        .withIsFeaturedProperty(true)
-//                        .withAvailability(LET)
-//                        .withRent(valueOf(1000))
-//                        .withIsLetPOA(true)
-//                        .withDisplayAddress("Should not be here!")
-//                        .withDateLastModified(LocalDate.of(2015, OCTOBER, 21))
-//                        .withTimeLastModified(LocalTime.of(21, 55, 14))
-//                        .build()
-//                , aResidentialLetting()
-//                        .withPropertyId(13L)
-//                        .withDepartment(LETTINGS)
-//                        .withIsFeaturedProperty(false)
-//                        .withRent(valueOf(1000))
-//                        .withAvailability(LET)
-//                        .withIsLetPOA(true)
-//                        .withDisplayAddress("Should not be here!")
-//                        .withDateLastModified(LocalDate.of(2015, SEPTEMBER, 21))
-//                        .withTimeLastModified(LocalTime.of(21, 55, 14))
-//                        .build()
-//                , aResidentialLetting()
-//                        .withPropertyId(14L)
-//                        .withDepartment(LETTINGS)
-//                        .withIsFeaturedProperty(true)
-//                        .withRent(valueOf(1000))
-//                        .withIsLetPOA(true)
-//                        .withAvailability(WITHDRAWN)
-//                        .withDisplayAddress("Should not be here!")
-//                        .withDateLastModified(LocalDate.of(2015, NOVEMBER, 21))
-//                        .withTimeLastModified(LocalTime.of(21, 55, 14))
-//                        .build()), createValidFeaturedResidentialLettingProperties().stream())
-//                .collect(toList());
-//    }
 
     @Test
     public void shouldReturnResidentialLettingProperty() {
@@ -226,85 +191,11 @@ public class PropertyRepositoryTest {
 
     @Test
     public void shouldReturnAllProperties() {
-        final List<Property> validFeaturedResidentialLettingProperties = createValidFeaturedResidentialLettingProperties();
+        final List<Property> validFeaturedResidentialLettingProperties =
+                createValidFeaturedResidentialLettingProperties();
         when(propertyRepositoryInMemory.findAll()).thenReturn(validFeaturedResidentialLettingProperties);
 
-        when(propertyConverter.convertToResidentialLetting(aResidentialLetting()
-                .withPropertyId(5L)
-                .build()))
-                .thenReturn(ResidentialLettingBuilder.aResidentialLetting()
-                        .withPropertyId(5L)
-                        .withDepartment(LETTINGS)
-                        .withIsFeaturedProperty(true)
-                        .withAvailability(LET)
-                        .withDisplayAddress("foo3")
-                        .withMainSummary("mainSummary3")
-                        .withAddress3("london")
-                        .withPropertyType(HOUSE)
-                        .withPropertyBedrooms(3)
-                        .withRent(valueOf(3000))
-                        .withPropertyBedrooms(3)
-                        .withIsLetPOA(false)
-                        .withRentFrequency(PCM)
-                        .withDateLastModified(LocalDate.of(2015, OCTOBER, 21))
-                        .withTimeLastModified(LocalTime.of(21, 55, 12))
-                        .build());
-
-        when(propertyConverter.convertToResidentialLetting(aResidentialLetting()
-                .withPropertyId(4L)
-                .build()))
-                .thenReturn(ResidentialLettingBuilder.aResidentialLetting()
-                        .withPropertyId(4L)
-                        .withDepartment(LETTINGS)
-                        .withIsFeaturedProperty(true)
-                        .withAvailability(LET)
-                        .withDisplayAddress("foo2")
-                        .withMainSummary("mainSummary2")
-                        .withAddress3("London")
-                        .withPropertyType(BUNGALOWS)
-                        .withPropertyBedrooms(3)
-                        .withRent(valueOf(2000))
-                        .withIsLetPOA(true)
-                        .withRentFrequency(PCM)
-                        .withDateLastModified(LocalDate.of(2015, OCTOBER, 21))
-                        .withTimeLastModified(LocalTime.of(21, 55, 13))
-                        .build());
-
-
-        when(propertyConverter.convertToResidentialLetting(aResidentialLetting()
-                .withPropertyId(3L)
-                .build()))
-                .thenReturn(ResidentialLettingBuilder.aResidentialLetting()
-                        .withPropertyId(3L)
-                        .withDepartment(LETTINGS)
-                        .withIsFeaturedProperty(true)
-                        .withAvailability(LET)
-                        .withDisplayAddress("foo4")
-                        .withMainSummary("mainSummary4")
-                        .withRent(valueOf(4000))
-                        .withIsLetPOA(true)
-                        .withRentFrequency(PCM)
-                        .withDateLastModified(LocalDate.of(2015, AUGUST, 21))
-                        .withTimeLastModified(LocalTime.of(21, 55, 10))
-                        .build());
-
-        when(propertyConverter.convertToResidentialLetting(aResidentialLetting()
-                .withPropertyId(2L)
-                .build()))
-                .thenReturn(ResidentialLettingBuilder.aResidentialLetting()
-                        .withPropertyId(2L)
-                        .withDepartment(LETTINGS)
-                        .withIsFeaturedProperty(true)
-                        .withAvailability(LET)
-                        .withDisplayAddress("foo1")
-                        .withMainSummary("mainSummary1")
-                        .withRent(valueOf(1000))
-                        .withIsLetPOA(false)
-                        .withRentFrequency(PCM)
-                        .withDateLastModified(LocalDate.of(2015, AUGUST, 21))
-                        .withTimeLastModified(LocalTime.of(21, 55, 14))
-                        .build());
-
+        setupPropertyConverterWithValidFeaturedProperties();
 
         final com.akross.domain.property.container.Property actualProperties = propertyRepository.getProperties();
         assertThat(actualProperties.getResidentialLettings(), hasItems(ResidentialLettingBuilder.aResidentialLetting()
@@ -373,5 +264,220 @@ public class PropertyRepositoryTest {
                 property -> verify(propertyConverter).convertToResidentialLetting((ResidentialLetting) property)
         );
         verifyNoMoreInteractions(propertyRepositoryInMemory, propertyConverter);
+    }
+
+    @Test
+    public void shouldReturnAllPropertiesWithSearchCriteria() {
+        final String location = "london";
+        final BigDecimal minimumPrice = valueOf(2000);
+        final BigDecimal maximumPrice = valueOf(4000);
+        final List<PropertyType> propertyType = asList(HOUSE, BUNGALOWS);
+        final int bedroomAmount = 3;
+
+        when(propertyRepositoryInMemory.getPropertiesBySearchCriteria(location, minimumPrice, maximumPrice, propertyType
+                , bedroomAmount))
+                .thenReturn(asList(aResidentialLetting()
+                                .withPropertyId(5L)
+                                .withDepartment(LETTINGS)
+                                .withIsFeaturedProperty(true)
+                                .withAvailability(LET)
+                                .withDisplayAddress("foo3")
+                                .withMainSummary("mainSummary3")
+                                .withAddress3("london")
+                                .withPropertyType(HOUSE)
+                                .withPropertyBedrooms(3)
+                                .withRent(valueOf(3000))
+                                .withIsLetPOA(false)
+                                .withRentFrequency(PCM)
+                                .withDateLastModified(LocalDate.of(2015, OCTOBER, 21))
+                                .withTimeLastModified(LocalTime.of(21, 55, 12))
+                                .build()
+                        , aResidentialLetting()
+                                .withPropertyId(4L)
+                                .withDepartment(LETTINGS)
+                                .withIsFeaturedProperty(true)
+                                .withAvailability(LET)
+                                .withDisplayAddress("foo2")
+                                .withMainSummary("mainSummary2")
+                                .withAddress3("London")
+                                .withPropertyType(BUNGALOWS)
+                                .withPropertyBedrooms(3)
+                                .withRent(valueOf(2000))
+                                .withIsLetPOA(true)
+                                .withRentFrequency(PCM)
+                                .withDateLastModified(LocalDate.of(2015, OCTOBER, 21))
+                                .withTimeLastModified(LocalTime.of(21, 55, 13))
+                                .build()));
+
+        when(propertyConverter.convertToResidentialLetting(aResidentialLetting()
+                .withPropertyId(5L)
+                .build()))
+                .thenReturn(ResidentialLettingBuilder.aResidentialLetting()
+                        .withPropertyId(5L)
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withDisplayAddress("foo3")
+                        .withMainSummary("mainSummary3")
+                        .withAddress3("london")
+                        .withPropertyType(HOUSE)
+                        .withPropertyBedrooms(3)
+                        .withRent(valueOf(3000))
+                        .withIsLetPOA(false)
+                        .withRentFrequency(PCM)
+                        .withDateLastModified(LocalDate.of(2015, OCTOBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 12))
+                        .build());
+
+        when(propertyConverter.convertToResidentialLetting(aResidentialLetting()
+                .withPropertyId(4L)
+                .build()))
+                .thenReturn(ResidentialLettingBuilder.aResidentialLetting()
+                        .withPropertyId(4L)
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withDisplayAddress("foo2")
+                        .withMainSummary("mainSummary2")
+                        .withAddress3("London")
+                        .withPropertyType(BUNGALOWS)
+                        .withPropertyBedrooms(3)
+                        .withRent(valueOf(2000))
+                        .withIsLetPOA(true)
+                        .withRentFrequency(PCM)
+                        .withDateLastModified(LocalDate.of(2015, OCTOBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 13))
+                        .build());
+
+        final com.akross.domain.property.container.Property actualProperty =
+                propertyRepository.getPropertiesBySearchCriteria(location, minimumPrice, maximumPrice, propertyType
+                        , bedroomAmount);
+
+        assertThat(actualProperty.getResidentialLettings(), contains(ResidentialLettingBuilder.aResidentialLetting()
+                        .withPropertyId(5L)
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withDisplayAddress("foo3")
+                        .withMainSummary("mainSummary3")
+                        .withAddress3("london")
+                        .withPropertyType(HOUSE)
+                        .withPropertyBedrooms(3)
+                        .withRent(valueOf(3000))
+                        .withIsLetPOA(false)
+                        .withRentFrequency(PCM)
+                        .withDateLastModified(of(2015, OCTOBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 12))
+                        .build()
+                , ResidentialLettingBuilder.aResidentialLetting()
+                        .withPropertyId(4L)
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withDisplayAddress("foo2")
+                        .withMainSummary("mainSummary2")
+                        .withAddress3("London")
+                        .withPropertyType(BUNGALOWS)
+                        .withPropertyBedrooms(3)
+                        .withRent(null)
+                        .withIsLetPOA(true)
+                        .withRentFrequency(PCM)
+                        .withDateLastModified(of(2015, OCTOBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 13))
+                        .build()
+                )
+        );
+
+        verify(propertyRepositoryInMemory).getPropertiesBySearchCriteria(location
+                , minimumPrice
+                , maximumPrice
+                , propertyType
+                , bedroomAmount
+        );
+        verify(propertyConverter).convertToResidentialLetting(aResidentialLetting()
+                .withPropertyId(5L)
+                .build());
+        verify(propertyConverter).convertToResidentialLetting(aResidentialLetting()
+                .withPropertyId(4L)
+                .build());
+        verifyNoMoreInteractions(propertyRepositoryInMemory, propertyConverter);
+
+    }
+
+    private void setupPropertyConverterWithValidFeaturedProperties() {
+        when(propertyConverter.convertToResidentialLetting(aResidentialLetting()
+                .withPropertyId(5L)
+                .build()))
+                .thenReturn(ResidentialLettingBuilder.aResidentialLetting()
+                        .withPropertyId(5L)
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withDisplayAddress("foo3")
+                        .withMainSummary("mainSummary3")
+                        .withAddress3("london")
+                        .withPropertyType(HOUSE)
+                        .withPropertyBedrooms(3)
+                        .withRent(valueOf(3000))
+                        .withPropertyBedrooms(3)
+                        .withIsLetPOA(false)
+                        .withRentFrequency(PCM)
+                        .withDateLastModified(LocalDate.of(2015, OCTOBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 12))
+                        .build());
+
+        when(propertyConverter.convertToResidentialLetting(aResidentialLetting()
+                .withPropertyId(4L)
+                .build()))
+                .thenReturn(ResidentialLettingBuilder.aResidentialLetting()
+                        .withPropertyId(4L)
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withDisplayAddress("foo2")
+                        .withMainSummary("mainSummary2")
+                        .withAddress3("London")
+                        .withPropertyType(BUNGALOWS)
+                        .withPropertyBedrooms(3)
+                        .withRent(valueOf(2000))
+                        .withIsLetPOA(true)
+                        .withRentFrequency(PCM)
+                        .withDateLastModified(LocalDate.of(2015, OCTOBER, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 13))
+                        .build());
+
+        when(propertyConverter.convertToResidentialLetting(aResidentialLetting()
+                .withPropertyId(3L)
+                .build()))
+                .thenReturn(ResidentialLettingBuilder.aResidentialLetting()
+                        .withPropertyId(3L)
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withDisplayAddress("foo4")
+                        .withMainSummary("mainSummary4")
+                        .withRent(valueOf(4000))
+                        .withIsLetPOA(true)
+                        .withRentFrequency(PCM)
+                        .withDateLastModified(LocalDate.of(2015, AUGUST, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 10))
+                        .build());
+
+        when(propertyConverter.convertToResidentialLetting(aResidentialLetting()
+                .withPropertyId(2L)
+                .build()))
+                .thenReturn(ResidentialLettingBuilder.aResidentialLetting()
+                        .withPropertyId(2L)
+                        .withDepartment(LETTINGS)
+                        .withIsFeaturedProperty(true)
+                        .withAvailability(LET)
+                        .withDisplayAddress("foo1")
+                        .withMainSummary("mainSummary1")
+                        .withRent(valueOf(1000))
+                        .withIsLetPOA(false)
+                        .withRentFrequency(PCM)
+                        .withDateLastModified(LocalDate.of(2015, AUGUST, 21))
+                        .withTimeLastModified(LocalTime.of(21, 55, 14))
+                        .build());
     }
 }

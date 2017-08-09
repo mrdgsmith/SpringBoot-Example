@@ -16,7 +16,7 @@ public interface PropertyRepository {
             final String location
             , final BigDecimal minimumPrice
             , final BigDecimal maximumPrice
-            , final List<PropertyType> propertyType
+            , final List<PropertyType> propertyTypes
             , final Integer bedroomAmount);
 
     com.akross.domain.property.container.Property getFeaturedProperties();
