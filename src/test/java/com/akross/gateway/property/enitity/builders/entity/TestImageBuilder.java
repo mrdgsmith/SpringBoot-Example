@@ -15,12 +15,12 @@ public final class TestImageBuilder {
         return new TestImageBuilder();
     }
 
-    public TestImageBuilder withModified(LocalDateTime modified) {
+    public TestImageBuilder withModified(final LocalDateTime modified) {
         this.modified = modified;
         return this;
     }
 
-    public TestImageBuilder withUrl(String url) {
+    public TestImageBuilder withUrl(final String url) {
         this.url = url;
         return this;
     }

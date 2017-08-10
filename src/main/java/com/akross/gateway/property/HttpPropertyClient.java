@@ -1,12 +1,9 @@
 package com.akross.gateway.property;
 
-import com.akross.gateway.property.configuration.JupixPropertiesRestClientConfiguration;
-import com.akross.gateway.property.entity.Property;
-import org.springframework.core.ParameterizedTypeReference;
+import com.akross.gateway.property.configuration.JupixPropertiesRestClientProperties;
+import com.akross.gateway.property.entity.Properties;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
-
-import java.util.List;
 
 import static org.springframework.http.RequestEntity.get;
 import static org.springframework.web.util.UriComponentsBuilder.newInstance;
@@ -17,22 +14,21 @@ public class HttpPropertyClient {
     private static final String PASSPHRASE = "passphrase";
     private static final String VERSION = "version";
     private final RestTemplate jupixPropertiesRestClient;
-    private final JupixPropertiesRestClientConfiguration jupixPropertiesRestClientConfiguration;
+    private final JupixPropertiesRestClientProperties jupixPropertiesRestClientProperties;
 
     public HttpPropertyClient(final RestTemplate jupixPropertiesRestClient
-            , final JupixPropertiesRestClientConfiguration jupixPropertiesRestClientConfiguration) {
+            , final JupixPropertiesRestClientProperties jupixPropertiesRestClientProperties) {
         this.jupixPropertiesRestClient = jupixPropertiesRestClient;
-        this.jupixPropertiesRestClientConfiguration = jupixPropertiesRestClientConfiguration;
+        this.jupixPropertiesRestClientProperties = jupixPropertiesRestClientProperties;
     }
 
-    public List<Property> getProperties() {
+    public Properties getProperties() {
         final UriComponentsBuilder builder = newInstance()
-                .path(jupixPropertiesRestClientConfiguration.getPropertyPath())
-                .queryParam(CLIENT_ID, jupixPropertiesRestClientConfiguration.getClientId())
-                .queryParam(PASSPHRASE, jupixPropertiesRestClientConfiguration.getPassphrase())
-                .queryParam(VERSION, jupixPropertiesRestClientConfiguration.getVersion());
-        return jupixPropertiesRestClient.exchange(get(builder.build().encode().toUri()).build()
-                , new ParameterizedTypeReference<List<Property>>() {
-                }).getBody();
+                .path(jupixPropertiesRestClientProperties.getPath())
+                .queryParam(CLIENT_ID, jupixPropertiesRestClientProperties.getClientId())
+                .queryParam(PASSPHRASE, jupixPropertiesRestClientProperties.getPassphrase())
+                .queryParam(VERSION, jupixPropertiesRestClientProperties.getVersion());
+        return jupixPropertiesRestClient.exchange(get(builder.build().encode().toUri()).build(), Properties.class)
+                .getBody();
     }
 }

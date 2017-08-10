@@ -1,6 +1,7 @@
 package com.akross.gateway.property.enitity.builders.entity;
 
 import com.akross.gateway.property.entity.EpcFrontPage;
+import com.akross.gateway.property.entity.UrlModified;
 
 import java.time.LocalDateTime;
 
@@ -15,17 +16,17 @@ public final class TestEpcFrontPageBuilder {
         return new TestEpcFrontPageBuilder();
     }
 
-    public TestEpcFrontPageBuilder withModified(LocalDateTime modified) {
+    public TestEpcFrontPageBuilder withModified(final LocalDateTime modified) {
         this.modified = modified;
         return this;
     }
 
-    public TestEpcFrontPageBuilder withUrl(String url) {
+    public TestEpcFrontPageBuilder withUrl(final String url) {
         this.url = url;
         return this;
     }
 
-    public EpcFrontPage build() {
+    public UrlModified build() {
         return new EpcFrontPage(modified, url);
     }
 }

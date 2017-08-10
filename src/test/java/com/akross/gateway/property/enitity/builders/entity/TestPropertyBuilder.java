@@ -5,6 +5,7 @@ import com.akross.gateway.property.entity.*;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.List;
 
 public final class TestPropertyBuilder {
     private Long propertyId;
@@ -14,7 +15,7 @@ public final class TestPropertyBuilder {
     private String department;
     private String referenceNumber;
     private String addressName;
-    private Integer addressNumber;
+    private String addressNumber;
     private String addressStreet;
     private String address2;
     private String address3;
@@ -38,7 +39,7 @@ public final class TestPropertyBuilder {
     private Integer regionId;
     private Double latitude;
     private Double longitude;
-    private Flags flags;
+    private List<String> flags;
     private String mainSummary;
     private String fullDescription;
     private Integer propertyBedrooms;
@@ -78,18 +79,18 @@ public final class TestPropertyBuilder {
     private Double siteArea;
     private String siteAreaUnits;
     private String strapLine;
-    private PropertyTypes propertyTypes;
+    private List<Integer> propertyTypes;
     private Double landAreaTo;
     private Double landAreaFrom;
     private String landAreaUnits;
     private Integer forSaleLeaseLength;
-    private Images images;
-    private Floorplans floorplans;
-    private EpcGraphs epcGraphs;
-    private EpcFrontPages epcFrontPages;
-    private Brochures brochures;
-    private VirtualTours virtualTours;
-    private ExternalLinks externalLinks;
+    private List<Image> images;
+    private List<Floorplan> floorplans;
+    private List<EpcGraph> epcGraphs;
+    private List<EpcFrontPage> epcFrontPages;
+    private List<Brochure> brochures;
+    private List<VirtualTour> virtualTours;
+    private List<ExternalLink> externalLinks;
 
     private TestPropertyBuilder() {
     }
@@ -98,417 +99,417 @@ public final class TestPropertyBuilder {
         return new TestPropertyBuilder();
     }
 
-    public TestPropertyBuilder withPropertyId(Long propertyId) {
+    public TestPropertyBuilder withPropertyId(final Long propertyId) {
         this.propertyId = propertyId;
         return this;
     }
 
-    public TestPropertyBuilder withBranchId(Integer branchId) {
+    public TestPropertyBuilder withBranchId(final Integer branchId) {
         this.branchId = branchId;
         return this;
     }
 
-    public TestPropertyBuilder withClientName(String clientName) {
+    public TestPropertyBuilder withClientName(final String clientName) {
         this.clientName = clientName;
         return this;
     }
 
-    public TestPropertyBuilder withBranchName(String branchName) {
+    public TestPropertyBuilder withBranchName(final String branchName) {
         this.branchName = branchName;
         return this;
     }
 
-    public TestPropertyBuilder withDepartment(String department) {
+    public TestPropertyBuilder withDepartment(final String department) {
         this.department = department;
         return this;
     }
 
-    public TestPropertyBuilder withReferenceNumber(String referenceNumber) {
+    public TestPropertyBuilder withReferenceNumber(final String referenceNumber) {
         this.referenceNumber = referenceNumber;
         return this;
     }
 
-    public TestPropertyBuilder withAddressName(String addressName) {
+    public TestPropertyBuilder withAddressName(final String addressName) {
         this.addressName = addressName;
         return this;
     }
 
-    public TestPropertyBuilder withAddressNumber(Integer addressNumber) {
+    public TestPropertyBuilder withAddressNumber(final String addressNumber) {
         this.addressNumber = addressNumber;
         return this;
     }
 
-    public TestPropertyBuilder withAddressStreet(String addressStreet) {
+    public TestPropertyBuilder withAddressStreet(final String addressStreet) {
         this.addressStreet = addressStreet;
         return this;
     }
 
-    public TestPropertyBuilder withAddress2(String address2) {
+    public TestPropertyBuilder withAddress2(final String address2) {
         this.address2 = address2;
         return this;
     }
 
-    public TestPropertyBuilder withAddress3(String address3) {
+    public TestPropertyBuilder withAddress3(final String address3) {
         this.address3 = address3;
         return this;
     }
 
-    public TestPropertyBuilder withAddress4(String address4) {
+    public TestPropertyBuilder withAddress4(final String address4) {
         this.address4 = address4;
         return this;
     }
 
-    public TestPropertyBuilder withAddressPostcode(String addressPostcode) {
+    public TestPropertyBuilder withAddressPostcode(final String addressPostcode) {
         this.addressPostcode = addressPostcode;
         return this;
     }
 
-    public TestPropertyBuilder withCountry(String country) {
+    public TestPropertyBuilder withCountry(final String country) {
         this.country = country;
         return this;
     }
 
-    public TestPropertyBuilder withDisplayAddress(String displayAddress) {
+    public TestPropertyBuilder withDisplayAddress(final String displayAddress) {
         this.displayAddress = displayAddress;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyFeature1(String propertyFeature1) {
+    public TestPropertyBuilder withPropertyFeature1(final String propertyFeature1) {
         this.propertyFeature1 = propertyFeature1;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyFeature2(String propertyFeature2) {
+    public TestPropertyBuilder withPropertyFeature2(final String propertyFeature2) {
         this.propertyFeature2 = propertyFeature2;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyFeature3(String propertyFeature3) {
+    public TestPropertyBuilder withPropertyFeature3(final String propertyFeature3) {
         this.propertyFeature3 = propertyFeature3;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyFeature4(String propertyFeature4) {
+    public TestPropertyBuilder withPropertyFeature4(final String propertyFeature4) {
         this.propertyFeature4 = propertyFeature4;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyFeature5(String propertyFeature5) {
+    public TestPropertyBuilder withPropertyFeature5(final String propertyFeature5) {
         this.propertyFeature5 = propertyFeature5;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyFeature6(String propertyFeature6) {
+    public TestPropertyBuilder withPropertyFeature6(final String propertyFeature6) {
         this.propertyFeature6 = propertyFeature6;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyFeature7(String propertyFeature7) {
+    public TestPropertyBuilder withPropertyFeature7(final String propertyFeature7) {
         this.propertyFeature7 = propertyFeature7;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyFeature8(String propertyFeature8) {
+    public TestPropertyBuilder withPropertyFeature8(final String propertyFeature8) {
         this.propertyFeature8 = propertyFeature8;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyFeature9(String propertyFeature9) {
+    public TestPropertyBuilder withPropertyFeature9(final String propertyFeature9) {
         this.propertyFeature9 = propertyFeature9;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyFeature10(String propertyFeature10) {
+    public TestPropertyBuilder withPropertyFeature10(final String propertyFeature10) {
         this.propertyFeature10 = propertyFeature10;
         return this;
     }
 
-    public TestPropertyBuilder withDateLastModified(LocalDate dateLastModified) {
+    public TestPropertyBuilder withDateLastModified(final LocalDate dateLastModified) {
         this.dateLastModified = dateLastModified;
         return this;
     }
 
-    public TestPropertyBuilder withTimeLastModified(LocalTime timeLastModified) {
+    public TestPropertyBuilder withTimeLastModified(final LocalTime timeLastModified) {
         this.timeLastModified = timeLastModified;
         return this;
     }
 
-    public TestPropertyBuilder withFeaturedProperty(Integer featuredProperty) {
+    public TestPropertyBuilder withFeaturedProperty(final Integer featuredProperty) {
         this.featuredProperty = featuredProperty;
         return this;
     }
 
-    public TestPropertyBuilder withRegionId(Integer regionId) {
+    public TestPropertyBuilder withRegionId(final Integer regionId) {
         this.regionId = regionId;
         return this;
     }
 
-    public TestPropertyBuilder withLatitude(Double latitude) {
+    public TestPropertyBuilder withLatitude(final Double latitude) {
         this.latitude = latitude;
         return this;
     }
 
-    public TestPropertyBuilder withLongitude(Double longitude) {
+    public TestPropertyBuilder withLongitude(final Double longitude) {
         this.longitude = longitude;
         return this;
     }
 
-    public TestPropertyBuilder withFlags(Flags flags) {
+    public TestPropertyBuilder withFlags(final List<String> flags) {
         this.flags = flags;
         return this;
     }
 
-    public TestPropertyBuilder withMainSummary(String mainSummary) {
+    public TestPropertyBuilder withMainSummary(final String mainSummary) {
         this.mainSummary = mainSummary;
         return this;
     }
 
-    public TestPropertyBuilder withFullDescription(String fullDescription) {
+    public TestPropertyBuilder withFullDescription(final String fullDescription) {
         this.fullDescription = fullDescription;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyBedrooms(Integer propertyBedrooms) {
+    public TestPropertyBuilder withPropertyBedrooms(final Integer propertyBedrooms) {
         this.propertyBedrooms = propertyBedrooms;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyBathrooms(Integer propertyBathrooms) {
+    public TestPropertyBuilder withPropertyBathrooms(final Integer propertyBathrooms) {
         this.propertyBathrooms = propertyBathrooms;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyEnsuites(Integer propertyEnsuites) {
+    public TestPropertyBuilder withPropertyEnsuites(final Integer propertyEnsuites) {
         this.propertyEnsuites = propertyEnsuites;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyReceptionRooms(Integer propertyReceptionRooms) {
+    public TestPropertyBuilder withPropertyReceptionRooms(final Integer propertyReceptionRooms) {
         this.propertyReceptionRooms = propertyReceptionRooms;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyKitchens(Integer propertyKitchens) {
+    public TestPropertyBuilder withPropertyKitchens(final Integer propertyKitchens) {
         this.propertyKitchens = propertyKitchens;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyAge(Integer propertyAge) {
+    public TestPropertyBuilder withPropertyAge(final Integer propertyAge) {
         this.propertyAge = propertyAge;
         return this;
     }
 
-    public TestPropertyBuilder withFloorArea(Double floorArea) {
+    public TestPropertyBuilder withFloorArea(final Double floorArea) {
         this.floorArea = floorArea;
         return this;
     }
 
-    public TestPropertyBuilder withFloorAreaUnits(String floorAreaUnits) {
+    public TestPropertyBuilder withFloorAreaUnits(final String floorAreaUnits) {
         this.floorAreaUnits = floorAreaUnits;
         return this;
     }
 
-    public TestPropertyBuilder withDisplayPropertyType(String displayPropertyType) {
+    public TestPropertyBuilder withDisplayPropertyType(final String displayPropertyType) {
         this.displayPropertyType = displayPropertyType;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyType(Integer propertyType) {
+    public TestPropertyBuilder withPropertyType(final Integer propertyType) {
         this.propertyType = propertyType;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyStyle(Integer propertyStyle) {
+    public TestPropertyBuilder withPropertyStyle(final Integer propertyStyle) {
         this.propertyStyle = propertyStyle;
         return this;
     }
 
-    public TestPropertyBuilder withAvailability(Integer availability) {
+    public TestPropertyBuilder withAvailability(final Integer availability) {
         this.availability = availability;
         return this;
     }
 
-    public TestPropertyBuilder withPrice(BigDecimal price) {
+    public TestPropertyBuilder withPrice(final BigDecimal price) {
         this.price = price;
         return this;
     }
 
-    public TestPropertyBuilder withPriceQualifier(Integer priceQualifier) {
+    public TestPropertyBuilder withPriceQualifier(final Integer priceQualifier) {
         this.priceQualifier = priceQualifier;
         return this;
     }
 
-    public TestPropertyBuilder withForSalePOA(Integer forSalePOA) {
+    public TestPropertyBuilder withForSalePOA(final Integer forSalePOA) {
         this.forSalePOA = forSalePOA;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyTenure(Integer propertyTenure) {
+    public TestPropertyBuilder withPropertyTenure(final Integer propertyTenure) {
         this.propertyTenure = propertyTenure;
         return this;
     }
 
-    public TestPropertyBuilder withSaleBy(Integer saleBy) {
+    public TestPropertyBuilder withSaleBy(final Integer saleBy) {
         this.saleBy = saleBy;
         return this;
     }
 
-    public TestPropertyBuilder withDevelopmentOpportunity(Integer developmentOpportunity) {
+    public TestPropertyBuilder withDevelopmentOpportunity(final Integer developmentOpportunity) {
         this.developmentOpportunity = developmentOpportunity;
         return this;
     }
 
-    public TestPropertyBuilder withInvestmentOpportunity(Integer investmentOpportunity) {
+    public TestPropertyBuilder withInvestmentOpportunity(final Integer investmentOpportunity) {
         this.investmentOpportunity = investmentOpportunity;
         return this;
     }
 
-    public TestPropertyBuilder withEstimatedRentalIncome(BigDecimal estimatedRentalIncome) {
+    public TestPropertyBuilder withEstimatedRentalIncome(final BigDecimal estimatedRentalIncome) {
         this.estimatedRentalIncome = estimatedRentalIncome;
         return this;
     }
 
-    public TestPropertyBuilder withRent(BigDecimal rent) {
+    public TestPropertyBuilder withRent(final BigDecimal rent) {
         this.rent = rent;
         return this;
     }
 
-    public TestPropertyBuilder withRentFrequency(Integer rentFrequency) {
+    public TestPropertyBuilder withRentFrequency(final Integer rentFrequency) {
         this.rentFrequency = rentFrequency;
         return this;
     }
 
-    public TestPropertyBuilder withToLetPOA(Integer toLetPOA) {
+    public TestPropertyBuilder withToLetPOA(final Integer toLetPOA) {
         this.toLetPOA = toLetPOA;
         return this;
     }
 
-    public TestPropertyBuilder withStudentProperty(Integer studentProperty) {
+    public TestPropertyBuilder withStudentProperty(final Integer studentProperty) {
         this.studentProperty = studentProperty;
         return this;
     }
 
-    public TestPropertyBuilder withLettingFeePolicyHeadline(String lettingFeePolicyHeadline) {
+    public TestPropertyBuilder withLettingFeePolicyHeadline(final String lettingFeePolicyHeadline) {
         this.lettingFeePolicyHeadline = lettingFeePolicyHeadline;
         return this;
     }
 
-    public TestPropertyBuilder withLettingFeePolicyDetails(String lettingFeePolicyDetails) {
+    public TestPropertyBuilder withLettingFeePolicyDetails(final String lettingFeePolicyDetails) {
         this.lettingFeePolicyDetails = lettingFeePolicyDetails;
         return this;
     }
 
-    public TestPropertyBuilder withForSale(Integer forSale) {
+    public TestPropertyBuilder withForSale(final Integer forSale) {
         this.forSale = forSale;
         return this;
     }
 
-    public TestPropertyBuilder withToLet(Integer toLet) {
+    public TestPropertyBuilder withToLet(final Integer toLet) {
         this.toLet = toLet;
         return this;
     }
 
-    public TestPropertyBuilder withPriceTo(BigDecimal priceTo) {
+    public TestPropertyBuilder withPriceTo(final BigDecimal priceTo) {
         this.priceTo = priceTo;
         return this;
     }
 
-    public TestPropertyBuilder withPriceFrom(BigDecimal priceFrom) {
+    public TestPropertyBuilder withPriceFrom(final BigDecimal priceFrom) {
         this.priceFrom = priceFrom;
         return this;
     }
 
-    public TestPropertyBuilder withRentTo(BigDecimal rentTo) {
+    public TestPropertyBuilder withRentTo(final BigDecimal rentTo) {
         this.rentTo = rentTo;
         return this;
     }
 
-    public TestPropertyBuilder withRentFrom(BigDecimal rentFrom) {
+    public TestPropertyBuilder withRentFrom(final BigDecimal rentFrom) {
         this.rentFrom = rentFrom;
         return this;
     }
 
-    public TestPropertyBuilder withFloorAreaTo(Double floorAreaTo) {
+    public TestPropertyBuilder withFloorAreaTo(final Double floorAreaTo) {
         this.floorAreaTo = floorAreaTo;
         return this;
     }
 
-    public TestPropertyBuilder withFloorAreaFrom(Double floorAreaFrom) {
+    public TestPropertyBuilder withFloorAreaFrom(final Double floorAreaFrom) {
         this.floorAreaFrom = floorAreaFrom;
         return this;
     }
 
-    public TestPropertyBuilder withSiteArea(Double siteArea) {
+    public TestPropertyBuilder withSiteArea(final Double siteArea) {
         this.siteArea = siteArea;
         return this;
     }
 
-    public TestPropertyBuilder withSiteAreaUnits(String siteAreaUnits) {
+    public TestPropertyBuilder withSiteAreaUnits(final String siteAreaUnits) {
         this.siteAreaUnits = siteAreaUnits;
         return this;
     }
 
-    public TestPropertyBuilder withStrapLine(String strapLine) {
+    public TestPropertyBuilder withStrapLine(final String strapLine) {
         this.strapLine = strapLine;
         return this;
     }
 
-    public TestPropertyBuilder withPropertyTypes(PropertyTypes propertyTypes) {
+    public TestPropertyBuilder withPropertyTypes(final List<Integer> propertyTypes) {
         this.propertyTypes = propertyTypes;
         return this;
     }
 
-    public TestPropertyBuilder withLandAreaTo(Double landAreaTo) {
+    public TestPropertyBuilder withLandAreaTo(final Double landAreaTo) {
         this.landAreaTo = landAreaTo;
         return this;
     }
 
-    public TestPropertyBuilder withLandAreaFrom(Double landAreaFrom) {
+    public TestPropertyBuilder withLandAreaFrom(final Double landAreaFrom) {
         this.landAreaFrom = landAreaFrom;
         return this;
     }
 
-    public TestPropertyBuilder withLandAreaUnits(String landAreaUnits) {
+    public TestPropertyBuilder withLandAreaUnits(final String landAreaUnits) {
         this.landAreaUnits = landAreaUnits;
         return this;
     }
 
-    public TestPropertyBuilder withForSaleLeaseLength(Integer forSaleLeaseLength) {
+    public TestPropertyBuilder withForSaleLeaseLength(final Integer forSaleLeaseLength) {
         this.forSaleLeaseLength = forSaleLeaseLength;
         return this;
     }
 
-    public TestPropertyBuilder withImages(Images images) {
+    public TestPropertyBuilder withImages(final List<Image> images) {
         this.images = images;
         return this;
     }
 
-    public TestPropertyBuilder withFloorplans(Floorplans floorplans) {
+    public TestPropertyBuilder withFloorplans(final List<Floorplan> floorplans) {
         this.floorplans = floorplans;
         return this;
     }
 
-    public TestPropertyBuilder withEpcGraphs(EpcGraphs epcGraphs) {
+    public TestPropertyBuilder withEpcGraphs(final List<EpcGraph> epcGraphs) {
         this.epcGraphs = epcGraphs;
         return this;
     }
 
-    public TestPropertyBuilder withEpcFrontPages(EpcFrontPages epcFrontPages) {
+    public TestPropertyBuilder withEpcFrontPages(final List<EpcFrontPage> epcFrontPages) {
         this.epcFrontPages = epcFrontPages;
         return this;
     }
 
-    public TestPropertyBuilder withBrochures(Brochures brochures) {
+    public TestPropertyBuilder withBrochures(final List<Brochure> brochures) {
         this.brochures = brochures;
         return this;
     }
 
-    public TestPropertyBuilder withVirtualTours(VirtualTours virtualTours) {
+    public TestPropertyBuilder withVirtualTours(final List<VirtualTour> virtualTours) {
         this.virtualTours = virtualTours;
         return this;
     }
 
-    public TestPropertyBuilder withExternalLinks(ExternalLinks externalLinks) {
+    public TestPropertyBuilder withExternalLinks(final List<ExternalLink> externalLinks) {
         this.externalLinks = externalLinks;
         return this;
     }

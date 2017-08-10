@@ -1,182 +1,302 @@
 package com.akross.gateway.property.entity;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
+import com.akross.gateway.utilities.adaptors.LocalDateAdapter;
+import com.akross.gateway.utilities.adaptors.LocalTimeAdapter;
 
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlElementWrapper;
+import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 public class Property {
 
+    @XmlElement(name = "propertyID")
     private final Long propertyId;
+    @XmlElement(name = "branchID")
     private final Integer branchId;
+    @XmlElement(name = "clientName")
     private final String clientName;
+    @XmlElement(name = "branchName")
     private final String branchName;
+    @XmlElement(name = "department")
     private final String department;
+    @XmlElement(name = "referenceNumber")
     private final String referenceNumber;
+    @XmlElement(name = "addressName")
     private final String addressName;
-    private final Integer addressNumber;
+    @XmlElement(name = "addressNumber")
+    private final String addressNumber;
+    @XmlElement(name = "addressStreet")
     private final String addressStreet;
+    @XmlElement(name = "address2")
     private final String address2;
+    @XmlElement(name = "address3")
     private final String address3;
+    @XmlElement(name = "address4")
     private final String address4;
+    @XmlElement(name = "addressPostcode")
     private final String addressPostcode;
+    @XmlElement(name = "country")
     private final String country;
+    @XmlElement(name = "displayAddress")
     private final String displayAddress;
+    @XmlElement(name = "propertyFeature1")
     private final String propertyFeature1;
+    @XmlElement(name = "propertyFeature2")
     private final String propertyFeature2;
+    @XmlElement(name = "propertyFeature3")
     private final String propertyFeature3;
+    @XmlElement(name = "propertyFeature4")
     private final String propertyFeature4;
+    @XmlElement(name = "propertyFeature5")
     private final String propertyFeature5;
+    @XmlElement(name = "propertyFeature6")
     private final String propertyFeature6;
+    @XmlElement(name = "propertyFeature7")
     private final String propertyFeature7;
+    @XmlElement(name = "propertyFeature8")
     private final String propertyFeature8;
+    @XmlElement(name = "propertyFeature9")
     private final String propertyFeature9;
+    @XmlElement(name = "propertyFeature10")
     private final String propertyFeature10;
+    @XmlElement(name = "dateLastModified")
+    @XmlJavaTypeAdapter(value = LocalDateAdapter.class)
     private final LocalDate dateLastModified;
+    @XmlJavaTypeAdapter(value = LocalTimeAdapter.class)
+    @XmlElement(name = "timeLastModified")
     private final LocalTime timeLastModified;
+    @XmlElement(name = "featuredProperty")
     private final Integer featuredProperty;
+    @XmlElement(name = "regionID")
     private final Integer regionId;
+    @XmlElement(name = "latitude")
     private final Double latitude;
+    @XmlElement(name = "longitude")
     private final Double longitude;
-    private final Flags flags;
+    @XmlElementWrapper(name = "flags")
+    @XmlElement(name = "flag")
+    private final List<String> flags;
+    @XmlElement(name = "mainSummary")
     private final String mainSummary;
+    @XmlElement(name = "fullDescription")
     private final String fullDescription;
+    @XmlElement(name = "propertyBedrooms")
     private final Integer propertyBedrooms;
+    @XmlElement(name = "propertyBathrooms")
     private final Integer propertyBathrooms;
+    @XmlElement(name = "propertyEnsuites")
     private final Integer propertyEnsuites;
+    @XmlElement(name = "propertyReceptionRooms")
     private final Integer propertyReceptionRooms;
+    @XmlElement(name = "propertyKitchens")
     private final Integer propertyKitchens;
+    @XmlElement(name = "propertyAge")
     private final Integer propertyAge;
+    @XmlElement(name = "floorArea")
     private final Double floorArea;
+    @XmlElement(name = "floorAreaUnits")
     private final String floorAreaUnits;
+    @XmlElement(name = "displayPropertyType")
     private final String displayPropertyType;
+    @XmlElement(name = "propertyType")
     private final Integer propertyType;
+    @XmlElement(name = "propertyStyle")
     private final Integer propertyStyle;
+    @XmlElement(name = "availability")
     private final Integer availability;
+    @XmlElement(name = "price")
     private final BigDecimal price;
+    @XmlElement(name = "priceQualifier")
     private final Integer priceQualifier;
+    @XmlElement(name = "forSalePOA")
     private final Integer forSalePOA;
+    @XmlElement(name = "propertyTenure")
     private final Integer propertyTenure;
+    @XmlElement(name = "saleBy")
     private final Integer saleBy;
+    @XmlElement(name = "developmentOpportunity")
     private final Integer developmentOpportunity;
+    @XmlElement(name = "investmentOpportunity")
     private final Integer investmentOpportunity;
+    @XmlElement(name = "estimatedRentalIncome")
     private final BigDecimal estimatedRentalIncome;
+    @XmlElement(name = "rent")
     private final BigDecimal rent;
+    @XmlElement(name = "rentFrequency")
     private final Integer rentFrequency;
+    @XmlElement(name = "toLetPOA")
     private final Integer toLetPOA;
+    @XmlElement(name = "studentProperty")
     private final Integer studentProperty;
+    @XmlElement(name = "lettingFeePolicyHeadline")
     private final String lettingFeePolicyHeadline;
+    @XmlElement(name = "lettingFeePolicyDetails")
     private final String lettingFeePolicyDetails;
+    @XmlElement(name = "forSale")
     private final Integer forSale;
+    @XmlElement(name = "toLet")
     private final Integer toLet;
+    @XmlElement(name = "priceTo")
     private final BigDecimal priceTo;
+    @XmlElement(name = "priceFrom")
     private final BigDecimal priceFrom;
+    @XmlElement(name = "rentTo")
     private final BigDecimal rentTo;
+    @XmlElement(name = "rentFrom")
     private final BigDecimal rentFrom;
+    @XmlElement(name = "floorAreaTo")
     private final Double floorAreaTo;
+    @XmlElement(name = "floorAreaFrom")
     private final Double floorAreaFrom;
+    @XmlElement(name = "siteArea")
     private final Double siteArea;
+    @XmlElement(name = "siteAreaUnits")
     private final String siteAreaUnits;
+    @XmlElement(name = "strapLine")
     private final String strapLine;
-    private final PropertyTypes propertyTypes;
+    @XmlElementWrapper(name = "propertyTypes")
+    @XmlElement(name = "propertyType")
+    private final List<Integer> propertyTypes;
+    @XmlElement(name = "landAreaTo")
     private final Double landAreaTo;
+    @XmlElement(name = "landAreaFrom")
     private final Double landAreaFrom;
+    @XmlElement(name = "landAreaUnits")
     private final String landAreaUnits;
+    @XmlElement(name = "forSaleLeaseLength")
     private final Integer forSaleLeaseLength;
-    private final Images images;
-    private final Floorplans floorplans;
-    private final EpcGraphs epcGraphs;
-    private final EpcFrontPages epcFrontPages;
-    private final Brochures brochures;
-    private final VirtualTours virtualTours;
-    private final ExternalLinks externalLinks;
+    @XmlElementWrapper(name = "images")
+    @XmlElement(name = "image")
+    private final List<Image> images;
+    @XmlElementWrapper(name = "floorplans")
+    @XmlElement(name = "floorplan")
+    private final List<Floorplan> floorplans;
+    @XmlElementWrapper(name = "epcGraphs")
+    @XmlElement(name = "epcGraph")
+    private final List<EpcGraph> epcGraphs;
+    @XmlElementWrapper(name = "epcFrontPages")
+    @XmlElement(name = "epcFrontPage")
+    private final List<EpcFrontPage> epcFrontPages;
+    @XmlElementWrapper(name = "brochures")
+    @XmlElement(name = "brochure")
+    private final List<Brochure> brochures;
+    @XmlElementWrapper(name = "virtualTours")
+    @XmlElement(name = "virtualTour")
+    private final List<VirtualTour> virtualTours;
+    @XmlElementWrapper(name = "externalLinks")
+    @XmlElement(name = "externalLink")
+    private final List<ExternalLink> externalLinks;
 
-    public Property(
-            @JacksonXmlProperty(localName = "propertyID") final Long propertyId
-            , @JacksonXmlProperty(localName = "branchID") final Integer branchId
-            , @JacksonXmlProperty(localName = "clientName") final String clientName
-            , @JacksonXmlProperty(localName = "branchName") final String branchName
-            , @JacksonXmlProperty(localName = "department") final String department
-            , @JacksonXmlProperty(localName = "referenceNumber") final String referenceNumber
-            , @JacksonXmlProperty(localName = "addressName") final String addressName
-            , @JacksonXmlProperty(localName = "addressNumber") final Integer addressNumber
-            , @JacksonXmlProperty(localName = "addressStreet") final String addressStreet
-            , @JacksonXmlProperty(localName = "address2") final String address2
-            , @JacksonXmlProperty(localName = "address3") final String address3
-            , @JacksonXmlProperty(localName = "address4") final String address4
-            , @JacksonXmlProperty(localName = "addressPostCode") final String addressPostcode
-            , @JacksonXmlProperty(localName = "country") final String country
-            , @JacksonXmlProperty(localName = "displayAddress") final String displayAddress
-            , @JacksonXmlProperty(localName = "propertyFeature1") final String propertyFeature1
-            , @JacksonXmlProperty(localName = "propertyFeature2") final String propertyFeature2
-            , @JacksonXmlProperty(localName = "propertyFeature3") final String propertyFeature3
-            , @JacksonXmlProperty(localName = "propertyFeature4") final String propertyFeature4
-            , @JacksonXmlProperty(localName = "propertyFeature5") final String propertyFeature5
-            , @JacksonXmlProperty(localName = "propertyFeature6") final String propertyFeature6
-            , @JacksonXmlProperty(localName = "propertyFeature7") final String propertyFeature7
-            , @JacksonXmlProperty(localName = "propertyFeature8") final String propertyFeature8
-            , @JacksonXmlProperty(localName = "propertyFeature9") final String propertyFeature9
-            , @JacksonXmlProperty(localName = "propertyFeature10") final String propertyFeature10
-            , @JacksonXmlProperty(localName = "dateLastModified") final LocalDate dateLastModified
-            , @JacksonXmlProperty(localName = "timeLastModified") final LocalTime timeLastModified
-            , @JacksonXmlProperty(localName = "featuredProperty") final Integer featuredProperty
-            , @JacksonXmlProperty(localName = "regionID") final Integer regionId
-            , @JacksonXmlProperty(localName = "latitude") final Double latitude
-            , @JacksonXmlProperty(localName = "longitude") final Double longitude
-            , @JacksonXmlProperty(localName = "flags") final Flags flags
-            , @JacksonXmlProperty(localName = "mainSummary") final String mainSummary
-            , @JacksonXmlProperty(localName = "fullDescription") final String fullDescription
-            , @JacksonXmlProperty(localName = "propertyBedrooms") final Integer propertyBedrooms
-            , @JacksonXmlProperty(localName = "propertyBathrooms") final Integer propertyBathrooms
-            , @JacksonXmlProperty(localName = "propertyEnsuites") final Integer propertyEnsuites
-            , @JacksonXmlProperty(localName = "propertyReceptionRooms") final Integer propertyReceptionRooms
-            , @JacksonXmlProperty(localName = "propertyKitchens") final Integer propertyKitchens
-            , @JacksonXmlProperty(localName = "propertyAge") final Integer propertyAge
-            , @JacksonXmlProperty(localName = "floorArea") final Double floorArea
-            , @JacksonXmlProperty(localName = "floorAreaUnits") final String floorAreaUnits
-            , @JacksonXmlProperty(localName = "displayPropertyType") final String displayPropertyType
-            , @JacksonXmlProperty(localName = "propertyType") final Integer propertyType
-            , @JacksonXmlProperty(localName = "propertyStyle") final Integer propertyStyle
-            , @JacksonXmlProperty(localName = "availability") final Integer availability
-            , @JacksonXmlProperty(localName = "price") final BigDecimal price
-            , @JacksonXmlProperty(localName = "priceQualifier") final Integer priceQualifier
-            , @JacksonXmlProperty(localName = "forSalePOA") final Integer forSalePOA
-            , @JacksonXmlProperty(localName = "propertyTenure") final Integer propertyTenure
-            , @JacksonXmlProperty(localName = "saleBy") final Integer saleBy
-            , @JacksonXmlProperty(localName = "developmentOpportunity") final Integer developmentOpportunity
-            , @JacksonXmlProperty(localName = "investmentOpportunity") final Integer investmentOpportunity
-            , @JacksonXmlProperty(localName = "estimatedRentalIncome") final BigDecimal estimatedRentalIncome
-            , @JacksonXmlProperty(localName = "rent") final BigDecimal rent
-            , @JacksonXmlProperty(localName = "rentFrequency") final Integer rentFrequency
-            , @JacksonXmlProperty(localName = "toLetPOA") final Integer toLetPOA
-            , @JacksonXmlProperty(localName = "studentProperty") final Integer studentProperty
-            , @JacksonXmlProperty(localName = "lettingFeePolicyHeadline") final String lettingFeePolicyHeadline
-            , @JacksonXmlProperty(localName = "lettingFeePolicyDetails") final String lettingFeePolicyDetails
-            , @JacksonXmlProperty(localName = "forSale") final Integer forSale
-            , @JacksonXmlProperty(localName = "toLet") final Integer toLet
-            , @JacksonXmlProperty(localName = "priceTo") final BigDecimal priceTo
-            , @JacksonXmlProperty(localName = "priceFrom") final BigDecimal priceFrom
-            , @JacksonXmlProperty(localName = "rentTo") final BigDecimal rentTo
-            , @JacksonXmlProperty(localName = "rentFrom") final BigDecimal rentFrom
-            , @JacksonXmlProperty(localName = "floorAreaTo") final Double floorAreaTo
-            , @JacksonXmlProperty(localName = "floorAreaFrom") final Double floorAreaFrom
-            , @JacksonXmlProperty(localName = "siteArea") final Double siteArea
-            , @JacksonXmlProperty(localName = "siteAreaUnits") final String siteAreaUnits
-            , @JacksonXmlProperty(localName = "strapLine") final String strapLine
-            , @JacksonXmlProperty(localName = "propertyTypes") final PropertyTypes propertyTypes
-            , @JacksonXmlProperty(localName = "landAreaTo") final Double landAreaTo
-            , @JacksonXmlProperty(localName = "landAreaFrom") final Double landAreaFrom
-            , @JacksonXmlProperty(localName = "landAreaUnits") final String landAreaUnits
-            , @JacksonXmlProperty(localName = "forSaleLeaseLength") final Integer forSaleLeaseLength
-            , @JacksonXmlProperty(localName = "images") final Images images
-            , @JacksonXmlProperty(localName = "floorplans") final Floorplans floorplans
-            , @JacksonXmlProperty(localName = "epcGraphs") final EpcGraphs epcGraphs
-            , @JacksonXmlProperty(localName = "epcFrontPages") final EpcFrontPages epcFrontPages
-            , @JacksonXmlProperty(localName = "brochures") final Brochures brochures
-            , @JacksonXmlProperty(localName = "virtualTours") final VirtualTours virtualTours
-            , @JacksonXmlProperty(localName = "externalLinks") final ExternalLinks externalLinks) {
+    private Property() {
+        this(null, null, null, null, null
+                , null, null, null, null
+                , null, null, null, null, null
+                , null, null, null, null
+                , null, null, null, null
+                , null, null, null, null
+                , null, null, null, null, null
+                , new ArrayList<>(), null, null, null, null
+                , null, null, null, null, null
+                , null, null, null, null, null
+                , null, null, null, null, null
+                , null, null, null, null
+                , null, null, null, null
+                , null, null, null, null, null, null
+                , null, null, null, null, null, null
+                , new ArrayList<>(), null, null, null, null
+                , new ArrayList<>(), new ArrayList<>(), new ArrayList<>(), new ArrayList<>()
+                , new ArrayList<>(), new ArrayList<>(), new ArrayList<>());
+    }
+
+    public Property(final Long propertyId
+            , final Integer branchId
+            , final String clientName
+            , final String branchName
+            , final String department
+            , final String referenceNumber
+            , final String addressName
+            , final String addressNumber
+            , final String addressStreet
+            , final String address2
+            , final String address3
+            , final String address4
+            , final String addressPostcode
+            , final String country
+            , final String displayAddress
+            , final String propertyFeature1
+            , final String propertyFeature2
+            , final String propertyFeature3
+            , final String propertyFeature4
+            , final String propertyFeature5
+            , final String propertyFeature6
+            , final String propertyFeature7
+            , final String propertyFeature8
+            , final String propertyFeature9
+            , final String propertyFeature10
+            , final LocalDate dateLastModified
+            , final LocalTime timeLastModified
+            , final Integer featuredProperty
+            , final Integer regionId
+            , final Double latitude
+            , final Double longitude
+            , final List<String> flags
+            , final String mainSummary
+            , final String fullDescription
+            , final Integer propertyBedrooms
+            , final Integer propertyBathrooms
+            , final Integer propertyEnsuites
+            , final Integer propertyReceptionRooms
+            , final Integer propertyKitchens
+            , final Integer propertyAge
+            , final Double floorArea
+            , final String floorAreaUnits
+            , final String displayPropertyType
+            , final Integer propertyType
+            , final Integer propertyStyle
+            , final Integer availability
+            , final BigDecimal price
+            , final Integer priceQualifier
+            , final Integer forSalePOA
+            , final Integer propertyTenure
+            , final Integer saleBy
+            , final Integer developmentOpportunity
+            , final Integer investmentOpportunity
+            , final BigDecimal estimatedRentalIncome
+            , final BigDecimal rent
+            , final Integer rentFrequency
+            , final Integer toLetPOA
+            , final Integer studentProperty
+            , final String lettingFeePolicyHeadline
+            , final String lettingFeePolicyDetails
+            , final Integer forSale
+            , final Integer toLet
+            , final BigDecimal priceTo
+            , final BigDecimal priceFrom
+            , final BigDecimal rentTo
+            , final BigDecimal rentFrom
+            , final Double floorAreaTo
+            , final Double floorAreaFrom
+            , final Double siteArea
+            , final String siteAreaUnits
+            , final String strapLine
+            , final List<Integer> propertyTypes
+            , final Double landAreaTo
+            , final Double landAreaFrom
+            , final String landAreaUnits
+            , final Integer forSaleLeaseLength
+            , final List<Image> images
+            , final List<Floorplan> floorplans
+            , final List<EpcGraph> epcGraphs
+            , final List<EpcFrontPage> epcFrontPages
+            , final List<Brochure> brochures
+            , final List<VirtualTour> virtualTours
+            , final List<ExternalLink> externalLinks) {
         this.propertyId = propertyId;
         this.branchId = branchId;
         this.clientName = clientName;
@@ -290,7 +410,7 @@ public class Property {
         return addressName;
     }
 
-    public Integer getAddressNumber() {
+    public String getAddressNumber() {
         return addressNumber;
     }
 
@@ -386,7 +506,7 @@ public class Property {
         return longitude;
     }
 
-    public Flags getFlags() {
+    public List<String> getFlags() {
         return flags;
     }
 
@@ -450,12 +570,12 @@ public class Property {
         return price;
     }
 
-    public Integer getForSalePOA() {
-        return forSalePOA;
-    }
-
     public Integer getPriceQualifier() {
         return priceQualifier;
+    }
+
+    public Integer getForSalePOA() {
+        return forSalePOA;
     }
 
     public Integer getPropertyTenure() {
@@ -546,7 +666,7 @@ public class Property {
         return strapLine;
     }
 
-    public PropertyTypes getPropertyTypes() {
+    public List<Integer> getPropertyTypes() {
         return propertyTypes;
     }
 
@@ -566,38 +686,38 @@ public class Property {
         return forSaleLeaseLength;
     }
 
-    public Images getImages() {
+    public List<Image> getImages() {
         return images;
     }
 
-    public Floorplans getFloorplans() {
+    public List<Floorplan> getFloorplans() {
         return floorplans;
     }
 
-    public EpcGraphs getEpcGraphs() {
+    public List<EpcGraph> getEpcGraphs() {
         return epcGraphs;
     }
 
-    public EpcFrontPages getEpcFrontPages() {
+    public List<EpcFrontPage> getEpcFrontPages() {
         return epcFrontPages;
     }
 
-    public Brochures getBrochures() {
+    public List<Brochure> getBrochures() {
         return brochures;
     }
 
-    public VirtualTours getVirtualTours() {
+    public List<VirtualTour> getVirtualTours() {
         return virtualTours;
     }
 
-    public ExternalLinks getExternalLinks() {
+    public List<ExternalLink> getExternalLinks() {
         return externalLinks;
     }
 
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Property)) return false;
         Property property = (Property) o;
         return Objects.equals(propertyId, property.propertyId) &&
                 Objects.equals(branchId, property.branchId) &&
@@ -711,7 +831,7 @@ public class Property {
                 ", department='" + department + '\'' +
                 ", referenceNumber='" + referenceNumber + '\'' +
                 ", addressName='" + addressName + '\'' +
-                ", addressNumber=" + addressNumber +
+                ", addressNumber='" + addressNumber + '\'' +
                 ", addressStreet='" + addressStreet + '\'' +
                 ", address2='" + address2 + '\'' +
                 ", address3='" + address3 + '\'' +

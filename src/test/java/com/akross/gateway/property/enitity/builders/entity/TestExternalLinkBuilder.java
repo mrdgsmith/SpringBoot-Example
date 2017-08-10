@@ -5,9 +5,9 @@ import com.akross.gateway.property.entity.ExternalLink;
 import java.time.LocalDateTime;
 
 public final class TestExternalLinkBuilder {
-    private String url;
-    private LocalDateTime modified;
     private String description;
+    private LocalDateTime modified;
+    private String url;
 
     private TestExternalLinkBuilder() {
     }
@@ -16,22 +16,22 @@ public final class TestExternalLinkBuilder {
         return new TestExternalLinkBuilder();
     }
 
-    public TestExternalLinkBuilder withUrl(String url) {
-        this.url = url;
-        return this;
-    }
-
-    public TestExternalLinkBuilder withModified(LocalDateTime modified) {
+    public TestExternalLinkBuilder withModified(final LocalDateTime modified) {
         this.modified = modified;
         return this;
     }
 
-    public TestExternalLinkBuilder withDescription(String description) {
+    public TestExternalLinkBuilder withDescription(final String description) {
         this.description = description;
         return this;
     }
 
+    public TestExternalLinkBuilder withUrl(final String url) {
+        this.url = url;
+        return this;
+    }
+
     public ExternalLink build() {
-        return new ExternalLink(url, description, modified);
+        return new ExternalLink(description, modified, url);
     }
 }

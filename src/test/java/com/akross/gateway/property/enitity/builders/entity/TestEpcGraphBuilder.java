@@ -1,6 +1,7 @@
 package com.akross.gateway.property.enitity.builders.entity;
 
 import com.akross.gateway.property.entity.EpcGraph;
+import com.akross.gateway.property.entity.UrlModified;
 
 import java.time.LocalDateTime;
 
@@ -15,17 +16,17 @@ public final class TestEpcGraphBuilder {
         return new TestEpcGraphBuilder();
     }
 
-    public TestEpcGraphBuilder withModified(LocalDateTime modified) {
+    public TestEpcGraphBuilder withModified(final LocalDateTime modified) {
         this.modified = modified;
         return this;
     }
 
-    public TestEpcGraphBuilder withUrl(String url) {
+    public TestEpcGraphBuilder withUrl(final String url) {
         this.url = url;
         return this;
     }
 
-    public EpcGraph build() {
+    public UrlModified build() {
         return new EpcGraph(modified, url);
     }
 }

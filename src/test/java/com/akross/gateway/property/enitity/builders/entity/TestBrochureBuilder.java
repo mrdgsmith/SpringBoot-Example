@@ -1,6 +1,7 @@
 package com.akross.gateway.property.enitity.builders.entity;
 
 import com.akross.gateway.property.entity.Brochure;
+import com.akross.gateway.property.entity.UrlModified;
 
 import java.time.LocalDateTime;
 
@@ -11,21 +12,21 @@ public final class TestBrochureBuilder {
     private TestBrochureBuilder() {
     }
 
-    public static TestBrochureBuilder aBrochure() {
+    public static TestBrochureBuilder anBrochure() {
         return new TestBrochureBuilder();
     }
 
-    public TestBrochureBuilder withModified(LocalDateTime modified) {
+    public TestBrochureBuilder withModified(final LocalDateTime modified) {
         this.modified = modified;
         return this;
     }
 
-    public TestBrochureBuilder withUrl(String url) {
+    public TestBrochureBuilder withUrl(final String url) {
         this.url = url;
         return this;
     }
 
-    public Brochure build() {
+    public UrlModified build() {
         return new Brochure(modified, url);
     }
 }

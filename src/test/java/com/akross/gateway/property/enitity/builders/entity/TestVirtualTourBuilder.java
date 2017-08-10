@@ -1,5 +1,6 @@
 package com.akross.gateway.property.enitity.builders.entity;
 
+import com.akross.gateway.property.entity.UrlModified;
 import com.akross.gateway.property.entity.VirtualTour;
 
 import java.time.LocalDateTime;
@@ -11,21 +12,21 @@ public final class TestVirtualTourBuilder {
     private TestVirtualTourBuilder() {
     }
 
-    public static TestVirtualTourBuilder aVirtualTour() {
+    public static TestVirtualTourBuilder anVirtualTour() {
         return new TestVirtualTourBuilder();
     }
 
-    public TestVirtualTourBuilder withModified(LocalDateTime modified) {
+    public TestVirtualTourBuilder withModified(final LocalDateTime modified) {
         this.modified = modified;
         return this;
     }
 
-    public TestVirtualTourBuilder withUrl(String url) {
+    public TestVirtualTourBuilder withUrl(final String url) {
         this.url = url;
         return this;
     }
 
-    public VirtualTour build() {
+    public UrlModified build() {
         return new VirtualTour(modified, url);
     }
 }

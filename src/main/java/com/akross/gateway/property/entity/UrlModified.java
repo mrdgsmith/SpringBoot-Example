@@ -2,40 +2,36 @@ package com.akross.gateway.property.entity;
 
 import com.akross.gateway.utilities.adaptors.LocalDateTimeAdapter;
 
-import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlAttribute;
+import javax.xml.bind.annotation.XmlValue;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
 import static java.time.LocalDateTime.of;
 
-public class ExternalLink {
+public abstract class UrlModified {
 
-    @XmlElement(name = "description")
-    private final String description;
+    @XmlAttribute(name = "modified")
     @XmlJavaTypeAdapter(value = LocalDateTimeAdapter.class)
-    @XmlElement(name = "modified")
     private final LocalDateTime modified;
-    @XmlElement(name = "url")
+
+    @XmlValue
     private final String url;
 
-    public ExternalLink() {
-        this(null, null, null);
+    private UrlModified() {
+        this(null, null);
     }
 
-    public ExternalLink(final String description, final LocalDateTime modified, final String url) {
-        this.description = description;
+    protected UrlModified(final LocalDateTime modified, final String url) {
         this.modified = Objects.nonNull(modified) ? of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
                 , modified.getHour(), modified.getMinute(), modified.getSecond()) : modified;
         this.url = url;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public LocalDateTime getModified() {
-        return modified;
+        return of(modified.getYear(), modified.getMonth(), modified.getDayOfMonth()
+                , modified.getHour(), modified.getMinute(), modified.getSecond());
     }
 
     public String getUrl() {
@@ -45,23 +41,21 @@ public class ExternalLink {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof ExternalLink)) return false;
-        ExternalLink that = (ExternalLink) o;
-        return Objects.equals(description, that.description) &&
-                Objects.equals(modified, that.modified) &&
+        if (!(o instanceof UrlModified)) return false;
+        UrlModified that = (UrlModified) o;
+        return Objects.equals(modified, that.modified) &&
                 Objects.equals(url, that.url);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(description, modified, url);
+        return Objects.hash(modified, url);
     }
 
     @Override
     public String toString() {
-        return "ExternalLink{" +
-                "description='" + description + '\'' +
-                ", modified=" + modified +
+        return "UrlModified{" +
+                "modified=" + modified +
                 ", url='" + url + '\'' +
                 '}';
     }
