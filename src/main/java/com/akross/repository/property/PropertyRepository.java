@@ -4,8 +4,8 @@ import com.akross.domain.property.Property;
 import com.akross.domain.property.residentialsalesandletting.PropertyType;
 import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.akross.domain.property.utilities.PropertyConverter;
-import com.akross.exception.property.PropertyNotFoundException;
 import com.akross.repository.PropertyRepositoryInMemory;
+import com.akross.repository.property.exception.PropertyNotFoundException;
 
 import java.math.BigDecimal;
 import java.util.List;

@@ -1,7 +1,7 @@
 package com.akross.web;
 
-import com.akross.exception.property.PropertyNotFoundException;
 import com.akross.gateway.enquiry.exception.RentalEvaluationEnquiryException;
+import com.akross.repository.property.exception.PropertyNotFoundException;
 import com.akross.web.property.exception.InvalidPropertyTypeException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseStatus;
