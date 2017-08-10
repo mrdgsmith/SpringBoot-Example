@@ -1,18 +1,22 @@
 package com.akross.gateway.enquiry.entity;
 
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlProperty;
-import com.fasterxml.jackson.dataformat.xml.annotation.JacksonXmlRootElement;
-
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
 import java.util.Objects;
 
-@JacksonXmlRootElement(localName = "data")
+@XmlRootElement(name = "data")
 public class RentalEvaluationEnquiryResponse {
 
+    @XmlElement(name = "success")
     private final Integer success;
+    @XmlElement(name = "response")
     private final String response;
 
-    public RentalEvaluationEnquiryResponse(@JacksonXmlProperty(localName = "success") final Integer success
-            , @JacksonXmlProperty(localName = "response") final String response) {
+    private RentalEvaluationEnquiryResponse() {
+        this(null, null);
+    }
+
+    public RentalEvaluationEnquiryResponse(final Integer success, final String response) {
         this.success = success;
         this.response = response;
     }
