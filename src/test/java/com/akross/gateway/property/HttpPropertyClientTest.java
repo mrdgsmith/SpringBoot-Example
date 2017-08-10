@@ -4,7 +4,10 @@ import com.akross.domain.property.utilities.configuration.PropertyConverterConfi
 import com.akross.gateway.property.configuration.PropertyGatewayConfiguration;
 import com.akross.gateway.property.entity.Properties;
 import com.akross.gateway.property.entity.Property;
+import com.akross.gateway.property.exception.PropertiesGatewayException;
+import org.junit.Rule;
 import org.junit.Test;
+import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.client.RestClientTest;
@@ -37,9 +40,11 @@ import static java.util.Objects.nonNull;
 import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
+import static org.junit.rules.ExpectedException.none;
 import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.MediaType.TEXT_XML;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.*;
+import static org.springframework.test.web.client.response.MockRestResponseCreators.withServerError;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
 
 @RunWith(SpringRunner.class)
@@ -49,11 +54,28 @@ public class HttpPropertyClientTest {
 
     private static final String EXAMPLE_FEED_XML = "PropertyFeed.xml";
 
+    @Rule
+    public ExpectedException expectedException = none();
+
     @Autowired
     private MockRestServiceServer mockRestServiceServer;
 
     @Autowired
     private HttpPropertyClient httpPropertyClient;
+
+    @Test
+    public void shouldReturnErrorMessage() {
+        mockRestServiceServer
+                .expect(requestTo("/api/get_properties.php?clientId=foo&passphrase=bar&version=5.0"))
+                .andExpect(method(GET))
+                .andExpect(queryParam("clientId", "foo"))
+                .andExpect(queryParam("passphrase", "bar"))
+                .andExpect(queryParam("version", "5.0"))
+                .andRespond(withServerError());
+        expectedException.expect(PropertiesGatewayException.class);
+        expectedException.expectMessage("Failed to get properties with this get request clientId=foo&passphrase=bar&version=5.0");
+        httpPropertyClient.getProperties();
+    }
 
     @Test
     public void ShouldGetPropertiesAndClientMakesCorrectCall() throws Exception {

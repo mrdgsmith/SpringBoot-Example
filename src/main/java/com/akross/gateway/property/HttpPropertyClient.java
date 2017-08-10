@@ -43,9 +43,13 @@ public class HttpPropertyClient {
                 .queryParam(PASSPHRASE, jupixPropertiesRestClientProperties.getPassphrase())
                 .queryParam(VERSION, jupixPropertiesRestClientProperties.getVersion());
         final RequestEntity<Void> requestEntity = get(uriComponentsBuilder.build().encode().toUri()).build();
-        final ResponseEntity<Properties> propertiesResponseEntity =
-                jupixPropertiesRestClient.exchange(requestEntity
-                        , Properties.class);
-        return checkPropertiesResponseIsSuccessful(propertiesResponseEntity, requestEntity);
+        try {
+            final ResponseEntity<Properties> propertiesResponseEntity =
+                    jupixPropertiesRestClient.exchange(requestEntity, Properties.class);
+            return checkPropertiesResponseIsSuccessful(propertiesResponseEntity, requestEntity);
+        } catch (final Exception exception) {
+            throw new PropertiesGatewayException(format(GATEWAY_FAILURE_MESSAGE, requestEntity.getUrl().getQuery())
+                    , exception);
+        }
     }
 }
