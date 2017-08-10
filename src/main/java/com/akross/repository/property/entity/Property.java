@@ -52,7 +52,9 @@ public abstract class Property {
     private Double longitude;
     @ElementCollection
     private List<String> flags;
+    @Column(length = 4500)
     private String mainSummary;
+    @Column(length = 4500)
     private String fullDescription;
     @OneToMany(fetch = EAGER, cascade = {CascadeType.ALL})
     private Set<Image> images;
