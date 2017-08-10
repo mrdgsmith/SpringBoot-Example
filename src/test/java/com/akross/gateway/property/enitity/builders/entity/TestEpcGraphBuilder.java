@@ -1,7 +1,6 @@
 package com.akross.gateway.property.enitity.builders.entity;
 
 import com.akross.gateway.property.entity.EpcGraph;
-import com.akross.gateway.property.entity.UrlModified;
 
 import java.time.LocalDateTime;
 
@@ -26,7 +25,7 @@ public final class TestEpcGraphBuilder {
         return this;
     }
 
-    public UrlModified build() {
+    public EpcGraph build() {
         return new EpcGraph(modified, url);
     }
 }
