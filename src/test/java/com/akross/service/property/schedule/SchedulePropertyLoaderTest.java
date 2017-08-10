@@ -35,7 +35,7 @@ public class SchedulePropertyLoaderTest {
 
     @Test
     @SuppressWarnings("unchecked")
-    public void shouldLoadProperties() throws Exception {
+    public void shouldLoadProperties() {
         final List residentialLettings = asList(aResidentialLetting()
                         .withPropertyId(1L)
                         .build()
