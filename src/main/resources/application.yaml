@@ -1,6 +1,6 @@
 jupix:
   restService:
-    rootUrl: services.jupix.co.uk
+    rootUrl: http://services.jupix.co.uk
     property:
       path: /api/get_properties.php
       clientId: 833815ccab44c05f8b3121c770b9c22d
