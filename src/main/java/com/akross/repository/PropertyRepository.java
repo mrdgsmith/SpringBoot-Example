@@ -22,4 +22,6 @@ public interface PropertyRepository {
     com.akross.domain.property.container.Property getFeaturedProperties();
 
     void deleteAllProperties();
+
+    void save(final List<? extends com.akross.repository.property.entity.Property> properties);
 }

@@ -451,6 +451,14 @@ public class PropertyRepositoryTest {
         verifyNoMoreInteractions(propertyRepositoryInMemory);
     }
 
+    @Test
+    public void shouldSaveProperties() throws Exception {
+        final List<Property> validResidentialLettingProperties = createValidResidentialLettingProperties();
+        propertyRepository.save(validResidentialLettingProperties);
+        verify(propertyRepositoryInMemory).save(validResidentialLettingProperties);
+        verifyNoMoreInteractions(propertyRepositoryInMemory);
+    }
+
     private void setupPropertyConverterWithValidFeaturedProperties() {
         when(propertyConverter.convertToResidentialLetting(aResidentialLetting()
                 .withPropertyId(5L)

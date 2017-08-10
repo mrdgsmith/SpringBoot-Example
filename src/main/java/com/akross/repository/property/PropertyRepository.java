@@ -92,6 +92,11 @@ public class PropertyRepository implements com.akross.repository.PropertyReposit
         propertyRepositoryInMemory.deleteAll();
     }
 
+    @Override
+    public void save(List<? extends com.akross.repository.property.entity.Property> properties) {
+        propertyRepositoryInMemory.save(properties);
+    }
+
     private com.akross.domain.property.container.Property createPropertyContainer(
             final List<com.akross.repository.property.entity.Property> featuredProperties) {
         return com.akross.domain.property.container.Property.PropertyBuilder.aProperty()
