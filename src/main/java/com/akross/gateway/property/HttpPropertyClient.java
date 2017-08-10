@@ -3,19 +3,17 @@ package com.akross.gateway.property;
 import com.akross.gateway.property.configuration.JupixPropertiesRestClientProperties;
 import com.akross.gateway.property.entity.Properties;
 import com.akross.gateway.property.exception.PropertiesGatewayException;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 import org.springframework.web.util.UriComponentsBuilder;
 
 import static java.text.MessageFormat.format;
 import static org.springframework.http.HttpStatus.OK;
-import static org.springframework.http.RequestEntity.get;
 import static org.springframework.web.util.UriComponentsBuilder.newInstance;
 
 public class HttpPropertyClient {
 
-    private static final String CLIENT_ID = "clientId";
+    private static final String CLIENT_ID = "clientID";
     private static final String PASSPHRASE = "passphrase";
     private static final String VERSION = "version";
     private static final String GATEWAY_FAILURE_MESSAGE = "Failed to get properties with this get request {0}";
@@ -29,11 +27,11 @@ public class HttpPropertyClient {
     }
 
     private static Properties checkPropertiesResponseIsSuccessful(
-            final ResponseEntity<Properties> propertiesResponseEntity, final RequestEntity<Void> requestEntity) {
+            final ResponseEntity<Properties> propertiesResponseEntity, final String uriRequest) {
         if (OK.equals(propertiesResponseEntity.getStatusCode())) {
             return propertiesResponseEntity.getBody();
         }
-        throw new PropertiesGatewayException(format(GATEWAY_FAILURE_MESSAGE, requestEntity.getUrl().getQuery()));
+        throw new PropertiesGatewayException(format(GATEWAY_FAILURE_MESSAGE, uriRequest));
     }
 
     public Properties getProperties() {
@@ -42,13 +40,13 @@ public class HttpPropertyClient {
                 .queryParam(CLIENT_ID, jupixPropertiesRestClientProperties.getClientId())
                 .queryParam(PASSPHRASE, jupixPropertiesRestClientProperties.getPassphrase())
                 .queryParam(VERSION, jupixPropertiesRestClientProperties.getVersion());
-        final RequestEntity<Void> requestEntity = get(uriComponentsBuilder.build().encode().toUri()).build();
+        final String uriRequest = uriComponentsBuilder.build().encode().toUriString();
         try {
             final ResponseEntity<Properties> propertiesResponseEntity =
-                    jupixPropertiesRestClient.exchange(requestEntity, Properties.class);
-            return checkPropertiesResponseIsSuccessful(propertiesResponseEntity, requestEntity);
+                    jupixPropertiesRestClient.getForEntity(uriRequest, Properties.class);
+            return checkPropertiesResponseIsSuccessful(propertiesResponseEntity, uriRequest);
         } catch (final Exception exception) {
-            throw new PropertiesGatewayException(format(GATEWAY_FAILURE_MESSAGE, requestEntity.getUrl().getQuery())
+            throw new PropertiesGatewayException(format(GATEWAY_FAILURE_MESSAGE, uriRequest)
                     , exception);
         }
     }

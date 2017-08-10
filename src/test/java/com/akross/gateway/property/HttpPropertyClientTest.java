@@ -66,23 +66,24 @@ public class HttpPropertyClientTest {
     @Test
     public void shouldReturnErrorMessage() {
         mockRestServiceServer
-                .expect(requestTo("/api/get_properties.php?clientId=foo&passphrase=bar&version=5.0"))
+                .expect(requestTo("/api/get_properties.php?clientID=foo&passphrase=bar&version=5.0"))
                 .andExpect(method(GET))
-                .andExpect(queryParam("clientId", "foo"))
+                .andExpect(queryParam("clientID", "foo"))
                 .andExpect(queryParam("passphrase", "bar"))
                 .andExpect(queryParam("version", "5.0"))
                 .andRespond(withServerError());
         expectedException.expect(PropertiesGatewayException.class);
-        expectedException.expectMessage("Failed to get properties with this get request clientId=foo&passphrase=bar&version=5.0");
+        expectedException.expectMessage("Failed to get properties with this get request " +
+                "/api/get_properties.php?clientID=foo&passphrase=bar&version=5.0");
         httpPropertyClient.getProperties();
     }
 
     @Test
     public void ShouldGetPropertiesAndClientMakesCorrectCall() throws Exception {
         mockRestServiceServer
-                .expect(requestTo("/api/get_properties.php?clientId=foo&passphrase=bar&version=5.0"))
+                .expect(requestTo("/api/get_properties.php?clientID=foo&passphrase=bar&version=5.0"))
                 .andExpect(method(GET))
-                .andExpect(queryParam("clientId", "foo"))
+                .andExpect(queryParam("clientID", "foo"))
                 .andExpect(queryParam("passphrase", "bar"))
                 .andExpect(queryParam("version", "5.0"))
                 .andRespond(withSuccess(xmlFeed(), TEXT_XML));

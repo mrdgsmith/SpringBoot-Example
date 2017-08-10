@@ -12,7 +12,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.RequestEntity;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
@@ -26,7 +25,6 @@ import static org.junit.rules.ExpectedException.none;
 import static org.mockito.ArgumentCaptor.forClass;
 import static org.mockito.Matchers.eq;
 import static org.mockito.Mockito.*;
-import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpStatus.INTERNAL_SERVER_ERROR;
 import static org.springframework.http.HttpStatus.OK;
 
@@ -53,7 +51,6 @@ public class HttpPropertyClientUnitTest {
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void shouldGetProperties() {
         final String path = "path";
         final String clientId = "clientId";
@@ -68,52 +65,48 @@ public class HttpPropertyClientUnitTest {
                         .build()))
                 .build();
 
-        final ArgumentCaptor<RequestEntity<Void>> requestEntityArgumentCaptor = forClass((Class) Void.class);
-        setupJupixPropertiesRestClient(properties, OK, requestEntityArgumentCaptor);
+        final ArgumentCaptor<String> uriRequestArgumentCaptor = forClass(String.class);
+        setupJupixPropertiesRestClient(properties, OK, uriRequestArgumentCaptor);
 
         final Properties actualProperties = httpPropertyClient.getProperties();
-        final RequestEntity requestEntity = requestEntityArgumentCaptor.getValue();
         assertThat(actualProperties, is(properties));
-        assertWhatShouldHappen(requestEntity, Properties.class, clientId, passphrase, version);
+        assertWhatShouldHappen(uriRequestArgumentCaptor.getValue(), Properties.class, path, clientId, passphrase, version);
     }
 
     @Test
-    @SuppressWarnings("unchecked")
     public void shouldThrowPropertiesGatewayExceptionWhenUnsuccessful() {
         final String path = "path";
         final String clientId = "clientId";
         final String passphrase = "passphrase";
         final double version = 5.0;
 
-        final ArgumentCaptor<RequestEntity<Void>> requestEntityArgumentCaptor = forClass((Class) Void.class);
+        final ArgumentCaptor<String> uriRequestArgumentCaptor = forClass(String.class);
 
         setupJupixPropertiesRestClientProperties(path, clientId, passphrase, version);
-        setupJupixPropertiesRestClient(null, INTERNAL_SERVER_ERROR, requestEntityArgumentCaptor);
+        setupJupixPropertiesRestClient(null, INTERNAL_SERVER_ERROR, uriRequestArgumentCaptor);
 
         try {
             httpPropertyClient.getProperties();
             fail("My method didn't throw when I expected it to");
         } catch (final PropertiesGatewayException propertiesGatewayException) {
-            final RequestEntity<Void> requestEntity = requestEntityArgumentCaptor.getValue();
+            final String uriRequest = uriRequestArgumentCaptor.getValue();
             assertThat(propertiesGatewayException.getMessage()
-                    , is("Failed to get properties with this get request " + requestEntity.getUrl().getQuery()));
-            assertWhatShouldHappen(requestEntity, Properties.class, clientId, passphrase, version);
+                    , is("Failed to get properties with this get request " + uriRequest));
+            assertWhatShouldHappen(uriRequest, Properties.class, path, clientId, passphrase, version);
         }
     }
 
-    private void setupJupixPropertiesRestClient(Properties properties, HttpStatus httpStatus, ArgumentCaptor<RequestEntity<Void>> requestEntityArgumentCaptor) {
-        when(jupixPropertiesRestClient.exchange(requestEntityArgumentCaptor.capture(), eq(Properties.class)))
+    private void setupJupixPropertiesRestClient(final Properties properties, final HttpStatus httpStatus
+            , final ArgumentCaptor<String> uriRequestArgumentCaptor) {
+        when(jupixPropertiesRestClient.getForEntity(uriRequestArgumentCaptor.capture(), eq(Properties.class)))
                 .thenReturn(createResponseEntityPropertiesResponse(httpStatus, properties));
     }
 
-
-    private void assertWhatShouldHappen(final RequestEntity requestEntity, final Class<Properties> clazz
-            , final String clientId, final String passphrase, final double version) {
-        assertThat(requestEntity.getMethod(), is(GET));
-        assertThat(requestEntity.getUrl().getQuery(), is("clientId=" + clientId + "&passphrase="
+    private void assertWhatShouldHappen(final String uriRequest, final Class<Properties> clazz
+            , final String path, final String clientId, final String passphrase, final double version) {
+        assertThat(uriRequest, is(path + "?clientID=" + clientId + "&passphrase="
                 + passphrase + "&version=" + version));
-        assertThat(requestEntity.hasBody(), is(false));
-        verify(jupixPropertiesRestClient).exchange(requestEntity, clazz);
+        verify(jupixPropertiesRestClient).getForEntity(uriRequest, clazz);
         verifyNoMoreInteractions(jupixPropertiesRestClient);
     }
 
