@@ -20,12 +20,11 @@ public class HttpEnquiryClient {
 
     public HttpEnquiryClient(final RestTemplate jupixEnquiryRestClient
             , final String path) {
-
         this.jupixEnquiryRestClient = jupixEnquiryRestClient;
         this.path = path;
     }
 
-    private static void checkResponseEntityRentalEvaluationEnquiryResponseIsSuccessful(
+    private static void checkRentalEvaluationEnquiryResponseResponseEntityIsSuccessful(
             final ResponseEntity<RentalEvaluationEnquiryResponse> responseEntityRentalEvaluationEnquiryResponse) {
         if (!OK.equals(responseEntityRentalEvaluationEnquiryResponse.getStatusCode())
                 || !nonNull(responseEntityRentalEvaluationEnquiryResponse.getBody())
@@ -39,10 +38,10 @@ public class HttpEnquiryClient {
     public void sendRentalEvaluationEnquiry(final String httpRentalEvaluationEnquiryRequest) {
         final HttpHeaders headers = new HttpHeaders();
         headers.setContentType(TEXT_PLAIN);
-        final ResponseEntity<RentalEvaluationEnquiryResponse> responseEntityRentalEvaluationEnquiryResponse
+        final ResponseEntity<RentalEvaluationEnquiryResponse> rentalEvaluationEnquiryResponseResponseEntity
                 = jupixEnquiryRestClient.postForEntity(path
                 , new HttpEntity<>(httpRentalEvaluationEnquiryRequest, headers)
                 , RentalEvaluationEnquiryResponse.class);
-        checkResponseEntityRentalEvaluationEnquiryResponseIsSuccessful(responseEntityRentalEvaluationEnquiryResponse);
+        checkRentalEvaluationEnquiryResponseResponseEntityIsSuccessful(rentalEvaluationEnquiryResponseResponseEntity);
     }
 }
