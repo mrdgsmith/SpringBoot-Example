@@ -55,7 +55,7 @@ public class SchedulePropertyLoaderTest {
     }
 
     @Test
-    public void shouldNotDeletePropertiesInDatabaseIfClientReturnsNoProperties() throws Exception {
+    public void shouldNotDeletePropertiesInDatabaseIfClientReturnsNoProperties() {
         when(propertyClient.getProperties()).thenReturn(emptyList());
 
         schedulePropertyLoader.getProperties();
@@ -65,7 +65,7 @@ public class SchedulePropertyLoaderTest {
     }
 
     @Test
-    public void shouldNotDeletePropertiesInDatabaseIfClientReturnsNoNull() throws Exception {
+    public void shouldNotDeletePropertiesInDatabaseIfClientReturnsNoNull() {
         when(propertyClient.getProperties()).thenReturn(null);
 
         schedulePropertyLoader.getProperties();
