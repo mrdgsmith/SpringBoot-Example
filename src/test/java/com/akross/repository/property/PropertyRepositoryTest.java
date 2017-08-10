@@ -444,6 +444,13 @@ public class PropertyRepositoryTest {
         verifyNoMoreInteractions(propertyRepositoryInMemory, propertyConverter);
     }
 
+    @Test
+    public void shouldDeleteAllProperties() throws Exception {
+        propertyRepository.deleteAllProperties();
+        verify(propertyRepositoryInMemory).deleteAll();
+        verifyNoMoreInteractions(propertyRepositoryInMemory);
+    }
+
     private void setupPropertyConverterWithValidFeaturedProperties() {
         when(propertyConverter.convertToResidentialLetting(aResidentialLetting()
                 .withPropertyId(5L)

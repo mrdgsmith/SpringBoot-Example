@@ -20,4 +20,6 @@ public interface PropertyRepository {
             , final Integer bedroomAmount);
 
     com.akross.domain.property.container.Property getFeaturedProperties();
+
+    void deleteAllProperties();
 }
