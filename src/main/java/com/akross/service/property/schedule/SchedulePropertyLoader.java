@@ -9,7 +9,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.Objects;
+
+import static java.util.Objects.nonNull;
 
 @Component
 @EnableScheduling
@@ -24,7 +25,7 @@ public class SchedulePropertyLoader {
     @Scheduled(fixedRate = 6000 * 60)
     public void getProperties() {
         final List<? extends Property> properties = propertyClient.getProperties();
-        if (Objects.nonNull(properties) && !properties.isEmpty()) {
+        if (nonNull(properties) && !properties.isEmpty()) {
             propertyRepository.deleteAllProperties();
             propertyRepository.save(properties);
         }
