@@ -537,4 +537,26 @@ public class PropertyRepositoryInMemoryTest {
                         .build())
         );
     }
+
+    @Test
+    public void shouldClearProperties() throws Exception {
+        propertyRepositoryInMemory.save(concat(createInvalidFeaturedResidentialLettingProperties().stream()
+                , createValidFeaturedResidentialLettingProperties().stream())
+                .collect(toList())
+        );
+
+        final List<Property> actualAllProperties = propertyRepositoryInMemory.findAll();
+        assertThat(actualAllProperties, not(empty()));
+        propertyRepositoryInMemory.deleteAll();
+        final List<Property> actualAllPropertiesDeleted = propertyRepositoryInMemory.findAll();
+        assertThat(actualAllPropertiesDeleted, empty());
+
+        propertyRepositoryInMemory.save(concat(createInvalidFeaturedResidentialLettingProperties().stream()
+                , createValidFeaturedResidentialLettingProperties().stream())
+                .collect(toList())
+        );
+
+        final List<Property> actualAllPropertiesAddedAgain = propertyRepositoryInMemory.findAll();
+        assertThat(actualAllPropertiesAddedAgain, not(empty()));
+    }
 }
