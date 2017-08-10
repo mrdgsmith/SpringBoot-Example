@@ -29,7 +29,7 @@ public abstract class ResidentialSalesAndLettings extends Property {
             , final Department department
             , final String referenceNumber
             , final String addressName
-            , final Integer addressNumber
+            , final String addressNumber
             , final String addressStreet
             , final String address2
             , final String address3

@@ -196,7 +196,7 @@ public class PropertyRepositoryInMemoryTest {
                 .withDepartment(LETTINGS)
                 .withReferenceNumber("45435")
                 .withAddressName("Bla")
-                .withAddressNumber(1)
+                .withAddressNumber("1")
                 .withAddressStreet("The Street")
                 .withAddress2("address2")
                 .withAddress3("address3")
@@ -319,7 +319,7 @@ public class PropertyRepositoryInMemoryTest {
         assertThat(actualResidentialLetting.getDepartment(), is(LETTINGS));
         assertThat(actualResidentialLetting.getReferenceNumber(), is("45435"));
         assertThat(actualResidentialLetting.getAddressName(), is("Bla"));
-        assertThat(actualResidentialLetting.getAddressNumber(), is(1));
+        assertThat(actualResidentialLetting.getAddressNumber(), is("1"));
         assertThat(actualResidentialLetting.getAddressStreet(), is("The Street"));
         assertThat(actualResidentialLetting.getAddress2(), is("address2"));
         assertThat(actualResidentialLetting.getAddress3(), is("address3"));

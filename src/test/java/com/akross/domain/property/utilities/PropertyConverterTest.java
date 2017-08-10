@@ -4,7 +4,13 @@ import com.akross.domain.property.residentialsalesandletting.residentialletting.
 import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder;
 import com.akross.gateway.property.enitity.builders.entity.*;
 import com.akross.gateway.property.entity.Property;
-import com.akross.repository.property.entity.*;
+import com.akross.repository.property.entity.Brochure.BrochureBuilder;
+import com.akross.repository.property.entity.EpcFrontPage.EpcFrontPageBuilder;
+import com.akross.repository.property.entity.EpcGraph.EpcGraphBuilder;
+import com.akross.repository.property.entity.ExternalLink.ExternalLinkBuilder;
+import com.akross.repository.property.entity.Floorplan.FloorplanBuilder;
+import com.akross.repository.property.entity.Image.ImageBuilder;
+import com.akross.repository.property.entity.VirtualTour.VirtualTourBuilder;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -30,25 +36,17 @@ import static com.akross.domain.property.residentialsalesandletting.PropertyType
 import static com.akross.domain.property.residentialsalesandletting.residentialletting.Availability.LET;
 import static com.akross.domain.property.residentialsalesandletting.residentialletting.Availability.REFERENCES_PENDING;
 import static com.akross.domain.property.residentialsalesandletting.residentialletting.RentFrequency.PW;
-import static com.akross.gateway.property.enitity.builders.entity.TestBrochuresBuilder.aBrochures;
-import static com.akross.gateway.property.enitity.builders.entity.TestEpcFrontPagesBuilder.anEpcFrontPages;
-import static com.akross.gateway.property.enitity.builders.entity.TestEpcGraphsBuilder.anEpcGraphs;
-import static com.akross.gateway.property.enitity.builders.entity.TestExternalLinksBuilder.anExternalLinks;
-import static com.akross.gateway.property.enitity.builders.entity.TestFlagBuilder.aFlag;
-import static com.akross.gateway.property.enitity.builders.entity.TestFlagsBuilder.aFlags;
-import static com.akross.gateway.property.enitity.builders.entity.TestFloorplansBuilder.aFloorplans;
-import static com.akross.gateway.property.enitity.builders.entity.TestImagesBuilder.anImages;
 import static com.akross.gateway.property.enitity.builders.entity.TestPropertyBuilder.aProperty;
-import static com.akross.gateway.property.enitity.builders.entity.TestVirtualToursBuilder.aVirtualTours;
 import static com.akross.repository.property.entity.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
 import static java.math.BigDecimal.valueOf;
 import static java.time.LocalDate.of;
 import static java.time.LocalDateTime.of;
 import static java.util.Arrays.asList;
 import static java.util.stream.Collectors.toSet;
-import static org.hamcrest.Matchers.hasItems;
-import static org.hamcrest.Matchers.isA;
+import static org.hamcrest.CoreMatchers.hasItems;
+import static org.hamcrest.Matchers.contains;
 import static org.hamcrest.core.Is.is;
+import static org.hamcrest.core.IsInstanceOf.instanceOf;
 import static org.junit.Assert.assertThat;
 import static org.junit.rules.ExpectedException.none;
 
@@ -71,7 +69,7 @@ public class PropertyConverterTest {
                 .withDepartment(LETTINGS)
                 .withReferenceNumber("45435")
                 .withAddressName("Bla")
-                .withAddressNumber(1)
+                .withAddressNumber("1")
                 .withAddressStreet("The Street")
                 .withAddress2("address2")
                 .withAddress3("address3")
@@ -116,66 +114,66 @@ public class PropertyConverterTest {
                 .withIsStudentProperty(true)
                 .withLettingFeePolicyHeadline("Fees Apply")
                 .withLettingFeePolicyDetails("bla")
-                .withImages(Stream.of(Image.ImageBuilder.anImage()
+                .withImages(Stream.of(ImageBuilder.anImage()
                                 .withUrl("url1")
                                 .withModified(of(2005, 8, 11, 11, 44))
                                 .build()
-                        , Image.ImageBuilder.anImage()
+                        , ImageBuilder.anImage()
                                 .withUrl("url2")
                                 .withModified(of(2006, 5, 9, 12, 44))
                                 .build()
                 ).collect(toSet()))
-                .withFloorplans(Stream.of(Floorplan.FloorplanBuilder.aFloorplan()
+                .withFloorplans(Stream.of(FloorplanBuilder.aFloorplan()
                                 .withUrl("url3")
                                 .withModified(of(2007, 1, 1, 2, 3))
                                 .build()
-                        , Floorplan.FloorplanBuilder.aFloorplan()
+                        , FloorplanBuilder.aFloorplan()
                                 .withUrl("url4")
                                 .withModified(of(2008, 1, 2, 3, 5))
                                 .build()
                 ).collect(toSet()))
-                .withBrochures(Stream.of(Brochure.BrochureBuilder.aBrochure()
+                .withBrochures(Stream.of(BrochureBuilder.aBrochure()
                                 .withUrl("url5")
                                 .withModified(of(2009, 8, 11, 11, 44))
                                 .build()
-                        , Brochure.BrochureBuilder.aBrochure()
+                        , BrochureBuilder.aBrochure()
                                 .withUrl("url6")
                                 .withModified(of(2010, 5, 9, 12, 44))
                                 .build()
                 ).collect(toSet()))
-                .withVirtualTours(Stream.of(VirtualTour.VirtualTourBuilder.aVirtualTour()
+                .withVirtualTours(Stream.of(VirtualTourBuilder.aVirtualTour()
                                 .withUrl("url7")
                                 .withModified(of(2011, 8, 11, 11, 44))
                                 .build()
-                        , VirtualTour.VirtualTourBuilder.aVirtualTour()
+                        , VirtualTourBuilder.aVirtualTour()
                                 .withUrl("url8")
                                 .withModified(of(2012, 5, 9, 12, 44))
                                 .build()
                 ).collect(toSet()))
-                .withEpcGraphs(Stream.of(EpcGraph.EpcGraphBuilder.anEpcGraph()
+                .withEpcGraphs(Stream.of(EpcGraphBuilder.anEpcGraph()
                                 .withUrl("url9")
                                 .withModified(of(2013, 8, 11, 11, 44))
                                 .build()
-                        , EpcGraph.EpcGraphBuilder.anEpcGraph()
+                        , EpcGraphBuilder.anEpcGraph()
                                 .withUrl("url10")
                                 .withModified(of(2014, 5, 9, 12, 44))
                                 .build()
                 ).collect(toSet()))
-                .withEpcFrontPages(Stream.of(EpcFrontPage.EpcFrontPageBuilder.anEpcFrontPage()
+                .withEpcFrontPages(Stream.of(EpcFrontPageBuilder.anEpcFrontPage()
                                 .withUrl("url11")
                                 .withModified(of(2016, 8, 11, 11, 44))
                                 .build()
-                        , EpcFrontPage.EpcFrontPageBuilder.anEpcFrontPage()
+                        , EpcFrontPageBuilder.anEpcFrontPage()
                                 .withUrl("url12")
                                 .withModified(of(2017, 5, 9, 12, 44))
                                 .build()
                 ).collect(toSet()))
-                .withExternalLinks(Stream.of(ExternalLink.ExternalLinkBuilder.anExternalLink()
+                .withExternalLinks(Stream.of(ExternalLinkBuilder.anExternalLink()
                                 .withUrl("url12")
                                 .withModified(of(2018, 8, 11, 11, 44))
                                 .withDescription("a")
                                 .build()
-                        , ExternalLink.ExternalLinkBuilder.anExternalLink()
+                        , ExternalLinkBuilder.anExternalLink()
                                 .withUrl("url13")
                                 .withModified(of(2019, 5, 9, 12, 44))
                                 .withDescription("b")
@@ -185,7 +183,7 @@ public class PropertyConverterTest {
     }
 
     @Test
-    public void shouldConvertGatewayPropertyToDomainResidentialLetting() {
+    public void shouldConvertGatewayPropertyToRepositoryProperty() {
         Property property = aProperty()
                 .withPropertyId(64634L)
                 .withBranchId(7)
@@ -194,7 +192,7 @@ public class PropertyConverterTest {
                 .withDepartment("Lettings")
                 .withReferenceNumber("45435")
                 .withAddressName("Bla")
-                .withAddressNumber(1)
+                .withAddressNumber("1")
                 .withAddressStreet("The Street")
                 .withAddress2("address2")
                 .withAddress3("address3")
@@ -218,95 +216,68 @@ public class PropertyConverterTest {
                 .withRegionId(38)
                 .withLatitude(53.800651)
                 .withLongitude(-4.064941)
-                .withFlags(aFlags()
-                        .withFlag(asList(aFlag()
-                                        .withFlag("flag1")
-                                        .build()
-                                , aFlag()
-                                        .withFlag("flag2")
-                                        .build())
-                        )
-                        .build())
+                .withFlags(asList("flag1", "flag2"))
                 .withMainSummary("mainSummary")
                 .withFullDescription("fullDescription")
-                .withImages(anImages()
-                        .withImage(asList(TestImageBuilder.anImage().withUrl("url1")
-                                        .withModified(of(2014, 8, 11, 11, 44))
-                                        .build()
-                                , TestImageBuilder.anImage().withUrl("url2")
-                                        .withModified(of(2014, 5, 9, 12, 44))
-                                        .build()
-                        ))
-                        .build())
-                .withFloorplans(aFloorplans()
-                        .withFloorplan(asList(TestFloorplanBuilder.aFloorplan()
-                                        .withUrl("url1")
-                                        .withModified(of(2014, 8, 11, 11, 44))
-                                        .build()
-                                , TestFloorplanBuilder.aFloorplan()
-                                        .withUrl("url2")
-                                        .withModified(of(2014, 5, 9, 12, 44))
-                                        .build())
-                        ).build()
-                )
-                .withBrochures(aBrochures()
-                        .withBrochure(asList(TestBrochureBuilder.aBrochure()
-                                        .withUrl("url1")
-                                        .withModified(of(2014, 8, 11, 11, 44))
-                                        .build()
-                                , TestBrochureBuilder.aBrochure()
-                                        .withUrl("url2")
-                                        .withModified(of(2014, 5, 9, 12, 44))
-                                        .build())
-                        ).build()
-                )
-                .withVirtualTours(aVirtualTours()
-                        .withVirtualTour(asList(TestVirtualTourBuilder.aVirtualTour()
-                                        .withUrl("url1")
-                                        .withModified(of(2014, 8, 11, 11, 44))
-                                        .build()
-                                , TestVirtualTourBuilder.aVirtualTour()
-                                        .withUrl("url2")
-                                        .withModified(of(2014, 5, 9, 12, 44))
-                                        .build())
-                        ).build()
-                )
-                .withEpcGraphs(anEpcGraphs()
-                        .withEpcGraph(asList(TestEpcGraphBuilder.anEpcGraph()
-                                        .withUrl("url1")
-                                        .withModified(of(2014, 8, 11, 11, 44))
-                                        .build()
-                                , TestEpcGraphBuilder.anEpcGraph()
-                                        .withUrl("url2")
-                                        .withModified(of(2014, 5, 9, 12, 44))
-                                        .build())
-                        ).build()
-                )
-                .withEpcFrontPages(anEpcFrontPages()
-                        .withEpcFrontPage(asList(TestEpcFrontPageBuilder.anEpcFrontPage()
-                                        .withUrl("url1")
-                                        .withModified(of(2014, 8, 11, 11, 44))
-                                        .build()
-                                , TestEpcFrontPageBuilder.anEpcFrontPage()
-                                        .withUrl("url2")
-                                        .withModified(of(2014, 5, 9, 12, 44))
-                                        .build())
-                        ).build()
-                )
-
-                .withExternalLinks(anExternalLinks()
-                        .withExternalLink(asList(TestExternalLinkBuilder.anExternalLink()
-                                        .withUrl("url1")
-                                        .withModified(of(2014, 8, 11, 11, 44))
-                                        .withDescription("a")
-                                        .build()
-                                , TestExternalLinkBuilder.anExternalLink()
-                                        .withUrl("url2")
-                                        .withModified(of(2014, 5, 9, 12, 44))
-                                        .withDescription("b")
-                                        .build())
-                        ).build()
-                )
+                .withImages(asList(TestImageBuilder.anImage()
+                                .withUrl("url1")
+                                .withModified(of(2014, 8, 11, 11, 44))
+                                .build()
+                        , TestImageBuilder.anImage()
+                                .withUrl("url2")
+                                .withModified(of(2015, 8, 11, 11, 44))
+                                .build()))
+                .withFloorplans(asList(
+                        (TestFloorplanBuilder.anFloorplan()
+                                .withUrl("url1")
+                                .withModified(of(2014, 8, 11, 11, 44))
+                                .build())
+                        , TestFloorplanBuilder.anFloorplan()
+                                .withUrl("url2")
+                                .withModified(of(2015, 8, 11, 11, 44))
+                                .build()))
+                .withBrochures((asList(TestBrochureBuilder.anBrochure()
+                                .withUrl("url1")
+                                .withModified(of(2014, 8, 11, 11, 44))
+                                .build()
+                        , TestBrochureBuilder.anBrochure()
+                                .withUrl("url2")
+                                .withModified(of(2015, 8, 11, 11, 44))
+                                .build())))
+                .withVirtualTours(asList(TestVirtualTourBuilder.anVirtualTour()
+                                .withUrl("url1")
+                                .withModified(of(2014, 8, 11, 11, 44))
+                                .build()
+                        , TestVirtualTourBuilder.anVirtualTour()
+                                .withUrl("url2")
+                                .withModified(of(2015, 8, 11, 11, 44))
+                                .build()))
+                .withEpcGraphs(asList(TestEpcGraphBuilder.anEpcGraph()
+                                .withUrl("url1")
+                                .withModified(of(2014, 8, 11, 11, 44))
+                                .build()
+                        , TestEpcGraphBuilder.anEpcGraph()
+                                .withUrl("url2")
+                                .withModified(of(2015, 8, 11, 11, 44))
+                                .build()))
+                .withEpcFrontPages(asList(TestEpcFrontPageBuilder.anEpcFrontPage()
+                                .withUrl("url1")
+                                .withModified(of(2014, 8, 11, 11, 44))
+                                .build()
+                        , TestEpcFrontPageBuilder.anEpcFrontPage()
+                                .withUrl("url2")
+                                .withModified(of(2015, 8, 11, 11, 44))
+                                .build()))
+                .withExternalLinks(asList(TestExternalLinkBuilder.anExternalLink()
+                                .withUrl("url1")
+                                .withModified(of(2014, 8, 11, 11, 44))
+                                .withDescription("a")
+                                .build()
+                        , TestExternalLinkBuilder.anExternalLink()
+                                .withUrl("url2")
+                                .withModified(of(2015, 8, 11, 11, 44))
+                                .withDescription("b")
+                                .build()))
                 .withPropertyBedrooms(5)
                 .withPropertyBathrooms(3)
                 .withPropertyEnsuites(6)
@@ -326,8 +297,15 @@ public class PropertyConverterTest {
                 .withLettingFeePolicyHeadline("Fees Apply")
                 .withLettingFeePolicyDetails("bla")
                 .build();
-        final ResidentialLetting actualResidentialLetting = propertyConverter.convertToResidentialLetting(property);
-        assertThat(actualResidentialLetting, isA(ResidentialLetting.class));
+
+        final com.akross.repository.property.entity.residentialsalesandletting.residentialletting.ResidentialLetting
+                actualResidentialLetting =
+                (com.akross.repository.property.entity.residentialsalesandletting.residentialletting.ResidentialLetting)
+                        propertyConverter.convertToResidentialLetting(property);
+
+        assertThat(actualResidentialLetting,
+                instanceOf(com.akross.repository.property.entity.residentialsalesandletting.residentialletting
+                        .ResidentialLetting.class));
         assertThat(actualResidentialLetting.getPropertyId(), is(64634L));
         assertThat(actualResidentialLetting.getBranchId(), is(7));
         assertThat(actualResidentialLetting.getClientName(), is("JUPIX"));
@@ -335,7 +313,7 @@ public class PropertyConverterTest {
         assertThat(actualResidentialLetting.getDepartment(), is(LETTINGS));
         assertThat(actualResidentialLetting.getReferenceNumber(), is("45435"));
         assertThat(actualResidentialLetting.getAddressName(), is("Bla"));
-        assertThat(actualResidentialLetting.getAddressNumber(), is(1));
+        assertThat(actualResidentialLetting.getAddressNumber(), is("1"));
         assertThat(actualResidentialLetting.getAddressStreet(), is("The Street"));
         assertThat(actualResidentialLetting.getAddress2(), is("address2"));
         assertThat(actualResidentialLetting.getAddress3(), is("address3"));
@@ -380,66 +358,64 @@ public class PropertyConverterTest {
         assertThat(actualResidentialLetting.isStudentProperty(), is(true));
         assertThat(actualResidentialLetting.getLettingFeePolicyHeadline(), is("Fees Apply"));
         assertThat(actualResidentialLetting.getLettingFeePolicyDetails(), is("bla"));
-        assertThat(actualResidentialLetting.getImages(), hasItems(anImage().withUrl("url1")
+        assertThat(actualResidentialLetting.getImages(), contains(ImageBuilder.anImage()
+                        .withUrl("url1")
                         .withModified(of(2014, 8, 11, 11, 44))
                         .build()
-                , anImage().withUrl("url2")
-                        .withModified(of(2014, 5, 9, 12, 44))
-                        .build()
-                )
-        );
-        assertThat(actualResidentialLetting.getFloorplans(), hasItems(aFloorplan().withUrl("url1")
+                , ImageBuilder.anImage()
+                        .withUrl("url2")
+                        .withModified(of(2015, 8, 11, 11, 44))
+                        .build()));
+        assertThat(actualResidentialLetting.getFloorplans(), contains(FloorplanBuilder.aFloorplan()
+                        .withUrl("url1")
                         .withModified(of(2014, 8, 11, 11, 44))
                         .build()
-                , aFloorplan().withUrl("url2")
-                        .withModified(of(2014, 5, 9, 12, 44))
-                        .build()
-                )
-        );
-        assertThat(actualResidentialLetting.getBrochures(), hasItems(aBrochure().withUrl("url1")
+                , FloorplanBuilder.aFloorplan()
+                        .withUrl("url2")
+                        .withModified(of(2015, 8, 11, 11, 44))
+                        .build()));
+        assertThat(actualResidentialLetting.getBrochures(), contains(BrochureBuilder.aBrochure()
+                        .withUrl("url1")
                         .withModified(of(2014, 8, 11, 11, 44))
                         .build()
-                , aBrochure().withUrl("url2")
-                        .withModified(of(2014, 5, 9, 12, 44))
-                        .build()
-                )
-        );
-        assertThat(actualResidentialLetting.getVirtualTours(), hasItems(aVirtualTour().withUrl("url1")
+                , BrochureBuilder.aBrochure()
+                        .withUrl("url2")
+                        .withModified(of(2015, 8, 11, 11, 44))
+                        .build()));
+        assertThat(actualResidentialLetting.getVirtualTours(), contains(VirtualTourBuilder.aVirtualTour()
+                        .withUrl("url1")
                         .withModified(of(2014, 8, 11, 11, 44))
                         .build()
-                , aVirtualTour().withUrl("url2")
-                        .withModified(of(2014, 5, 9, 12, 44))
-                        .build()
-                )
-        );
-        assertThat(actualResidentialLetting.getEpcGraphs(), hasItems(anEpcGraph().withUrl("url1")
+                , VirtualTourBuilder.aVirtualTour()
+                        .withUrl("url2")
+                        .withModified(of(2015, 8, 11, 11, 44))
+                        .build()));
+        assertThat(actualResidentialLetting.getEpcGraphs(), contains(EpcGraphBuilder.anEpcGraph()
+                        .withUrl("url1")
                         .withModified(of(2014, 8, 11, 11, 44))
                         .build()
-                , anEpcGraph().withUrl("url2")
-                        .withModified(of(2014, 5, 9, 12, 44))
-                        .build()
-                )
-        );
-        assertThat(actualResidentialLetting.getEpcFrontPages(), hasItems(anEpcFrontPage().withUrl("url1")
+                , EpcGraphBuilder.anEpcGraph()
+                        .withUrl("url2")
+                        .withModified(of(2015, 8, 11, 11, 44))
+                        .build()));
+        assertThat(actualResidentialLetting.getEpcFrontPages(), contains(EpcFrontPageBuilder.anEpcFrontPage()
+                        .withUrl("url1")
                         .withModified(of(2014, 8, 11, 11, 44))
                         .build()
-                , anEpcFrontPage().withUrl("url2")
-                        .withModified(of(2014, 5, 9, 12, 44))
+                , EpcFrontPageBuilder.anEpcFrontPage()
+                        .withUrl("url2")
+                        .withModified(of(2015, 8, 11, 11, 44))
+                        .build()));
+        assertThat(actualResidentialLetting.getExternalLinks(), contains(ExternalLinkBuilder.anExternalLink()
+                        .withUrl("url2")
+                        .withModified(of(2015, 8, 11, 11, 44))
+                        .withDescription("b")
                         .build()
-                )
-        );
-        assertThat(actualResidentialLetting.getExternalLinks(), hasItems(anExternalLink()
+                , ExternalLinkBuilder.anExternalLink()
                         .withUrl("url1")
                         .withModified(of(2014, 8, 11, 11, 44))
                         .withDescription("a")
-                        .build()
-                , anExternalLink()
-                        .withUrl("url2")
-                        .withModified(of(2014, 5, 9, 12, 44))
-                        .withDescription("b")
-                        .build()
-                )
-        );
+                        .build()));
     }
 
     @Test
@@ -455,7 +431,7 @@ public class PropertyConverterTest {
                         .withDepartment(LETTINGS)
                         .withReferenceNumber("45435")
                         .withAddressName("Bla")
-                        .withAddressNumber(1)
+                        .withAddressNumber("1")
                         .withAddressStreet("The Street")
                         .withAddress2("address2")
                         .withAddress3("address3")

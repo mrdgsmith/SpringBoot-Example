@@ -34,7 +34,7 @@ public class ResidentialLetting extends ResidentialSalesAndLettings {
             , final Department department
             , final String referenceNumber
             , final String addressName
-            , final Integer addressNumber
+            , final String addressNumber
             , final String addressStreet
             , final String address2
             , final String address3
@@ -187,7 +187,7 @@ public class ResidentialLetting extends ResidentialSalesAndLettings {
         private boolean isStudentProperty;
         private String addressName;
         private FloorAreaUnit floorAreaUnit;
-        private Integer addressNumber;
+        private String addressNumber;
         private String lettingFeePolicyHeadline;
         private String displayPropertyType;
         private String addressStreet;
@@ -334,7 +334,7 @@ public class ResidentialLetting extends ResidentialSalesAndLettings {
             return this;
         }
 
-        public ResidentialLettingBuilder withAddressNumber(final Integer addressNumber) {
+        public ResidentialLettingBuilder withAddressNumber(final String addressNumber) {
             this.addressNumber = addressNumber;
             return this;
         }

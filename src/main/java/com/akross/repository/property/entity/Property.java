@@ -26,7 +26,7 @@ public abstract class Property {
     private Department department;
     private String referenceNumber;
     private String addressName;
-    private Integer addressNumber;
+    private String addressNumber;
     private String addressStreet;
     private String address2;
     private String address3;
@@ -79,7 +79,7 @@ public abstract class Property {
             , final Department department
             , final String referenceNumber
             , final String addressName
-            , final Integer addressNumber
+            , final String addressNumber
             , final String addressStreet
             , final String address2
             , final String address3
@@ -186,7 +186,7 @@ public abstract class Property {
         return addressName;
     }
 
-    public Integer getAddressNumber() {
+    public String getAddressNumber() {
         return addressNumber;
     }
 
