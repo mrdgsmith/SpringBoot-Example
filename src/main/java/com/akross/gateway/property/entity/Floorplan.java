@@ -4,7 +4,7 @@ import java.time.LocalDateTime;
 
 public class Floorplan extends UrlModified {
 
-    public Floorplan() {
+    private Floorplan() {
         this(null, null);
     }
 

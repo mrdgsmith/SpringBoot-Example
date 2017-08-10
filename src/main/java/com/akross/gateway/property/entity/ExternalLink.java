@@ -19,7 +19,7 @@ public class ExternalLink {
     @XmlElement(name = "url")
     private final String url;
 
-    public ExternalLink() {
+    private ExternalLink() {
         this(null, null, null);
     }
 
