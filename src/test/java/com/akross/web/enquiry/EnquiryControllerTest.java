@@ -2,6 +2,8 @@ package com.akross.web.enquiry;
 
 import com.akross.domain.enquiry.RentalEvaluationEnquiryRequest.RentalEvaluationEnquiryRequestBuilder;
 import com.akross.gateway.enquiry.exception.RentalEvaluationEnquiryException;
+import com.akross.repository.PropertyRepositoryInMemory;
+import com.akross.repository.property.entity.Property;
 import com.akross.service.EnquiryService;
 import com.akross.web.enquiry.entity.RentalEvaluationEnquiryRequest;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -39,6 +41,9 @@ public class EnquiryControllerTest {
 
     @Autowired
     private ObjectMapper objectMapper;
+
+    @MockBean
+    private PropertyRepositoryInMemory<Property> propertyRepositoryInMemory;
 
     @Test
     public void shouldReturnHttpStatus201WhenValidRentalEvaluationEnquiryRequestReceived() throws Exception {

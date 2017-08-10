@@ -1,7 +1,8 @@
 package com.akross.web.property;
 
+import com.akross.repository.PropertyRepositoryInMemory;
+import com.akross.repository.property.exception.PropertyNotFoundException;
 import com.akross.service.PropertyService;
-import com.akross.service.property.exception.PropertyNotFoundException;
 import com.akross.web.property.enitity.container.Property;
 import com.akross.web.property.enitity.residentialsalesandletting.residentialletting.ResidentialLetting;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -65,7 +66,10 @@ public class PropertyControllerTest {
     @MockBean
     private PropertyService propertyService;
 
-    private static com.akross.domain.property.container.Property getDomainContainerProperty() {
+    @MockBean
+    private PropertyRepositoryInMemory<com.akross.repository.property.entity.Property> propertyRepositoryInMemory;
+
+    private static com.akross.domain.property.container.Property getContainerProperty() {
         return aProperty()
                 .withResidentialLettings(asList(
                         aResidentialLetting()
@@ -76,7 +80,7 @@ public class PropertyControllerTest {
                                 .withDepartment(LETTINGS)
                                 .withReferenceNumber("563456")
                                 .withAddressName("bla")
-                                .withAddressNumber(1)
+                                .withAddressNumber("1")
                                 .withAddressStreet("The Street")
                                 .withAddress2("address2")
                                 .withAddress3("address3")
@@ -186,7 +190,7 @@ public class PropertyControllerTest {
                 ).build();
     }
 
-    private static com.akross.domain.property.Property getDomainResidentialLettingProperty() {
+    private static com.akross.domain.property.Property getResidentialLettingProperty() {
         return aResidentialLetting()
                 .withPropertyId(64634L)
                 .withBranchId(7)
@@ -195,7 +199,7 @@ public class PropertyControllerTest {
                 .withDepartment(LETTINGS)
                 .withReferenceNumber("563456")
                 .withAddressName("bla")
-                .withAddressNumber(1)
+                .withAddressNumber("1")
                 .withAddressStreet("The Street")
                 .withAddress2("address2")
                 .withAddress3("address3")
@@ -306,8 +310,8 @@ public class PropertyControllerTest {
     @Test
     public void shouldReturnResidentialLettingProperty() throws Exception {
         final Long propertyId = 5L;
-        getDomainContainerProperty();
-        given(propertyService.getProperty(propertyId)).willReturn(getDomainResidentialLettingProperty());
+        getContainerProperty();
+        given(propertyService.getProperty(propertyId)).willReturn(getResidentialLettingProperty());
         mockMvc.perform(get("/properties/5")
                 .contentType(APPLICATION_JSON)
                 .accept(APPLICATION_JSON))
@@ -322,9 +326,9 @@ public class PropertyControllerTest {
     }
 
     @Test
-    public void shouldReturn405WhenPropertyNotFound() throws Exception {
+    public void shouldReturn404WhenPropertyNotFound() throws Exception {
         final Long propertyId = 5L;
-        getDomainContainerProperty();
+        getContainerProperty();
         given(propertyService.getProperty(propertyId)).willThrow(new PropertyNotFoundException(propertyId));
         mockMvc.perform(get("/properties/5")
                 .contentType(APPLICATION_JSON)
@@ -339,7 +343,7 @@ public class PropertyControllerTest {
 
     @Test
     public void shouldReturnAllProperties() throws Exception {
-        given(propertyService.getProperties()).willReturn(getDomainContainerProperty());
+        given(propertyService.getProperties()).willReturn(getContainerProperty());
         mockMvc.perform(get("/properties")
                 .contentType(APPLICATION_JSON)
                 .accept(APPLICATION_JSON))
@@ -355,7 +359,7 @@ public class PropertyControllerTest {
 
     @Test
     public void shouldReturnFeaturedProperties() throws Exception {
-        given(propertyService.getProperties(true)).willReturn(getDomainContainerProperty());
+        given(propertyService.getProperties(true)).willReturn(getContainerProperty());
         mockMvc.perform(get("/properties")
                 .param("featured", "true")
                 .contentType(APPLICATION_JSON)
@@ -379,7 +383,7 @@ public class PropertyControllerTest {
         final Integer bedroomAmount = 3;
 
         given(propertyService.getPropertiesBySearchCriteria(location, minimumPrice, maximumPrice
-                , asList(HOUSE, BUNGALOWS), bedroomAmount)).willReturn(getDomainContainerProperty());
+                , asList(HOUSE, BUNGALOWS), bedroomAmount)).willReturn(getContainerProperty());
 
         mockMvc.perform(get("/properties/")
                 .param("location", location)
@@ -433,7 +437,7 @@ public class PropertyControllerTest {
                 .withDepartment(LETTINGS)
                 .withReferenceNumber("563456")
                 .withAddressName("bla")
-                .withAddressNumber(1)
+                .withAddressNumber("1")
                 .withAddressStreet("The Street")
                 .withAddress2("address2")
                 .withAddress3("address3")
@@ -555,7 +559,7 @@ public class PropertyControllerTest {
                                         .withDepartment(LETTINGS)
                                         .withReferenceNumber("563456")
                                         .withAddressName("bla")
-                                        .withAddressNumber(1)
+                                        .withAddressNumber("1")
                                         .withAddressStreet("The Street")
                                         .withAddress2("address2")
                                         .withAddress3("address3")
