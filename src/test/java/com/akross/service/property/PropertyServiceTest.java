@@ -1,11 +1,10 @@
 package com.akross.service.property;
 
-
 import com.akross.domain.property.container.Property;
 import com.akross.domain.property.residentialsalesandletting.PropertyType;
 import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting;
-import com.akross.exception.property.PropertyNotFoundException;
 import com.akross.repository.PropertyRepository;
+import com.akross.repository.property.exception.PropertyNotFoundException;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -50,130 +49,6 @@ public class PropertyServiceTest {
 
     @InjectMocks
     private PropertyService propertyService;
-
-//    private static List<ResidentialLetting> createInvalidFeaturedResidentialLettingProperties() {
-//        return asList(aResidentialLetting()
-//                        .withDepartment(SALES)
-//                        .withIsFeaturedProperty(true)
-//                        .withAvailability(LET)
-//                        .withDisplayAddress("Should not be here!")
-//                        .withDateLastModified(of(2015, OCTOBER, 21))
-//                        .withTimeLastModified(LocalTime.of(21, 55, 14))
-//                        .build()
-//                , aResidentialLetting()
-//                        .withDepartment(LETTINGS)
-//                        .withIsFeaturedProperty(false)
-//                        .withAvailability(LET)
-//                        .withDisplayAddress("Should not be here!")
-//                        .withDateLastModified(of(2015, SEPTEMBER, 21))
-//                        .withTimeLastModified(LocalTime.of(21, 55, 14))
-//                        .build()
-//                , aResidentialLetting()
-//                        .withDepartment(LETTINGS)
-//                        .withIsFeaturedProperty(true)
-//                        .withAvailability(WITHDRAWN)
-//                        .withDisplayAddress("Should not be here!")
-//                        .withDateLastModified(of(2015, NOVEMBER, 21))
-//                        .withTimeLastModified(LocalTime.of(21, 55, 14))
-//                        .build());
-//    }
-
-//    private static List<ResidentialLetting> createValidFeaturedResidentialLettingProperties() {
-//        return asList(aResidentialLetting()
-//                        .withPropertyId(5L)
-//                        .withDepartment(LETTINGS)
-//                        .withIsFeaturedProperty(true)
-//                        .withAvailability(LET)
-//                        .withDisplayAddress("foo3")
-//                        .withMainSummary("mainSummary3")
-//                        .withAddress3("london")
-//                        .withPropertyType(HOUSE)
-//                        .withPropertyBedrooms(3)
-//                        .withRent(valueOf(3000))
-//                        .withPropertyBedrooms(3)
-//                        .withIsLetPOA(false)
-//                        .withRentFrequency(PCM)
-//                        .withDateLastModified(of(2015, OCTOBER, 21))
-//                        .withTimeLastModified(LocalTime.of(21, 55, 12))
-//                        .build()
-//                , aResidentialLetting()
-//                        .withPropertyId(4L)
-//                        .withDepartment(LETTINGS)
-//                        .withIsFeaturedProperty(true)
-//                        .withAvailability(LET)
-//                        .withDisplayAddress("foo2")
-//                        .withMainSummary("mainSummary2")
-//                        .withAddress3("London")
-//                        .withPropertyType(BUNGALOWS)
-//                        .withPropertyBedrooms(3)
-//                        .withRent(valueOf(2000))
-//                        .withIsLetPOA(true)
-//                        .withRentFrequency(PCM)
-//                        .withDateLastModified(of(2015, AUGUST, 21))
-//                        .withTimeLastModified(LocalTime.of(21, 55, 13))
-//                        .build()
-//                , aResidentialLetting()
-//                        .withPropertyId(3L)
-//                        .withDepartment(LETTINGS)
-//                        .withIsFeaturedProperty(true)
-//                        .withAvailability(LET)
-//                        .withDisplayAddress("foo4")
-//                        .withMainSummary("mainSummary4")
-//                        .withRent(valueOf(4000))
-//                        .withIsLetPOA(true)
-//                        .withRentFrequency(PCM)
-//                        .withDateLastModified(of(2015, AUGUST, 21))
-//                        .withTimeLastModified(LocalTime.of(21, 55, 10))
-//                        .build()
-//                , aResidentialLetting()
-//                        .withPropertyId(2L)
-//                        .withDepartment(LETTINGS)
-//                        .withIsFeaturedProperty(true)
-//                        .withAvailability(LET)
-//                        .withDisplayAddress("foo1")
-//                        .withMainSummary("mainSummary1")
-//                        .withRent(valueOf(1000))
-//                        .withIsLetPOA(false)
-//                        .withRentFrequency(PCM)
-//                        .withDateLastModified(of(2015, AUGUST, 21))
-//                        .withTimeLastModified(LocalTime.of(21, 55, 14))
-//                        .build()
-//        );
-//    }
-
-//    private static List<ResidentialLetting> createResidentialLettingProperties() {
-//        return concat(Stream.of(aResidentialLetting()
-//                        .withPropertyId(12L)
-//                        .withDepartment(SALES)
-//                        .withIsFeaturedProperty(true)
-//                        .withAvailability(LET)
-//                        .withIsLetPOA(true)
-//                        .withDisplayAddress("Should not be here!")
-//                        .withDateLastModified(of(2015, OCTOBER, 21))
-//                        .withTimeLastModified(LocalTime.of(21, 55, 14))
-//                        .build()
-//                , aResidentialLetting()
-//                        .withPropertyId(13L)
-//                        .withDepartment(LETTINGS)
-//                        .withIsFeaturedProperty(false)
-//                        .withAvailability(LET)
-//                        .withIsLetPOA(true)
-//                        .withDisplayAddress("Should not be here!")
-//                        .withDateLastModified(of(2015, SEPTEMBER, 21))
-//                        .withTimeLastModified(LocalTime.of(21, 55, 14))
-//                        .build()
-//                , aResidentialLetting()
-//                        .withPropertyId(14L)
-//                        .withDepartment(LETTINGS)
-//                        .withIsFeaturedProperty(true)
-//                        .withIsLetPOA(true)
-//                        .withAvailability(WITHDRAWN)
-//                        .withDisplayAddress("Should not be here!")
-//                        .withDateLastModified(of(2015, NOVEMBER, 21))
-//                        .withTimeLastModified(LocalTime.of(21, 55, 14))
-//                        .build()), createValidFeaturedResidentialLettingProperties().stream())
-//                .collect(toList());
-//    }
 
     private static List<ResidentialLetting> createResidentialLettingProperties() {
         return asList(
@@ -311,7 +186,7 @@ public class PropertyServiceTest {
     }
 
     @Test
-    public void shouldReturnAllPropertiesWithSearchCriteria() {
+    public void shouldReturnAllPropertiesThatMatchSearchCriteria() {
         final String location = "london";
         final BigDecimal minimumPrice = valueOf(2000);
         final BigDecimal maximumPrice = valueOf(4000);
