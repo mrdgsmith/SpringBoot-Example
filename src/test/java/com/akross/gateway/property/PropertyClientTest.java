@@ -1,8 +1,9 @@
 package com.akross.gateway.property;
 
-import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting;
+import com.akross.domain.property.utilities.PropertyConverter;
+import com.akross.gateway.property.entity.Properties;
 import com.akross.gateway.property.entity.Property;
-import com.akross.gateway.property.utilities.PropertyConverter;
+import com.akross.repository.property.entity.residentialsalesandletting.residentialletting.ResidentialLetting;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.rules.ExpectedException;
@@ -11,9 +12,12 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
+import java.util.List;
+
 import static com.akross.domain.property.Department.LETTINGS;
-import static com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
+import static com.akross.gateway.property.enitity.builders.entity.TestPropertiesBuilder.aProperties;
 import static com.akross.gateway.property.enitity.builders.entity.TestPropertyBuilder.aProperty;
+import static com.akross.repository.property.entity.residentialsalesandletting.residentialletting.ResidentialLetting.ResidentialLettingBuilder.aResidentialLetting;
 import static java.math.BigDecimal.valueOf;
 import static java.util.Arrays.asList;
 import static org.hamcrest.Matchers.hasItems;
@@ -57,7 +61,11 @@ public class PropertyClientTest {
                 .withRent(valueOf(500))
                 .build();
 
-        when(httpPropertyClient.getProperties()).thenReturn(asList(property1, property2));
+        final Properties properties = aProperties()
+                .withProperties(asList(property1, property2))
+                .build();
+
+        when(httpPropertyClient.getProperties()).thenReturn(properties);
 
         final ResidentialLetting residentialLetting1 = aResidentialLetting()
                 .withPropertyId(1L)
@@ -74,7 +82,7 @@ public class PropertyClientTest {
         when(propertyConverter.convertToResidentialLetting(property1)).thenReturn(residentialLetting1);
         when(propertyConverter.convertToResidentialLetting(property2)).thenReturn(residentialLetting2);
 
-        final com.akross.domain.property.container.Property actualProperties = propertyClient.getProperties();
-        assertThat(actualProperties.getResidentialLettings(), hasItems(residentialLetting1, residentialLetting2));
+        final List<com.akross.repository.property.entity.Property> actualProperties = propertyClient.getProperties();
+        assertThat(actualProperties, hasItems(residentialLetting1, residentialLetting2));
     }
 }

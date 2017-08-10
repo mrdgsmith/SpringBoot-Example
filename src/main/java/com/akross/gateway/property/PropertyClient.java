@@ -1,14 +1,12 @@
 package com.akross.gateway.property;
 
-import com.akross.domain.property.container.Property;
-import com.akross.domain.property.residentialsalesandletting.residentialletting.ResidentialLetting;
-import com.akross.gateway.property.utilities.PropertyConverter;
+import com.akross.domain.property.utilities.PropertyConverter;
+import com.akross.repository.property.entity.Property;
 
 import java.util.List;
 import java.util.function.Predicate;
 
 import static com.akross.domain.property.Department.LETTINGS;
-import static com.akross.domain.property.container.Property.PropertyBuilder.aProperty;
 import static java.util.Arrays.asList;
 import static java.util.Objects.nonNull;
 import static java.util.stream.Collectors.toList;
@@ -28,17 +26,14 @@ public class PropertyClient implements com.akross.gateway.PropertyClient {
         this.propertyConverter = propertyConverter;
     }
 
-    @Override
-    public Property getProperties() {
-        final List<com.akross.gateway.property.entity.Property> properties = httpPropertyClient.getProperties();
-        final List<ResidentialLetting> residentialLettings = properties.parallelStream()
+    public List<Property> getProperties() {
+        final List<com.akross.gateway.property.entity.Property> properties
+                = httpPropertyClient.getProperties().getProperties();
+        return properties.parallelStream()
                 .filter(FILTER_RESIDENTIAL_LETTING.stream()
                         .reduce(Predicate::and)
                         .orElse(v -> false))
                 .map(propertyConverter::convertToResidentialLetting)
                 .collect(toList());
-        return aProperty()
-                .withResidentialLettings(residentialLettings)
-                .build();
     }
 }
