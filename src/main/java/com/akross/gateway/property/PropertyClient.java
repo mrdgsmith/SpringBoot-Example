@@ -26,6 +26,7 @@ public class PropertyClient implements com.akross.gateway.PropertyClient {
         this.propertyConverter = propertyConverter;
     }
 
+    @Override
     public List<Property> getProperties() {
         final List<com.akross.gateway.property.entity.Property> properties
                 = httpPropertyClient.getProperties().getProperties();
