@@ -54,6 +54,7 @@ task runApp(dependsOn: ["clean", "build", "test"], type: JavaExec) {
 
 task stage(dependsOn: ["clean", "build", "test", "distZip", "installDist"])
 build.mustRunAfter clean
+distZip.mustRunAfter test
 
 jar {
     baseName = "akrosss-property-management"
