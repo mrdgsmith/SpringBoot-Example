@@ -9,7 +9,6 @@ import org.junit.rules.ExpectedException;
 import org.junit.runner.RunWith;
 import org.springframework.boot.actuate.health.Health;
 import org.springframework.boot.context.embedded.LocalServerPort;
-import org.springframework.boot.test.autoconfigure.OverrideAutoConfiguration;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.boot.web.client.RestTemplateBuilder;
@@ -28,7 +27,6 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(webEnvironment = RANDOM_PORT)
-@OverrideAutoConfiguration(enabled = true)
 public class HealthControllerTest {
 
     @Rule
