@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
+import static org.springframework.boot.actuate.health.Health.down;
+import static org.springframework.boot.actuate.health.Health.up;
 import static org.springframework.http.HttpEntity.EMPTY;
 import static org.springframework.http.HttpMethod.HEAD;
 
@@ -26,11 +28,11 @@ public class PropertiesEndpointHealthIndicator implements HealthIndicator {
             final ResponseEntity<String> responseEntity = jupixPropertiesRestClient
                     .exchange(jupixPropertiesRestClientProperties.getPath(), HEAD, EMPTY, String.class);
             if (!responseEntity.getStatusCode().is2xxSuccessful()) {
-                return Health.down().withDetail("Error Code", "Jupix is down").build();
+                return down().withDetail("Error Code", "Jupix is down").build();
             }
+            return up().withDetail("Jupix properties service status", responseEntity.getStatusCode()).build();
         } catch (Exception exception) {
-            return Health.down().withDetail("Error Code", "Jupix is down due to " + exception).build();
+            return down().withDetail("Error Code", "Jupix is down due to " + exception).build();
         }
-        return Health.up().build();
     }
 }
