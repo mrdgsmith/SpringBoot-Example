@@ -1,3 +1,4 @@
+server.port:
 jupix:
   restService:
     rootUrl: http://services.jupix.co.uk

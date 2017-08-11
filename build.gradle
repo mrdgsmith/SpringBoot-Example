@@ -34,18 +34,21 @@ dependencies {
     compile(group: "org.springframework.boot", name: "spring-boot-starter-web") {
         exclude module: "spring-boot-starter-tomcat"
     }
+    compile(group: "org.springframework.boot", name: "spring-boot-starter-actuator")
     compile(group: "org.springframework.boot", name: "spring-boot-starter-jetty")
     compile(group: "com.fasterxml.jackson.datatype", name: "jackson-datatype-jsr310", version: "$jacksonVersion")
     compile(group: "org.springframework.boot", name: "spring-boot-starter-data-jpa")
     compile(group: "com.h2database", name: "h2", version: "$h2Version")
     //Test dependencies
     testCompile(group: "org.springframework.boot", name: "spring-boot-starter-test")
+    testCompile(group: "com.jayway.jsonpath", name: "json-path-assert", version: "2.4.0")
 }
 
 task runApp(dependsOn: ["clean", "build", "test"], type: JavaExec) {
     classpath = sourceSets.main.runtimeClasspath
     main = mainClassName
-    jvmArgs = ["-Xdebug", "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"]
+    jvmArgs = ["-Xdebug"
+            , "-Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005"]
 }
 
 task stage(dependsOn: ["clean", "build", "test", "distZip", "installDist"])
