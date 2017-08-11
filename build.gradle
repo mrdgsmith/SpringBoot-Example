@@ -27,6 +27,7 @@ repositories {
 ext {
     jacksonVersion = "2.8.9"
     h2Version = "1.4.196"
+    jsonpath = "2.4.0"
 }
 
 dependencies {
@@ -41,7 +42,7 @@ dependencies {
     compile(group: "com.h2database", name: "h2", version: "$h2Version")
     //Test dependencies
     testCompile(group: "org.springframework.boot", name: "spring-boot-starter-test")
-    testCompile(group: "com.jayway.jsonpath", name: "json-path-assert", version: "2.4.0")
+    testCompile(group: "com.jayway.jsonpath", name: "json-path-assert", version: "$jsonpath")
 }
 
 task runApp(dependsOn: ["clean", "build", "test"], type: JavaExec) {
