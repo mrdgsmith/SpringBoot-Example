@@ -10,8 +10,8 @@ jupix:
       version: 2.0
     enquiry:
       path: /api/enquiries/post_enquiry.php
-      apiKey:
-      agentCode:
-      branchCode:
+      apiKey: FLztod978RAbWDNYXAyI
+      agentCode: r4DqF22JjVtCJF3qUh7R
+      branchCode: 2913001
       version: 1.1
       enquirerEmail: enquiries@akrosslondon.com
