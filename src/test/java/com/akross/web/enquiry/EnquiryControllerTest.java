@@ -39,11 +39,42 @@ public class EnquiryControllerTest {
     @MockBean
     private EnquiryService enquiryService;
 
+    @MockBean
+    private PropertyRepositoryInMemory<Property> propertyRepositoryInMemory;
+
     @Autowired
     private ObjectMapper objectMapper;
 
-    @MockBean
-    private PropertyRepositoryInMemory<Property> propertyRepositoryInMemory;
+    @Test
+    public void shouldSendMinimumFields() throws Exception {
+        final com.akross.domain.enquiry.RentalEvaluationEnquiryRequest rentalEvaluationEnquiryRequest
+                = RentalEvaluationEnquiryRequestBuilder.aRentalEvaluationEnquiryRequest()
+                .withFirstName("Steve")
+                .withLastName("Smith")
+                .withAddressLine1("foo")
+                .withPostcode("nw10 4hk")
+                .withTelephone("54748456356")
+                .withEmailAddress("happy@msn.com")
+                .build();
+
+        doNothing().when(enquiryService).sendRentalEvaluationEnquiry(rentalEvaluationEnquiryRequest);
+
+        mockMvc.perform(post("/enquiries")
+                .content(createRentalEvaluationEnquiryRequestJsonBody(aRentalEvaluationEnquiryRequest()
+                        .withFirstName("Steve")
+                        .withLastName("Smith")
+                        .withAddressLine1("foo")
+                        .withPostcode("nw10 4hk")
+                        .withTelephone("54748456356")
+                        .withEmailAddress("happy@msn.com")
+                        .build()))
+                .contentType(APPLICATION_JSON)
+                .accept(APPLICATION_JSON))
+                .andDo(print())
+                .andExpect(status().isCreated());
+        verify(enquiryService).sendRentalEvaluationEnquiry(rentalEvaluationEnquiryRequest);
+        verifyNoMoreInteractions(enquiryService);
+    }
 
     @Test
     public void shouldReturnHttpStatus201WhenValidRentalEvaluationEnquiryRequestReceived() throws Exception {
