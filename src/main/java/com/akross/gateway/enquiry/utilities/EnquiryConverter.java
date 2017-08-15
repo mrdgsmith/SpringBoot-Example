@@ -3,17 +3,19 @@ package com.akross.gateway.enquiry.utilities;
 
 import com.akross.domain.enquiry.RentalEvaluationEnquiryRequest;
 
-import java.util.stream.Collectors;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 import static java.util.Objects.nonNull;
+import static java.util.stream.Collectors.joining;
 import static org.springframework.web.util.UriComponentsBuilder.newInstance;
 
 public class EnquiryConverter {
 
     private static String buildAddress(final String... addressParts) {
         return Stream.of(addressParts)
-                .collect(Collectors.joining(" "));
+                .filter(Objects::nonNull)
+                .collect(joining(" "));
     }
 
     private static int isKeepUpdatedOnMortgage(final Boolean keepUpdatedOnMortgage) {

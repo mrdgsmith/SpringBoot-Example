@@ -49,7 +49,6 @@ public class EnquiryConverterTest {
                 .withLastName("Smith")
                 .withAddressLine1("foo")
                 .withAddressLine2("Bar")
-                .withCountry("Bar")
                 .withPostcode("nw10 4hk")
                 .withTelephone("54748456356")
                 .withEmailAddress("happy@msn.com")
@@ -74,7 +73,7 @@ public class EnquiryConverterTest {
                         "&lastName=Smith" +
                         "&From=email" +
                         "&to=happy@msn.com" +
-                        "&address=foo Bar null Bar" +
+                        "&address=foo Bar" +
                         "&postcode=nw10 4hk" +
                         "&phoneDay=54748456356" +
                         "&requestMailingList=0" +
