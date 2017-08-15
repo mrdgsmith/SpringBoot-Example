@@ -32,11 +32,11 @@ public class RentalEvaluationEnquiryRequest {
             , @JsonProperty(value = "postcode", required = true) final String postcode
             , @JsonProperty(value = "telephone", required = true) final String telephone
             , @JsonProperty(value = "emailAddress", required = true) final String emailAddress
-            , @JsonProperty(value = "telephonePreference", defaultValue = "false") final Boolean telephonePreference
-            , @JsonProperty(value = "emailPreference", defaultValue = "false") final Boolean emailPreference
+            , @JsonProperty(value = "telephonePreference") final Boolean telephonePreference
+            , @JsonProperty(value = "emailPreference") final Boolean emailPreference
             , @JsonProperty(value = "additionalComments") final String additionalComments
-            , @JsonProperty(value = "propertyOwned", defaultValue = "false") final Boolean propertyOwned
-            , @JsonProperty(value = "keepUpdatedOnMortgage", defaultValue = "false") final Boolean keepUpdatedOnMortgage) {
+            , @JsonProperty(value = "propertyOwned") final Boolean propertyOwned
+            , @JsonProperty(value = "keepUpdatedOnMortgage") final Boolean keepUpdatedOnMortgage) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.addressLine1 = addressLine1;

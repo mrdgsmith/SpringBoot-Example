@@ -6,6 +6,7 @@ import com.akross.domain.enquiry.RentalEvaluationEnquiryRequest;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
+import static java.util.Objects.nonNull;
 import static org.springframework.web.util.UriComponentsBuilder.newInstance;
 
 public class EnquiryConverter {
@@ -13,6 +14,10 @@ public class EnquiryConverter {
     private static String buildAddress(final String... addressParts) {
         return Stream.of(addressParts)
                 .collect(Collectors.joining(" "));
+    }
+
+    private static int isKeepUpdatedOnMortgage(final Boolean keepUpdatedOnMortgage) {
+        return (nonNull(keepUpdatedOnMortgage) && keepUpdatedOnMortgage) ? 1 : 0;
     }
 
     public String convertToHttpRentalEvaluationEnquiryRequest(
@@ -34,7 +39,7 @@ public class EnquiryConverter {
                 )
                 .queryParam("postcode", rentalEvaluationEnquiryRequest.getPostcode())
                 .queryParam("phoneDay", rentalEvaluationEnquiryRequest.getTelephone())
-                .queryParam("requestMailingList", rentalEvaluationEnquiryRequest.getKeepUpdatedOnMortgage() ? 1 : 0)
+                .queryParam("requestMailingList", isKeepUpdatedOnMortgage(rentalEvaluationEnquiryRequest.getKeepUpdatedOnMortgage()))
                 .queryParam("propToRent", 1)
                 .queryParam("comment", rentalEvaluationEnquiryRequest.getAdditionalComments())
                 .build()
