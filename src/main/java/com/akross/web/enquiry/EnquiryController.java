@@ -42,7 +42,7 @@ public class EnquiryController {
                 .withTelephonePreference(rentalEvaluationEnquiryRequest.getTelephonePreference())
                 .withEmailPreference(rentalEvaluationEnquiryRequest.getEmailPreference())
                 .withAdditionalComments(rentalEvaluationEnquiryRequest.getAdditionalComments())
-                //  .withPropertyOwned(rentalEvaluationEnquiryRequest.getPropertyOwned())
+                .withPropertyOwned(rentalEvaluationEnquiryRequest.getPropertyOwned())
                 .withKeepUpdatedOnMortgage(rentalEvaluationEnquiryRequest.getKeepUpdatedOnMortgage())
                 .build()
         );
